@@ -4,14 +4,18 @@
     "kind": "coaching",
     "title": "9v9 3-1-3-1",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
       "status": "review-required",
       "exploratory": false,
       "source": "Mossley Hill playbook (15 pp.)",
       "reviewedBy": null,
-      "reviewedOn": null
+      "reviewedOn": null,
+      "reviewer": "Niall Walsh (appointed 2026-10-19; review not yet recorded)"
     }
   },
   {
@@ -19,14 +23,18 @@
     "kind": "coaching",
     "title": "9v9 3-3-2",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
       "status": "review-required",
       "exploratory": false,
       "source": "Research draft 0.1, 19 Oct 2026",
       "reviewedBy": null,
-      "reviewedOn": null
+      "reviewedOn": null,
+      "reviewer": "Niall Walsh (appointed 2026-10-19; review not yet recorded)"
     }
   },
   {
@@ -34,7 +42,10 @@
     "kind": "coaching",
     "title": "9v9 2-2-3-1 (wing-backs)",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
       "status": "review-required",
@@ -42,7 +53,8 @@
       "source": "Exploratory draft 0.1, 19 Oct 2026",
       "reviewedBy": null,
       "reviewedOn": null,
-      "publicApproval": null
+      "publicApproval": null,
+      "reviewer": "Niall Walsh (appointed 2026-10-19; review not yet recorded)"
     }
   },
   {
@@ -50,7 +62,10 @@
     "kind": "editorial",
     "title": "Moving from 7v7 to 9v9",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "rules": [
       {
@@ -95,7 +110,10 @@
     "kind": "editorial",
     "title": "Homepage",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "factIds": [
       "format-ages"
@@ -106,7 +124,10 @@
     "kind": "editorial",
     "title": "9v9 formation hub",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "factIds": [
       "format-ages",
@@ -122,7 +143,10 @@
     "kind": "editorial",
     "title": "Moving Up landing",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "factIds": [
       "format-ages",
@@ -146,7 +170,10 @@
     "kind": "editorial",
     "title": "About and editorial standards",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     }
   },
   {
@@ -154,14 +181,18 @@
     "kind": "coaching",
     "title": "Pre-season checklist (7v7 to 9v9)",
     "design": {
-      "status": "approved"
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
       "status": "draft",
       "exploratory": false,
       "source": "P1 prototype; two items are our additions",
       "reviewedBy": null,
-      "reviewedOn": null
+      "reviewedOn": null,
+      "reviewer": "Niall Walsh (appointed 2026-10-19; review not yet recorded)"
     }
   },
   {

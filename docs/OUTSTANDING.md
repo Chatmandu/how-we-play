@@ -1,23 +1,25 @@
 # Outstanding issues and decisions
 
-## Decisions needed
+## Decisions recorded (19 October 2026)
 
-| # | Decision | Why it matters | Suggested answer |
-|---|---|---|---|
-| 1 | Confirm the design system is **approved**, with a date | The Design Spec v1.1 file says "proposed"; the register and brief say approved. The public build requires approved | Approve and record the date in `content/register.json` |
-| 2 | Rights to the source playbook | Every 3-1-3-1 page derives from it | Written agreement with the club before any public 3-1-3-1 content |
-| 3 | Appoint the qualified coaching reviewer | Nothing coaching-related can be public until reviewed | Name, qualification, date in the register |
-| 4 | Author name for About | About says "name to be confirmed" | Confirm before launch |
-| 5 | Is a site with **no formation guides** worth launching? | Until review, the public build is home, 9v9 facts, Moving Up and About | Keep the domain dark until the 3-1-3-1 is reviewed |
-| 6 | Newsletter provider and privacy notice | The form is a demo in preview only | Decide after coach testing |
-| 7 | Commission "Compare the three formations" copy? | The hub has the structural comparison; a fuller page needs content | Not yet |
-| 8 | Show 3-3-2 / 2-2-3-1 publicly at all? | Drafts include coaching judgement and an experimental shape | Only after review; 2-2-3-1 also needs recorded public approval |
-| 9 | Dark mode | The brand has none; some users expect it | Leave until the brand defines one |
+- Design system approved by Niall Walsh, 19 October 2026 (recorded on every register entry).
+- Source playbook: Niall's own work; permission granted.
+- Coaching reviewer: Niall Walsh. Reviews are not yet recorded, so nothing coaching-related is public yet.
+- Author on About: Niall Walsh.
+- Domain: stays switched off for now.
+
+## Still open
+
+| # | Decision | Note |
+|---|---|---|
+| 1 | Review the 3-1-3-1 and record it | Answer the "Still being written" questions in the preview, then set `reviewed`, `reviewedBy`, `reviewedOn` in the formation file and the register. Its guide, lessons and positions then publish |
+| 2 | Newsletter provider and privacy notice | Demo in preview only |
+| 3 | 3-3-2 and 2-2-3-1 publicly? | Only after review; 2-2-3-1 also needs a recorded public approval |
+| 4 | Dark mode | The brand has none |
 
 ## Before launch
 
-- Close decisions 1 to 4.
-- Reviewer works through the "Still being written" questions; record review in the register.
+- Record the 3-1-3-1 review (open item 1).
 - Fix the content warnings from `npm run validate` (labels on highlighted areas; check the far-side-in marking contact).
 - Screen-reader, Safari, Firefox and real-device testing (`docs/QA-REPORT.md` section 6).
 - Trim long meta descriptions; per-page Open Graph images; Search Console.
