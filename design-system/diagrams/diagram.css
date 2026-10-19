@@ -1,0 +1,31 @@
+/* How We Play diagram themes. Requires tokens.css (defines --hwp-pitch-* per .hwp-pitch--{blue|light|mono}). */
+.hwp-pitch { display: block; width: 100%; height: auto; }
+.hwp-pitch .hwp-pf { fill: var(--hwp-pitch-pitch); }
+.hwp-pitch .hwp-pl { fill: none; stroke: var(--hwp-pitch-line); }
+.hwp-pitch .hwp-pd { fill: var(--hwp-pitch-line); }
+.hwp-pitch .hwp-us { fill: var(--hwp-pitch-us); }
+.hwp-pitch .hwp-us-num { fill: var(--hwp-pitch-us-text); }
+.hwp-pitch .hwp-them { fill: var(--hwp-pitch-them-fill); stroke: var(--hwp-pitch-them); }
+.hwp-pitch .hwp-them-keyline { stroke: var(--hwp-pitch-them-keyline, none); }
+.hwp-pitch--light .hwp-them-keyline, .hwp-pitch--mono .hwp-them-keyline { stroke: none; }
+.hwp-pitch .hwp-ghost circle { fill: none; stroke: var(--hwp-pitch-us); opacity: .85; }
+.hwp-pitch .hwp-ghost text { fill: var(--hwp-pitch-us); opacity: .85; font-family: var(--hwp-font-family-sans); }
+.hwp-pitch .hwp-ghost-ring { stroke: var(--hwp-pitch-us); }
+.hwp-pitch .hwp-arr--us { stroke: var(--hwp-pitch-us); }
+.hwp-pitch .hwp-arr--them { stroke: var(--hwp-pitch-them); }
+.hwp-pitch .hwp-mk-us { fill: var(--hwp-pitch-us); }
+.hwp-pitch .hwp-mk-them { fill: var(--hwp-pitch-them); }
+.hwp-pitch .hwp-ball { fill: var(--hwp-pitch-ball); stroke: var(--hwp-pitch-ink); }
+.hwp-pitch .hwp-hl--space { fill: var(--hwp-pitch-space); fill-opacity: var(--hwp-pitch-space-opacity); stroke: var(--hwp-pitch-space-edge); }
+.hwp-pitch .hwp-hl--gap { fill: var(--hwp-pitch-gap); fill-opacity: var(--hwp-pitch-gap-opacity); stroke: var(--hwp-pitch-gap-edge); }
+.hwp-pitch .hwp-lbl { fill: var(--hwp-pitch-label); stroke: var(--hwp-pitch-halo); }
+.hwp-pitch .hwp-lbl--line { fill: var(--hwp-pitch-mark); }
+.hwp-pitch .hwp-pos { fill: var(--hwp-pitch-label); opacity: .85; }
+.hwp-pitch .hwp-x, .hwp-pitch .hwp-line { stroke: var(--hwp-pitch-mark); }
+.hwp-pitch .hwp-lost { stroke: var(--hwp-pitch-them); }
+.hwp-pitch .hwp-spine { stroke: var(--hwp-pitch-us); }
+.hwp-pitch [role="button"] { cursor: pointer; }
+.hwp-pitch [role="button"]:focus-visible { outline: none; }
+.hwp-pitch [role="button"]:focus-visible circle { stroke: var(--hwp-focus-ring-on-pitch); stroke-width: 1.8; }
+.hwp-pitch--light [role="button"]:focus-visible circle, .hwp-pitch--mono [role="button"]:focus-visible circle { stroke: var(--hwp-focus-ring); }
+@media print { .hwp-pitch--blue { --hwp-pitch-pitch: #FFFFFF; --hwp-pitch-line: var(--hwp-color-pitch-line-light); --hwp-pitch-us: var(--hwp-color-pitch-blue); --hwp-pitch-us-text: #FFFFFF; --hwp-pitch-label: var(--hwp-color-ink); --hwp-pitch-halo: #FFFFFF; } }

@@ -1,0 +1,662 @@
+{
+  "$comment": "PRIVATE. Research draft 0.1 (19 Oct 2026). Positions illustrative, placed from written briefs. Not for public builds.",
+  "id": "9v9-3-3-2",
+  "format": "9v9",
+  "pitch": "9v9",
+  "name": "3-3-2",
+  "notation": "1-3-3-2",
+  "slug": "3-3-2",
+  "order": 2,
+  "registerId": "9v9-3-3-2",
+  "summary": "Three protect. Three connect. Two work together.",
+  "sourceLabel": "Research draft 0.1",
+  "structure": [
+    [
+      "Notation",
+      "1-3-3-2 (goalkeeper first) · 3-3-2 (outfield)"
+    ],
+    [
+      "Back line",
+      "3"
+    ],
+    [
+      "Midfield",
+      "3"
+    ],
+    [
+      "Forwards",
+      "2"
+    ]
+  ],
+  "idea": "Three protect. Three connect. Two work together.",
+  "playerFacing": "Our back three give us cover. Our midfield three link both ends. Our two forwards give us somewhere to play and press together. We move as the ball moves.",
+  "ruleTable": [
+    {
+      "n": 1,
+      "title": "Middle first",
+      "say": "Protect the route to our goal before chasing wide.",
+      "question": "Press or cover?"
+    },
+    {
+      "n": 2,
+      "title": "Ball side wide, far side in",
+      "say": "Give width near the ball; the far midfielder comes inside to help.",
+      "question": "Stay wide or tuck in?"
+    },
+    {
+      "n": 3,
+      "title": "One comes, one goes",
+      "say": "Our two forwards shouldn't make the same run.",
+      "question": "Offer feet or threaten behind?",
+      "lesson": "one-comes-one-goes"
+    },
+    {
+      "n": 4,
+      "title": "Go together, recover together",
+      "say": "If one presses, others close the next pass; if beaten, recover as a unit.",
+      "question": "Are teammates close enough to help?"
+    }
+  ],
+  "considerations": {
+    "label": "Coaching judgement in the draft, not reviewed",
+    "strengths": [
+      "readily visible lines",
+      "three across defence and midfield",
+      "immediate pair up front",
+      "accessible transitions from 7v7"
+    ],
+    "tradeoffs": [
+      "wide midfielders have significant two-way responsibility",
+      "an isolated central midfielder can be overloaded",
+      "two strikers can be disconnected when midfield sits too deep",
+      "pressing with just two forwards may leave an easy central pass"
+    ]
+  },
+  "roleSummary": [
+    {
+      "nums": [
+        "GK"
+      ],
+      "title": "Goalkeeper",
+      "head": "Start, see, speak",
+      "ask": "Who is free, and what happens if I pass there?"
+    },
+    {
+      "nums": [
+        "5"
+      ],
+      "title": "Centre-back",
+      "head": "See the whole picture",
+      "ask": "If I step in, who's behind me?"
+    },
+    {
+      "nums": [
+        "3",
+        "2"
+      ],
+      "title": "Outside defenders",
+      "head": "Defend, support, cover",
+      "ask": "Am I pressing or covering?"
+    },
+    {
+      "nums": [
+        "8"
+      ],
+      "title": "Central midfielder",
+      "head": "Connect both ends",
+      "ask": "Can they play through us if I move?"
+    },
+    {
+      "nums": [
+        "11",
+        "7"
+      ],
+      "title": "Wide midfielders",
+      "head": "Width and hard work",
+      "ask": "Should I be wide or inside right now?"
+    },
+    {
+      "nums": [
+        "9",
+        "10"
+      ],
+      "title": "Two forwards",
+      "head": "Partners, not passengers",
+      "ask": "Where is my partner going?"
+    }
+  ],
+  "reviewQuestions": [
+    "Is the selected midfield shape a flat 3 or should 8 sometimes be deeper? What is the simplest way to teach that without rigidity?",
+    "Against a team with two central midfielders or three high attackers, how do we keep useful cover?",
+    "When an outside defender goes, who must remain? Is a rule similar to the original One goes, one stays appropriate?",
+    "Are the four names understandable and actionable for U12 to U13 players?",
+    "Are there situations in which far-side midfield should stay wide rather than tuck in?",
+    "Does the proposed two-striker press risk leaving the centre open? What is the safest child-friendly correction?",
+    "Do sessions promote learning, role rotation and enjoyment rather than rigid compliance?",
+    "Confirm offside illustrations, set-piece guidance, and competition-rule statements before publication."
+  ],
+  "notDrawn": "Only rule 3 has diagrams so far. The other diagram briefs in the draft (rules 1, 2 and 4, positions, four moments, problems) are not drawn yet.",
+  "status": {
+    "content": "review-required",
+    "exploratory": false,
+    "source": "How We Play research draft 0.1",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  "shape": {
+    "id": "3-3-2",
+    "crop": [
+      -6,
+      156
+    ],
+    "alt": "Draft starting picture, 1-3-3-2: goalkeeper; 3, 5 and 2 at the back; 11, 8 and 7 in midfield; 9 and 10 up front.",
+    "players": [
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 141.7,
+        "id": "us-GK"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 22,
+        "y": 118,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "5",
+        "x": 50,
+        "y": 120,
+        "id": "us-5"
+      },
+      {
+        "t": "us",
+        "l": "2",
+        "x": 78,
+        "y": 118,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 16,
+        "y": 80,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "8",
+        "x": 50,
+        "y": 84,
+        "id": "us-8"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 84,
+        "y": 80,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 40,
+        "y": 44,
+        "id": "us-9"
+      },
+      {
+        "t": "us",
+        "l": "10",
+        "x": 60,
+        "y": 44,
+        "id": "us-10"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "one-comes-one-goes",
+      "n": 3,
+      "title": "One comes, one goes",
+      "tag": "Two strikers, two different jobs.",
+      "cue": "If your partner comes short, you go.",
+      "extra": "Runs behind need timing. Do not teach \"always run\" without accounting for offside.",
+      "diagram": "one-comes",
+      "src": "Draft p. 5, briefs 5A–5C"
+    }
+  ],
+  "diagrams": {
+    "one-comes": {
+      "label": "One comes, one goes",
+      "frames": [
+        {
+          "crop": [
+            -6,
+            90
+          ],
+          "alt": "9 and 10 both stand on the last defensive line, close together. One defender can mark both passing lanes from 8, and nobody threatens the space behind.",
+          "labels": [
+            {
+              "t": "SAME LINE",
+              "x": 50,
+              "y": 33.5
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 23,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 21,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 23,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 40,
+              "y": 25,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 60,
+              "y": 25,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 50,
+              "y": 66,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 16,
+              "y": 56,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 84,
+              "y": 56,
+              "id": "us-7"
+            }
+          ],
+          "ball": [
+            53.6,
+            70.6
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                40,
+                25
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                60,
+                25
+              ]
+            }
+          ],
+          "key": "same-line",
+          "tab": "Same line",
+          "verdict": "wrong",
+          "caption": "9 and 10 both stand on the last defensive line. One defender can mark both passing lanes."
+        },
+        {
+          "crop": [
+            -6,
+            90
+          ],
+          "alt": "9 comes towards the ball to receive a pass to feet from 8. 10 starts on the last line and runs into the space behind, timing the run to stay onside. 8 has two pass lines: to 9, or into the space for 10.",
+          "lines": [
+            {
+              "y": 25.5,
+              "t": "OFFSIDE · TO CHECK"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                52,
+                1,
+                30,
+                15
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE BEHIND",
+              "x": 67,
+              "y": 7.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 40,
+              "y": 25,
+              "id": "us-9"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 23,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 21,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 23,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 42,
+              "y": 45,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 60,
+              "y": 27,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 50,
+              "y": 66,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 16,
+              "y": 56,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 84,
+              "y": 56,
+              "id": "us-7"
+            }
+          ],
+          "ball": [
+            53.6,
+            70.6
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                40,
+                25
+              ],
+              "to": [
+                42,
+                45
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                60,
+                27
+              ],
+              "to": [
+                68,
+                9
+              ],
+              "c": 3,
+              "e": 1
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                42,
+                45
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                66,
+                12
+              ],
+              "c": -4
+            }
+          ],
+          "key": "nine-comes",
+          "tab": "9 comes, 10 goes",
+          "verdict": "right",
+          "caption": "9 moves towards the ball to receive. 10 threatens the space behind, timing the run to stay onside.",
+          "note": "Offside line is contextual and must be checked before publication."
+        },
+        {
+          "crop": [
+            -6,
+            90
+          ],
+          "alt": "10 comes short towards the ball. 9 stays high and moves into a channel. 8 has a forward pass to 10 and another runner stretching the defence.",
+          "lines": [
+            {
+              "y": 25.5,
+              "t": "OFFSIDE · TO CHECK"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                14,
+                1,
+                30,
+                15
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE BEHIND",
+              "x": 29,
+              "y": 7.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "10",
+              "x": 60,
+              "y": 25,
+              "id": "us-10"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 23,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 21,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 23,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 58,
+              "y": 45,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 40,
+              "y": 27,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 50,
+              "y": 66,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 16,
+              "y": 56,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 84,
+              "y": 56,
+              "id": "us-7"
+            }
+          ],
+          "ball": [
+            53.6,
+            70.6
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                60,
+                25
+              ],
+              "to": [
+                58,
+                45
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                40,
+                27
+              ],
+              "to": [
+                30,
+                9
+              ],
+              "c": -3,
+              "e": 1
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                58,
+                45
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                66
+              ],
+              "to": [
+                32,
+                12
+              ],
+              "c": 4
+            }
+          ],
+          "key": "ten-comes",
+          "tab": "10 comes, 9 goes",
+          "verdict": "right",
+          "caption": "10 comes short. 9 stays high or moves into a channel.",
+          "note": "Offside line is contextual and must be checked before publication."
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "offside",
+      "title": "Offside illustration",
+      "qs": [
+        "Confirm offside illustrations before publication."
+      ]
+    }
+  ]
+}

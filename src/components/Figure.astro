@@ -1,0 +1,9 @@
+---
+/* Tactical figure: wraps the design-system diagramFigure (tabs, verdicts, Enlarge, Key, sequence).
+ * Frames come straight from the content layer and are copied first, because the component annotates them. */
+import { diagramFigure, clone } from '../lib/ui.mjs';
+interface Props { frames: any[]; label: string; figLabel?: string; context?: string; theme?: 'blue' | 'light'; sequence?: boolean; exploratory?: boolean; private?: boolean; interactive?: boolean; }
+const p = Astro.props;
+const html = diagramFigure({ frames: clone(p.frames), label: p.label, figLabel: p.figLabel, context: p.context, theme: p.theme || 'blue', sequence: !!p.sequence, exploratory: !!p.exploratory, private: !!p.private, interactive: !!p.interactive });
+---
+<Fragment set:html={html} />

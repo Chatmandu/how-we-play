@@ -1,0 +1,75 @@
+/* How We Play foundations v1.0
+   Requires tokens.css (generated). Framework-free. Class prefix: hwp-
+   Fonts: load via Google Fonts (OFL) or self-host; see fonts/README.md.
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+*/
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--hwp-surface-page);
+  color: var(--hwp-text-primary);
+  font-family: var(--hwp-font-family-sans);
+  font-size: var(--hwp-type-body-size);
+  line-height: var(--hwp-type-body-line-height);
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+
+/* Links */
+a { color: var(--hwp-text-link); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a:hover { color: var(--hwp-text-link-hover); }
+
+/* Focus: visible on every interactive element */
+:focus-visible { outline: var(--hwp-size-focus-width) solid var(--hwp-focus-ring); outline-offset: var(--hwp-size-focus-offset); }
+.hwp-on-pitch :focus-visible { outline-color: var(--hwp-focus-ring-on-pitch); }
+
+/* Type roles */
+.hwp-display-xl, .hwp-heading-l, .hwp-heading-m, .hwp-cue, .hwp-big-number, .hwp-label { font-family: var(--hwp-font-family-display); margin: 0; text-wrap: balance; }
+.hwp-display-xl { font-weight: var(--hwp-type-display-xl-weight); font-size: var(--hwp-type-display-xl-size); line-height: var(--hwp-type-display-xl-line-height); text-transform: uppercase; }
+.hwp-heading-l { font-weight: var(--hwp-type-heading-l-weight); font-size: var(--hwp-type-heading-l-size); line-height: var(--hwp-type-heading-l-line-height); text-transform: uppercase; }
+.hwp-heading-m { font-weight: var(--hwp-type-heading-m-weight); font-size: var(--hwp-type-heading-m-size); line-height: var(--hwp-type-heading-m-line-height); text-transform: uppercase; }
+.hwp-cue { font-weight: var(--hwp-type-cue-weight); font-size: var(--hwp-type-cue-size); line-height: var(--hwp-type-cue-line-height); text-transform: uppercase; }
+.hwp-big-number { font-weight: var(--hwp-type-big-number-weight); font-size: var(--hwp-type-big-number-size); line-height: var(--hwp-type-big-number-line-height); color: var(--hwp-text-link); }
+.hwp-label { font-weight: var(--hwp-type-label-weight); font-size: var(--hwp-type-label-size); line-height: 1; letter-spacing: var(--hwp-type-label-tracking); text-transform: uppercase; }
+.hwp-standfirst { font-style: italic; font-size: var(--hwp-type-standfirst-size); line-height: var(--hwp-type-standfirst-line-height); margin: 0; }
+.hwp-body { font-size: var(--hwp-type-body-size); line-height: var(--hwp-type-body-line-height); max-width: var(--hwp-layout-measure); text-wrap: pretty; }
+.hwp-small { font-size: var(--hwp-type-small-size); line-height: var(--hwp-type-small-line-height); }
+.hwp-caption { font-style: italic; font-size: var(--hwp-type-caption-size); line-height: var(--hwp-type-caption-line-height); }
+.hwp-ui { font-weight: var(--hwp-type-ui-weight); font-size: var(--hwp-type-ui-size); line-height: 1; }
+.hwp-secondary { color: var(--hwp-text-secondary); }
+
+/* Layout */
+.hwp-container { width: 100%; max-width: var(--hwp-layout-container); margin-inline: auto; padding-inline: var(--hwp-layout-gutter-sm); }
+@media (min-width: 600px) { .hwp-container { padding-inline: var(--hwp-layout-gutter-md); } }
+@media (min-width: 1024px) { .hwp-container { padding-inline: var(--hwp-layout-gutter-lg); } }
+.hwp-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--hwp-layout-split-min)), 1fr)); gap: var(--hwp-layout-column-gap); }
+.hwp-split > * { min-width: 0; }
+.hwp-stack { display: grid; gap: var(--hwp-space-4); }
+
+/* Rules: grouping comes from rules, not boxes */
+.hwp-rule-masthead { border-top: var(--hwp-border-masthead) solid var(--hwp-border-strong); }
+.hwp-rule-section { border-top: var(--hwp-border-section) solid var(--hwp-border-strong); padding-top: var(--hwp-space-2); }
+.hwp-rule-cue { border-top: var(--hwp-border-cue) solid var(--hwp-border-strong); padding-top: var(--hwp-space-2); }
+.hwp-rule-hair { border-top: var(--hwp-border-hair) solid var(--hwp-border-subtle); }
+
+/* Panels: permitted containers (see brand guidelines §7) */
+.hwp-panel { border: var(--hwp-border-panel) solid var(--hwp-border-strong); background: var(--hwp-surface-raised); padding: var(--hwp-space-4); border-radius: var(--hwp-radius-none); }
+.hwp-panel--pitch { border: 0; background: var(--hwp-surface-pitch); color: var(--hwp-text-on-pitch); }
+.hwp-panel--inverse { border: 0; background: var(--hwp-surface-inverse); color: var(--hwp-text-inverse); }
+.hwp-panel--boundary { border-style: dashed; background: transparent; }
+.hwp-panel .hwp-panel { border: 0; padding: 0; } /* no nested panels */
+
+/* Utilities */
+.hwp-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hwp-icon { width: var(--hwp-size-icon); height: var(--hwp-size-icon); flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+  body { background: #FFFFFF; }
+  .hwp-panel--pitch { background: #FFFFFF; color: var(--hwp-text-primary); border: var(--hwp-border-hair) solid var(--hwp-border-strong); }
+}

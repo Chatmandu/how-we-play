@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'The Coaching Notes' }];
+---
+<Base title="The Coaching Notes newsletter | How We Play" description="The Coaching Notes is a planned, optional email for grassroots coaches. Every How We Play guide stays free without it." ids={['coaching-notes']} crumbs={crumbs} noindex>
+  <div class="flow measure">
+    <p class="hwp-label over">Newsletter · coming soon</p>
+    <h1 class="hwp-heading-l">The Coaching Notes</h1>
+    <p class="hwp-standfirst">An optional email for coaches, planned for later.</p>
+    <p class="lede">It isn't running yet: we haven't chosen an email provider or published a privacy notice. Every guide and download stays free without it.</p>
+  </div>
+  <Newsletter />
+</Base>

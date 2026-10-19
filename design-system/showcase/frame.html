@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>How We Play · component frame</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../css/foundations.css"><link rel="stylesheet" href="../diagrams/diagram.css"><link rel="stylesheet" href="../components/components.css">
+</head>
+<body>
+<div id="app" class="hwp-container" style="padding-top:12px;padding-bottom:24px"></div>
+<script type="module">
+import { loadData, DEMOS } from './demos.mjs';
+import { enhance } from '../components/behaviours.mjs';
+const p = new URLSearchParams(location.search), name = p.get('demo') || 'header';
+const D = await loadData();
+const app = document.getElementById('app');
+if (name === 'header') { app.classList.remove('hwp-container'); app.style.padding = '0'; app.innerHTML = DEMOS.header() + (p.get('open') ? '' : ''); }
+else app.innerHTML = DEMOS[name](D);
+enhance(app);
+if (p.get('open')) { const b = app.querySelector('[data-hwp="nav-toggle"]'); b && b.click(); }
+</script>
+</body>
+</html>

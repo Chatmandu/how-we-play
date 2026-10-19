@@ -1,0 +1,146 @@
+---
+import Base from '../layouts/Base.astro';
+import Figure from '../components/Figure.astro';
+import Gated from '../components/Gated.astro';
+import Facts from '../components/Facts.astro';
+import Newsletter from '../components/Newsletter.astro';
+import model from '../lib/content.mjs';
+import { button, cue, preview, renderPitch, renderKey, SYMBOLS, statusChips } from '../lib/ui.mjs';
+
+const site = model.site;
+const f3131 = model.formation('3-1-3-1');
+const featuredRule = f3131.rules.find(r => r.id === 'one-goes-one-stays');
+const featuredFrames = f3131.diagrams[featuredRule.diagram].frames;
+const shapeFrame = { ...f3131.shape, tab: 'Starting shape' };
+const emptyPitch = renderPitch({ title: '9v9 pitch', altSummary: 'An empty 9v9 pitch, drawn to the recommended proportions, attacking upwards.', players: [] }, { theme: 'blue' });
+const library = model.target === 'public' ? model.publicFormations : model.formations;
+const libraryHtml = library.map(f => {
+  const href = `/formations/9v9/${f.slug}/`;
+  const meta = `${f.summary} ${f.sourceLabel}${f.register.content.exploratory ? ' · exploratory, not reviewed' : ''}.`;
+  const html = preview({ ...f.shape, title: `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt }, { href, title: f.name, meta });
+  return f.register.content.exploratory ? html.replace('class="hwp-preview"', 'class="hwp-preview" data-exploratory') : html;
+}).join('');
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url + '/', description: site.description, inLanguage: 'en-GB' },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: site.name, url: site.url + '/', logo: site.url + '/hwp/social/hwp-avatar-800.png' }
+];
+---
+<Base title="How We Play: free grassroots football coaching guides" description="Free, visual football coaching guides for grassroots coaches. Formations, playing principles and each player's job, explained simply. Starting with 9v9." ids={['home']} ogType="website" jsonLd={jsonLd}>
+  <!-- 1. Brand introduction and proposition -->
+  <div class="hero">
+    <div class="hero__text">
+      <p class="hwp-label over">Free guides for grassroots coaches</p>
+      <h1 class="hwp-display-xl">{site.tagline}</h1>
+      <p class="hwp-standfirst measure">A free, visual coaching resource. We explain formations, playing principles and each player's job in straightforward language, with clear tactical pictures. UK-first, starting with 9v9.</p>
+      <div class="actions">
+        <Fragment set:html={button({ label: 'Explore 9v9 formations', href: '/formations/9v9/', variant: 'primary', iconAfter: 'arrow-right' })} />
+        <a class="textlink" href="/moving-up/">Moving from 7v7 to 9v9?</a>
+      </div>
+    </div>
+    <div class="hero__figure">
+      <Gated ids={['9v9-3-1-3-1']} strip={false}>
+        <Figure frames={[shapeFrame]} label="Starting shape" figLabel="Fig. 1 · Starting shape" context="9v9 · 3-1-3-1" />
+        <div slot="fallback" class="pitch-panel">
+          <div class="hwp-figure__head" style="display:flex;justify-content:space-between"><span class="hwp-label">Fig. 1 · The 9v9 pitch</span><span class="hwp-label">U12–U13</span></div>
+          <div class="pitch-panel__stage" set:html={emptyPitch} />
+          <p class="hwp-caption" style="margin:0">Nine a side on a recommended 73 × 46m pitch. Our formation guides fill it in once they've been reviewed.</p>
+        </div>
+      </Gated>
+    </div>
+  </div>
+
+  <!-- 2. Route into 9v9 formations -->
+  <section class="section" aria-labelledby="h-9v9">
+    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Start with 9v9</span><span class="hwp-label hwp-secondary">U12 and U13</span></div>
+    <div class="two-col">
+      <div class="section__head">
+        <h2 class="hwp-heading-l" id="h-9v9">The 9v9 formation library</h2>
+        <p class="lede">9v9 is England Football's maximum format for U12 and U13. Each guide shows one possible way to set up: a starting shape, four simple rules and a job for every position.</p>
+        <p><a class="hwp-golink" href="/formations/9v9/">{(model.target === "public" ? model.publicFormations.length : model.formations.length) > 1 ? "Compare the 9v9 formations →" : "What 9v9 looks like →"}</a></p>
+      </div>
+      <div class="library">
+        {library.length > 0 ? (
+          <div class="rows" set:html={libraryHtml} />
+        ) : (
+          <div class="hwp-review-note" role="note"><strong>Guides in coaching review.</strong> Our first 9v9 formation guides are waiting for review by a qualified coach. They'll appear here once they've been reviewed.</div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. How the playbooks work -->
+  <section class="section" aria-labelledby="h-how">
+    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">How the playbooks work</span></div>
+    <h2 class="hwp-heading-l" id="h-how">Every formation, the same four parts</h2>
+    <ol class="steps">
+      <li><h3>Starting shape</h3><p>Where players begin. It's a starting picture, not where they have to stand.</p></li>
+      <li><h3>Four rules</h3><p>Short, memorable decisions, each with wrong and right pictures and a cue you can say on the touchline.</p></li>
+      <li><h3>Positions</h3><p>A job description for every player, with one question to ask themselves.</p></li>
+      <li><h3>Free playbook</h3><p>A printable version to share with players and parents. No sign-up, no payment.</p></li>
+    </ol>
+    <div class="pitch-panel" style="max-width:720px">
+      <span class="hwp-label">Reading the diagrams</span>
+      <Fragment set:html={renderKey(Object.keys(SYMBOLS).filter(k => !['line', 'lost'].includes(k)), { theme: 'blue' })} />
+      <p class="hwp-small" style="margin:0">We always attack up the page. Shirt numbers describe the starting picture, not permanent jobs.</p>
+    </div>
+  </section>
+
+  <!-- 4. Featured principle from the 3-1-3-1 (only when the 3-1-3-1 may be shown) -->
+  <Gated ids={['9v9-3-1-3-1']}>
+    <section class="section" aria-labelledby="h-feature">
+      <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Featured rule · 3-1-3-1</span><span class="hwp-label hwp-secondary">Rule {featuredRule.n} of 4</span></div>
+      <div class="two-col">
+        <Figure frames={featuredFrames} label={featuredRule.title} figLabel={`Fig. 2 · ${featuredRule.title}`} context="9v9 · 3-1-3-1" />
+        <div class="flow">
+          <h2 class="hwp-heading-l" id="h-feature">{featuredRule.title}</h2>
+          <p class="hwp-standfirst">{featuredRule.tag}</p>
+          <p class="lede">{featuredRule.summary}</p>
+          <Fragment set:html={cue({ text: featuredRule.cue, extra: featuredRule.extra })} />
+          <Fragment set:html={statusChips(f3131.register)} />
+          <p><a class="hwp-golink" href={`/formations/9v9/3-1-3-1/${featuredRule.id}/`}>Read the full lesson →</a></p>
+        </div>
+      </div>
+    </section>
+  </Gated>
+
+  <!-- 5. Moving Up -->
+  <section class="section" aria-labelledby="h-moving">
+    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Moving up · 7v7 to 9v9</span></div>
+    <div class="two-col">
+      <div class="flow">
+        <h2 class="hwp-heading-l" id="h-moving">Moving from 7v7 to 9v9</h2>
+        <p class="lede">The step up means two more players, a much bigger pitch and offside for the first time. Moving Up explains what changes, what stays the same and what to sort out before pre-season.</p>
+        <p><a class="hwp-golink" href="/moving-up/">Read Moving Up →</a></p>
+      </div>
+      <Facts ids={['format-ages']} />
+    </div>
+  </section>
+
+  <!-- 6. Teaching philosophy -->
+  <section class="section" aria-labelledby="h-phil">
+    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">How we teach</span></div>
+    <h2 class="hwp-display-xl" id="h-phil" style="max-width:14ch">{site.philosophy}</h2>
+    <ul class="steps steps--plain">
+      <li><h3>One way, not the way</h3><p>Every guide is one possible way to play. There's no single correct formation, and none of ours is an official recommendation.</p></li>
+      <li><h3>Pictures first</h3><p>One diagram at a time, with a verdict or stage and a one-line caption. Pictures show ideas, not fixed moves.</p></li>
+      <li><h3>Words players can use</h3><p>Short cues you can say on the touchline, taken from the playbook rather than coaching jargon.</p></li>
+    </ul>
+  </section>
+
+  <!-- 7. Author and editorial standards -->
+  <section class="section" aria-labelledby="h-who">
+    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Who writes this</span></div>
+    <div class="two-col">
+      <div class="flow">
+        <h2 class="hwp-heading-m" id="h-who">Written by a volunteer coach. Reviewed before it's published.</h2>
+        <p class="lede">How We Play is written by a volunteer grassroots youth coach, adapting a playbook first made for a real team. Coaching guidance is published only after a qualified coach has reviewed it. Official rules link to England Football with the date we checked them.</p>
+        <p><a class="hwp-golink" href="/about/">How we check our content →</a></p>
+      </div>
+      <p class="hwp-small hwp-secondary measure" style="margin:0">{site.independence}</p>
+    </div>
+  </section>
+
+  <!-- 8. Newsletter (demo until connected) -->
+  <Newsletter />
+</Base>

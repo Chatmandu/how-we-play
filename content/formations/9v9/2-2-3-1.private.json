@@ -1,0 +1,675 @@
+{
+  "$comment": "PRIVATE. Exploratory draft 0.1 (19 Oct 2026). Experimental formation. Positions illustrative. Not for public builds.",
+  "id": "9v9-2-2-3-1",
+  "format": "9v9",
+  "pitch": "9v9",
+  "name": "2-2-3-1",
+  "notation": "1-2-2-3-1",
+  "slug": "2-2-3-1",
+  "order": 3,
+  "registerId": "9v9-2-2-3-1",
+  "summary": "Two central defenders and two wing-backs.",
+  "sourceLabel": "Exploratory draft 0.1",
+  "structure": [
+    [
+      "Notation",
+      "1-2-2-3-1 (goalkeeper first) · 2-2-3-1 (outfield)"
+    ],
+    [
+      "Back line",
+      "2 centre-backs"
+    ],
+    [
+      "Wing-backs",
+      "2"
+    ],
+    [
+      "Midfield",
+      "3"
+    ],
+    [
+      "Forwards",
+      "1"
+    ]
+  ],
+  "idea": "Two at the back. Wing-backs give width. Three connect us. One leads the line. When the ball changes, our jobs change.",
+  "playerFacing": "The formation is where we begin. It isn't where we have to stand. Our wing-backs help us attack but must also help protect our goal.",
+  "ruleTable": [
+    {
+      "n": 1,
+      "title": "Two stay connected",
+      "say": "Our centre-backs defend together.",
+      "question": "Am I close enough to help?"
+    },
+    {
+      "n": 2,
+      "title": "Width with cover",
+      "say": "Wing-backs go when someone can protect behind.",
+      "question": "If I go, who covers?"
+    },
+    {
+      "n": 3,
+      "title": "Someone protects the middle",
+      "say": "Don't leave the route to our goal open.",
+      "question": "Who is stopping the pass through?"
+    },
+    {
+      "n": 4,
+      "title": "Lose it? Find home",
+      "say": "Press if you can, recover if you can't.",
+      "question": "What's the quickest useful defensive job?",
+      "lesson": "lose-it-find-home"
+    }
+  ],
+  "considerations": {
+    "label": "Hypotheses in the exploratory draft, not reviewed",
+    "strengths": [
+      "clear width from wing-backs",
+      "three players able to combine centrally",
+      "one striker stretches play",
+      "players experience dual attacking and defending roles"
+    ],
+    "tradeoffs": [
+      "vulnerable spaces behind wide wing-backs",
+      "two centre-backs may face two or three attackers",
+      "9 can become isolated",
+      "central midfielders may block wing-back lanes or fail to cover",
+      "the recovery demands may be too great for some teams"
+    ]
+  },
+  "roleSummary": [
+    {
+      "nums": [
+        "GK"
+      ],
+      "title": "Goalkeeper",
+      "head": "See danger early",
+      "ask": "What could happen if we lose this pass?"
+    },
+    {
+      "nums": [
+        "4",
+        "5"
+      ],
+      "title": "Central defenders",
+      "head": "Protect each other",
+      "ask": "Am I the pressure or the cover?"
+    },
+    {
+      "nums": [
+        "3",
+        "2"
+      ],
+      "title": "Wing-backs",
+      "head": "Two jobs, one decision",
+      "ask": "If I leave this space, who has it?"
+    },
+    {
+      "nums": [
+        "6"
+      ],
+      "title": "Central midfielder",
+      "head": "Our connection and protection",
+      "ask": "Who is protecting the middle?"
+    },
+    {
+      "nums": [
+        "11",
+        "8"
+      ],
+      "title": "Interior midfielders",
+      "head": "Make angles, not crowds",
+      "ask": "Am I helping the player on the ball or making it crowded?"
+    },
+    {
+      "nums": [
+        "9"
+      ],
+      "title": "Striker",
+      "head": "Give us a way forward",
+      "ask": "Can I receive, turn, or help someone run?"
+    }
+  ],
+  "reviewQuestions": [
+    "Is 2-2-3-1 a helpful and intelligible starting notation for two centre-backs, two wing-backs, three midfielders and a striker? Would 2-4-1-1 or 2-3-2-1 communicate the actual responsibilities more honestly?",
+    "Is it developmentally suitable as a regular 9v9 system for this particular group, or best as an occasional learning variation?",
+    "What are realistic defensive recovery responsibilities and distances for the two wing-backs?",
+    "In 2v3 central counterattacks, what are the priority delay and cover actions that can be explained safely to children?",
+    "Does \"Someone protects the middle\" clearly identify the protective job without turning 6 into a fixed defensive specialist?",
+    "Does \"Lose it? Find home\" accidentally encourage abandoning immediate pressure? Would \"Press or recover\" be clearer?",
+    "Where are the natural passing triangles with two wide wing-backs and three interior midfielders? Can the 9 stay connected?",
+    "Can the system accommodate rotation and realistic substitution without requiring special player profiles?",
+    "Are all diagrams and pressing cues appropriate for the target age and league rules, including offside?",
+    "If the qualified reviewer is uncomfortable with the system, do not publish it as a recommended option. Rework or replace it."
+  ],
+  "notDrawn": "Only the wing-back recovery sequence has diagrams so far. The other diagram briefs in the draft (rules 1 to 3, shape states, positions, problems) are not drawn yet.",
+  "status": {
+    "content": "review-required",
+    "exploratory": true,
+    "source": "How We Play exploratory draft 0.1",
+    "reviewedBy": null,
+    "reviewedOn": null,
+    "publicApproval": null
+  },
+  "shape": {
+    "id": "2-2-3-1",
+    "crop": [
+      -6,
+      156
+    ],
+    "alt": "Exploratory starting picture, not reviewed: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest.",
+    "players": [
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 141.7,
+        "id": "us-GK"
+      },
+      {
+        "t": "us",
+        "l": "4",
+        "x": 36,
+        "y": 120,
+        "id": "us-4"
+      },
+      {
+        "t": "us",
+        "l": "5",
+        "x": 64,
+        "y": 120,
+        "id": "us-5"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 10,
+        "y": 98,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "2",
+        "x": 90,
+        "y": 98,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 32,
+        "y": 74,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "6",
+        "x": 50,
+        "y": 78,
+        "id": "us-6"
+      },
+      {
+        "t": "us",
+        "l": "8",
+        "x": 68,
+        "y": 74,
+        "id": "us-8"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 44,
+        "id": "us-9"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "lose-it-find-home",
+      "n": 4,
+      "title": "Wing-back recovery",
+      "tag": "Lose it? Find home. Press, protect or recover.",
+      "cue": "Press, protect or recover: which is my job?",
+      "extra": "\"Find home\" doesn't mean race back to a painted position and ignore the ball.",
+      "diagram": "wb-recovery",
+      "sequence": true,
+      "src": "Draft p. 6, briefs 6A–6C"
+    }
+  ],
+  "diagrams": {
+    "wb-recovery": {
+      "label": "Wing-back recovery",
+      "sequence": true,
+      "frames": [
+        {
+          "crop": [
+            30,
+            156
+          ],
+          "alt": "Stage 1. We lose the ball near our right wing-back, 2, who is high up the pitch. The nearest midfielder, 8, moves to delay the opponent on the ball.",
+          "lost": [
+            87,
+            60
+          ],
+          "labels": [
+            {
+              "t": "LOST",
+              "x": 88,
+              "y": 68.5
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 90,
+              "y": 54,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 58,
+              "y": 86,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 12,
+              "y": 78,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 92,
+              "y": 41,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 64,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 74,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 70,
+              "y": 60,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 56,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            87,
+            60
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                70,
+                60
+              ],
+              "to": [
+                78.5,
+                58.5
+              ],
+              "e": 1.2
+            }
+          ],
+          "key": "delay",
+          "tab": "1 · Delay",
+          "stage": 1,
+          "caption": "We lose it near our right wing-back. The nearest midfielder, 8, delays."
+        },
+        {
+          "crop": [
+            30,
+            156
+          ],
+          "alt": "Stage 2. 8 delays the ball. Both wing-backs, 3 and 2, track back towards defensive lanes. 6 moves goal-side to screen the central lane.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                40,
+                82,
+                30,
+                30
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CENTRAL LANE",
+              "x": 55,
+              "y": 116
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 50,
+              "y": 74,
+              "id": "us-6"
+            },
+            {
+              "l": "2",
+              "x": 92,
+              "y": 41,
+              "id": "us-2"
+            },
+            {
+              "l": "3",
+              "x": 12,
+              "y": 78,
+              "id": "us-3"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 90,
+              "y": 54,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 58,
+              "y": 86,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 104,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 86,
+              "y": 86,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 64,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 57,
+              "y": 96,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 78,
+              "y": 58.5,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 56,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            87,
+            60
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                74
+              ],
+              "to": [
+                57,
+                96
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                92,
+                41
+              ],
+              "to": [
+                86,
+                86
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                12,
+                78
+              ],
+              "to": [
+                20,
+                104
+              ]
+            }
+          ],
+          "key": "track",
+          "tab": "2 · Track and screen",
+          "stage": 2,
+          "caption": "Both wing-backs track towards defensive lanes. 6 screens the middle."
+        },
+        {
+          "crop": [
+            30,
+            156
+          ],
+          "alt": "Stage 3. The two centre-backs, 4 and 5, move across together towards the ball side, staying connected. The wing-backs and 6 hold their recovered positions.",
+          "ghosts": [
+            {
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 90,
+              "y": 54,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 58,
+              "y": 86,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 46,
+              "y": 121,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 72,
+              "y": 118,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 104,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 86,
+              "y": 86,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 64,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 57,
+              "y": 96,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 78,
+              "y": 58.5,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 56,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            87,
+            60
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                36,
+                120
+              ],
+              "to": [
+                46,
+                121
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                64,
+                120
+              ],
+              "to": [
+                72,
+                118
+              ]
+            }
+          ],
+          "key": "together",
+          "tab": "3 · Move together",
+          "stage": 3,
+          "caption": "4 and 5 move together. A back four is only an outcome of real recovery, not an instant switch."
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "find-home",
+      "title": "Rule wording",
+      "qs": [
+        "Does \"Lose it? Find home\" accidentally discourage immediate pressure? Would \"Press or recover\" be clearer?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+---
+/* Renders its content only if the publishing gate allows every listed item for this build target.
+ * In preview and local builds, unreviewed or exploratory content gets the private-preview strip.
+ * The `fallback` slot is what a public build shows instead (it must not contain the blocked content). */
+import model from '../lib/content.mjs';
+import { privateStrip, exploratoryStrip } from '../lib/ui.mjs';
+interface Props { ids: string[]; strip?: boolean; exploratoryStrip?: boolean; }
+/* exploratoryStrip=false: the caller places the exploratory strip on the exploratory item itself (e.g. one panel of three). */
+const { ids, strip = true, exploratoryStrip: showExploratory = true } = Astro.props;
+const a = model.access(ids);
+const exploratory = ids.some(id => model.items[id]?.content?.exploratory);
+---
+{a.allowed ? (
+  <div class="gated" data-hwp-gated={ids.join(' ')} data-hwp-private={a.private ? 'true' : undefined}>
+    {strip && a.private && <Fragment set:html={privateStrip()} />}
+    {strip && showExploratory && exploratory && <Fragment set:html={exploratoryStrip()} />}
+    <slot />
+  </div>
+) : (
+  <slot name="fallback" />
+)}

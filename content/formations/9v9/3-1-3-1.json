@@ -1,0 +1,3561 @@
+{
+  "$comment": "Content layer. Extracted verbatim from the P0/P1 prototype data (measured from the source playbook). No styling here.",
+  "id": "9v9-3-1-3-1",
+  "format": "9v9",
+  "pitch": "9v9",
+  "name": "3-1-3-1",
+  "notation": "1-3-1-3-1",
+  "slug": "3-1-3-1",
+  "order": 1,
+  "registerId": "9v9-3-1-3-1",
+  "summary": "A starting shape, four rules and a job for every position.",
+  "sourceLabel": "From the source playbook",
+  "structure": [
+    [
+      "Notation",
+      "1-3-1-3-1 (goalkeeper first) · 3-1-3-1 (outfield)"
+    ],
+    [
+      "Back line",
+      "3"
+    ],
+    [
+      "Midfield",
+      "1 screen, then 3 across"
+    ],
+    [
+      "Forwards",
+      "1"
+    ]
+  ],
+  "gives": [
+    "three defenders",
+    "protection through the middle",
+    "width on both sides",
+    "a 10 close to the striker",
+    "four players who can quickly join an attack"
+  ],
+  "spineText": "GK, 5, 6, 10, 9",
+  "shapeCue": "The formation is our starting position. It isn't where we have to stand.",
+  "status": {
+    "content": "review-required",
+    "exploratory": false,
+    "source": "Mossley Hill U13 playbook, 15 pp.",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  "shape": {
+    "id": "shape",
+    "crop": [
+      -6,
+      156
+    ],
+    "title": "Starting shape: 1-3-1-3-1",
+    "sourcePage": "p. 1",
+    "caption": "The formation is our starting position. It isn't where we have to stand.",
+    "altSummary": "Nine players attacking upwards in a 1-3-1-3-1: goalkeeper; 3, 5 and 2 across the back; 6 alone in front of them; 11, 10 and 7 across the middle with 10 central; 9 furthest forward. A shaded spine runs through GK, 5, 6, 10 and 9.",
+    "spine": [
+      [
+        50,
+        141.7
+      ],
+      [
+        50,
+        118.3
+      ],
+      [
+        50,
+        96.7
+      ],
+      [
+        50,
+        68.3
+      ],
+      [
+        50,
+        43.3
+      ]
+    ],
+    "players": [
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 141.7,
+        "id": "us-GK"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 20,
+        "y": 118.3,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "5",
+        "x": 50,
+        "y": 118.3,
+        "id": "us-5"
+      },
+      {
+        "t": "us",
+        "l": "2",
+        "x": 80,
+        "y": 118.3,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "6",
+        "x": 50,
+        "y": 96.7,
+        "id": "us-6"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 15,
+        "y": 73.3,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "10",
+        "x": 50,
+        "y": 68.3,
+        "id": "us-10"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 85,
+        "y": 73.3,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 43.3,
+        "id": "us-9"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "middle-first",
+      "n": 1,
+      "title": "Middle first",
+      "tag": "Make it difficult for teams to play through us.",
+      "summary": "Protect the middle before chasing the ball outside.",
+      "cue": "If you're not sure whether to go, stay central.",
+      "extra": "We defend from inside to outside.",
+      "diagram": "middle-first",
+      "thumb": 1,
+      "seo": "Middle first: a 9v9 defending principle",
+      "src": "pp. 2 and 3",
+      "look": [
+        "The 6 stays central, between the ball and our goal.",
+        "Nobody leaves a gap in front of the centre-back (5) to chase the ball wide."
+      ]
+    },
+    {
+      "id": "one-goes-one-stays",
+      "n": 2,
+      "title": "One goes, one stays",
+      "tag": "We can attack without leaving ourselves wide open.",
+      "summary": "One outside defender can attack. The other stays.",
+      "cue": "If the other defender goes, you stay.",
+      "extra": "Staying means moving inside a little, next to 5.",
+      "diagram": "one-goes",
+      "thumb": 0,
+      "seo": "One goes, one stays: outside defenders in 9v9",
+      "src": "pp. 2, 4 and 9",
+      "look": [
+        "Ball on the right: 2 goes; 3, 5 and 6 protect us.",
+        "Ball on the left: 3 goes; 2, 5 and 6 protect us.",
+        "Never both: if both go forward, both sides are open."
+      ],
+      "reviewRefs": [
+        "three-forwards"
+      ]
+    },
+    {
+      "id": "far-side-in",
+      "n": 3,
+      "title": "Far side in",
+      "tag": "Don't watch the attack. Join it.",
+      "summary": "When we attack down one side, the opposite wide player attacks the goal.",
+      "cue": "Ball on your side: give us width. Ball on the other side: attack the goal.",
+      "extra": "Not one striker: three players who can score.",
+      "diagram": "far-side-in",
+      "thumb": 0,
+      "seo": "Far side in: attacking the far post in 9v9",
+      "src": "pp. 2 and 5",
+      "look": [
+        "7 has the ball. 9 keeps their defenders busy. 10 supports. 11 gets in at the far post.",
+        "Down the left it mirrors: 11 has the ball and 7 gets in at the far post."
+      ],
+      "reviewRefs": [
+        "offside"
+      ]
+    },
+    {
+      "id": "show-them-wide",
+      "n": 4,
+      "title": "Show them wide, then go",
+      "tag": "We don't need to chase the ball everywhere.",
+      "summary": "Protect the middle, guide them to the touchline, then press together.",
+      "cue": "The touchline helps us defend.",
+      "extra": "Go means the nearest players press together. It doesn't mean everyone charges at the ball.",
+      "diagram": "show-wide",
+      "thumb": 1,
+      "seo": "Show them wide, then go: pressing in 9v9",
+      "src": "pp. 2 and 6",
+      "look": [
+        "Show them wide: 9 curves the run. The pass across or through the middle gets hard; the pass wide looks easy.",
+        "Go: 7 presses, 10 blocks the pass inside, 9 blocks the pass back, 6 protects behind. Everyone shifts across."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "Start us playing",
+      "src": "p. 7",
+      "diagram": "gk",
+      "points": [
+        "With the ball: short to 3, 5 or 2. The 6 is available in the middle, just ahead.",
+        "Without it: talk. Left. Right. Man on. Turn. Drop."
+      ],
+      "cue": "Look short first. If it isn't on, don't force it.",
+      "rules": [
+        "middle-first"
+      ]
+    },
+    {
+      "id": "centre-back",
+      "nums": [
+        "5"
+      ],
+      "short": "5",
+      "title": "Centre-back",
+      "head": "Keep us secure",
+      "src": "p. 8",
+      "diagram": "cb",
+      "points": [
+        "Protect the middle.",
+        "Don't get dragged out unless somebody covers you.",
+        "If nobody presses you, carry the ball forward."
+      ],
+      "steps": [
+        "Space ahead? Carry it forward.",
+        "Sooner or later an opponent has to come to you.",
+        "Now a teammate is free. Pass."
+      ],
+      "cue": "Can I step in?",
+      "rules": [
+        "middle-first",
+        "one-goes-one-stays"
+      ]
+    },
+    {
+      "id": "outside-defenders",
+      "nums": [
+        "2",
+        "3"
+      ],
+      "short": "2 · 3",
+      "title": "Outside defenders",
+      "head": "Defend first. Support second.",
+      "src": "p. 9",
+      "diagram": "od",
+      "points": [
+        "Your jobs, in order: defend, help us build, join the attack.",
+        "Ball right: 2 can go forward. 3 tucks in, almost another centre-back.",
+        "Ball left: 3 can go forward. 2 tucks in, almost another centre-back."
+      ],
+      "cue": "One goes. One stays.",
+      "rules": [
+        "one-goes-one-stays"
+      ],
+      "reviewRefs": [
+        "three-forwards"
+      ]
+    },
+    {
+      "id": "screen",
+      "nums": [
+        "6"
+      ],
+      "short": "6",
+      "title": "The screen",
+      "head": "Protect. Connect.",
+      "src": "p. 10",
+      "diagram": "screen",
+      "points": [
+        "Stay underneath the ball. Stay central.",
+        "Show for possession. Protect us when we lose it."
+      ],
+      "situations": [
+        [
+          "They break at us",
+          "Get between the attacker and 5. Slow them down, so teammates recover and we defend together."
+        ],
+        [
+          "We win it back",
+          "Move to find an angle. Then ask: can I turn? Yes: look forward. No: play safely and move again."
+        ]
+      ],
+      "cue": "You don't have to win every tackle. Sometimes stopping them going forward is enough.",
+      "rules": [
+        "middle-first",
+        "show-them-wide"
+      ]
+    },
+    {
+      "id": "wide-players",
+      "nums": [
+        "7",
+        "11"
+      ],
+      "short": "7 · 11",
+      "title": "Wide players",
+      "head": "Wide when it's ours. Narrow when it isn't.",
+      "src": "p. 11",
+      "diagram": "wide",
+      "points": [
+        "Ball on your side: move wide. Give the player on the ball an easy pass.",
+        "Ball on the other side: move inside. Attack the goal.",
+        "They have the ball: recover towards the centre first. Help protect the middle, in a line with the 6."
+      ],
+      "cue": "Where's the ball? That tells you where to go.",
+      "rules": [
+        "far-side-in",
+        "show-them-wide"
+      ]
+    },
+    {
+      "id": "number-10",
+      "nums": [
+        "10"
+      ],
+      "short": "10",
+      "title": "Number 10",
+      "head": "Find the space",
+      "src": "p. 12",
+      "diagram": "ten",
+      "points": [
+        "Find pockets of space.",
+        "Get close enough to support 9.",
+        "Look forward when you receive.",
+        "Help us press when we lose it.",
+        "You're not just a dribbler. You connect midfield and attack."
+      ],
+      "situations": [
+        [
+          "When we defend",
+          "Stay close to 9 so you can press together. Don't drop all the way back next to 6."
+        ]
+      ],
+      "cue": "Can I receive facing their goal?",
+      "rules": [
+        "show-them-wide"
+      ]
+    },
+    {
+      "id": "striker",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Striker",
+      "head": "Give us somewhere to play",
+      "src": "p. 13",
+      "diagram": "nine",
+      "points": [
+        "Stretch the defence.",
+        "Give us a forward pass.",
+        "Protect the ball when needed.",
+        "Start our press.",
+        "Know when to come short and when to run behind."
+      ],
+      "situations": [
+        [
+          "Run behind",
+          "9 threatens the space behind. Their defenders drop, and space opens for 10."
+        ],
+        [
+          "Come short",
+          "9 checks towards the ball. A defender follows, and space opens behind."
+        ]
+      ],
+      "cue": "Both moves make space for teammates.",
+      "offsideFlag": true,
+      "rules": [
+        "show-them-wide",
+        "far-side-in"
+      ],
+      "reviewRefs": [
+        "offside"
+      ]
+    },
+    {
+      "id": "nine-and-ten",
+      "nums": [
+        "9",
+        "10"
+      ],
+      "short": "9 + 10",
+      "title": "9 and 10 together",
+      "head": "Don't stand in a line",
+      "src": "p. 14",
+      "diagram": "nine-ten",
+      "points": [
+        "Too easy: 9 and 10 in the same line are easy to mark, and the pass to either is blocked.",
+        "9 runs, 10 receives: 9 stretches, 10 finds space.",
+        "9 comes, 10 goes: one comes, one goes."
+      ],
+      "cue": "Move for each other.",
+      "rules": []
+    }
+  ],
+  "diagrams": {
+    "middle-first": {
+      "label": "Middle first",
+      "frames": [
+        {
+          "key": "wrong",
+          "tab": "Wrong",
+          "verdict": "wrong",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 3",
+          "caption": "6 is dragged to the touchline. A big gap opens in front of 5.",
+          "altSummary": "An opponent on our right has the ball. Our 6 has run from the centre towards them, leaving a grey gap in front of the centre-back, and the opponent passes into it.",
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                28.5,
+                85,
+                36,
+                28
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "GAP",
+              "x": 46.6,
+              "y": 108
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 50,
+              "y": 99.2,
+              "id": "us-6"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 43.3,
+              "y": 95,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 83.3,
+              "y": 88.3,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 75,
+              "y": 95,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113.3,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21.7,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 123.3,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            87.7,
+            92.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                99.2
+              ],
+              "to": [
+                75,
+                95
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "them",
+              "f": [
+                83.3,
+                88.3
+              ],
+              "to": [
+                43.3,
+                95
+              ],
+              "c": -2
+            }
+          ]
+        },
+        {
+          "key": "right",
+          "tab": "Right",
+          "verdict": "right",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 3",
+          "caption": "6 stays central, between the ball and our goal. The middle is closed.",
+          "altSummary": "The same opponent has the ball on our right. Our 6 stays in the centre inside a shaded key space, so the pass into the middle is blocked, shown by a cross.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                28.3,
+                83.3,
+                43.4,
+                30
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "MIDDLE SAFE",
+              "x": 50,
+              "y": 79.6
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 41.7,
+              "y": 91.7,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 83.3,
+              "y": 88.3,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 100,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 78.3,
+              "y": 105,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 23.3,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 123.3,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            87.7,
+            92.5
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "them",
+              "f": [
+                83.3,
+                88.3
+              ],
+              "to": [
+                41.7,
+                91.7
+              ],
+              "blocked": [
+                62.5,
+                90
+              ],
+              "noHead": true
+            }
+          ]
+        }
+      ]
+    },
+    "one-goes": {
+      "label": "One goes, one stays",
+      "frames": [
+        {
+          "key": "right-side",
+          "tab": "Ball right",
+          "verdict": "right",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 4",
+          "caption": "2 goes. 3, 5 and 6 protect us.",
+          "altSummary": "Our 7 has the ball on the right. Our 2 runs forward to support. 3 tucks in towards 5, and 3, 5 and 6 form a shaded protective block in the middle.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                18.3,
+                86.7,
+                45,
+                43.3
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "3 + 5 + 6",
+              "x": 40.8,
+              "y": 82.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 80,
+              "y": 117.6,
+              "id": "us-2"
+            },
+            {
+              "l": "3",
+              "x": 20,
+              "y": 117.6,
+              "id": "us-3"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "7",
+              "x": 86.7,
+              "y": 63.3,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 88.3,
+              "y": 86.7,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 31.7,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            91,
+            67.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                117.6
+              ],
+              "to": [
+                88.3,
+                86.7
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                117.6
+              ],
+              "to": [
+                31.7,
+                120
+              ]
+            }
+          ]
+        },
+        {
+          "key": "left-side",
+          "tab": "Ball left",
+          "verdict": "right",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 4",
+          "caption": "3 goes. 2, 5 and 6 protect us.",
+          "altSummary": "Mirror image. Our 11 has the ball on the left. Our 3 runs forward. 2 tucks in towards 5, and 2, 5 and 6 protect the middle.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                36.7,
+                86.7,
+                45,
+                43.3
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "2 + 5 + 6",
+              "x": 59.2,
+              "y": 82.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "3",
+              "x": 20,
+              "y": 117.6,
+              "id": "us-3"
+            },
+            {
+              "l": "2",
+              "x": 80,
+              "y": 117.6,
+              "id": "us-2"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "11",
+              "x": 13.3,
+              "y": 63.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 11.7,
+              "y": 86.7,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 68.3,
+              "y": 120,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            9,
+            67.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                117.6
+              ],
+              "to": [
+                11.7,
+                86.7
+              ],
+              "c": 0
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                117.6
+              ],
+              "to": [
+                68.3,
+                120
+              ],
+              "c": 0
+            }
+          ],
+          "marks": [],
+          "mirrorOf": "right-side"
+        },
+        {
+          "key": "never-both",
+          "tab": "Never both",
+          "verdict": "wrong",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 4",
+          "caption": "Both go forward: both sides are open.",
+          "altSummary": "Our 7 has the ball. Both outside defenders, 2 and 3, have run forward, leaving two grey open spaces either side of 5 near our penalty area.",
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                5.2,
+                102,
+                28.5,
+                35
+              ]
+            },
+            {
+              "k": "gap",
+              "r": [
+                66.3,
+                102,
+                28.5,
+                35
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "OPEN",
+              "x": 19.1,
+              "y": 143
+            },
+            {
+              "t": "OPEN",
+              "x": 80.8,
+              "y": 143
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "3",
+              "x": 20,
+              "y": 117.6,
+              "id": "us-3"
+            },
+            {
+              "l": "2",
+              "x": 80,
+              "y": 117.6,
+              "id": "us-2"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "7",
+              "x": 86.7,
+              "y": 63.3,
+              "id": "us-7"
+            },
+            {
+              "t": "them",
+              "x": 30,
+              "y": 80,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 71.7,
+              "y": 76.7,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 11.7,
+              "y": 86.7,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 88.3,
+              "y": 86.7,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            91,
+            67.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                117.6
+              ],
+              "to": [
+                11.7,
+                86.7
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                117.6
+              ],
+              "to": [
+                88.3,
+                86.7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "far-side-in": {
+      "label": "Far side in",
+      "frames": [
+        {
+          "key": "right-attack",
+          "tab": "Attack down the right",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 5",
+          "caption": "7 has the ball. 9 keeps their defenders busy. 10 supports. 11 gets in at the far post.",
+          "altSummary": "We attack down the right. 7 has the ball wide; 10 offers a short pass inside; 9 occupies the defenders; 11 runs from the far side to the far post, where a curved cross from 7 arrives in a shaded key space.",
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                35,
+                13.3,
+                10
+              ]
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "11",
+              "x": 13.3,
+              "y": 69.4,
+              "id": "us-11"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 8.3,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 8.3,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 78.3,
+              "y": 18.3,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 35,
+              "y": 13.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 18.3,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 58.3,
+              "y": 35,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 88.3,
+              "y": 40,
+              "id": "us-7"
+            }
+          ],
+          "ball": [
+            85,
+            45
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                13.3,
+                69.4
+              ],
+              "to": [
+                35,
+                13.3
+              ],
+              "c": -14
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                88.3,
+                40
+              ],
+              "to": [
+                58.3,
+                35
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                88.3,
+                40
+              ],
+              "to": [
+                35,
+                13.3
+              ],
+              "c": 16
+            }
+          ]
+        },
+        {
+          "key": "left-attack",
+          "tab": "Attack down the left",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 5",
+          "caption": "11 has the ball. 7 gets in at the far post. Not one striker: three players who can score.",
+          "altSummary": "Mirror image. We attack down the left: 11 has the ball, 10 supports, 9 occupies defenders, and 7 runs from the far side to the far post.",
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                65,
+                13.3,
+                10
+              ]
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 86.7,
+              "y": 69.4,
+              "id": "us-7"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 8.3,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 8.3,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 21.7,
+              "y": 18.3,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 13.3,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 18.3,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 41.7,
+              "y": 35,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 11.7,
+              "y": 40,
+              "id": "us-11"
+            }
+          ],
+          "ball": [
+            15,
+            45
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                86.7,
+                69.4
+              ],
+              "to": [
+                65,
+                13.3
+              ],
+              "c": 14
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                11.7,
+                40
+              ],
+              "to": [
+                41.7,
+                35
+              ],
+              "c": 0
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                11.7,
+                40
+              ],
+              "to": [
+                65,
+                13.3
+              ],
+              "c": -16
+            }
+          ],
+          "labels": [],
+          "marks": [],
+          "mirrorOf": "right-attack"
+        }
+      ]
+    },
+    "show-wide": {
+      "label": "Show them wide, then go",
+      "frames": [
+        {
+          "key": "show",
+          "tab": "1 · Show them wide",
+          "crop": [
+            -6,
+            102
+          ],
+          "sourcePage": "p. 6",
+          "caption": "9 curves the run. The pass across or through the middle gets hard. The pass wide looks easy.",
+          "altSummary": "An opponent defender has the ball. Our 9 steps across from in front of another opponent to block the pass across the pitch, shown by a cross, so the easy pass is out wide into a shaded key space by the touchline. 10, 11, 7 and 6 hold their positions behind.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                66.7,
+                8.3,
+                33.3,
+                41.7
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "TOUCHLINE",
+              "x": 83.3,
+              "y": 54.7
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 50,
+              "y": 40.9,
+              "id": "us-9"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 50,
+              "y": 16.7,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 16.7,
+              "y": 26.7,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 83.3,
+              "y": 26.7,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 45,
+              "id": "them-4"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 40,
+              "y": 25,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 53.3,
+              "y": 63.3,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 15,
+              "y": 70,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 85,
+              "y": 70,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 93.3,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            54.3,
+            20.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                40.9
+              ],
+              "to": [
+                40,
+                25
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "them",
+              "f": [
+                50,
+                16.7
+              ],
+              "to": [
+                16.7,
+                26.7
+              ],
+              "blocked": [
+                33,
+                21.5
+              ],
+              "noHead": true
+            },
+            {
+              "k": "pass",
+              "t": "them",
+              "f": [
+                54.3,
+                20.8
+              ],
+              "to": [
+                83.3,
+                26.7
+              ],
+              "c": -2
+            }
+          ]
+        },
+        {
+          "key": "go",
+          "tab": "2 · Go!",
+          "crop": [
+            -6,
+            102
+          ],
+          "sourcePage": "p. 6",
+          "caption": "7 presses. 10 blocks the pass inside. 9 blocks the pass back. 6 protects behind. Everyone shifts across.",
+          "altSummary": "The opponent now has the ball near the right touchline. Our 7 runs up to press. 10 steps across to block the pass inside, shown by a cross. 9 runs across past the opponent centre-back to block the pass back. 11 and 6 shift across behind.",
+          "note": "The curve of 9's run is approximate; the source arrow bows around the opponent.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                66.7,
+                8.3,
+                33.3,
+                41.7
+              ]
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 40,
+              "y": 25,
+              "id": "us-9"
+            },
+            {
+              "l": "7",
+              "x": 85,
+              "y": 69.2,
+              "id": "us-7"
+            },
+            {
+              "l": "10",
+              "x": 53.3,
+              "y": 62.7,
+              "id": "us-10"
+            },
+            {
+              "l": "11",
+              "x": 15,
+              "y": 69.4,
+              "id": "us-11"
+            },
+            {
+              "l": "6",
+              "x": 50,
+              "y": 92.6,
+              "id": "us-6"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 50,
+              "y": 16.7,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 16.7,
+              "y": 26.7,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 83.3,
+              "y": 26.7,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 51.7,
+              "y": 45,
+              "id": "them-4"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 66.7,
+              "y": 20,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 85,
+              "y": 36.7,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 65,
+              "y": 45,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 33.3,
+              "y": 70,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 61.7,
+              "y": 85,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            87.7,
+            30.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                85,
+                69.2
+              ],
+              "to": [
+                85,
+                36.7
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                53.3,
+                62.7
+              ],
+              "to": [
+                65,
+                45
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                40,
+                25
+              ],
+              "to": [
+                66.7,
+                20
+              ],
+              "c": -9
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                15,
+                69.4
+              ],
+              "to": [
+                33.3,
+                70
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                92.6
+              ],
+              "to": [
+                61.7,
+                85
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "them",
+              "f": [
+                83.3,
+                26.7
+              ],
+              "to": [
+                51.7,
+                45
+              ],
+              "blocked": [
+                67.3,
+                35.5
+              ],
+              "noHead": true
+            }
+          ]
+        }
+      ]
+    },
+    "nine-ten": {
+      "label": "9 and 10 together",
+      "frames": [
+        {
+          "key": "line",
+          "tab": "Too easy",
+          "verdict": "wrong",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 14",
+          "caption": "9 and 10 in the same line. They are easy to mark, and the pass to either is blocked.",
+          "altSummary": "Our 6 has the ball near halfway. 9 and 10 stand one behind the other in the middle, surrounded by six opponents, inside a grey box.",
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                42,
+                17.2,
+                16,
+                28.5
+              ]
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 20,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 14.2,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 20,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 51.7,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 51.7,
+              "id": "them-5"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 51.7,
+              "id": "them-6"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 24.2,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 50,
+              "y": 40,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 76.7,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            54.3,
+            80.8
+          ]
+        },
+        {
+          "key": "runs",
+          "tab": "9 runs, 10 receives",
+          "verdict": "right",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 14",
+          "caption": "9 stretches. 10 finds space.",
+          "altSummary": "9 runs in behind towards goal, pulling defenders back. 10 receives a pass from 6 in the shaded space that opens between the lines.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                33.3,
+                26.7,
+                36.7,
+                18.3
+              ]
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 50,
+              "y": 24.2,
+              "id": "us-9"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 20,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 15,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 20,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 51.7,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 51.7,
+              "id": "them-5"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 56.7,
+              "y": 6.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 53.3,
+              "y": 35,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 76.7,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            54.3,
+            80.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                24.2
+              ],
+              "to": [
+                56.7,
+                6.7
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                76.7
+              ],
+              "to": [
+                53.3,
+                35
+              ]
+            }
+          ]
+        },
+        {
+          "key": "swap",
+          "tab": "9 comes, 10 goes",
+          "verdict": "right",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 14",
+          "caption": "One comes. One goes.",
+          "altSummary": "9 drops short towards 6 to receive, and 10 runs past 9 into the space behind towards goal.",
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 50,
+              "y": 24.2,
+              "id": "us-9"
+            },
+            {
+              "l": "10",
+              "x": 60,
+              "y": 39.4,
+              "id": "us-10"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 20,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 15,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 20,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 51.7,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 51.7,
+              "id": "them-5"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 65,
+              "y": 10,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 48.3,
+              "y": 41.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 76.7,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            54.3,
+            80.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                24.2
+              ],
+              "to": [
+                48.3,
+                41.7
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                60,
+                39.4
+              ],
+              "to": [
+                65,
+                10
+              ],
+              "c": -4
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                76.7
+              ],
+              "to": [
+                48.3,
+                41.7
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                48.3,
+                41.7
+              ],
+              "to": [
+                65,
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "gk": {
+      "label": "Goalkeeper",
+      "frames": [
+        {
+          "key": "gk-short",
+          "tab": "With the ball",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 7",
+          "caption": "Short to 3, 5 or 2. 6 is available in the middle, just ahead.",
+          "altSummary": "Our goalkeeper has the ball. Dashed passes go short to 3, 5 and 2. The 6 stands in a shaded circle just ahead, between three opponents.",
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                50,
+                101.7,
+                10.8
+              ]
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 95,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 66.7,
+              "y": 95,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 51.7,
+              "y": 76.7,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 101.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 16.7,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 123.3,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 83.3,
+              "y": 120,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 143.3,
+              "id": "us-GK"
+            }
+          ],
+          "ball": [
+            54.3,
+            139.2
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                143.3
+              ],
+              "to": [
+                16.7,
+                120
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                143.3
+              ],
+              "to": [
+                50,
+                123.3
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                143.3
+              ],
+              "to": [
+                83.3,
+                120
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "cb": {
+      "label": "Centre-back",
+      "frames": [
+        {
+          "key": "cb-carry",
+          "tab": "Carry, then pass",
+          "crop": [
+            36,
+            140
+          ],
+          "sourcePage": "p. 8",
+          "caption": "1 Carry: space ahead, so 5 carries it forward. 2 They come: an opponent has to come to 5. 3 Pass: now a teammate is free.",
+          "altSummary": "Our 5 carries the ball forward from the back. An opponent steps up to close them down, so 5 passes to the 10, who is now free on the left of midfield.",
+          "note": "The opponent's arrow is shorter in the source; its start point here is approximate.",
+          "ghosts": [
+            {
+              "l": "5",
+              "x": 50,
+              "y": 122.6,
+              "id": "us-5"
+            }
+          ],
+          "labels": [
+            {
+              "t": "1 CARRY",
+              "x": 62,
+              "y": 111
+            },
+            {
+              "t": "2 THEY COME",
+              "x": 62,
+              "y": 79.5
+            },
+            {
+              "t": "3 PASS",
+              "x": 24,
+              "y": 86
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 50,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 28.3,
+              "y": 66.7,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 13.3,
+              "y": 73.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 86.7,
+              "y": 73.3,
+              "id": "us-7"
+            },
+            {
+              "t": "them",
+              "x": 48.3,
+              "y": 86.7,
+              "id": "them-1"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 68.3,
+              "y": 95,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 100,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 16.7,
+              "y": 118.3,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 83.3,
+              "y": 118.3,
+              "id": "us-2"
+            }
+          ],
+          "ball": [
+            54.3,
+            95.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                122.6
+              ],
+              "to": [
+                50,
+                100
+              ]
+            },
+            {
+              "k": "run",
+              "t": "them",
+              "f": [
+                43.6,
+                74.5
+              ],
+              "to": [
+                48.3,
+                86.7
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                100
+              ],
+              "to": [
+                28.3,
+                66.7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "od": {
+      "label": "Outside defenders",
+      "frames": [
+        {
+          "key": "od-right",
+          "tab": "Ball right",
+          "crop": [
+            56,
+            140
+          ],
+          "sourcePage": "p. 9",
+          "caption": "2 can go forward. 3 tucks in, almost another centre-back.",
+          "altSummary": "Our 7 has the ball on the right. 2 goes forward to support. 3 tucks in next to 5. 6 stays in front.",
+          "labels": [
+            {
+              "t": "GO",
+              "x": 75,
+              "y": 89
+            },
+            {
+              "t": "TUCK IN",
+              "x": 36,
+              "y": 132
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 80,
+              "y": 117.6,
+              "id": "us-2"
+            },
+            {
+              "l": "3",
+              "x": 20,
+              "y": 117.6,
+              "id": "us-3"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "7",
+              "x": 86.7,
+              "y": 66.7,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 88.3,
+              "y": 88.3,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 33.3,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            91,
+            70.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                117.6
+              ],
+              "to": [
+                88.3,
+                88.3
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                117.6
+              ],
+              "to": [
+                33.3,
+                120
+              ]
+            }
+          ]
+        },
+        {
+          "key": "od-left",
+          "tab": "Ball left",
+          "crop": [
+            56,
+            140
+          ],
+          "sourcePage": "p. 9",
+          "caption": "3 can go forward. 2 tucks in, almost another centre-back.",
+          "altSummary": "Mirror image. Our 11 has the ball on the left. 3 goes forward. 2 tucks in next to 5.",
+          "labels": [
+            {
+              "t": "GO",
+              "x": 25,
+              "y": 89
+            },
+            {
+              "t": "TUCK IN",
+              "x": 64,
+              "y": 132
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "3",
+              "x": 20,
+              "y": 117.6,
+              "id": "us-3"
+            },
+            {
+              "l": "2",
+              "x": 80,
+              "y": 117.6,
+              "id": "us-2"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "11",
+              "x": 13.3,
+              "y": 66.7,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 11.7,
+              "y": 88.3,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 66.7,
+              "y": 120,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            9,
+            70.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                117.6
+              ],
+              "to": [
+                11.7,
+                88.3
+              ],
+              "c": 0
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                117.6
+              ],
+              "to": [
+                66.7,
+                120
+              ],
+              "c": 0
+            }
+          ],
+          "highlights": [],
+          "marks": [],
+          "mirrorOf": "od-right"
+        }
+      ]
+    },
+    "screen": {
+      "label": "The screen",
+      "frames": [
+        {
+          "key": "sc-break",
+          "tab": "They break at us",
+          "crop": [
+            56,
+            156
+          ],
+          "sourcePage": "p. 10",
+          "caption": "Get between the attacker and 5. Slow them down, teammates recover, we defend together.",
+          "altSummary": "An opponent with the ball runs at us through the middle. Our 6 stays in a shaded circle between the attacker and 5, while 11 and 7 recover inside from wide.",
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                51.7,
+                105,
+                14.2
+              ]
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "11",
+              "x": 15,
+              "y": 69.4,
+              "id": "us-11"
+            },
+            {
+              "l": "7",
+              "x": 85,
+              "y": 69.2,
+              "id": "us-7"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 33.3,
+              "y": 75,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 55,
+              "y": 80,
+              "id": "them-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 30,
+              "y": 93.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 71.7,
+              "y": 93.3,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 51.7,
+              "y": 101.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21.7,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 123.3,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 78.3,
+              "y": 120,
+              "id": "us-2"
+            }
+          ],
+          "ball": [
+            59.3,
+            84.2
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "them",
+              "f": [
+                55,
+                63.7
+              ],
+              "to": [
+                55,
+                80
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                15,
+                69.4
+              ],
+              "to": [
+                30,
+                93.3
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                85,
+                69.2
+              ],
+              "to": [
+                71.7,
+                93.3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "sc-win",
+          "tab": "We win it back",
+          "crop": [
+            56,
+            140
+          ],
+          "sourcePage": "p. 10",
+          "caption": "Move to find an angle, then ask: can I turn? Yes: look forward. No: play safely and move again.",
+          "altSummary": "Our 5 has won the ball. The 6 moves to an angle and receives. Two dashed options follow: forward to 10, marked yes, or back out to 3, marked no.",
+          "labels": [
+            {
+              "t": "YES",
+              "x": 36,
+              "y": 74.5
+            },
+            {
+              "t": "NO",
+              "x": 22,
+              "y": 100.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 50,
+              "y": 97.6,
+              "id": "us-6"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "10",
+              "x": 50,
+              "y": 66.7,
+              "id": "us-10"
+            },
+            {
+              "t": "them",
+              "x": 55,
+              "y": 83.3,
+              "id": "them-1"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38.3,
+              "y": 93.3,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 118.3,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 118.3,
+              "id": "us-2"
+            }
+          ],
+          "ball": [
+            54.3,
+            117.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                97.6
+              ],
+              "to": [
+                38.3,
+                93.3
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                121.7
+              ],
+              "to": [
+                38.3,
+                93.3
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                38.3,
+                93.3
+              ],
+              "to": [
+                50,
+                66.7
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                38.3,
+                93.3
+              ],
+              "to": [
+                20,
+                118.3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "wide": {
+      "label": "Wide players",
+      "frames": [
+        {
+          "key": "w-own",
+          "tab": "Ball on your side",
+          "crop": [
+            52,
+            134
+          ],
+          "sourcePage": "p. 11",
+          "caption": "Move wide. Give the player on the ball an easy pass.",
+          "altSummary": "Our 2 has the ball on the right. 7 moves out wide to the touchline and receives a pass from 2.",
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 76.7,
+              "y": 72.6,
+              "id": "us-7"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "10",
+              "x": 50,
+              "y": 66.7,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 91.7,
+              "y": 70,
+              "id": "us-7"
+            },
+            {
+              "t": "them",
+              "x": 73.3,
+              "y": 86.7,
+              "id": "them-1"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 96.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 81.7,
+              "y": 103.3,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 30,
+              "y": 118.3,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 121.7,
+              "id": "us-5"
+            }
+          ],
+          "ball": [
+            86,
+            107.5
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                76.7,
+                72.6
+              ],
+              "to": [
+                91.7,
+                70
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                81.7,
+                103.3
+              ],
+              "to": [
+                91.7,
+                70
+              ]
+            }
+          ]
+        },
+        {
+          "key": "w-other",
+          "tab": "Ball on the other side",
+          "crop": [
+            16,
+            112
+          ],
+          "sourcePage": "p. 11",
+          "caption": "Move inside. Attack the goal. Far side in.",
+          "altSummary": "Our 3 has the ball on the left and passes to 11. On the far side, 7 runs inside from the right touchline towards goal, near 9.",
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 86.7,
+              "y": 72.6,
+              "id": "us-7"
+            }
+          ],
+          "players": [
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 31.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63.3,
+              "y": 40,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 43.3,
+              "y": 55,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 11.7,
+              "y": 66.7,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 93.3,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 16.7,
+              "y": 96.7,
+              "id": "us-3"
+            }
+          ],
+          "ball": [
+            21,
+            100.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                86.7,
+                72.6
+              ],
+              "to": [
+                63.3,
+                40
+              ],
+              "c": 6
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                16.7,
+                96.7
+              ],
+              "to": [
+                11.7,
+                66.7
+              ]
+            }
+          ]
+        },
+        {
+          "key": "w-theirs",
+          "tab": "They have the ball",
+          "crop": [
+            38,
+            140
+          ],
+          "sourcePage": "p. 11",
+          "caption": "Recover towards the centre first. Help protect the middle.",
+          "altSummary": "Opponents have the ball in midfield. 11 and 7 recover inside to form a line with 6 in a shaded band, labelled 11, 6, 7, in front of the back three.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                20,
+                80,
+                60,
+                20
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "11 – 6 – 7",
+              "x": 50,
+              "y": 105
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "11",
+              "x": 13.3,
+              "y": 69.4,
+              "id": "us-11"
+            },
+            {
+              "l": "7",
+              "x": 86.7,
+              "y": 69.2,
+              "id": "us-7"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 23.3,
+              "y": 50,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 76.7,
+              "y": 50,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 60,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 50,
+              "y": 45,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 30,
+              "y": 88.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 91.7,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 70,
+              "y": 88.3,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 23.3,
+              "y": 120,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 123.3,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 76.7,
+              "y": 120,
+              "id": "us-2"
+            }
+          ],
+          "ball": [
+            54.3,
+            64.2
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                13.3,
+                69.4
+              ],
+              "to": [
+                30,
+                88.3
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                86.7,
+                69.2
+              ],
+              "to": [
+                70,
+                88.3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ten": {
+      "label": "Number 10",
+      "frames": [
+        {
+          "key": "t-ball",
+          "tab": "With the ball",
+          "crop": [
+            -6,
+            100
+          ],
+          "sourcePage": "p. 12",
+          "caption": "Find pockets of space between their lines. Get close enough to support 9.",
+          "altSummary": "Our 6 passes forward to 10, who has found space in a wide shaded band between two lines of three opponents, close to 9.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                5,
+                25.8,
+                90,
+                20
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE",
+              "x": 20,
+              "y": 37.5
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 26.7,
+              "y": 20,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 16.7,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 73.3,
+              "y": 20,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 30,
+              "y": 53.3,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 50,
+              "id": "them-5"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 53.3,
+              "id": "them-6"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 38.3,
+              "y": 10,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 60,
+              "y": 35,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 11.7,
+              "y": 63.3,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 88.3,
+              "y": 63.3,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 86.7,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            54.3,
+            90.8
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                86.7
+              ],
+              "to": [
+                60,
+                35
+              ]
+            }
+          ]
+        },
+        {
+          "key": "t-defend",
+          "tab": "When we defend",
+          "crop": [
+            -6,
+            112
+          ],
+          "sourcePage": "p. 12",
+          "caption": "Stay close to 9 so you can press together. Don't drop all the way back next to 6.",
+          "altSummary": "Opponents have the ball near their goal. 9 and 10 stay close together in a shaded box to press. A cross next to 6, labelled not here, shows where 10 should not drop to.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                35,
+                25,
+                33.3,
+                36.7
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "NOT HERE",
+              "x": 68,
+              "y": 104
+            }
+          ],
+          "marks": [
+            {
+              "x": 68.2,
+              "y": 94.8
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 40,
+              "y": 30,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 30,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 33.3,
+              "y": 53.3,
+              "id": "them-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 36.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 55,
+              "y": 53.3,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 15,
+              "y": 70,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 85,
+              "y": 70,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 95,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            44.3,
+            34.2
+          ]
+        }
+      ]
+    },
+    "nine": {
+      "label": "Striker",
+      "frames": [
+        {
+          "key": "n-behind",
+          "tab": "Run behind",
+          "crop": [
+            -6,
+            70
+          ],
+          "sourcePage": "p. 13",
+          "caption": "9 threatens the space behind. Their defenders drop, and space opens for 10.",
+          "altSummary": "9 runs from the edge of the shaded space in behind the defence, and 10 has the ball in the space that opens behind 9, with a dashed pass option to 9.",
+          "note": "Running behind involves offside at 9v9. Our offside guidance is awaiting review.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                33.3,
+                28.3,
+                33.4,
+                18.4
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE",
+              "x": 50,
+              "y": 51
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 50,
+              "y": 27.6,
+              "id": "us-9"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 21.7,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 50,
+              "y": 16.7,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 21.7,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 56.7,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 56.7,
+              "id": "them-5"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 61.7,
+              "y": 6.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 50,
+              "y": 40,
+              "id": "us-10"
+            }
+          ],
+          "ball": [
+            54.3,
+            44.2
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                27.6
+              ],
+              "to": [
+                61.7,
+                6.7
+              ],
+              "c": -3
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                40
+              ],
+              "to": [
+                61.7,
+                6.7
+              ],
+              "c": 4
+            }
+          ]
+        },
+        {
+          "key": "n-short",
+          "tab": "Come short",
+          "crop": [
+            -6,
+            90
+          ],
+          "sourcePage": "p. 13",
+          "caption": "9 checks towards the ball. A defender follows, and space opens behind.",
+          "altSummary": "9 drops towards 6 to receive. An opponent defender follows 9, leaving a shaded space behind near their goal. 10 is wide on the right.",
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                36.7,
+                3.3,
+                26.6,
+                18.4
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE",
+              "x": 50,
+              "y": 9.5
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 45,
+              "y": 19.2,
+              "id": "us-9"
+            }
+          ],
+          "players": [
+            {
+              "t": "them",
+              "x": 30,
+              "y": 21.7,
+              "id": "them-1"
+            },
+            {
+              "t": "them",
+              "x": 70,
+              "y": 21.7,
+              "id": "them-2"
+            },
+            {
+              "t": "them",
+              "x": 51.7,
+              "y": 30,
+              "id": "them-3"
+            },
+            {
+              "t": "them",
+              "x": 36.7,
+              "y": 56.7,
+              "id": "them-4"
+            },
+            {
+              "t": "them",
+              "x": 63.3,
+              "y": 56.7,
+              "id": "them-5"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 41.7,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "10",
+              "x": 70,
+              "y": 41.7,
+              "id": "us-10"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 48.3,
+              "y": 76.7,
+              "id": "us-6"
+            }
+          ],
+          "ball": [
+            52.7,
+            80.8
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                45,
+                19.2
+              ],
+              "to": [
+                50,
+                41.7
+              ],
+              "c": 2
+            },
+            {
+              "k": "run",
+              "t": "them",
+              "f": [
+                54.8,
+                15.5
+              ],
+              "to": [
+                51.7,
+                30
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                48.3,
+                76.7
+              ],
+              "to": [
+                50,
+                41.7
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "offside",
+      "title": "Offside, and how to introduce it",
+      "why": "Offside starts at 9v9 and the source playbook does not cover it.",
+      "qs": [
+        "How should a coach first explain offside to players new to it?",
+        "Which of our pictures depend on it (the striker running behind, pressing high)?",
+        "What should players be told about staying onside when the far-side player attacks the goal?"
+      ]
+    },
+    {
+      "id": "tradeoffs",
+      "title": "Strengths and weaknesses of 1-3-1-3-1",
+      "why": "The source lists what the shape gives us, not what it costs.",
+      "qs": [
+        "Where is this shape most exposed?",
+        "Which player profiles make it easier or harder to play?",
+        "When might a coach choose a different 9v9 shape?"
+      ]
+    },
+    {
+      "id": "three-forwards",
+      "title": "When opponents play three forwards",
+      "why": "With three at the back and one outside defender going forward, numbers can be level at the back.",
+      "qs": [
+        "Does one goes, one stays still hold, or should both stay?",
+        "What does the 6 do differently?",
+        "Is this worth covering for this age group at all?"
+      ]
+    },
+    {
+      "id": "roles",
+      "title": "Developing players across roles",
+      "why": "England Football encourages letting players try different positions. How to do that with this shape is not written.",
+      "qs": [
+        "How often should players change role?",
+        "Which roles pair well for learning?",
+        "How do we keep the four rules while players rotate?"
+      ]
+    }
+  ]
+}

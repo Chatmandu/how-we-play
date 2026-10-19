@@ -1,0 +1,17 @@
+{
+  "$comment": "Site-wide settings. Editorial copy that appears on several pages lives here so it is changed once.",
+  "name": "How We Play",
+  "url": "https://howweplayfootball.com",
+  "tagline": "Helping your team take the next step.",
+  "philosophy": "Simple pictures. Simple decisions. Play together.",
+  "description": "Free, visual football coaching guides for grassroots coaches. Formations, playing principles and individual responsibilities, explained in straightforward language with clear tactical illustrations.",
+  "independence": "How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.",
+  "locale": "en_GB",
+  "social": { "youtube": "@howweplayfootball", "instagram": "@howweplayfootball" },
+  "formats": [
+    { "id": "5v5", "ages": "U8–U9", "availability": "coming-soon" },
+    { "id": "7v7", "ages": "U10–U11", "availability": "coming-soon" },
+    { "id": "9v9", "ages": "U12–U13", "availability": "live", "href": "/formations/9v9/" },
+    { "id": "11v11", "ages": "U14+", "availability": "coming-soon" }
+  ]
+}

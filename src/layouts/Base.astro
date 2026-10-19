@@ -1,0 +1,107 @@
+---
+/* Base page layout: metadata, header, footer, design-system styles and behaviours.
+ * Every page passes `ids` (register ids it is built from). The layout asks the publishing gate
+ * whether the page may exist for this target and whether it must be marked private and noindex. */
+import '../../design-system/tokens/tokens.css';
+import '../../design-system/css/foundations.css';
+import '../../design-system/diagrams/diagram.css';
+import '../../design-system/components/components.css';
+import '../styles/fonts.css';
+import '../styles/site.css';
+import model from '../lib/content.mjs';
+import { header, footer, breadcrumbs, privateStrip, ASSET_BASE } from '../lib/ui.mjs';
+
+interface Crumb { label: string; href?: string }
+interface Props {
+  title: string;            // full <title> (SEO title)
+  description: string;      // meta description
+  ids?: string[];           // register ids this page depends on
+  crumbs?: Crumb[];         // breadcrumbs, last item is the current page
+  nav?: string;             // main navigation item to mark current
+  activeFormat?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: object[];
+  noindex?: boolean;
+}
+const { title, description, ids = [], crumbs = [], nav, activeFormat, ogType = 'article', jsonLd = [], noindex = false } = Astro.props;
+
+const access = model.access(ids);
+if (!access.allowed) {
+  // A page must never be generated for a target its content is blocked from. getStaticPaths should
+  // already have filtered it; failing here makes the mistake loud instead of silent.
+  throw new Error(`Publishing gate: ${Astro.url.pathname} is blocked for ${model.target}: ${access.reasons.join('; ')}`);
+}
+const site = model.site;
+const isPublic = model.target === 'public';
+const robots = noindex || access.noindex ? 'noindex, nofollow' : 'index, follow';
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL('/og/default.png', site.url).href;
+
+const navItems = [
+  { id: '9v9', label: '9v9 formations', href: '/formations/9v9/' },
+  { id: 'moving-up', label: 'Moving up', href: '/moving-up/' },
+  { id: 'about', label: 'About', href: '/about/' }
+];
+const formats = site.formats.map(f => ({
+  id: f.id, ages: f.ages, href: f.href, soon: f.availability !== 'live',
+  note: f.id === '9v9' ? (model.publicFormations.length || !isPublic ? `${isPublic ? model.publicFormations.length : model.formations.length} formations` : 'guides in review') : undefined
+}));
+const headerHtml = header({ items: navItems, current: nav, newsletterHref: '/coaching-notes/', formats, activeFormat });
+const footerHtml = footer({ columns: [
+  { title: 'Guides', links: [{ label: '9v9 formations', href: '/formations/9v9/' }, { label: 'Moving from 7v7 to 9v9', href: '/moving-up/' }] },
+  { title: 'How We Play', links: [{ label: 'About and standards', href: '/about/' }, { label: 'The Coaching Notes', href: '/coaching-notes/' }] }
+]});
+
+const crumbLd = crumbs.length ? [{
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: new URL(c.href || Astro.url.pathname, site.url).href }))
+}] : [];
+const ld = [...crumbLd, ...jsonLd];
+const pageItems = ids.join(' ');
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content={robots}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:site_name" content={site.name}>
+  <meta property="og:type" content={ogType}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How We Play: Helping your team take the next step.">
+  <meta property="og:locale" content={site.locale}>
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href={`${ASSET_BASE}favicon/favicon.svg`} type="image/svg+xml">
+  <link rel="icon" href={`${ASSET_BASE}favicon/favicon-32.png`} sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href={`${ASSET_BASE}favicon/apple-touch-icon.png`}>
+  <link rel="manifest" href={`${ASSET_BASE}favicon/site.webmanifest`}>
+  <meta name="theme-color" content="#F2EDE2">
+  <link rel="preload" href="/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/schibsted-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  {ld.map(o => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+</head>
+<body data-target={model.target} data-hwp-items={pageItems} data-hwp-private={access.private ? 'true' : undefined}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {!isPublic && (
+    <aside class="preview-banner" aria-label="Preview notice" set:html={privateStrip().replace('Private preview · not for publication', `Private preview build (${model.target}) · not for publication · not indexed`)} ></aside>
+  )}
+  <div class="site-header" set:html={headerHtml} />
+  <main id="main" class="site-main hwp-container" tabindex="-1">
+    {crumbs.length > 0 && <Fragment set:html={breadcrumbs(crumbs.map(c => ({ label: c.label, href: c.href })))} />}
+    <slot />
+  </main>
+  <Fragment set:html={footerHtml} />
+  <script>
+    import { enhance } from '../../design-system/components/behaviours.mjs';
+    enhance(document);
+  </script>
+</body>
+</html>

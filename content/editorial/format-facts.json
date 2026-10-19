@@ -1,0 +1,204 @@
+{
+  "$comment": "Official rule facts and FA guidance. Editor track: verify against source each season. Rendered with RuleChip; register items reference these by id.",
+  "sources": {
+    "formats": {
+      "title": "What are the game formats in football?",
+      "publisher": "England Football Learning",
+      "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/what-is-a-format-in-football"
+    },
+    "f9": {
+      "title": "How to play and manage 9v9 games",
+      "publisher": "England Football Learning",
+      "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-9v9-games"
+    },
+    "f7": {
+      "title": "How to play and manage 7v7 games",
+      "publisher": "England Football Learning",
+      "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-7v7-games"
+    },
+    "heading": {
+      "title": "Heading in football guidance",
+      "publisher": "England Football",
+      "url": "https://www.englandfootball.com/participate/learn/Brain-Health/Heading-in-Football"
+    }
+  },
+  "facts": [
+    {
+      "id": "format-ages",
+      "fact": "Maximum formats: 5v5 at U8 and U9, 7v7 at U10 and U11, 9v9 at U12 and U13, 11v11 from U14",
+      "kind": "rule",
+      "status": "verified",
+      "source": "formats",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27"
+    },
+    {
+      "id": "pitch",
+      "fact": "Recommended pitch",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "55 × 37m (minimum 46 × 27m)",
+      "v9": "73 × 46m (minimum 64 × 37m)",
+      "group": "game"
+    },
+    {
+      "id": "goals",
+      "fact": "Goals",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "12 × 6ft",
+      "v9": "16 × 7ft",
+      "group": "game"
+    },
+    {
+      "id": "ball",
+      "fact": "Ball",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Size 3",
+      "v9": "Size 4",
+      "group": "game"
+    },
+    {
+      "id": "length",
+      "fact": "Match length",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Up to 50 min",
+      "v9": "Up to 60 min",
+      "group": "game"
+    },
+    {
+      "id": "offside",
+      "fact": "Offside",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "None",
+      "v9": "Introduced",
+      "group": "rules"
+    },
+    {
+      "id": "heading",
+      "fact": "Heading",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Not allowed",
+      "v9": "Allowed",
+      "group": "rules"
+    },
+    {
+      "id": "restarts",
+      "fact": "Sideline restarts",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f7",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Pass or dribble in (U10), throw-ins (U11)",
+      "v9": "Throw-ins",
+      "group": "rules"
+    },
+    {
+      "id": "retreat",
+      "fact": "Retreat line",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Yes",
+      "v9": "No",
+      "group": "rules"
+    },
+    {
+      "id": "powerplay",
+      "fact": "Powerplay",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Yes",
+      "v9": "No",
+      "group": "rules"
+    },
+    {
+      "id": "competition",
+      "fact": "Competition",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Trophy events",
+      "v9": "League tables and cups",
+      "group": "competition"
+    },
+    {
+      "id": "example-shapes",
+      "fact": "England Football's 9v9 page shows 1-3-3-2 and 1-4-3-1 as example starting shapes",
+      "kind": "rule",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27"
+    },
+    {
+      "id": "subs",
+      "fact": "Rolling substitutes at both formats",
+      "kind": "guidance",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27",
+      "v7": "Rolling",
+      "v9": "Rolling",
+      "group": "competition"
+    },
+    {
+      "id": "playing-time",
+      "fact": "Best practice: every player gets at least half of each game",
+      "kind": "guidance",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27"
+    },
+    {
+      "id": "positions",
+      "fact": "Let players try different positions",
+      "kind": "guidance",
+      "status": "verified",
+      "source": "f9",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27"
+    },
+    {
+      "id": "smaller-formats",
+      "fact": "Maximum formats are a ceiling: smaller games are fine and give more touches",
+      "kind": "guidance",
+      "status": "verified",
+      "source": "formats",
+      "checkedOn": "2026-10-19",
+      "season": "2026/27"
+    }
+  ]
+}

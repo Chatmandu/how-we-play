@@ -1,0 +1,60 @@
+---
+/* Position page (formations with full position content: currently the 3-1-3-1). */
+import Base from '../../../../../../layouts/Base.astro';
+import Figure from '../../../../../../components/Figure.astro';
+import GuideNav from '../../../../../../components/GuideNav.astro';
+import Pager from '../../../../../../components/Pager.astro';
+import model from '../../../../../../lib/content.mjs';
+import { statusChips, cue, reviewNote } from '../../../../../../lib/ui.mjs';
+
+export function getStaticPaths() {
+  return model.formations.filter(f => f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
+    f.roles.map(r => ({ params: { formation: f.slug, position: r.id }, props: { slug: f.slug, roleId: r.id } })));
+}
+const f = model.formation(Astro.props.slug);
+const i = f.roles.findIndex(r => r.id === Astro.props.roleId);
+const r = f.roles[i];
+const set = f.diagrams[r.diagram];
+const base = `/formations/9v9/${f.slug}/`;
+const related = (r.rules || []).map(id => f.rules.find(x => x.id === id));
+const reviewerNotes = model.target !== 'public'; // reviewer questions: preview builds only
+const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x => x.id === id)).filter(Boolean) : [];
+const prev = f.roles[i - 1], next = f.roles[i + 1];
+const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
+const title = `${r.title} in a 9v9 ${f.name}: role and responsibilities | How We Play`;
+const description = `${r.head}. What the ${r.title.toLowerCase()} does in a 9v9 ${f.notation}, with diagrams and one question for players to ask themselves.`;
+---
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" activeFormat="9v9" crumbs={crumbs}>
+  <GuideNav formation={f} current={'pos-' + r.id} />
+  <div class="lesson">
+    <div class="lesson__figure">
+      <Figure frames={set.frames} label={set.label} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} />
+    </div>
+    <article class="lesson__article" aria-labelledby="pos-h">
+      <header class="lesson-head">
+        <p class="hwp-label over">9v9 · {f.name} · Position</p>
+        <div class="lesson-head__row"><span class="pos-nums" aria-hidden="true">{r.nums.map(n => <span class="pos-num" style="min-width:44px;height:44px;font-size:17px">{n}</span>)}</span><h1 class="hwp-heading-l" id="pos-h">{r.title}</h1></div>
+        <p class="hwp-standfirst">{r.head}</p>
+        <Fragment set:html={statusChips(f.register)} />
+      </header>
+      <Fragment set:html={cue({ label: 'Ask yourself', text: r.cue })} />
+      <section class="flow" aria-labelledby="jobs-h">
+        <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="jobs-h">Your jobs</span></div>
+        <ul class="look-list">{r.points.map(p => <li>{p}</li>)}</ul>
+      </section>
+      {r.steps && <section class="flow" aria-labelledby="steps-h"><div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="steps-h">Carry it forward</span></div><ol class="look-list">{r.steps.map(s => <li>{s}</li>)}</ol></section>}
+      {r.situations && r.situations.map(([h, t], k) => <section class="flow" aria-labelledby={`sit-${k}`}><div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id={`sit-${k}`}>{h}</span></div><p class="lede">{t}</p></section>)}
+      {reviews.map(rv => <div data-hwp-reviewer-only set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
+      <p class="source-line">Redrawn from the source playbook, {r.src}. Shirt numbers describe the starting picture; every player should try more than one role.</p>
+      {related.length > 0 && (
+        <section class="flow" aria-labelledby="rel-h">
+          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="rel-h">Rules this position uses</span></div>
+          <div class="rows">{related.map(x => <a class="row-link" href={`${base}${x.id}/`}><span class="row-link__num" aria-hidden="true">{String(x.n).padStart(2, '0')}</span><span><span class="row-link__title">{x.title}</span><span class="row-link__meta">{x.summary}</span></span><span aria-hidden="true">→</span></a>)}</div>
+        </section>
+      )}
+      <Pager label="Other positions"
+        prev={prev ? { href: `${base}positions/${prev.id}/`, over: 'Previous position', title: prev.title } : { href: `${base}${f.rules[f.rules.length - 1].id}/`, over: `Rule ${f.rules.length}`, title: f.rules[f.rules.length - 1].title }}
+        next={next ? { href: `${base}positions/${next.id}/`, over: 'Next position', title: next.title } : (reviewerNotes ? { href: `${base}#review`, over: 'Back to the guide', title: 'Still being written' } : { href: base, over: 'Back to the guide', title: `${f.name} guide` })} />
+    </article>
+  </div>
+</Base>

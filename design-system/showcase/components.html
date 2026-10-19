@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>How We Play · Components and tactical diagrams (Stage 2)</title>
+<link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<link rel="stylesheet" href="../tokens/tokens.css"><link rel="stylesheet" href="../css/foundations.css"><link rel="stylesheet" href="../diagrams/diagram.css"><link rel="stylesheet" href="../components/components.css">
+<style>
+  /* Showcase chrome only (not part of the system) */
+  .sc-layout { display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: flex-start; }
+  .sc-nav { position: sticky; top: 12px; flex: 0 0 190px; display: grid; border-top: 1.5px solid var(--hwp-border-strong); padding-top: 8px; }
+  .sc-nav a { color: var(--hwp-text-primary); text-decoration: none; font: 600 14px/1 var(--hwp-font-family-sans); padding: 9px 0; }
+  .sc-main { flex: 1 1 560px; min-width: 0; display: grid; gap: 72px; }
+  .sc-sec { display: grid; gap: 18px; }
+  .sc-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .sc-cap { font: 400 13px/1.4 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); margin: 4px 0 0; }
+  .sc-phone { width: 375px; height: 720px; border: 1px solid var(--hwp-border-subtle); border-radius: 24px; background: var(--hwp-surface-page); }
+  .sc-code { background: var(--hwp-surface-inverse); color: var(--hwp-text-inverse); padding: 14px; font: 12px/1.5 ui-monospace, Menlo, monospace; overflow: auto; max-height: 320px; white-space: pre; }
+  .sc-tests li { display: grid; grid-template-columns: 56px 1fr; gap: 8px; padding: 6px 0; border-top: 1px solid var(--hwp-border-subtle); font: 400 14px/1.4 var(--hwp-font-family-sans); }
+  .sc-w { display: grid; gap: 6px; flex: none; }
+</style>
+</head>
+<body>
+<div class="hwp-container" style="padding-top:20px;padding-bottom:120px">
+  <header style="display:grid;gap:10px;padding-bottom:20px">
+    <img src="../assets/logo/hwp-masthead.svg" alt="How We Play" style="width:min(100%,460px);height:auto">
+    <div class="hwp-label" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span>Design system v1.0 · Stage 2 · Components and tactical diagrams</span><span id="mode-label"></span></div>
+    <div id="mode-strip"></div>
+    <div class="hwp-tabs" role="group" aria-label="Build target" style="max-width:420px;color:var(--hwp-text-primary)">
+      <a href="?mode=preview" class="hwp-btn" id="m-preview" style="flex:1;justify-content:center;min-height:44px">Private preview</a>
+      <a href="?mode=public" class="hwp-btn" id="m-public" style="flex:1;justify-content:center;min-height:44px">Public build view</a>
+    </div>
+  </header>
+  <div class="sc-layout">
+    <nav class="sc-nav" aria-label="Showcase sections">
+      <a href="#renderer">Renderer variants</a><a href="#lesson">Lesson · 3-1-3-1</a><a href="#drafts">Draft lessons (private)</a><a href="#formations">Formations</a><a href="#navigation">Navigation</a><a href="#editorial">Editorial</a><a href="#interactive">Interactive</a><a href="#status">Status</a><a href="#legibility">Legibility</a><a href="#animation">Animation data</a><a href="#validation">Validation report</a><a href="#tests">Tests</a>
+    </nav>
+    <main class="sc-main" id="main"><p class="hwp-body">Loading components…</p></main>
+  </div>
+</div>
+<script type="module">
+import { loadData, target, gated, headerDemo, lesson3131, lesson332, lesson2231, formationsDemo, checklistDemo, C, R, G } from './demos.mjs';
+import { enhance } from '../components/behaviours.mjs';
+import { run } from '../tests/suite.mjs';
+
+const T = target();
+document.getElementById('mode-label').textContent = T === 'public' ? 'Viewing: public build (gate applied)' : 'Viewing: private preview';
+document.getElementById(T === 'public' ? 'm-public' : 'm-preview').classList.add('hwp-btn--primary');
+document.getElementById(T === 'public' ? 'm-preview' : 'm-public').classList.add('hwp-btn--secondary');
+if (T !== 'public') document.getElementById('mode-strip').innerHTML = C.privateStrip();
+
+const D = await loadData();
+const c = D.f3131, F = (set, i) => JSON.parse(JSON.stringify(c.diagrams[set].frames[i]));
+const sec = (id, over, title, intro, body) => `<section class="sc-sec" id="${id}">${C.sectionDivider(over)}<h2 class="hwp-heading-l">${title}</h2>${intro ? `<p class="hwp-body" style="margin:0">${intro}</p>` : ''}${body}</section>`;
+const cap = t => `<p class="sc-cap">${t}</p>`;
+const pub = (id, html) => gated(D, id, html);
+
+const variants = pub('9v9-3-1-3-1', `<div class="hwp-split">
+  <div>${C.diagramFigure({ frames: [Object.assign(JSON.parse(JSON.stringify(c.shape)), { caption: c.shape.caption })], figLabel: '1 · Full-pitch formation', context: '3-1-3-1 · p. 1', key: true })}${cap('renderPitch(shape, { view: "full" }). Spine and positions come from the data.')}</div>
+  <div>${C.diagramFigure({ frames: [F('far-side-in', 0)], view: 'attacking-third', figLabel: '2 · Attacking third', context: 'Far side in · p. 5' })}${cap('view: "attacking-third". The validator flags a marking contact here (opponent and 11 are 5.3 units apart in the source). Check that it reads clearly.')}</div>
+  <div>${C.diagramFigure({ frames: [F('middle-first', 1)], view: 'defensive-third', figLabel: '3 · Defensive third', context: 'Middle first · p. 3' })}${cap('view: "defensive-third". Crops are named, not hand-typed.')}</div>
+  <div>${C.diagramFigure({ frames: [F('show-wide', 0), F('show-wide', 1)], sequence: true, figLabel: '5 · Step-by-step sequence', context: 'Show them wide, then go · p. 6' })}${cap('Stages with Play, Previous and Next. Playback moves only the players that have a start position in the data.')}</div>
+</div>
+<div>${C.sectionDivider('4 · Wrong / right comparison', 'Middle first · p. 3')}${C.wrongRight(F('middle-first', 0), F('middle-first', 1), { view: [56, 156] })}</div>
+<div class="hwp-split"><div>${C.sectionDivider('6 · Compact preview (< 200px)')}${c.rules.map(r => C.preview(F(r.diagram, r.thumb || 0), { title: r.title, meta: r.summary })).join('')}${cap('Numbers, labels and notes are switched off below 200px. The preview links to the full diagram.')}</div>
+<div>${C.sectionDivider('7 · Enlarged interactive · 8 · Print mono')}<div class="sc-row"><div class="sc-w" style="width:240px">${C.diagramFigure({ frames: [F('one-goes', 2)], theme: 'mono', figLabel: 'Mono print', enlarge: true })}</div><div class="sc-w" style="width:240px">${C.diagramFigure({ frames: [F('one-goes', 2)], theme: 'light', figLabel: 'Light (print colour)' })}</div></div>${cap('Use Enlarge on any figure: a full-screen dialog with focusable players, Previous and Next, Esc to close, and pinch-zoom.')}</div></div>`);
+
+const navigation = `<div class="hwp-stack">${headerDemo()}${cap('Desktop header: masthead rule, inline logo, main navigation, Newsletter, and a format strip where 5v5, 7v7 and 11v11 are shown as "coming later".')}</div>
+<div class="sc-row"><div class="sc-w"><iframe class="sc-phone" style="height:380px" src="frame.html?demo=header" title="Mobile header, closed"></iframe>${cap('Mobile · closed (375px)')}</div><div class="sc-w"><iframe class="sc-phone" style="height:380px" src="frame.html?demo=header&open=1" title="Mobile header, menu open"></iframe>${cap('Mobile · menu open. Esc closes it and focus returns to Menu.')}</div></div>
+<div class="hwp-split"><div class="hwp-stack">${C.breadcrumbs([{ label: '9v9', href: '#' }, { label: '3-1-3-1', href: '#' }, { label: 'Positions' }, { label: 'Outside defenders' }])}${C.inPageNav([{ id: 'renderer', label: 'Starting shape' }, { id: 'lesson', label: 'Four rules' }, { id: 'formations', label: 'Positions' }, { id: 'interactive', label: 'Playbook PDF' }])}</div></div>
+${C.footer({ columns: [{ title: '9v9', links: [{ label: '3-1-3-1', href: '#' }, { label: 'Moving from 7v7 to 9v9', href: '#' }] }, { title: 'About', links: [{ label: 'About and editorial standards', href: '#' }, { label: 'Newsletter', href: '#' }] }] })}`;
+
+const editorial = pub('9v9-3-1-3-1', `<div class="hwp-split" style="align-items:start"><div class="hwp-stack">
+  ${C.pageHeading({ over: '9v9 guide · Position', title: c.roles.find(r => r.id === 'outside-defenders').title, standfirst: c.roles.find(r => r.id === 'outside-defenders').head })}
+  <p class="hwp-body" style="margin:0">${c.roles.find(r => r.id === 'outside-defenders').points.join(' ')}</p>
+  ${C.cue({ text: c.roles.find(r => r.id === 'outside-defenders').cue })}
+  ${C.relatedLinks([{ title: 'One goes, one stays', meta: 'Rule 2', href: '#lesson' }, { title: 'Middle first', meta: 'Rule 1', href: '#' }])}
+</div><div>${C.diagramFigure({ frames: [F('od', 0), F('od', 1)], figLabel: 'Fig. · Outside defenders', context: 'Playbook p. 9' })}</div></div>`);
+
+const interactive = `<div class="hwp-split" style="align-items:start"><div class="hwp-stack">
+  ${C.sectionDivider('Buttons')}<div class="sc-row">${C.button({ label: 'Moving from 7v7 to 9v9? Start here', variant: 'primary', iconAfter: 'arrow-right' })}${C.button({ label: 'Download the PDF', variant: 'secondary', iconName: 'download' })}${C.button({ label: 'Disabled', variant: 'primary', attrs: 'disabled' })}</div>
+  <div class="sc-row"><a class="hwp-textlink" href="#">Open the free 9v9 guide</a><a class="hwp-golink" href="#">Read the guide →</a></div>
+  ${C.sectionDivider('Disclosures (from the prototype FAQ)')}
+  ${C.disclosure('Is 1-3-1-3-1 the FA\'s recommended 9v9 formation?', '<p class="hwp-body">No. It is one team\'s approach. England Football\'s 9v9 page shows 1-3-3-2 and 1-4-3-1 as example shapes.</p>')}
+  ${C.disclosure('How do I explain offside?', '<p class="hwp-body">Our answer is being written and will be checked by a qualified coach first.</p>' + C.statusChips({ content: { status: 'review-required' } }))}
+  ${C.sectionDivider('Feedback messages')}${C.feedback('error', 'Enter an email address in the correct format, like name@example.com')}${C.feedback('success', 'Your checklist is saved on this device.')}
+</div><div class="hwp-stack">
+  ${C.sectionDivider('Checklist · Moving up 7v7 → 9v9', 'Draft')}${checklistDemo(D)}<p class="sc-cap">Ticks are kept on this device only (localStorage, with a fallback if it's unavailable).</p>
+  <div id="newsletter">${C.newsletterForm()}</div><p class="sc-cap">Submit it empty to see the validation. Errors are announced, the field is marked aria-invalid, and focus moves to the first error.</p>
+</div></div>`;
+
+const status = `<div class="hwp-split" style="align-items:start"><div class="hwp-stack">
+  ${C.sectionDivider('Content review chips')}
+  ${C.statusChips({ content: { status: 'draft' } })}${C.statusChips({ content: { status: 'review-required' } })}${C.statusChips({ content: { status: 'reviewed', reviewedOn: '[date]' } })}${C.statusChips({ content: { status: 'review-required', exploratory: true } })}
+  ${C.sectionDivider('Official rule verification')}${C.statusChips({ rules: D.register.find(i => i.id === 'moving-up-7v7-9v9').rules })}
+  ${C.sectionDivider('Availability')}${C.statusChips({ availability: 'coming-soon' })}
+</div><div class="hwp-stack">${C.sectionDivider('Strips and notes')}${C.exploratoryStrip()}${C.privateStrip()}${C.reviewNote('Needs coach review:', 'When opponents play three forwards, does one goes, one stays still hold, or should both stay?')}
+<p class="hwp-small" style="margin:0">Design approval never appears on the site: it's tracked in the register. Coaching review, rule verification and availability are separate chips, never one combined badge.</p></div></div>`;
+
+const widths = [200, 280, 343, 600, 900];
+const legibility = pub('9v9-3-1-3-1', `<p class="hwp-small" style="margin:0">"Never both" (p. 4), the busiest One goes picture, rendered at real widths. Player number size ≈ width × 4.4 / 108.</p>
+<div style="overflow-x:auto"><div class="sc-row" style="flex-wrap:nowrap;min-width:max-content">${widths.map(w => `<div class="sc-w" style="width:${w}px"><div style="background:var(--hwp-surface-pitch);padding:${w < 280 ? 4 : 8}px">${R.renderPitch(F('one-goes', 2), w < 280 ? { numbers: false, labels: false } : {})}</div><span class="sc-cap"><b>${w}px</b> · numbers ≈ ${(w * 4.4 / 108 * (w < 280 ? 0 : 1)).toFixed(1)}px${w < 280 ? ' (preview mode, numbers off)' : ''}${w === 343 ? ' · 375px phone' : w === 600 ? ' · tablet' : w === 900 ? ' · desktop' : ''}</span></div>`).join('')}</div></div>
+<div style="overflow-x:auto"><table style="border-collapse:collapse;min-width:640px;font:400 14px/1.4 var(--hwp-font-family-sans)"><caption class="hwp-label" style="text-align:left;padding-bottom:8px">Minimums (tokens: diagram.size, diagram.unit)</caption><tr><th style="text-align:left;padding:6px 12px 6px 0;border-bottom:1.5px solid var(--hwp-border-strong)">Element</th><th style="text-align:left;padding:6px 12px;border-bottom:1.5px solid var(--hwp-border-strong)">Rule</th><th style="text-align:left;padding:6px 12px;border-bottom:1.5px solid var(--hwp-border-strong)">At 280px</th></tr>
+${[['Numbered diagram width', '≥ 280px; below 200px use the compact preview', 'n/a'], ['Player marker', 'r 4.4 units', '≈ 22.8px diameter'], ['Shirt number', '4.4 units (3.5 for two digits)', '≈ 11.4px (9.1px)'], ['Area label', '4.6 units, haloed', '≈ 11.9px'], ['Arrow line / head', '0.95 units / 4.2 units', '≈ 2.5px / 10.9px'], ['Touch target (enlarged players)', '≥ 44px in the dialog', 'Enlarge fills the screen']].map(r => `<tr>${r.map((x, i) => `<td style="padding:6px 12px ${i ? '' : '6px 0'};border-bottom:1px solid var(--hwp-border-subtle)">${x}</td>`).join('')}</tr>`).join('')}</table></div>`);
+
+const tl = R.toTimeline(c.diagrams['one-goes'].frames);
+const animation = pub('9v9-3-1-3-1', `<div class="hwp-split" style="align-items:start"><div>${C.diagramFigure({ frames: [F('one-goes', 0)], sequence: true, figLabel: 'Play · motion from the data', context: 'Ball right · p. 4', key: false })}${cap('2 and 3 travel from their start positions along the run arrows. 7 has no start position, so it doesn\'t move. Nothing is invented.')}</div>
+<div class="hwp-stack"><span class="hwp-label">toTimeline(frames): structured data for YouTube Shorts</span><pre class="sc-code">${JSON.stringify({ version: tl.version, cast: tl.cast, stages: tl.stages.map(s => ({ key: s.key, label: s.label, ball: s.ball, positions: s.positions, motion: s.motion })) }, null, 1).replace(/</g, '&lt;')}</pre><p class="sc-cap">frameAt(frame, t) and sequenceAt(frames, s) return renderable diagrams at any time, so video tools can render each frame with renderPitch(…, { mode: "inline", progress: t }).</p></div></div>`);
+
+const report = [['3-1-3-1', D.f3131], ['3-3-2 (private)', D.f332], ['2-2-3-1 (private)', D.f2231]].map(([name, cc]) => {
+  const all = [['shape', cc.shape]].concat(Object.entries(cc.diagrams).flatMap(([k, v]) => v.frames.map(f => [k + ' / ' + (f.tab || f.key), f])));
+  const rows = all.map(([k, d]) => [k, R.validate(d)]).filter(([, i]) => i.length);
+  return `<div class="hwp-stack"><span class="hwp-label">${name} · ${all.length} frames · ${rows.length} with notes</span>${rows.map(([k, iss]) => `<div class="hwp-small" style="border-top:1px solid var(--hwp-border-subtle);padding-top:6px"><b>${k}</b><br>${iss.map(i => `${i.level === 'error' ? '✕' : '!'} ${i.msg}`).join('<br>')}</div>`).join('') || '<p class="hwp-small">No issues.</p>'}</div>`;
+}).join('');
+
+document.getElementById('main').innerHTML = [
+  sec('renderer', 'Tactical diagrams', 'Renderer variants', 'One framework-free renderer (<code>diagrams/renderer.mjs</code>) draws all eight required variants from the same content files. It keeps the prototype\'s <code>renderPitch(d) → SVG string</code> architecture, coordinates and data schema.', variants),
+  sec('lesson', 'Primary functional test', 'Lesson: One goes, one stays', 'Built entirely from <code>content/9v9/3-1-3-1.json</code> (playbook pp. 2, 4 and 9). Try the tabs with arrow keys, plus Enlarge and Key.', lesson3131(D)),
+  sec('drafts', 'Private preview only', 'Draft lessons', 'The 3-3-2 (research draft) and 2-2-3-1 (exploratory) only render in private builds. Switch to "Public build view" to see the gate remove them.', `<div class="hwp-split" style="align-items:start"><div>${lesson332(D)}</div><div>${lesson2231(D)}</div></div>`),
+  sec('formations', 'Navigation and comparison', 'Formation selector and comparison', 'The 9v9 formations as a selector and up to three comparison panels. In the public build view the gate filters them, so today it shows none.', formationsDemo(D)),
+  sec('navigation', 'Components', 'Navigation', '', navigation),
+  sec('editorial', 'Components', 'Editorial', 'A positional page fragment using the playbook\'s outside defenders page (p. 9).', editorial),
+  sec('interactive', 'Components', 'Interactive', '', interactive),
+  sec('status', 'Governance', 'Status and review states', '', status),
+  sec('legibility', 'QA', 'Legibility at real widths', '', legibility),
+  sec('animation', 'Future animation', 'Animation-ready data', '', animation),
+  sec('validation', 'QA', 'Validation report (live)', 'validate() runs on every frame. Errors would block a build. Warnings flag items for the content team. Source playbook data isn\'t edited by the design system.', `<div class="hwp-split" style="align-items:start">${report}</div>`),
+  sec('tests', 'QA', 'Automated tests (live in this browser)', 'The same suite runs in Node with <code>node tests/run.mjs</code>.', '<ul class="sc-tests" id="test-list" style="list-style:none;margin:0;padding:0"></ul><p class="hwp-label" id="tests-sum"></p>')
+].join('');
+enhance(document);
+const results = await run({ R, G, content: D.content, register: D.register, flat: D.flat }, () => {});
+document.getElementById('test-list').innerHTML = results.map(r => `<li><b>${r.pass ? '✓ Pass' : '✕ Fail'}</b><span>${r.name}${r.error ? `<br><span class="hwp-secondary">${r.error}</span>` : ''}</span></li>`).join('');
+document.getElementById('tests-sum').textContent = `${results.filter(r => r.pass).length} of ${results.length} passed`;
+</script>
+</body>
+</html>

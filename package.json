@@ -1,0 +1,29 @@
+{
+  "name": "how-we-play",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "How We Play website (howweplayfootball.com). Astro static site built on the How We Play design system.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-assets.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "predev": "npm run sync",
+    "dev": "astro dev",
+    "prebuild": "npm run sync && npm run validate",
+    "build": "astro build && node scripts/check-build.mjs dist",
+    "build:public": "HWP_TARGET=public npm run build",
+    "build:preview": "HWP_TARGET=preview npm run build",
+    "build:both": "bash scripts/build-all.sh",
+    "test": "node design-system/tests/run.mjs && node scripts/test-gate.mjs && node scripts/validate-content.mjs",
+    "tokens": "node design-system/tokens/build.mjs",
+    "og": "python3 scripts/og/make_og.py",
+    "preview": "astro preview",
+    "test:leak": "bash scripts/test-leak.sh"
+  },
+  "dependencies": {
+    "astro": "7.3.8"
+  }
+}

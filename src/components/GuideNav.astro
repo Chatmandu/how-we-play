@@ -1,0 +1,13 @@
+---
+/* Navigation on lesson and position pages: back to the guide, then every lesson and position. */
+interface Props { formation: any; current: string; }
+const { formation: f, current } = Astro.props;
+const base = `/formations/9v9/${f.slug}/`;
+const rules = (f.rules || []).filter(r => r.diagram);
+const roles = f.roles || [];
+---
+<nav class="guide-nav" aria-label={`${f.name} guide`}>
+  <a class="hwp-golink guide-nav__back" href={base}>← Back to the {f.name} guide</a>
+  {rules.length > 0 && <div class="guide-nav__row"><span class="hwp-label">Four rules</span>{rules.map(r => <a href={`${base}${r.id}/`} aria-current={current === r.id ? 'page' : undefined}>{r.n} · {r.title}</a>)}</div>}
+  {roles.length > 0 && <div class="guide-nav__row"><span class="hwp-label">Positions</span>{roles.map(r => <a href={`${base}positions/${r.id}/`} aria-current={current === 'pos-' + r.id ? 'page' : undefined} aria-label={r.title}>{r.short}</a>)}</div>}
+</nav>
