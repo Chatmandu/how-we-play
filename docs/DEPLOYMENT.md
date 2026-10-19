@@ -1,30 +1,34 @@
-# Deployment: GitHub → Cloudflare Pages
+# Deployment: GitHub → Cloudflare
 
 Repository: `github.com/Chatmandu/how-we-play` (private). Nothing is connected to howweplayfootball.com yet; the steps below get there safely.
 
-## Why Cloudflare Pages
+## Setup used: Cloudflare Workers Builds (static assets)
 
-Static output, Git integration, a preview deployment per branch, Cloudflare Access to keep previews private, `_headers` support, and no cost at this scale. It is the same setup as manualmode.xyz. (Cloudflare Workers with static assets would also work; Pages is simpler for branch previews.)
+The project is a Cloudflare **Worker with static assets** connected to GitHub (Workers Builds). There is no Worker code: `wrangler.jsonc` tells Cloudflare to serve `dist/`, with `404.html` for missing pages and trailing-slash URLs. `_headers` (security headers; `noindex` on previews) is honoured.
 
-## 1. Create the Pages project
-
-Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → `Chatmandu/how-we-play`.
+### Build settings (Worker → Settings → Build)
 
 | Setting | Value |
 |---|---|
+| Git repository | `Chatmandu/how-we-play` |
 | Production branch | `main` |
-| Framework preset | Astro |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node version | Environment variable `NODE_VERSION=22.22.0` (or rely on `.nvmrc`) |
+| Deploy command | `npx wrangler deploy` |
+| Non-production branch deploy command | `npx wrangler versions upload` |
+| Root directory | `/` |
+| Environment variable | `NODE_VERSION=22.22.0` (optional; `.nvmrc` also sets it) |
 
-**No `HWP_TARGET` variable is needed.** `src/lib/model.mjs` reads Cloudflare's `CF_PAGES_BRANCH`: `main` builds the public target, every other branch builds the private preview. If someone sets `HWP_TARGET=preview` on production by mistake, the build fails rather than publishing drafts. (If the production branch is ever renamed, set `HWP_PRODUCTION_BRANCH`.)
+**No `HWP_TARGET` variable is needed.** Workers Builds sets `WORKERS_CI_BRANCH`: `main` builds the public target and any other branch builds the private preview. Asking for anything other than public on `main` fails the build. A build with no branch information and no `HWP_TARGET` also builds **public**, so a misconfigured build can never publish drafts. (If the production branch is renamed, set `HWP_PRODUCTION_BRANCH`.)
 
-## 2. Keep previews private
+### Keeping previews private
 
-Pages → Settings → General → **Access policy: enable for preview deployments.** This puts every `*.how-we-play.pages.dev` preview behind Cloudflare Access (email one-time PIN). Add the people who may see drafts (you, the reviewer). Preview builds are also `noindex` and disallowed in `robots.txt`, but Access is what keeps them private.
+Non-production branches upload a version with a preview URL instead of deploying. Before sharing one with the reviewer, put Cloudflare Access in front of the preview URLs (Worker → Settings → Domains & Routes → preview URLs → enable Cloudflare Access, or a Zero Trust self-hosted application covering `*-how-we-play.<account>.workers.dev`). Preview builds are also `noindex` and disallowed in `robots.txt`, but Access is what keeps them private. Check this in the dashboard; the exact menu wording changes.
 
-The production `*.pages.dev` address is public. That's acceptable because the production build contains only gate-approved content, but you can also put Access on the production `pages.dev` host until launch (Zero Trust → Access → Applications → self-hosted, domain `how-we-play.pages.dev`).
+The production `how-we-play.<account>.workers.dev` address is public, which is acceptable because the production build contains only gate-approved content. You can switch the workers.dev route off until launch.
+
+### Cloudflare Pages alternative
+
+The site also works unchanged on Cloudflare Pages (build `npm run build`, output `dist`); `CF_PAGES_BRANCH` is handled the same way.
 
 ## 3. Working day to day
 
@@ -37,14 +41,14 @@ The production `*.pages.dev` address is public. That's acceptable because the pr
 Only after the items in `docs/OUTSTANDING.md` marked "before launch" are done.
 
 1. Domain on Cloudflare (nameservers) if it isn't already.
-2. Pages → Custom domains → add `howweplayfootball.com` and `www.howweplayfootball.com`.
+2. Worker → Settings → Domains & Routes → add custom domains `howweplayfootball.com` and `www.howweplayfootball.com`.
 3. Redirect `www` to the apex (Bulk Redirects or a redirect rule) so it matches the canonical URLs.
 4. Remove any Access policy from the production host.
 5. Verify in Google Search Console and Bing; submit `https://howweplayfootball.com/sitemap.xml`.
 
 ## Rollback
 
-Pages keeps every deployment. Deployments → choose a previous production deployment → Rollback. Content changes are also reversible in Git.
+Cloudflare keeps every deployment. Worker → Deployments → choose a previous version → Rollback. Content changes are also reversible in Git.
 
 ## A CMS later?
 

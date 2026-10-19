@@ -1,0 +1,12 @@
+// Cloudflare Workers static assets. No Worker code: Cloudflare serves the built files in dist/.
+// Build first (npm run build). The build target is chosen from the branch: see docs/DEPLOYMENT.md.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "how-we-play",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

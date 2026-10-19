@@ -11,7 +11,7 @@
     "sync": "node scripts/sync-assets.mjs",
     "validate": "node scripts/validate-content.mjs",
     "predev": "npm run sync",
-    "dev": "astro dev",
+    "dev": "HWP_TARGET=local astro dev",
     "prebuild": "npm run sync && npm run validate",
     "build": "astro build && node scripts/check-build.mjs dist",
     "build:public": "HWP_TARGET=public npm run build",
@@ -21,9 +21,14 @@
     "tokens": "node design-system/tokens/build.mjs",
     "og": "python3 scripts/og/make_og.py",
     "preview": "astro preview",
-    "test:leak": "bash scripts/test-leak.sh"
+    "test:leak": "bash scripts/test-leak.sh",
+    "deploy": "wrangler deploy",
+    "deploy:preview": "wrangler versions upload"
   },
   "dependencies": {
     "astro": "7.3.8"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.2"
   }
 }

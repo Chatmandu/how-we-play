@@ -12,9 +12,12 @@ export const TARGETS = ['public', 'preview', 'local'];
  * always public and every other branch is preview, so a missing variable can't leak drafts.
  * Building anything other than public on the production branch is refused. */
 export function resolveTarget(env = {}) {
-  const branch = env.CF_PAGES ? env.CF_PAGES_BRANCH : null;
+  // Cloudflare Pages sets CF_PAGES_BRANCH; Cloudflare Workers Builds sets WORKERS_CI_BRANCH.
+  const branch = env.CF_PAGES ? env.CF_PAGES_BRANCH : (env.WORKERS_CI_BRANCH || null);
   const production = env.HWP_PRODUCTION_BRANCH || 'main';
-  const target = env.HWP_TARGET || (branch ? (branch === production ? 'public' : 'preview') : 'local');
+  // With no variable and no known CI branch, build PUBLIC: an unconfigured build must never contain drafts.
+  // `npm run dev` sets HWP_TARGET=local explicitly.
+  const target = env.HWP_TARGET || (branch ? (branch === production ? 'public' : 'preview') : 'public');
   if (branch === production && target !== 'public') throw new Error(`Refusing to build "${target}" on the production branch (${production}). Production builds are always public.`);
   return target;
 }
