@@ -4,7 +4,7 @@
 
 - Design system approved by Niall Walsh, 19 October 2026 (recorded on every register entry).
 - Source playbook: Niall's own work; permission granted.
-- Coaching reviewer: Niall Walsh. Reviews are not yet recorded, so nothing coaching-related is public yet.
+- Coaching reviewer: Greg Williams (changed from Niall Walsh the same evening). Reviews are not yet recorded, so nothing coaching-related is public yet.
 - Author on About: Niall Walsh.
 - Domain: stays switched off for now.
 
