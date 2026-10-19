@@ -36,7 +36,7 @@ const ids = ['9v9-hub', ...list.map(f => f.registerId)];
 
   <section class="section" aria-labelledby="h-compare">
     <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">The formations</span><span class="hwp-label hwp-secondary">Same pitch, same scale</span></div>
-    <h2 class="hwp-heading-l" id="h-compare">Three starting pictures</h2>
+    <h2 class="hwp-heading-l" id="h-compare">{list.length === 1 ? "One starting picture" : list.length === 2 ? "Two starting pictures" : "Three starting pictures"}</h2>
     {list.length === 0 ? (
       <div class="hwp-review-note" role="note"><strong>Formation guides in coaching review.</strong> Our 9v9 formation guides are waiting for review by a qualified coach. Each will appear here once it has been reviewed. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</div>
     ) : (

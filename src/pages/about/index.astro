@@ -5,8 +5,8 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
 const chip = (k, t) => `<span class="hwp-chip hwp-chip--${k}">${t}</span>`;
 const labels = [
   [chip('verified', 'Official rule verified · 19 October 2026'), 'An official competition fact checked against England Football, with the date and a link to the source. Rechecked each season.'],
-  [chip('reviewed', '✓ Coaching reviewed · date'), 'A qualified coach has reviewed this guidance. Their name and the date are recorded.'],
-  [chip('review', 'Coaching review required'), 'Written, waiting for a qualified reviewer. Only visible in private previews.'],
+  [chip('reviewed', '✓ Coaching reviewed · date'), 'Our coaching reviewer has reviewed this guidance. Their name and the date are recorded.'],
+  [chip('review', 'Coaching review required'), 'Written, waiting for review. Only visible in private previews.'],
   [chip('draft', 'Draft'), 'Work in progress. Only visible in private previews.'],
   [chip('exploratory', 'Exploratory'), 'An experimental coaching idea. Always shown with a yellow strip and dashed frame, and needs a separate public approval.'],
   [chip('soon', 'Coming soon'), 'Planned. Nothing to read yet.']
@@ -55,7 +55,7 @@ const labels = [
     <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Our rules for ourselves</span></div>
     <h2 class="hwp-heading-m" id="h-rules">Our rules for ourselves</h2>
     <ul class="list lede">
-      <li>Coaching guidance is published only after a qualified coach has reviewed it.</li>
+      <li>Coaching guidance is published only after our coaching reviewer has reviewed it.</li>
       <li>Official rules link to their source and show the date we checked them.</li>
       <li>Tactical illustrations only: no photos of children, no player names, no club badges.</li>
       <li>No invented qualifications, reviews, testimonials or results.</li>

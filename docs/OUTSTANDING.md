@@ -4,7 +4,7 @@
 
 - Design system approved by Niall Walsh, 19 October 2026 (recorded on every register entry).
 - Source playbook: Niall's own work; permission granted.
-- Coaching reviewer: Greg Williams (changed from Niall Walsh the same evening). Reviews are not yet recorded, so nothing coaching-related is public yet.
+- Coaching reviewer: Greg Williams. **3-1-3-1 reviewed by Greg Williams, 19 October 2026**: guide, four lessons and eight position pages are public. 3-3-2, 2-2-3-1 and the Moving Up checklist are not reviewed and stay private.
 - Author on About: Niall Walsh.
 - Domain: stays switched off for now.
 
@@ -12,14 +12,13 @@
 
 | # | Decision | Note |
 |---|---|---|
-| 1 | Review the 3-1-3-1 and record it | Answer the "Still being written" questions in the preview, then set `reviewed`, `reviewedBy`, `reviewedOn` in the formation file and the register. Its guide, lessons and positions then publish |
+| 1 | Answers to the 3-1-3-1 reviewer questions (offside, trade-offs, three forwards, rotation) | Hidden from the public site; write them into the content when ready |
 | 2 | Newsletter provider and privacy notice | Demo in preview only |
 | 3 | 3-3-2 and 2-2-3-1 publicly? | Only after review; 2-2-3-1 also needs a recorded public approval |
 | 4 | Dark mode | The brand has none |
 
 ## Before launch
 
-- Record the 3-1-3-1 review (open item 1).
 - Fix the content warnings from `npm run validate` (labels on highlighted areas; check the far-side-in marking contact).
 - Screen-reader, Safari, Firefox and real-device testing (`docs/QA-REPORT.md` section 6).
 - Trim long meta descriptions; per-page Open Graph images; Search Console.

@@ -10,12 +10,11 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "review-required",
+      "status": "reviewed",
       "exploratory": false,
       "source": "Mossley Hill playbook (15 pp.)",
-      "reviewedBy": null,
-      "reviewedOn": null,
-      "reviewer": "Greg Williams (appointed 2026-10-19; review not yet recorded)"
+      "reviewedBy": "Greg Williams",
+      "reviewedOn": "2026-10-19"
     }
   },
   {

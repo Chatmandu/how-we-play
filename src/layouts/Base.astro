@@ -44,7 +44,7 @@ const navItems = [
 ];
 const formats = site.formats.map(f => ({
   id: f.id, ages: f.ages, href: f.href, soon: f.availability !== 'live',
-  note: f.id === '9v9' ? (model.publicFormations.length || !isPublic ? `${isPublic ? model.publicFormations.length : model.formations.length} formations` : 'guides in review') : undefined
+  note: f.id === '9v9' ? (model.publicFormations.length || !isPublic ? (n => `${n} formation${n === 1 ? '' : 's'}`)(isPublic ? model.publicFormations.length : model.formations.length) : 'guides in review') : undefined
 }));
 const headerHtml = header({ items: navItems, current: nav, newsletterHref: '/coaching-notes/', formats, activeFormat });
 const footerHtml = footer({ columns: [

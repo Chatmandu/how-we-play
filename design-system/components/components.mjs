@@ -6,6 +6,7 @@ import { renderPitch, renderKey, usedSymbols, validate } from '../diagrams/rende
 
 let ASSETS = '/hwp-design-system/assets/';
 export function configure(o = {}) { if (o.assetBase) ASSETS = o.assetBase.replace(/\/?$/, '/'); }
+const longDate = iso => /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(iso + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : iso;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 let n = 0; const uid = p => `${p}-${++n}`;
 export const icon = (name, label) => `<svg class="hwp-icon" ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true" focusable="false"'}><use href="${ASSETS}icons/sprite.svg#hwp-icon-${esc(name)}"/></svg>`;
@@ -73,7 +74,7 @@ export function statusChips(item = {}) {
   const st = c.status || c.content;
   if (st === 'draft') out.push(['draft', 'Draft']);
   if (st === 'review-required') out.push(['review', 'Coaching review required']);
-  if (st === 'reviewed') out.push(['reviewed', `✓ Coaching reviewed${c.reviewedOn ? ' · ' + c.reviewedOn : ''}`]);
+  if (st === 'reviewed') out.push(['reviewed', `✓ Coaching reviewed${c.reviewedOn ? ' · ' + longDate(c.reviewedOn) : ''}`]);
   if (c.exploratory) out.push(['exploratory', 'Exploratory']);
   (item.rules || []).forEach(r => out.push(r.status === 'verified' ? ['verified', `Official rule verified · ${r.checkedOn || ''}`] : ['review', `Rule not yet checked: ${r.fact}`]));
   return `<div class="hwp-chips">${out.map(([k, t]) => `<span class="hwp-chip hwp-chip--${k}">${esc(t)}</span>`).join('')}</div>`;

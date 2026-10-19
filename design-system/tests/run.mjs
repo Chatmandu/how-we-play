@@ -13,7 +13,7 @@ const json = p => JSON.parse(readFileSync(join(root, p), 'utf8'));
 const ctx = {
   R, G,
   content: { '3-1-3-1': json('../content/formations/9v9/3-1-3-1.json'), '3-3-2': json('../content/formations/9v9/3-3-2.private.json'), '2-2-3-1': json('../content/formations/9v9/2-2-3-1.private.json') },
-  register: json('../content/register.json'),
+  register: json('tests/fixtures/content-register.json'), // fixed fixture: tests the gate's rules, not today's live statuses
   flat: resolve(json('tokens/tokens.json'))
 };
 const results = await run(ctx);

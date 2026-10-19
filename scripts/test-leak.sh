@@ -20,8 +20,8 @@ build_public() { (cd "$TMP/site" && HWP_TARGET=public npx astro build >/dev/null
 
 # 1. Link to a blocked guide
 fresh
-sed -i 's|<h1 class="hwp-display-xl"|<a href="/formations/9v9/3-1-3-1/">Leak</a><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
-if build_public; then bad "public build with a link to an unreviewed guide should fail"; else grep -q "broken reference /formations/9v9/3-1-3-1/" "$TMP/check.log" && ok "public build fails on a link to an unreviewed guide" || bad "failed, but not for the expected reason"; fi
+sed -i 's|<h1 class="hwp-display-xl"|<a href="/formations/9v9/3-3-2/">Leak</a><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
+if build_public; then bad "public build with a link to an unreviewed guide should fail"; else grep -q "broken reference /formations/9v9/3-3-2/" "$TMP/check.log" && ok "public build fails on a link to an unreviewed guide" || bad "failed, but not for the expected reason"; fi
 
 # 2. Unreviewed status chip or private strip on a public page
 fresh

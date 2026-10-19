@@ -1,5 +1,8 @@
 # Design system changelog
 
+## 1.0.2 (19 October 2026)
+- `statusChips` shows the review date as "19 October 2026" instead of ISO.
+
 ## 1.0.1 (19 October 2026, website foundation build)
 Fixes found while building the website. No token values, renderer output or diagram data changed.
 - **Content moved out:** `content/` and `governance/content-register.json` now live at the website root (`/content/`). `tests/run.mjs` and `showcase/demos.mjs` read from there, so there is only one copy of the coaching content.
