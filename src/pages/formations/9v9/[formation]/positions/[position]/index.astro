@@ -17,7 +17,7 @@ export function getStaticPaths() {
 const f = model.formation(Astro.props.slug);
 const i = f.roles.findIndex(r => r.id === Astro.props.roleId);
 const r = f.roles[i];
-const exploratory = !!f.register.content.exploratory;
+const exploratory = !!f.register.content.exploratory && (model.target !== 'public' || !f.register.content.publicApproval);
 const set = f.diagrams[r.diagram];
 const base = `/formations/9v9/${f.slug}/`;
 const related = (r.rules || []).map(id => f.rules.find(x => x.id === id)).filter(Boolean);
