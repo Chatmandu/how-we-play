@@ -10,17 +10,21 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "reviewed",
+      "status": "review-required",
       "exploratory": false,
       "source": "Mossley Hill U13 playbook (15 pp.), Niall Walsh",
-      "reviewedBy": "David Le Tissier",
-      "reviewedOn": "2026-10-20",
-      "reviewedVersion": "cv-353fff2a",
-      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)",
+      "reviewedBy": null,
+      "reviewedOn": null,
+      "reviewedVersion": null,
+      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)",
       "history": [
         {
           "on": "2026-10-20",
           "note": "Review entry for Greg Williams (19 October 2026) withdrawn: no documented approval held. Returned to review-required."
+        },
+        {
+          "on": "2026-10-20",
+          "note": "Designated coaching reviewer changed to David Wilson. The David Le Tissier approval of cv-353fff2a is not carried over; returned to review-required."
         }
       ],
       "reviewLog": [
@@ -31,6 +35,14 @@
           "decision": "approved",
           "limitations": "None recorded",
           "evidence": "Written instruction from Niall Walsh (site owner) in the project working session, 20 October 2026. David's own written approval to be filed with project records."
+        },
+        {
+          "version": "cv-353fff2a",
+          "reviewer": "David Le Tissier",
+          "date": "2026-10-20",
+          "decision": "withdrawn",
+          "limitations": "Approval not carried over: David Wilson is now the designated coaching reviewer (instruction from Niall Walsh, 20 October 2026). Needs review by David Wilson.",
+          "evidence": null
         }
       ]
     }
@@ -51,7 +63,7 @@
       "source": "Research draft 0.1, 19 Oct 2026",
       "reviewedBy": null,
       "reviewedOn": null,
-      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
+      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)"
     }
   },
   {
@@ -71,7 +83,7 @@
       "reviewedBy": null,
       "reviewedOn": null,
       "publicApproval": null,
-      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
+      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)"
     }
   },
   {
@@ -209,7 +221,7 @@
       "source": "P1 prototype; two items are our additions",
       "reviewedBy": null,
       "reviewedOn": null,
-      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
+      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)"
     }
   },
   {
@@ -234,11 +246,12 @@
       "approvedOn": "2026-10-20"
     },
     "confirmation": {
-      "status": "confirmed",
+      "status": "withdrawn",
       "scope": "David's name, role as coaching reviewer and the biography on /about/, as supplied by Niall Walsh on 20 October 2026",
       "confirmedBy": "Niall Walsh, on David Le Tissier's behalf",
       "confirmedOn": "2026-10-20",
-      "evidence": "Written instruction from Niall Walsh (site owner) in the project working session, 20 October 2026: biography confirmation 'good for now'. Direct written confirmation from David still to be filed."
+      "evidence": "Written instruction from Niall Walsh (site owner) in the project working session, 20 October 2026: biography confirmation 'good for now'. Direct written confirmation from David still to be filed.",
+      "note": "20 October 2026: no longer the coaching reviewer. Profile removed from /about/. He may be mentioned in Niall's own story as an early sounding board."
     }
   },
   {
@@ -257,6 +270,22 @@
       "confirmedOn": "2026-10-20",
       "evidence": "Written instruction from Niall Walsh (site owner) in the project working session, 20 October 2026",
       "note": "20 October 2026: section removed from /about/ at Niall's request (origin story now the season-by-season Notes app approach). Confirmation kept for the record; nothing is shown."
+    }
+  },
+  {
+    "id": "profile-david-wilson",
+    "kind": "confirmation",
+    "title": "Reviewer profile: David Wilson",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-20"
+    },
+    "confirmation": {
+      "status": "awaiting",
+      "scope": "David Wilson's name, role as coaching reviewer, qualifications (UEFA B Licence, PGCE, BA (Hons)) and the biography on /about/, as supplied by Niall Walsh on 20 October 2026. David to confirm: wording of qualifications and experience, preferred description of his Liverpool FC role, the League One-level playing description, and any portrait.",
+      "confirmedBy": null,
+      "confirmedOn": null
     }
   }
 ]

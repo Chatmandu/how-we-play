@@ -803,3 +803,4 @@
 .privacy-h1 { font-size: clamp(52px, 7vw, 104px) !important; }
 .privacy code { font-size: .9em; }
 .inline-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--hwp-text-link, var(--hwp-color-pitch-blue)); text-decoration: underline; cursor: pointer; }
+.reviewer__creds { font: 700 15px/1.4 var(--ed-sans); color: var(--hwp-color-pitch-blue); margin-top: -4px !important; } .story__h--sm { font-size: clamp(26px, 2.6vw, 34px) !important; }

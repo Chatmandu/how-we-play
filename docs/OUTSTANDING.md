@@ -4,7 +4,7 @@
 
 - Design system approved by Niall Walsh, 19 October 2026 (recorded on every register entry).
 - Source playbook: Niall's own work; permission granted.
-- 20 October 2026: the earlier Greg Williams review entry was withdrawn (no documented approval). Intended coaching reviewer: **David Le Tissier**. No review is recorded yet, so the 3-1-3-1, 3-3-2, 2-2-3-1 and the Moving Up checklist are all private. See `CONTENT-REVIEW-REGISTER.md`.
+- 20 October 2026: designated coaching reviewer is **David Wilson** (UEFA B, PGCE, BA (Hons)). Earlier entries for Greg Williams and David Le Tissier are withdrawn and not carried over. No coaching content is currently reviewed, so every formation issue is private until David Wilson's review is recorded. His profile is preview-only until he approves it. David Le Tissier appears only in Niall's story, as an early sounding board.
 - Author on About: Niall Walsh.
 - Domain: live at howweplayfootball.com (Cloudflare Workers).
 - Positioning: How We Play covers grassroots formats generally; 9v9 is the first collection. No claim of 3v3 coaching experience.

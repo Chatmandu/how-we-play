@@ -38,11 +38,11 @@
   "spineText": "GK, 5, 6, 10, 9",
   "shapeCue": "The formation is our starting position. It isn't where we have to stand.",
   "status": {
-    "content": "reviewed",
+    "content": "review-required",
     "exploratory": false,
     "source": "Mossley Hill U13 playbook, 15 pp.",
-    "reviewedBy": "David Le Tissier",
-    "reviewedOn": "2026-10-20"
+    "reviewedBy": null,
+    "reviewedOn": null
   },
   "shape": {
     "id": "shape",
