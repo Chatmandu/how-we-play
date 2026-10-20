@@ -22,6 +22,9 @@ const glance = [
   ['Offside', fact('offside').v9]
 ];
 const ex = fact('example-shapes');
+const main = v => String(v).replace(/\s*\(.*\)$/, '').replace(/^Up to /, '');
+const steps = [['pitch', 'Recommended pitch'], ['ball', 'Ball'], ['length', 'Match length, up to'], ['offside', 'Offside']].map(([id, k]) => [k, main(fact(id).v9), main(fact(id).v7)]);
+const srcs = [...new Map(['pitch', 'ball', 'length', 'offside'].map(id => fact(id)).map(x => [x.source, x.sourceInfo])).values()];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
 const ids = ['9v9-hub', ...published.map(f => f.registerId)];
 ---
@@ -64,8 +67,23 @@ const ids = ['9v9-hub', ...published.map(f => f.registerId)];
             return <li>{preview && f.gate.allowed ? <a href={`/formations/9v9/${f.slug}/`}>{inner}</a> : <div>{inner}</div>}</li>;
           })}
         </ol>
-        <p class="ed-small">New to nine a side? <a href="/moving-up/">What changes from 7v7</a>.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="ed-section ed-grid nine-a-side" aria-labelledby="h-step">
+    <div class="split__main">
+      <p class="ed-kicker">Moving up from 7v7</p>
+      <h2 class="ed-h2" id="h-step" style="margin-top:12px">What changes at nine a side</h2>
+      <p class="ed-lede" style="margin-top:14px">If your team is stepping up, start here. Two more players, a bigger pitch, and offside and heading for the first time. A lot also stays the same.</p>
+      <dl class="stats">{steps.map(([k, now, was]) => <div><dt>{k}</dt><dd>{now}<small>7v7: {was}</small></dd></div>)}</dl>
+    </div>
+    <div class="split__side nine-a-side__side">
+      <a class="ed-btn" href="/moving-up/">Read Moving Up: 7v7 to 9v9 →</a>
+      <p class="ed-small">Every rule that changes, side by side, and what stays familiar.</p>
+      <span class="hwp-chip hwp-chip--verified">Official rule verified · {longDate(fact('pitch').checkedOn)}</span>
+      <ul class="ed-small srcs" aria-label="Sources">{srcs.map(x => <li><a href={x.url} rel="noopener" target="_blank">{x.publisher}: {x.title}<span class="hwp-sr-only"> (opens in a new tab)</span></a></li>)}</ul>
+      <p class="ed-small" style="color:var(--hwp-text-secondary)">Season {fact('pitch').season}. England Football's maximum formats; check your league for local rules.</p>
     </div>
   </section>
 </Base>

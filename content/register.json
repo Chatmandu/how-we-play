@@ -213,13 +213,6 @@
     }
   },
   {
-    "id": "football-explained",
-    "kind": "editorial",
-    "title": "Football explained",
-    "availability": "coming-soon",
-    "hasBody": false
-  },
-  {
     "id": "coaching-notes",
     "kind": "editorial",
     "title": "The Coaching Notes (newsletter)",
