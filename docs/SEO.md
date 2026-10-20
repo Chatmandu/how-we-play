@@ -83,6 +83,7 @@ Structured data helps machines **interpret** pages. It isn't a claim that the pa
 - Check response headers for `X-Robots-Tag`, content type and caching on production vs private preview.
 - Check `/moving-up/` redirect and 404 behaviour.
 - Validate a representative public Article / WebPage / BreadcrumbList in a structured data validator. Run Google's Rich Results Test only for markup it actually supports.
+- Check that the privacy notice's published contact address actually receives mail. `content/site.json` currently lists `hello@howweplayfootball.com`, but the domain mailbox has not yet been confirmed; the Contact form implementation is in a **separate, unmerged** pull request. An undeliverable contact address is a visitor trust and privacy-support problem, not something structured data can fix.
 - Test mobile page speed, CLS/LCP/INP and font loading with PageSpeed Insights and field data once traffic is sufficient.
 - Confirm page text and links still work with scripting disabled.
 - Compare sitemap URLs with Search Console indexed pages every month.
