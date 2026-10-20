@@ -28,7 +28,7 @@ const jsonLd = [
   ...(showReviewer && model.target === 'public' ? [{ '@context': 'https://schema.org', '@type': 'Person', name: REVIEWER.name, jobTitle: 'Coaching reviewer, How We Play', url: site.url + REVIEWER.href }] : [])
 ];
 ---
-<Base title="About How We Play | Grassroots Football Coaching" description="Meet the grassroots coach behind How We Play and discover why we create free formation guides, tactical diagrams and practical football coaching advice." ids={['about']} nav="about" crumbs={crumbs} jsonLd={jsonLd} ogType="profile" editorial>
+<Base title="About How We Play | Grassroots Football Coaching" description="Meet the grassroots coach behind How We Play and discover why we create free formation guides, tactical diagrams and practical football coaching advice." ids={['about']} nav="about" crumbs={crumbs} jsonLd={jsonLd} ogType="profile" editorial meta={{ type: 'about', group: 'About' }}>
   <article class="about" aria-labelledby="about-h">
     <header class="about-open ed-grid">
       <div class="about-open__text">

@@ -1,0 +1,40 @@
+---
+/* Cookie choice for analytics. Shown only where analytics can run (production hosts, public build) and only
+ * until the visitor chooses. Accept and Reject are the same size and style. "Cookie settings" in the footer
+ * reopens it. Not a modal: the page stays usable while it is shown. */
+import model from '../lib/content.mjs';
+const a = model.site.analytics;
+const on = model.target === 'public' && a && a.ga4;
+const cfg = on ? JSON.stringify({ id: a.ga4, hosts: a.hosts }) : 'null';
+---
+<script is:inline set:html={`window.HWP_ANALYTICS=${cfg};`} />
+<div class="consent" id="consent" role="region" aria-labelledby="consent-h" hidden>
+  <div class="ed-wrap consent__in">
+    <div class="consent__text">
+      <h2 id="consent-h">Analytics cookies</h2>
+      <p>We'd like to use Google Analytics to understand which guides coaches find useful. It's off unless you say yes. <a href="/privacy/#cookies">How we use cookies</a></p>
+    </div>
+    <div class="consent__btns">
+      <button type="button" class="consent__btn" data-consent="granted">Accept analytics</button>
+      <button type="button" class="consent__btn" data-consent="denied">Reject analytics</button>
+    </div>
+  </div>
+</div>
+<script>
+  import { init, enabled, consent, setConsent } from '../scripts/analytics.mjs';
+  const box = document.getElementById('consent')!;
+  const open = (focus = false) => { box.hidden = false; if (focus) (box.querySelector('button') as HTMLButtonElement).focus(); };
+  if (enabled()) {
+    init();
+    if (!consent()) open();
+    box.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach(b => b.addEventListener('click', () => {
+      setConsent(b.dataset.consent!); box.hidden = true;
+      const msg = document.getElementById('consent-msg'); if (msg) msg.textContent = b.dataset.consent === 'granted' ? 'Analytics accepted.' : 'Analytics rejected.';
+    }));
+  }
+  document.querySelectorAll<HTMLButtonElement>('[data-cookie-settings]').forEach(b => {
+    if (!enabled()) { b.hidden = true; return; }
+    b.addEventListener('click', () => open(true));
+  });
+</script>
+<p class="hwp-sr-only" id="consent-msg" role="status" aria-live="polite"></p>

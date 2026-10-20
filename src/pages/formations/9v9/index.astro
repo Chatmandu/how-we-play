@@ -28,7 +28,7 @@ const byGroup = g => model.facts.facts.filter(x => x.group === g).map(x => x.id)
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
 const ids = ['9v9-hub', 'moving-up-7v7-9v9', ...published.map(f => f.registerId)];
 ---
-<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 football formations for U12 and U13: formation guides with playing principles and positions, plus what changes when moving up from 7v7." ids={ids} nav="9v9" crumbs={crumbs} editorial>
+<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 football formations for U12 and U13: formation guides with playing principles and positions, plus what changes when moving up from 7v7." ids={ids} nav="9v9" crumbs={crumbs} editorial meta={{ type: 'format', format: '9v9', group: 'Formats' }}>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Format · U12 and U13</p>

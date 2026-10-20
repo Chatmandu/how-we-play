@@ -54,5 +54,29 @@
     "role": "Grassroots football coach and founder of How We Play",
     "short": "Volunteer grassroots football coach for seven years",
     "url": "/about/"
+  },
+  "support": {
+    "kofi": "https://ko-fi.com/howweplayfootball",
+    "label": "Support How We Play"
+  },
+  "newsletter": {
+    "$comment": "Paste the form action from Mailchimp: Audience > Signup forms > Embedded forms (the <form action=\"https://….list-manage.com/subscribe/post?u=…&id=…\"> value). Until it is set, public builds show no form. Never put API keys here.",
+    "name": "The Coaching Notes",
+    "action": null,
+    "doubleOptIn": true
+  },
+  "analytics": {
+    "$comment": "GA4 loads only on these hosts, only in public builds, and only after the visitor accepts analytics.",
+    "ga4": "G-NRDDNYR138",
+    "hosts": [
+      "howweplayfootball.com",
+      "www.howweplayfootball.com"
+    ]
+  },
+  "privacy": {
+    "$comment": "Fill these in before the newsletter goes live. Nothing is invented.",
+    "controller": null,
+    "contactEmail": null,
+    "lastUpdated": "2026-10-20"
   }
 }
