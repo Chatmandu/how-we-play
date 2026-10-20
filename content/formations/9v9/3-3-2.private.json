@@ -137,11 +137,11 @@
   ],
   "notDrawn": "Further tactical features and set pieces are not included in this issue.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
     "source": "How We Play Issue 02 coaching publication, editorial version 0.2",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-20"
   },
   "shape": {
     "id": "3-3-2",
