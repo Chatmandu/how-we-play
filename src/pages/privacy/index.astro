@@ -14,7 +14,7 @@ const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
     <div class="page-head__text">
       <p class="ed-kicker">Privacy and cookies</p>
       <h1 class="privacy-h1">Your data, kept to a minimum</h1>
-      <p class="ed-stand">How We Play is free to read without giving us anything. This page explains the two optional things that do involve your data: analytics, if you accept it, and the newsletter, if you sign up.</p>
+      <p class="ed-stand">How We Play is free to read without giving us anything. This page explains the information you may choose to share when subscribing, getting in touch or accepting analytics.</p>
       <p class="byline">Last updated {longDate(p.lastUpdated)}</p>
     </div>
   </div>
@@ -22,7 +22,7 @@ const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
     <div class="story privacy">
       <h2 class="story__h" id="who">Who runs How We Play</h2>
       <p>How We Play is an independent project written by {site.author.name}. {p.controller ? `The data controller is ${p.controller}.` : (missing('Data controller name and status') || '')}</p>
-      <p>{p.contactEmail ? <>For any privacy question or request, email <a href={`mailto:${p.contactEmail}`}>{p.contactEmail}</a>.</> : (missing('Contact email for privacy requests') || 'A contact address for privacy questions is being added to this page.')}</p>
+      <p>For privacy questions or requests, use our <a href="/contact/">contact form</a> and choose <strong>Privacy enquiry</strong>.</p>
 
       <h2 class="story__h" id="cookies">Cookies and analytics</h2>
       <p>We use Google Analytics 4 to see which pages and guides are used, so we know what to write next. It only runs if you choose <strong>Accept analytics</strong>. Until then, no analytics code loads and no analytics cookies are set.</p>
@@ -30,6 +30,11 @@ const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
       <p>We keep your choice in your browser's local storage so we don't ask again on every page. That's needed to remember the choice and isn't used for anything else.</p>
       <p><strong>Changing your mind:</strong> use <button type="button" class="inline-btn" data-cookie-settings>Cookie settings</button> (also in the footer of every page). If you switch analytics off, we stop it and remove its cookies.</p>
       <p>Google processes this data for us. See <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a>.</p>
+
+      <h2 class="story__h" id="contact">Contact form</h2>
+      <p>If you send an enquiry, we collect the name, email address, subject and message that you provide. We use these only to read your enquiry and reply to you, not to subscribe you to The Coaching Notes or send marketing.</p>
+      <p>Form messages are processed by Cloudflare Email Service and sent to the project owner's inbox, currently hosted by Google (Gmail). Messages are retained only for as long as reasonably necessary to respond and manage the enquiry. Please avoid including personal details about children or sensitive information.</p>
+      <p>We do not use submitted form content as an analytics event or display it publicly. See <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener" target="_blank">Cloudflare's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a> and <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a>.</p>
 
       <h2 class="story__h" id="newsletter">The Coaching Notes newsletter</h2>
       <p>If you sign up, we collect your email address only, to send you The Coaching Notes: new formation issues, occasional coaching ideas and practical resources. It isn't daily or weekly; we only send something when there's something worth sending.</p>
