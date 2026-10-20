@@ -20,12 +20,13 @@ build_public() { (cd "$TMP/site" && HWP_TARGET=public npx astro build >/dev/null
 
 # 1. Link to a blocked guide
 fresh
-sed -i 's|<h1 class="hwp-display-xl"|<a href="/formations/9v9/3-3-2/">Leak</a><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
+grep -q '<h1 id="cover-h"' "$TMP/site/src/pages/index.astro" || { echo "FAIL  injection anchor missing from homepage; update this test"; exit 1; }
+sed -i 's|<h1 id="cover-h"|<a href="/formations/9v9/3-3-2/">Leak</a><h1 id="cover-h"|' "$TMP/site/src/pages/index.astro"
 if build_public; then bad "public build with a link to an unreviewed guide should fail"; else grep -q "broken reference /formations/9v9/3-3-2/" "$TMP/check.log" && ok "public build fails on a link to an unreviewed guide" || bad "failed, but not for the expected reason"; fi
 
 # 2. Unreviewed status chip or private strip on a public page
 fresh
-sed -i 's|<h1 class="hwp-display-xl"|<span class="hwp-chip hwp-chip--review">Coaching review required</span><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
+sed -i 's|<h1 id="cover-h"|<span class="hwp-chip hwp-chip--review">Coaching review required</span><h1 id="cover-h"|' "$TMP/site/src/pages/index.astro"
 if build_public; then bad "public build containing unreviewed-content markers should fail"; else grep -q "private, unreviewed, exploratory or demo content" "$TMP/check.log" && ok "public build fails when unreviewed content is pasted into a public page" || bad "failed, but not for the expected reason"; fi
 
 # 3. A reviewed formation is published

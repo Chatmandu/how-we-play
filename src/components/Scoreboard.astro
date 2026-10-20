@@ -1,0 +1,42 @@
+---
+/* Scoreboard: verified 7v7 and 9v9 facts side by side. Values come from content/editorial/format-facts.json
+ * unchanged; a bracketed minimum is moved to a note under the value, never dropped. */
+import model from '../lib/content.mjs';
+import { longDate } from '../lib/ui.mjs';
+interface Props { ids: string[]; kicker?: string; title: string; titleTag?: 'h1' | 'h2'; id?: string; }
+const { ids, kicker = 'Moving up', title, titleTag = 'h2', id = 'scoreboard' } = Astro.props;
+const H = titleTag;
+const facts = ids.map(i => model.fact(i)).filter(Boolean);
+const split = (v: string) => { const m = String(v).match(/^(.*?)\s*\((.*)\)$/); return m ? [m[1], m[2]] : [String(v), '']; };
+const isText = (v: string) => split(v)[0].length > 12;
+const sources = [...new Map(facts.map((f: any) => [f.source, f.sourceInfo])).values()] as any[];
+const checked = [...new Set(facts.map((f: any) => f.checkedOn))] as string[];
+const seasons = [...new Set(facts.map((f: any) => f.season))];
+---
+<section class="score ed-on-ink" aria-labelledby={`${id}-h`} id={id}>
+  <div class="ed-grid">
+    <div class="score__lead">
+      <p class="ed-kicker">{kicker}</p>
+      <H class="ed-h2" id={`${id}-h`}>{title}</H>
+      <slot />
+      <div class="score__src">
+        <span class="hwp-chip hwp-chip--verified">Official rule verified · {checked.map(longDate).join(', ')}</span>
+        <ul aria-label="Sources">{sources.map(s => <li><a href={s.url} rel="noopener" target="_blank">{s.publisher}: {s.title}<span class="hwp-sr-only"> (opens in a new tab)</span></a></li>)}</ul>
+        <span>Season {seasons.join(', ')}. Maximum formats; check with your league for local rules.</span>
+      </div>
+    </div>
+    <div class="score__table">
+      <table>
+        <caption class="hwp-sr-only">{title}: 7v7 compared with 9v9</caption>
+        <thead><tr><th scope="col">Rule</th><th scope="col">7v7</th><th scope="col">9v9</th></tr></thead>
+        <tbody>
+          {facts.map((f: any) => {
+            const [a, an] = split(f.v7), [b, bn] = split(f.v9);
+            const t = isText(f.v7) || isText(f.v9);
+            return <tr><th scope="row">{f.fact}</th><td class={`was${t ? ' txt' : ''}`}>{a}{an && <small>{an}</small>}</td><td class={`now${t ? ' txt' : ''}`}>{b}{bn && <small>{bn}</small>}</td></tr>;
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

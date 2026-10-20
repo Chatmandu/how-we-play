@@ -1,94 +1,69 @@
 ---
+/* 9v9 hub. Reflects what exists: the reviewed guide(s) as team sheets, and a development shelf that names
+ * unreviewed formations with their status only. No shapes, rules or comparisons of unreviewed work in a
+ * public build. Preview builds show the drafts' team sheets too, marked by the gate. */
 import Base from '../../../layouts/Base.astro';
-import Facts from '../../../components/Facts.astro';
 import Gated from '../../../components/Gated.astro';
+import TeamSheet from '../../../components/TeamSheet.astro';
 import model from '../../../lib/content.mjs';
-import { formationComparison, statusChips, exploratoryStrip } from '../../../lib/ui.mjs';
+import { longDate } from '../../../lib/ui.mjs';
+import { developmentShelf, word } from '../../../lib/editorial.mjs';
 
-// Public builds only ever see formations the gate allows; preview builds see all three, marked.
 const list = model.target === 'public' ? model.publicFormations : model.formations;
-const panels = list.map(f => ({
-  name: f.name,
-  shape: { ...f.shape, title: `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt },
-  facts: f.structure.filter(([k]) => k !== 'Notation'),
-  chips: statusChips(f.register) + (f.register.content.exploratory ? exploratoryStrip() : ''),
-  href: `/formations/9v9/${f.slug}/`,
-  exploratory: !!f.register.content.exploratory
-}));
-const rowsFor = key => list.map(f => (f.structure.find(([k]) => k === key) || [key, '—'])[1]);
-const structureRows = ['Notation', 'Back line', 'Wing-backs', 'Midfield', 'Forwards'].filter(k => list.some(f => f.structure.some(([x]) => x === k)));
+const shelf = developmentShelf(model);
+const fact = id => model.fact(id);
+const glance = [
+  ['Age groups', 'U12 and U13'],
+  ['Players', '9 a side, including the goalkeeper'],
+  ['Recommended pitch', fact('pitch').v9],
+  ['Goals', fact('goals').v9],
+  ['Ball', fact('ball').v9],
+  ['Offside', fact('offside').v9]
+];
+const ex = fact('example-shapes');
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
 const ids = ['9v9-hub', ...list.map(f => f.registerId)];
+const count = list.length;
 ---
-<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 is the maximum format for U12 and U13. Compare starting shapes for 9v9 football, with clear diagrams, four simple rules per formation and a job for every position." ids={ids} nav="9v9" activeFormat="9v9" crumbs={crumbs}>
-  <div class="guide-head">
-    <div class="flow">
-      <p class="hwp-label over">Format · U12 and U13</p>
-      <h1 class="hwp-heading-l">9v9 formations</h1>
-      <p class="hwp-standfirst">A formation is a starting picture: where nine players begin before the ball moves. Our guides set out a few ways to start, each drawn on the same pitch with the same symbols.</p>
-      <p class="lede">There's no single correct 9v9 formation. Each guide is one possible way to play, with its own starting shape, four simple rules and a job for every position.</p>
+<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 is the maximum format for U12 and U13. Starting shapes for 9v9 football, with clear diagrams, four simple rules per formation and a job for every position." ids={ids} nav="9v9" crumbs={crumbs} editorial>
+  <div class="page-head ed-grid">
+    <div class="page-head__text">
+      <p class="ed-kicker">Format · U12 and U13</p>
+      <h1>9v9 formations</h1>
+      <p class="ed-stand">A formation is a starting picture: where nine players begin before the ball moves. There's no single correct one, and each guide here is one possible way to play.</p>
     </div>
-    <div class="flow">
-      <h2 class="hwp-heading-m">9v9 at a glance</h2>
-      <Facts ids={['format-ages', 'pitch', 'goals', 'ball', 'offside', 'example-shapes']} />
+    <div class="page-head__aside">
+      <dl class="glance" aria-label="9v9 at a glance">{glance.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      <span class="hwp-chip hwp-chip--verified">Official rule verified · {longDate(fact('pitch').checkedOn)}</span>
     </div>
   </div>
 
-  <section class="section" aria-labelledby="h-compare">
-    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">The formations</span><span class="hwp-label hwp-secondary">Same pitch, same scale</span></div>
-    <h2 class="hwp-heading-l" id="h-compare">{list.length === 1 ? "One starting picture" : list.length === 2 ? "Two starting pictures" : "Three starting pictures"}</h2>
-    {list.length === 0 ? (
-      <div class="hwp-review-note" role="note"><strong>Formation guides in coaching review.</strong> Our 9v9 formation guides are waiting for review by a qualified coach. Each will appear here once it has been reviewed. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</div>
-    ) : (
-      <>
-        <Gated ids={list.map(f => f.registerId)} exploratoryStrip={false}>
-          <Fragment set:html={formationComparison(panels)} />
-          <div class="flow">
-            <h3 class="hwp-heading-m">How the shapes differ</h3>
-            <p class="hwp-small hwp-secondary measure" style="margin:0">Structure only: how many players start in each line. This isn't a judgement about which shape is better.</p>
-            <div class="table-scroll" role="region" aria-label="Table: formation structures compared" tabindex="0">
-              <table>
-                <caption class="hwp-sr-only">Starting structure of each 9v9 formation</caption>
-                <thead><tr><th scope="col">Line</th>{list.map(f => <th scope="col">{f.name}</th>)}</tr></thead>
-                <tbody>{structureRows.map(k => <tr><th scope="row">{k}</th>{rowsFor(k).map(v => <td>{v}</td>)}</tr>)}</tbody>
-              </table>
-            </div>
-          </div>
-          {model.target !== 'public' && <div class="flow" data-hwp-reviewer-only>
-            <h3 class="hwp-heading-m">Coaching considerations</h3>
-            <div class="hwp-review-note" role="note"><strong>Proposed, not reviewed.</strong> These are the drafts' own notes on what each shape offers and costs. A qualified coach hasn't checked them yet.</div>
-            <div class="placeholders">
-              {list.map(f => (
-                <div class={`placeholder${f.register.content.exploratory ? ' hwp-exploratory-frame' : ''}`}>
-                  {f.register.content.exploratory && <Fragment set:html={exploratoryStrip()} />}
-                  <h4 class="hwp-heading-m" style="font-size:22px">{f.name}</h4>
-                  {f.considerations ? (
-                    <>
-                      <p class="hwp-label">{f.considerations.label}</p>
-                      <p class="hwp-small" style="margin:0"><strong>May offer:</strong> {f.considerations.strengths.join('; ')}.</p>
-                      <p class="hwp-small" style="margin:0"><strong>May cost:</strong> {f.considerations.tradeoffs.join('; ')}.</p>
-                    </>
-                  ) : (
-                    <>
-                      <p class="hwp-label">From the source playbook</p>
-                      <p class="hwp-small" style="margin:0"><strong>Gives us:</strong> {f.gives.join('; ')}.</p>
-                      <p class="hwp-small" style="margin:0"><strong>Costs:</strong> not in the source. Question for the reviewer.</p>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>}
+  <section class="ed-section" aria-labelledby="h-available">
+    <div class="ed-grid"><div class="ed-sh"><h2 class="ed-label" id="h-available">{count === 0 ? 'Guides in review' : `Available now · ${word(count)} guide${count === 1 ? '' : 's'}`}</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Same pitch, same symbols</span></div></div>
+    {count === 0 ? (
+      <div class="ed-grid"><p class="ed-lede" style="grid-column:1/span 7">Our 9v9 formation guides are waiting for coaching review. Each will appear here once its review is recorded. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</p></div>
+    ) : list.map((f, i) => (
+      <div style={i ? 'margin-top:var(--ed-s5)' : undefined}>
+        <Gated ids={[f.registerId]}>
+          <TeamSheet f={f} third="rules" />
+          <div class="ed-grid" style="margin-top:var(--ed-s3)"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Open the {f.name} guide →</a></p></div>
         </Gated>
-      </>
-    )}
+      </div>
+    ))}
   </section>
 
-  <section class="section" aria-labelledby="h-moving">
-    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Moving up</span></div>
-    <div class="two-col">
-      <h2 class="hwp-heading-m" id="h-moving">New to 9v9?</h2>
-      <p class="lede">If your team is stepping up from 7v7, start with what changes: a bigger pitch, two more players, offside and heading. <a href="/moving-up/">Read Moving Up</a>.</p>
+  <section class="ed-section ed-section--far" aria-labelledby="h-dev">
+    <div class="ed-grid split">
+      <div class="shelf">
+        <p class="ed-kicker">In development</p>
+        <h2 class="ed-h2" id="h-dev" style="margin-top:12px">More shapes, once they're reviewed</h2>
+        <p class="ed-lede">We only publish a formation after its coaching review is recorded. The guides listed here are being written or reviewed, so they aren't shown yet.</p>
+        <p class="ed-small" style="color:var(--hwp-text-secondary)">{ex.fact}. Ours are one way among several.</p>
+      </div>
+      <div class="shelf__side">
+        <ul class="devlist" aria-label="Guides in development">{shelf.map(x => <li>{x.name} <em>{x.status}</em></li>)}</ul>
+        <p class="ed-small">New to nine a side? <a href="/moving-up/">What changes from 7v7</a>.</p>
+      </div>
     </div>
   </section>
 </Base>
