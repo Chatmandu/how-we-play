@@ -13,8 +13,8 @@
 | `content/site.json` | Name, tagline, philosophy, positioning sentence, independence statement, format strip | Editor |
 | `content/register.json` | One entry per publishable item: `design.status`, `content.status` (+ reviewer, date, exploratory, public approval), `factIds`, `availability` | Editor (status changes only via the workflow) |
 | `content/formations/9v9/3-1-3-1.json` | The flagship: shape, `gives`, four `rules`, eight `roles`, `diagrams` (all frames), `review` questions. Extracted verbatim from the P1 prototype, measured from the source playbook | Editor; reviewer signs off |
-| `content/formations/9v9/3-3-2.private.json` | Research draft 0.1: shape, rule table, one illustrated lesson, role summaries, considerations, reviewer questions | Draft, not reviewed |
-| `content/formations/9v9/2-2-3-1.private.json` | Exploratory draft 0.1: as above, `exploratory: true` | Draft, not reviewed |
+| `content/formations/9v9/3-3-2.private.json` | Private issue draft 0.2: four chapters, four illustrated rules, six position pages, research considerations and reviewer questions; no coaching approval | Draft, not reviewed |
+| `content/formations/9v9/2-2-3-1.private.json` | Private exploratory issue draft 0.2: four chapters, four proposed illustrated rules, six position pages, `exploratory: true`; qualified go/no-go review required | Draft, not reviewed |
 | `content/editorial/format-facts.json` | Official rule facts and FA guidance, each with source, date checked and season | Editor (rule track) |
 | `content/editorial/moving-up-checklist.json` | Pre-season checklist (draft) | Editor |
 
@@ -31,7 +31,7 @@ Schema and rules: `design-system/docs/tactical-diagram-spec.md`. Every frame nee
 | `/formations/9v9/` | `src/pages/formations/9v9/index.astro` | facts, all formations (gated) | Yes, facts only; formations replaced by a "in review" note |
 | `/formations/9v9/{formation}/` | `…/[formation]/index.astro` | one formation file | No (all three blocked) |
 | `/formations/9v9/{formation}/{lesson}/` | `…/[formation]/[lesson]/index.astro` | one rule plus its diagram set | No |
-| `/formations/9v9/3-1-3-1/positions/{position}/` | `…/positions/[position]/index.astro` | one role plus its diagram set | No |
+| `/formations/9v9/{formation}/positions/{position}/` | `…/positions/[position]/index.astro` | one role plus its diagram set | No |
 | `/moving-up/` | `src/pages/moving-up/index.astro` | facts (verified); checklist (draft, preview only) | Yes, without the checklist |
 | `/about/` | `src/pages/about/index.astro` | site, register | Yes |
 | `/coaching-notes/` | `src/pages/coaching-notes/index.astro` | register `coaching-notes` | Teaser only, noindex; demo form in preview |
@@ -58,3 +58,7 @@ Add a rule with an `id` (the URL slug), `n`, `title`, `tag`, `summary`, `cue`, `
 ## Editorial pages
 
 About, Moving Up, Coaching Notes and Football Explained are Astro templates that read site data and facts. Their prose sits in the template for now because each page is one-off; if a CMS is added later (see `docs/DEPLOYMENT.md`), move that prose into `content/pages/*.md` with frontmatter and render it with Astro content collections.
+
+## Issues 02 and 03: draft implementation (20 October 2026)
+
+The 3-3-2 and exploratory 2-2-3-1 now have full **private preview** content for the existing formation issue, lesson and position templates. The editorial manuscripts have been approved for development by the project owner. Neither has a documented qualified coaching review, so both stay at `review-required`, absent from the public build, and without `issue.published` metadata. See [ISSUES-02-03-IMPLEMENTATION.md](ISSUES-02-03-IMPLEMENTATION.md) for the review checklist, source integrity notes and preview routes.
