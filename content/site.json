@@ -76,7 +76,12 @@
   "privacy": {
     "$comment": "Fill these in before the newsletter goes live. Nothing is invented.",
     "controller": "Niall Walsh",
-    "contactEmail": "hello@howweplayfootball.com",
+    "contactEmail": "",
     "lastUpdated": "2026-10-20"
+  },
+  "contact": {
+    "$comment": "The destination email is configured in wrangler.jsonc (send_email binding) and src/worker/contact-handler.mjs; it is not placed in public HTML.",
+    "path": "/contact/",
+    "mailDelivery": "Cloudflare Email Service"
   }
 }
