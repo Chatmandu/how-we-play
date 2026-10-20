@@ -42,6 +42,7 @@ if build_public && [ ! -e "$TMP/site/dist/formations/9v9/3-1-3-1" ]; then ok "co
 
 # 5. Reviewer profile and reproduced playbook pages stay out of public until confirmed
 fresh
+node -e 'const fs=require("fs"),p=process.argv[1]+"/content/register.json";const r=JSON.parse(fs.readFileSync(p));r.filter(x=>x.kind==="confirmation").forEach(x=>Object.assign(x.confirmation,{status:"awaiting",confirmedBy:null,confirmedOn:null}));fs.writeFileSync(p,JSON.stringify(r,null,2));' "$TMP/site"
 if build_public && ! grep -q "Le Tissier" "$TMP/site/dist/about/index.html" && [ ! -e "$TMP/site/dist/about/playbook-cover.jpg" ]; then ok "unconfirmed reviewer profile and playbook pages are absent from public"; else bad "unconfirmed profile or playbook pages reached the public build"; fi
 
 echo "$pass/$((pass+fail)) passed"

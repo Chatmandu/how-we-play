@@ -6,12 +6,12 @@ Three separate tracks: **coaching review** (David Le Tissier, intended reviewer)
 
 | Item | URL | Content version | Status | Public |
 |---|---|---|---|---|
-| 9v9 3-1-3-1 | /formations/9v9/3-1-3-1/ | cv-353fff2a | Awaiting coaching review | No |
+| 9v9 3-1-3-1 | /formations/9v9/3-1-3-1/ | cv-353fff2a | Reviewed by David Le Tissier, 2026-10-20 | Yes |
 | 9v9 3-3-2 | /formations/9v9/3-3-2/ | cv-a9f09236 | Awaiting coaching review | No |
 | 9v9 2-2-3-1 (wing-backs) | /formations/9v9/2-2-3-1/ | cv-f52562de | Awaiting coaching review | No |
 | Pre-season checklist (7v7 to 9v9) | — | — | Draft | No |
-| Reviewer profile: David Le Tissier | /about/ | — | Awaiting confirmation | No |
-| Original playbook pages on /about/ | /about/ | — | Awaiting confirmation | No |
+| Reviewer profile: David Le Tissier | /about/ | — | Confirmed by Niall Walsh, on David Le Tissier's behalf, 2026-10-20 | Yes |
+| Original playbook pages on /about/ | /about/ | — | Confirmed by Niall Walsh, 2026-10-20 | Yes |
 
 ## Review log
 
@@ -19,7 +19,9 @@ Three separate tracks: **coaching review** (David Le Tissier, intended reviewer)
 
 Reviewer or scope: David Le Tissier (intended coaching reviewer; no review recorded)
 
-No review recorded.
+| Version | Reviewer | Date | Decision | Limitations or amendments | Evidence |
+|---|---|---|---|---|---|
+| cv-353fff2a | David Le Tissier | 2026-10-20 | approved | None recorded | Written instruction from Niall Walsh (site owner) in the project working session, 20 October 2026. David's own written approval to be filed with project records. |
 
 - 2026-10-20: Review entry for Greg Williams (19 October 2026) withdrawn: no documented approval held. Returned to review-required.
 
