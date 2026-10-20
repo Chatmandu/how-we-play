@@ -89,7 +89,7 @@ const pageItems = ids.join(' ');
   <meta name="theme-color" content="#F2EDE2">
   <link rel="preload" href="/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/schibsted-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  {ld.map(o => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+  {ld.map(o => <script type="application/ld+json" set:html={JSON.stringify(o).replace(/</g, '\\u003c')} />)}
 </head>
 <body data-hwp-type={meta.type} data-hwp-format={meta.format} data-hwp-issue={meta.issue} data-hwp-formation={meta.formation} data-hwp-group={meta.group} data-target={model.target} data-hwp-items={pageItems} data-hwp-private={access.private ? 'true' : undefined}>
   <a class="skip-link" href="#main">Skip to content</a>
