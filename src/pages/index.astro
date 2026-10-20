@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import model from '../lib/content.mjs';
 import { renderPitch, statusChips, longDate } from '../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../lib/editorial.mjs';
+import { siteIdentity } from '../lib/seo.mjs';
 
 const site = model.site;
 const issues = publishedIssues(model);
@@ -19,10 +20,7 @@ const formats = ['5v5', '7v7', '9v9'].map(id => {
   if (!n) return { id, ages: fm.ages, href: `/formations/${id}/`, state: 'In development', note: 'No issues published yet' };
   return { id, ages: fm.ages, href: `/formations/${id}/`, state: `${word(n).replace(/^./, c => c.toUpperCase())} issue${n === 1 ? '' : 's'} published`, note: planned ? `${word(planned).replace(/^./, c => c.toUpperCase())} more in development` : '', live: true };
 });
-const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url + '/', description: site.description, inLanguage: 'en-GB' },
-  { '@context': 'https://schema.org', '@type': 'Organization', name: site.name, url: site.url + '/', logo: site.url + '/hwp/social/hwp-avatar-800.png', founder: { '@type': 'Person', name: site.author.name, url: site.url + site.author.url }, sameAs: Object.values(site.social).map(s => s.url) }
-];
+const jsonLd = siteIdentity(site);
 ---
 <Base title="How We Play: free grassroots football coaching guides" description="Free football formation guides, tactical diagrams and practical advice for grassroots coaches, for 5v5, 7v7 and 9v9 football." ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
   <section class="intro ed-grid" aria-labelledby="cover-h">
