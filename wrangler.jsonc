@@ -1,12 +1,24 @@
-// Cloudflare Workers static assets. No Worker code: Cloudflare serves the built files in dist/.
-// Build first (npm run build). The build target is chosen from the branch: see docs/DEPLOYMENT.md.
+// How We Play: static Astro assets and a small Worker for the contact form.
+// Cloudflare serves the site directly; only /api/contact invokes Worker code.
+// Requires one-time Cloudflare Email Service onboarding and a verified Gmail
+// destination before deploy (docs/CONTACT-FORM.md).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "how-we-play",
   "compatibility_date": "2026-10-01",
+  "main": "./src/worker/index.mjs",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
-  }
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/contact", "/api/contact/"]
+  },
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "destination_address": "nbwalsh@gmail.com"
+    }
+  ],
+  "previews": {}
 }

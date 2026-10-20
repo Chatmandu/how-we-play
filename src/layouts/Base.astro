@@ -46,12 +46,13 @@ const ogImage = new URL('/og/default.png', site.url).href;
  * A format still in development keeps its link, which leads to an honest, noindex placeholder with a way back. */
 const formatNav = ['5v5', '7v7', '9v9'].map(id => { const fm = site.formats.find(x => x.id === id); return { id, label: id, href: `/formations/${id}/`, soon: fm && fm.availability !== 'live' }; });
 const navItems = [
-  { id: 'about', label: 'About', href: '/about/' }
+  { id: 'about', label: 'About', href: '/about/' },
+  { id: 'contact', label: 'Contact', href: '/contact/' }
 ];
 const footLinks = [
   ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
 
-  { label: 'About and standards', href: '/about/' }, { label: 'Privacy and cookies', href: '/privacy/' }
+  { label: 'About and standards', href: '/about/' }, { label: 'Contact', href: '/contact/' }, { label: 'Privacy and cookies', href: '/privacy/' }
 ];
 
 const crumbLd = crumbs.length ? [{
