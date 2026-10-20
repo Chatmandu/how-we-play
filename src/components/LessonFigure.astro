@@ -4,8 +4,8 @@
  * keys, Home/End) and plays each frame's movements from the source arrows. Nothing is animated that
  * isn't in the reviewed diagram data. The step labels and captions come from the frames themselves. */
 import { renderPitch, renderKey, usedSymbols, clone, esc } from '../lib/ui.mjs';
-interface Props { frames: any[]; figLabel: string; context: string; source?: string; id: string; exploratory?: boolean; }
-const { frames: raw, figLabel, context, source, id, exploratory = false } = Astro.props;
+interface Props { frames: any[]; figLabel: string; context: string; source?: string; id: string; exploratory?: boolean; deriveTransitions?: boolean; skipDerivedOn?: string[]; }
+const { frames: raw, figLabel, context, source, id, exploratory = false, deriveTransitions = false, skipDerivedOn = [] } = Astro.props;
 const frames = clone(raw);
 const verdictOf = (f: any) => f.stage ? ['stage', `Stage ${f.stage}`] : f.verdict === 'wrong' ? ['wrong', '✕ Wrong'] : f.verdict === 'right' ? ['right', '✓ Right'] : null;
 const stepTitle = (f: any, i: number) => String(f.tab || `Step ${i + 1}`).replace(/^\d+\s*·\s*/, '');
@@ -14,7 +14,7 @@ const symbols = [...new Set(frames.flatMap((f: any) => usedSymbols(f)))];
 const keyHtml = symbols.length ? renderKey(symbols, { theme: 'blue' }) : '';
 const data = JSON.stringify(frames).replace(/</g, '\\u003c');
 ---
-<div class="lf" data-lesson-figure id={id} style={`--lf-n:${frames.length}`}>
+<div class="lf" data-lesson-figure data-motion-transitions={deriveTransitions ? true : undefined} data-motion-skip={skipDerivedOn.join(" ")} id={id} style={`--lf-n:${frames.length}`}>
   <figure class={`lf__fig on-pitch${exploratory ? ' hwp-exploratory-frame' : ''}`} aria-label={`${figLabel}: diagram`}>
     <div class="lf__head"><span>{figLabel}</span><span>{context}</span></div>
     {frames.map((f: any, i: number) => {
@@ -28,7 +28,7 @@ const data = JSON.stringify(frames).replace(/</g, '\\u003c');
     })}
     <div class="lf__tools">
       {source && <span>{source}</span>}
-      <span class="lf__tools-act"><button type="button" data-enlarge hidden aria-haspopup="dialog">Enlarge</button>{keyHtml && <details><summary>Key</summary><div class="lf__key" set:html={keyHtml} /></details>}</span>
+      <span class="lf__tools-act"><button type="button" class="lf__replay" data-replay hidden>↻ Replay movement</button><button type="button" data-enlarge hidden aria-haspopup="dialog">Enlarge</button>{keyHtml && <details><summary>Key</summary><div class="lf__key" set:html={keyHtml} /></details>}</span>
     </div>
   </figure>
   <div class="lf__side">
