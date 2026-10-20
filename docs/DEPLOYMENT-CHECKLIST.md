@@ -9,12 +9,12 @@ Do these in order. Nothing is deployed until step 6.
 
 ## Confirmations (each unlocks something)
 
-3. **David Le Tissier confirms his biography** (name, role, the four background points). Keep his written confirmation. Then:
-   `node scripts/review.mjs confirm --id profile-david-le-tissier --by "David Le Tissier" --on YYYY-MM-DD --evidence "where it's filed"`
+3. **David Wilson confirms his biography** (name, role, the four background points). Keep his written confirmation. Then:
+   `node scripts/review.mjs confirm --id profile-david-wilson --by "David Wilson" --on YYYY-MM-DD --evidence "where it's filed"`
 4. **You confirm the original playbook pages** may be shown on /about/ (cover and rule two, crest masked):
    `node scripts/review.mjs confirm --id about-original-playbook --by "Niall Walsh" --on YYYY-MM-DD --evidence "..."`
 5. **David reviews the 3-1-3-1.** Send him the preview link and the content version (`npm run review`). When he approves in writing:
-   `node scripts/review.mjs record --id 9v9-3-1-3-1 --by "David Le Tissier" --on YYYY-MM-DD --decision approved --evidence "..." --limitations "..."`
+   `node scripts/review.mjs record --id 9v9-3-1-3-1 --by "David Wilson" --on YYYY-MM-DD --decision approved --evidence "..." --limitations "..."`
    If he asks for changes, record `--decision changes-required` with his notes, make the changes, and send the new version back.
    Then `npm run review:register` and commit.
 

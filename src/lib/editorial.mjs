@@ -9,7 +9,7 @@ export function reviewRecord(reg) {
 }
 
 /** The named coaching reviewer, only where this build may show his profile (confirmation recorded, or a preview build). */
-export const REVIEWER = { name: 'David Le Tissier', profileId: 'profile-david-le-tissier', href: '/about/#reviewer' };
+export const REVIEWER = { name: 'David Wilson', profileId: 'profile-david-wilson', href: '/about/#reviewer', short: 'UEFA B Licensed Coach with experience in grassroots and elite football environments' };
 export const reviewerVisible = model => model.allowed(REVIEWER.profileId);
 
 /** What's in development: unpublished formation guides by name and status only, then formats not started. */

@@ -35,7 +35,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline
 const pPrev = prev ? { href: `${base}positions/${prev.id}/`, over: 'Previous position', title: prev.title } : { href: `${base}${last.id}/`, over: `Principle ${last.n}`, title: last.title };
 const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next position', title: next.title } : { href: base, over: `Back to ${issueLabel(f)}`, title: `The ${f.name}` };
 ---
-<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial meta={{ type: 'position', format: f.format, issue: f.issue && f.issue.number, formation: f.slug, group: 'Positions' }}>
   <EdGuideNav f={f} current={'pos-' + r.id} />
   <article aria-labelledby="pos-h">
     <div class="feature feature--pos ed-grid" style="padding-top:var(--ed-s4)">

@@ -1,29 +1,36 @@
-# QA report: final simplification (branch `final`, 20 October 2026)
+# QA report: integrations (branch `integrations`, 20 October 2026)
 
-Not deployed. Public build 20 pages (16 in sitemap); preview build 24 pages.
+Not deployed. Tests run in headless Chromium with `howweplayfootball.com` mapped to the local build, so analytics behaved as it will live. Requests to Google and Mailchimp were intercepted, not sent.
 
-## Changes
-- **Moving Up retired as a section.** The full scoreboard (11 verified rules, 7v7 against 9v9), "What stays familiar" and their England Football sources and check dates now sit at the bottom of `/formations/9v9/` (`#moving-up`). The draft pre-season checklist moved with it and stays preview-only. Nothing was lost: every fact and source previously on Moving Up is on the 9v9 page.
-- `/moving-up` and `/moving-up/` return **301** to `/formations/9v9/#moving-up` (`public/_redirects`, tested in the local Workers runtime).
-- Moving Up removed from desktop and mobile navigation and the footer; About, the 5v5/7v7 placeholders and the 404 page now link to the 9v9 section.
-- **Homepage shows complete issues only.** The structured model now derives issues from the formation files: an issue is listed only if it has an issue number and publication date, a recorded coaching review for its current content version, and gate approval. Lessons, positions and other stories can't enter the list because there is no longer a separate feed. The newest issue is featured; **Latest issues** lists the others and is hidden while there's only one.
-- Chapter previews on the homepage now use one short line per chapter (your wording); the four principle names are gone from the homepage.
-- Football Explained: confirmed gone (no page, no links, not in sitemap; old URL 404, never indexed).
-
-## Checks
+## Completed here
 | Check | Result |
 |---|---|
-| Builds and build checks | Pass, both targets |
-| `npm test` | 24/24, 13/13, content valid |
-| Publishing-gate tests | 5/5 |
-| Internal links | All resolve; no link to `/moving-up/` or `/football-explained/` in either build |
-| Redirect | `/moving-up/` and `/moving-up` give 301 to `/formations/9v9/#moving-up` |
-| Sitemap | 16 URLs: home, About, 9v9, Issue 01 and its 12 stories |
-| Responsive (1440, 834, 390px) | No overflow, no console errors |
-| Lessons, positions, LessonFigure, behaviour script | Unchanged; review version `cv-353fff2a` still matches David's approval |
-| Review status | Issue 01 shows "Coaching reviewed · 20 October 2026" from the register; Issues 02 and 03 named only, as in preparation |
-| axe-core | Only the known faded ghost numbers in two diagrams |
+| Builds and build checks | Pass, both targets (public 20 pages, 17 in sitemap) |
+| `npm test`, gate tests | 24/24, 13/13, content valid; 5/5 |
+| No GA before consent | No Google request and no `_ga` cookie before a choice |
+| Accept and Reject equal | Both 168 × 44px, same style |
+| Reject remembered | No banner and no Google request on the next page |
+| Cookie settings | Reopens the bar and moves focus to it; switching off deletes `_ga` cookies and disables GA |
+| Tag loaded once, correct ID | One request to `gtag/js?id=G-NRDDNYR138` |
+| Page metadata | Issue page config: `content_type=formation_issue`, `format=9v9`, `issue_number=1`, `formation=3-1-3-1` |
+| Non-production hosts | No bar, no Cookie settings link, no Google requests |
+| `support_click` | Fires for footer and issue Ko-fi links with `link_location` |
+| Newsletter states (simulated Mailchimp responses) | Invalid email: inline message, `aria-invalid`, nothing sent; success: "check your inbox"; already subscribed: friendly message |
+| Newsletter events | `newsletter_submit` on attempt, `newsletter_signup` only on Mailchimp success, `newsletter_error` otherwise |
+| Personal data in analytics | None: no email in any dataLayer entry |
+| Data sent to Mailchimp | Only `EMAIL`, the empty honeypot and the callback name |
+| Form appears once per page | 1 |
+| Ko-fi links | Correct URL, new tab, `rel="noopener"`, screen-reader text |
+| Accessibility (axe-core 4.10) on home, Issue 01, privacy, desktop and phone | No violations |
+| Overflow at 1440 and 390px | None |
+| Keyboard | Form, banner buttons and Cookie settings all reachable; visible yellow focus ring on dark |
 
-## To note
-- The 9v9 page description now mentions moving up from 7v7, so searches that found Moving Up land on the right page.
-- Search Console: the old `/moving-up/` URL will drop out naturally through the 301.
+## Needs your accounts (not done)
+- **A real Mailchimp signup** and the double opt-in confirmation email: needs the embedded form action.
+- **GA4 Realtime or DebugView**: needs access to your GA4 property after deploy. Accept analytics on the live site and check Realtime for the page view and `support_click`.
+- Unsubscribe flow: Mailchimp's own link; test with a real subscription.
+- Register the custom dimensions in GA4 (see ANALYTICS.md).
+
+## Blocking items before the newsletter goes live
+- Mailchimp embedded form action (`newsletter.action`).
+- Privacy controller and contact email (`privacy.controller`, `privacy.contactEmail`). The live privacy page currently says a contact address is being added.

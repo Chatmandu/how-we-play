@@ -5,6 +5,7 @@
 import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
 import Byline from '../../../../components/Byline.astro';
+import Support from '../../../../components/Support.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel } from '../../../../lib/editorial.mjs';
@@ -36,7 +37,7 @@ const contents = full ? [
   { href: '#playbook', n: 'Playbook', t: 'The printable edition' }
 ] : [];
 ---
-<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial meta={{ type: 'formation_issue', format: f.format, issue: f.issue && f.issue.number, formation: f.slug, group: 'Formation issues' }}>
   <Gated ids={[f.registerId]}>
     <header class="issue-cover ed-grid">
       <div class="issue-cover__text">
@@ -119,6 +120,8 @@ const contents = full ? [
             <p class="ed-small" style="color:var(--hwp-text-secondary)">More features for this issue, such as restarts and matchday guidance, will be added only once they've been written and reviewed.</p>
           </div>
         </section>
+
+        {f.register.content.status === 'reviewed' && <Support />}
 
         {reviewerNotes && (
           <section class="ed-section ed-grid" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>

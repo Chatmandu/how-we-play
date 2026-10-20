@@ -22,13 +22,14 @@ const labels = [
   [chip('draft', 'Draft'), 'Work in progress. Not published.']
 ];
 const person = { '@type': 'Person', '@id': site.url + '/about/#niall-walsh', name: site.author.name, jobTitle: site.author.role, url: site.url + '/about/', worksFor: { '@type': 'Organization', name: site.name, url: site.url + '/' } };
+const reviewerPerson = { '@type': 'Person', '@id': site.url + '/about/#david-wilson', name: REVIEWER.name, jobTitle: 'Coaching reviewer, How We Play', hasCredential: [{ '@type': 'EducationalOccupationalCredential', name: 'UEFA B Licence' }, { '@type': 'EducationalOccupationalCredential', name: 'PGCE' }, { '@type': 'EducationalOccupationalCredential', name: 'BA (Hons)' }], url: site.url + REVIEWER.href };
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About How We Play', url: site.url + '/about/', inLanguage: 'en-GB', mainEntity: person,
     about: { '@type': 'Organization', name: site.name, url: site.url + '/', founder: { '@id': person['@id'] }, sameAs: Object.values(site.social).map(s => s.url) } },
-  ...(showReviewer && model.target === 'public' ? [{ '@context': 'https://schema.org', '@type': 'Person', name: REVIEWER.name, jobTitle: 'Coaching reviewer, How We Play', url: site.url + REVIEWER.href }] : [])
+  ...(showReviewer && model.target === 'public' ? [{ '@context': 'https://schema.org', ...reviewerPerson }] : [])
 ];
 ---
-<Base title="About How We Play | Grassroots Football Coaching" description="Meet the grassroots coach behind How We Play and discover why we create free formation guides, tactical diagrams and practical football coaching advice." ids={['about']} nav="about" crumbs={crumbs} jsonLd={jsonLd} ogType="profile" editorial>
+<Base title="About How We Play | Grassroots Football Coaching" description="Meet the grassroots coach behind How We Play, our coaching reviewer, and why we create free formation guides, tactical diagrams and practical football coaching advice." ids={['about']} nav="about" crumbs={crumbs} jsonLd={jsonLd} ogType="profile" editorial meta={{ type: 'about', group: 'About' }}>
   <article class="about" aria-labelledby="about-h">
     <header class="about-open ed-grid">
       <div class="about-open__text">
@@ -56,6 +57,7 @@ const jsonLd = [
 
         <h2 class="story__h">Why I started How We Play</h2>
         <p>Over the years, I've completed coaching courses, watched countless matches, spoken to other coaches and made plenty of mistakes along the way.</p>
+        <p>I was fortunate during my early years of coaching to have David Le Tissier as a sounding board. Whenever I had questions about formations, players or how to approach a situation, David was someone I could turn to.</p>
         <p>But one thing I always found difficult was moving the team into a new playing format.</p>
         <p>Whether it's 5v5 to 7v7 or 7v7 to 9v9, it's not simply a case of adding a couple more players and making the pitch bigger. Suddenly there are different positions, new relationships between players, more space to defend and new decisions to make.</p>
         <p>And you've got to explain all of that to a group of children who, understandably, just want to play football.</p>
@@ -91,18 +93,30 @@ const jsonLd = [
       <section class="ed-section reviewer" id="reviewer" aria-labelledby="rev-h">
         <div class="ed-grid">
           <div class="reviewer__story story">
-            <h2 class="story__h" id="rev-h">A little help from someone who knows what he's talking about</h2>
-            <p>I was fortunate during my early years of coaching to have David Le Tissier as a sounding board. Whenever I had questions about formations, players or how to approach a situation, David was someone I could turn to.</p>
-            <p>So when I decided to turn my coaching notes into a resource other coaches could use, it made sense to ask him to look over my homework.</p>
-            <p>David now supports How We Play as our coaching reviewer, bringing his experience and a fresh pair of eyes to the advice we develop. His role is to help make sure our explanations are clear, practical and appropriate for the players they're meant to help.</p>
+            <p class="ed-kicker">Meet our coaching reviewer</p>
+            <h2 class="story__h" id="rev-h" style="margin-top:10px">David Wilson</h2>
+            <p class="reviewer__creds">UEFA B Licensed Coach · Football development and education</p>
+            <p>David Wilson brings experience across grassroots football, youth development and elite football environments to his role as coaching reviewer for How We Play.</p>
+            <p>A UEFA B Licence holder with a PGCE and BA (Hons), David combines practical coaching experience with a background in education and player development.</p>
+            <p>For six years, he worked as a grassroots football secretary and lead coach, supporting more than 500 boys and girls aged 4–16. His responsibilities included developing young players, supporting coaches, managing football programmes and helping create inclusive environments where children of different abilities could enjoy and develop through football.</p>
+            <p>David currently works for Liverpool Football Club in an elite football environment and volunteers with the Liverpool Schools Football Association, continuing his involvement in football development across Merseyside.</p>
+            <p>His understanding of the game is also shaped by his own playing experience. David spent his early years in a Category 1 academy environment, experienced football at League One level during his late teens and has played in both the United States and Spain. These experiences have exposed him to different coaching philosophies, playing styles and approaches to developing young footballers.</p>
+            <h3 class="story__h story__h--sm">David's role at How We Play</h3>
+            <p>As coaching reviewer, David brings an additional perspective to the formation guides, tactical explanations and player responsibilities developed for How We Play.</p>
+            <p>His role is to challenge the thinking, check that the advice is appropriate for grassroots football and help make sure our resources are clear, practical and useful to coaches working with young players.</p>
+            <p>The aim isn't to suggest there's only one correct way to play football. It's to provide well-explained approaches that coaches can understand, adapt and use with their own teams.</p>
           </div>
           <aside class="reviewer__card" aria-labelledby="rev-name">
-            <div class="reviewer__photo" aria-hidden="true"><span>DLT</span></div>
+            {/* Photo slot: replace with an approved portrait of David. No generated images. */}
+            <div class="reviewer__photo" aria-hidden="true"><span>DW</span></div>
             <p class="ed-kicker">Coaching reviewer</p>
-            <h3 id="rev-name">David Le Tissier</h3>
-            <p class="ed-small">David brings more than 15 years of grassroots football experience to How We Play. His background spans youth coaching, academy development and talent identification.</p>
-            <p class="ed-small">He previously co-owned and ran a football academy with more than 60 teams, coached Liverpool Schoolboys to national titles and worked as a scout for Liverpool Football Club.</p>
-            <p class="ed-small">David reviews our coaching guidance: the formation guides, positional responsibilities and tactical explanations. A guide only carries his name once he has reviewed and approved that guide.</p>
+            <h3 id="rev-name">David Wilson</h3>
+            <dl class="glance" aria-label="Qualifications">
+              <div><dt>Coaching</dt><dd>UEFA B Licence</dd></div>
+              <div><dt>Education</dt><dd>PGCE, BA (Hons)</dd></div>
+              <div><dt>Grassroots</dt><dd>Six years as secretary and lead coach</dd></div>
+            </dl>
+            <p class="ed-small">A guide carries David's name only once he has reviewed and approved that version of it. His employment with Liverpool Football Club doesn't mean the club endorses How We Play, which is independent.</p>
           </aside>
         </div>
       </section>

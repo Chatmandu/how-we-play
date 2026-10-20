@@ -24,7 +24,7 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'Organization', name: site.name, url: site.url + '/', logo: site.url + '/hwp/social/hwp-avatar-800.png', founder: { '@type': 'Person', name: site.author.name, url: site.url + site.author.url }, sameAs: Object.values(site.social).map(s => s.url) }
 ];
 ---
-<Base title="How We Play: free grassroots football coaching guides" description="Free football formation guides, tactical diagrams and practical advice for grassroots coaches, for 5v5, 7v7 and 9v9 football." ids={['home']} ogType="website" jsonLd={jsonLd} editorial>
+<Base title="How We Play: free grassroots football coaching guides" description="Free football formation guides, tactical diagrams and practical advice for grassroots coaches, for 5v5, 7v7 and 9v9 football." ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
   <section class="intro ed-grid" aria-labelledby="cover-h">
     <div class="intro__text">
       <p class="ed-kicker">A grassroots football coaching publication</p>
