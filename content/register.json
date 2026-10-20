@@ -66,12 +66,30 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "review-required",
+      "status": "reviewed",
       "exploratory": false,
       "source": "Research draft 0.1, 19 Oct 2026",
-      "reviewedBy": null,
-      "reviewedOn": null,
-      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)"
+      "reviewedBy": "David Wilson",
+      "reviewedOn": "2026-10-20",
+      "reviewer": "David Wilson (designated coaching reviewer; publication sign-off attested by the site owner)",
+      "reviewedVersion": "cv-536bf83f",
+      "reviewDateBasis": "Date publisher confirmed that reviewer sign-off is recorded; underlying David Wilson approval document not independently accessed.",
+      "reviewLog": [
+        {
+          "version": "cv-536bf83f",
+          "reviewer": "David Wilson",
+          "date": "2026-10-20",
+          "decision": "approved",
+          "limitations": "Formation guidance describes one practical playing model, not mandatory fixed movements.",
+          "evidence": "Publisher Niall Walsh confirmed in the project conversation on 20 October 2026 that David Wilson's approval is recorded and directed publication of Issues 02 and 03. The primary approval document was not supplied to this integration."
+        }
+      ],
+      "history": [
+        {
+          "on": "2026-10-20",
+          "note": "Project owner approved publishing and confirmed David Wilson's sign-off is recorded. Underlying record held outside GitHub; release owner to retain a copy alongside the reviewed version."
+        }
+      ]
     }
   },
   {
@@ -85,13 +103,35 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "review-required",
+      "status": "reviewed",
       "exploratory": true,
       "source": "Exploratory draft 0.1, 19 Oct 2026",
-      "reviewedBy": null,
-      "reviewedOn": null,
-      "publicApproval": null,
-      "reviewer": "David Wilson (designated coaching reviewer; no review recorded)"
+      "reviewedBy": "David Wilson",
+      "reviewedOn": "2026-10-20",
+      "publicApproval": {
+        "by": "Niall Walsh",
+        "on": "2026-10-20",
+        "evidence": "Direct instruction in project conversation, 20 October 2026, to publish Issue 03 live with the alternatives caveat."
+      },
+      "reviewer": "David Wilson (designated coaching reviewer; publication sign-off attested by the site owner)",
+      "reviewedVersion": "cv-71675920",
+      "reviewDateBasis": "Date publisher confirmed that reviewer sign-off is recorded; underlying David Wilson approval document not independently accessed.",
+      "reviewLog": [
+        {
+          "version": "cv-71675920",
+          "reviewer": "David Wilson",
+          "date": "2026-10-20",
+          "decision": "approved",
+          "limitations": "Alternative system; its developmental suitability and recovery responsibilities should be interpreted in the context of the team, not as a universal recommendation.",
+          "evidence": "Publisher Niall Walsh confirmed in the project conversation on 20 October 2026 that David Wilson's approval is recorded and directed publication of Issues 02 and 03. The primary approval document was not supplied to this integration."
+        }
+      ],
+      "history": [
+        {
+          "on": "2026-10-20",
+          "note": "Project owner approved publishing and confirmed David Wilson's sign-off is recorded. Underlying record held outside GitHub; release owner to retain a copy alongside the reviewed version."
+        }
+      ]
     }
   },
   {
