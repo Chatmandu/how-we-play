@@ -1,11 +1,14 @@
 ---
-/* Formation guide. One template for every formation: the 3-1-3-1 (full playbook) and the
- * research drafts (summary structure). Pages exist only for formations the gate allows. */
+/* Formation guide. A page head with the formation name, then the team sheet (shape, positions, what the
+ * shape gives us), the four rules as an index with their real diagrams, and the playbook note.
+ * One template for every formation; draft formations only exist in preview builds (the gate decides). */
 import Base from '../../../../layouts/Base.astro';
-import Figure from '../../../../components/Figure.astro';
 import Gated from '../../../../components/Gated.astro';
+import TeamSheet from '../../../../components/TeamSheet.astro';
+import Byline from '../../../../components/Byline.astro';
 import model from '../../../../lib/content.mjs';
-import { statusChips, cue, inPageNav, button, reviewNote } from '../../../../lib/ui.mjs';
+import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
+import { pad2, word } from '../../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).map(f => ({ params: { formation: f.slug }, props: { slug: f.slug } }));
@@ -15,161 +18,95 @@ const exploratory = !!f.register.content.exploratory;
 const visible = model.target === 'public' ? model.publicFormations : model.formations;
 const base = `/formations/9v9/${f.slug}/`;
 const full = Array.isArray(f.roles);
-const lessons = (f.rules || []).filter(r => r.diagram);
-const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt, tab: 'Starting shape', caption: f.shape.caption || f.playerFacing };
-const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name }];
-/* Reviewer questions and placeholders are working notes for the qualified reviewer: preview builds only. */
 const reviewerNotes = model.target !== 'public';
-const allSections = full
-  ? [{ id: 'shape', label: 'Starting shape' }, { id: 'rules', label: 'Four rules' }, { id: 'positions', label: 'Positions' }, { id: 'examples', label: 'Attacking and defending' }, { id: 'review', label: 'Still being written' }, { id: 'playbook', label: 'Playbook PDF' }]
-  : [{ id: 'shape', label: 'Starting shape' }, { id: 'rules', label: 'Four rules' }, { id: 'positions', label: 'Positions' }, { id: 'considerations', label: 'Strengths and trade-offs' }, { id: 'review', label: 'Reviewer questions' }];
-const sections = allSections.filter(s => reviewerNotes || !['review', 'considerations'].includes(s.id));
+const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: d.altSummary || d.caption }); };
+const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name }];
 const title = `${f.name} 9v9 formation guide (${f.notation}) | How We Play`;
 const description = full
   ? `One possible way to play 9v9: the ${f.notation} starting shape, four simple rules with diagrams and a job for every position. Free guide for grassroots coaches.`
   : `${f.sourceLabel} of a ${f.notation} guide for 9v9. Private preview, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${f.name}: 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Organization', name: 'How We Play' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation' }];
-const attacking = full ? lessons.filter(r => ['far-side-in'].includes(r.id)) : [];
-const defending = full ? lessons.filter(r => ['middle-first', 'show-them-wide'].includes(r.id)) : [];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${f.name}: 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation' }];
 ---
-<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" activeFormat="9v9" crumbs={crumbs} jsonLd={jsonLd}>
-  <nav class="formation-tabs" aria-label="9v9 formations">
-    {visible.map(x => <a href={`/formations/9v9/${x.slug}/`} aria-current={x.slug === f.slug ? 'page' : undefined}>{x.name}{x.register.content.exploratory && <span class="hwp-chip hwp-chip--exploratory">Exploratory</span>}</a>)}
-  </nav>
-
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
   <Gated ids={[f.registerId]}>
-    <div class={`guide-head${exploratory ? ' hwp-exploratory-frame' : ''}`} style={exploratory ? 'padding:16px' : undefined}>
-      <div class="flow">
-        <p class="hwp-label over">9v9 · Formation {String(f.order).padStart(2, '0')} · {f.sourceLabel}</p>
-        <h1 class="formation-title">{f.name}</h1>
-        <p class="hwp-standfirst">{full ? 'One possible way to play 9v9: a starting shape, four rules and a job for every position.' : f.idea}</p>
-        <Fragment set:html={statusChips(f.register)} />
-        <div class="notation" aria-label="Formation notation">
-          <div><b>{f.notation}</b><span>9 players, goalkeeper first</span></div>
-          <div><b>{f.name}</b><span>8 outfield players</span></div>
-        </div>
-        <Fragment set:html={inPageNav(sections)} />
+    <div class="page-head ed-grid">
+      <div class="page-head__text">
+        <p class="ed-kicker">9v9 · Formation guide · {f.notation}</p>
+        <h1>{f.name}</h1>
+        <p class="ed-stand">{full ? 'One possible way to play 9v9: a starting shape, four rules and a job for every position.' : f.idea}</p>
       </div>
-      <Figure frames={[shape]} label="Starting shape" figLabel="Fig. 1 · Starting shape" context={`9v9 · ${f.name}`} exploratory={exploratory} />
+      <div class="page-head__aside">
+        <div class="ed-chips" set:html={statusChips(f.register)} />
+        <Byline f={f} />
+        {exploratory && <Fragment set:html={exploratoryStrip()} />}
+        <p class="ed-small" style="color:var(--hwp-text-secondary)">{full ? `Redrawn from the source playbook. The formation is a starting picture, not where players have to stand.` : `${f.sourceLabel}. Positions in the diagrams are illustrative.`}</p>
+        {visible.length > 1 && <p class="ed-small">Other 9v9 guides: {visible.filter(x => x.slug !== f.slug).map((x, i) => <>{i > 0 && ', '}<a href={`/formations/9v9/${x.slug}/`}>{x.name}</a></>)}</p>}
+      </div>
     </div>
 
-    <section class="section" id="shape" aria-labelledby="h-shape">
-      <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Starting shape</span><span class="hwp-label hwp-secondary">{full ? `Source playbook, ${f.shape.sourcePage}` : f.sourceLabel}</span></div>
-      <div class="two-col">
-        <div class="flow">
-          <h2 class="hwp-heading-m" id="h-shape">{full ? 'This shape gives us' : 'Our simple idea'}</h2>
-          {full ? <ul class="list">{f.gives.map(g => <li>{g}</li>)}</ul> : <p class="lede">{f.playerFacing}</p>}
-          {full && <p class="lede"><strong>Our spine</strong> runs through the middle: {f.spineText}.</p>}
-        </div>
-        <Fragment set:html={cue({ label: 'Say it on the touchline', text: full ? f.shapeCue : f.idea })} />
-      </div>
-    </section>
+    <div id="positions" class="ed-section" style="padding-top:var(--ed-s3)">
+      <TeamSheet f={f} third={full ? 'gives' : 'rules'} showHead={false} />
+    </div>
 
-    <section class="section" id="rules" aria-labelledby="h-rules">
-      <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Four rules</span></div>
-      <h2 class="hwp-heading-l" id="h-rules">Four rules</h2>
-      {full ? (
-          <div class="rows">
+    <section class="ed-section ed-section--tight" id="rules" aria-labelledby="h-rules">
+      <div class="ed-grid">
+        <div class="ed-sh"><h2 class="ed-label" id="h-rules">{full ? `${word(f.rules.length)} rules`.replace(/^./, c => c.toUpperCase()) : 'Four rules (draft)'}</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Each with its diagram and a touchline cue</span></div>
+        {full ? (
+          <ol class="rules4">
             {f.rules.map(r => (
-              <a class="row-link" href={`${base}${r.id}/`}>
-                <span class="row-link__num" aria-hidden="true">{String(r.n).padStart(2, '0')}</span>
-                <span><span class="row-link__title">{r.title}</span><span class="row-link__meta">{r.summary}</span><span class="row-link__cue">{r.cue}</span></span>
-                <span aria-hidden="true">→</span>
-              </a>
+              <li><a href={`${base}${r.id}/`}>
+                <span class="thumb" aria-hidden="true" set:html={thumb(r)} />
+                <span><span class="n" aria-hidden="true">{pad2(r.n)}</span><strong>{r.title}</strong><p>{r.summary}</p><span class="cueline" style="display:block">“{r.cue}”</span></span>
+              </a></li>
             ))}
-          </div>
-      ) : (
-        <div class="rows">
-          {f.ruleTable.map(r => r.lesson ? (
-            <a class="row-link" href={`${base}${r.lesson}/`}>
-              <span class="row-link__num" aria-hidden="true">{String(r.n).padStart(2, '0')}</span>
-              <span><span class="row-link__title">{r.title}</span><span class="row-link__meta">{r.say} Question: {r.question}</span></span>
-              <span aria-hidden="true">→</span>
-            </a>
-          ) : (
-            <div class="row-static">
-              <span class="row-link__num" aria-hidden="true">{String(r.n).padStart(2, '0')}</span>
-              <span><span class="row-link__title">{r.title}</span><span class="row-link__meta">{r.say} Question: {r.question}</span><span class="row-link__meta">Diagram not drawn yet.</span></span>
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
-
-    <section class="section" id="positions" aria-labelledby="h-pos">
-      <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Positions</span><span class="hwp-label hwp-secondary">Starting picture, not permanent jobs</span></div>
-      <h2 class="hwp-heading-l" id="h-pos">A job for every position</h2>
-      <div class="rows">
-        {full ? f.roles.map(r => (
-          <a class="row-link" href={`${base}positions/${r.id}/`}>
-            <span class="pos-nums">{r.nums.map(n => <span class="pos-num">{n}</span>)}</span>
-            <span><span class="row-link__title">{r.title}</span><span class="row-link__meta">{r.head}</span></span>
-            <span aria-hidden="true">→</span>
-          </a>
-        )) : f.roleSummary.map(r => (
-          <div class="row-static">
-            <span class="pos-nums">{r.nums.map(n => <span class="pos-num">{n}</span>)}</span>
-            <span><span class="row-link__title">{r.title}: {r.head}</span><span class="row-link__meta">Ask yourself: {r.ask}</span></span>
-          </div>
-        ))}
+          </ol>
+        ) : (
+          <ol class="rules4">
+            {f.ruleTable.map(r => {
+              const inner = <span><span class="n" aria-hidden="true">{pad2(r.n)}</span><strong>{r.title}</strong><p>{r.say} Question: {r.question}</p>{!r.lesson && <p>Diagram not drawn yet.</p>}</span>;
+              return <li>{r.lesson ? <a href={`${base}${r.lesson}/`} style="grid-template-columns:1fr">{inner}</a> : <div style="padding:16px 0 28px">{inner}</div>}</li>;
+            })}
+          </ol>
+        )}
       </div>
-      {!full && <p class="hwp-small hwp-secondary" style="margin:0">{f.notDrawn}</p>}
     </section>
 
-    {full ? (
-      <>
-        <section class="section" id="examples" aria-labelledby="h-ex">
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Attacking and defending examples</span></div>
-          <h2 class="hwp-heading-m" id="h-ex">Examples in this guide</h2>
-          <div class="two-col">
-            <div class="flow"><p class="hwp-label">When we have the ball</p><div class="rows">{[...attacking.map(r => ({ href: `${base}${r.id}/`, t: r.title, m: r.summary })), { href: `${base}positions/nine-and-ten/`, t: '9 and 10 together', m: "Don't stand in a line." }].map(x => <a class="row-link" href={x.href}><span></span><span><span class="row-link__title">{x.t}</span><span class="row-link__meta">{x.m}</span></span><span aria-hidden="true">→</span></a>)}</div></div>
-            <div class="flow"><p class="hwp-label">When they have the ball</p><div class="rows">{defending.map(r => <a class="row-link" href={`${base}${r.id}/`}><span></span><span><span class="row-link__title">{r.title}</span><span class="row-link__meta">{r.summary}</span></span><span aria-hidden="true">→</span></a>)}</div></div>
+    {full && (
+      <section class="ed-section" id="playbook" aria-labelledby="h-pdf">
+        <div class="ed-grid split">
+          <div class="split__main ed-download">
+            <p class="ed-kicker">Free download · no email, no payment</p>
+            <h2 class="ed-h2" id="h-pdf">The {f.name} playbook</h2>
+            <p class="ed-lede">An A4 version to share with players and parents, built from the same content as these pages. It isn't released yet.</p>
+            <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
           </div>
-        </section>
-
-        {reviewerNotes && <section class="section" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Still being written</span></div>
-          <h2 class="hwp-heading-m" id="h-review">Strengths, trade-offs and common problems</h2>
-          <Fragment set:html={reviewNote('Needs a qualified coach.', "The source playbook doesn't cover these. We've listed the questions rather than guess the answers.")} />
-          <div class="placeholders">
-            {f.review.map(r => (
-              <div class="placeholder" id={`review-${r.id}`}>
-                <h3>{r.title}</h3><p class="hwp-small" style="margin:0">{r.why}</p>
-                <p class="hwp-label">Questions for the reviewer</p><ul>{r.qs.map(q => <li>{q}</li>)}</ul>
-              </div>
-            ))}
-            <div class="placeholder"><h3>Common problems</h3><p class="hwp-small" style="margin:0">Not in the source playbook. To be written with the reviewer, if at all.</p></div>
-          </div>
-        </section>}
-
-        <section class="section" id="playbook" aria-labelledby="h-pdf">
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Playbook PDF</span></div>
-          <div class="download">
-            <p class="hwp-label">Free download · no email, no payment</p>
-            <h2 id="h-pdf">The {f.name} playbook</h2>
-            <p class="hwp-small" style="margin:0">An A4 version to share with players and parents, built from the same content as these pages. It isn't released yet.</p>
-            <div><Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} /></div>
-          </div>
-        </section>
-      </>
-    ) : (
-      <>
-        {reviewerNotes && <section class="section" id="considerations" aria-labelledby="h-cons" data-hwp-reviewer-only>
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Strengths and trade-offs</span><span class="hwp-label hwp-secondary">{f.considerations.label}</span></div>
-          <div class="two-col">
-            <div class="flow"><h2 class="hwp-heading-m" id="h-cons">May offer</h2><ul class="list">{f.considerations.strengths.map(s => <li>{s}</li>)}</ul></div>
-            <div class="flow"><h2 class="hwp-heading-m">May cost</h2><ul class="list">{f.considerations.tradeoffs.map(s => <li>{s}</li>)}</ul></div>
-          </div>
-        </section>}
-        {reviewerNotes && <section class="section" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Reviewer questions</span></div>
-          <h2 class="hwp-heading-m" id="h-review">Questions for the qualified reviewer</h2>
-          <ol class="list measure">{f.reviewQuestions.map(q => <li>{q}</li>)}</ol>
-          <p class="source-line">Source: {f.status.source}. Positions in the diagrams are illustrative, placed from written briefs.</p>
-        </section>}
-      </>
+          <div class="split__side"><p class="ed-small">New to 9v9? <a href="/moving-up/">What changes from 7v7</a>, from pitch size to offside.</p></div>
+        </div>
+      </section>
     )}
 
+    {reviewerNotes && (
+      <section class="ed-section" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>
+        <div class="ed-grid"><div style="grid-column:1/-1" class="flow">
+          <div class="ed-sh"><h2 class="ed-label" id="h-review">{full ? 'Still being written (reviewer only)' : 'Reviewer questions (preview only)'}</h2></div>
+          {full ? (
+            <>
+              <Fragment set:html={reviewNote('Needs a qualified coach.', "The source playbook doesn't cover these. We've listed the questions rather than guess the answers.")} />
+              <div class="placeholders">{f.review.map(r => <div class="placeholder" id={`review-${r.id}`}><h3>{r.title}</h3><p class="hwp-small" style="margin:0">{r.why}</p><p class="hwp-label">Questions for the reviewer</p><ul>{r.qs.map(q => <li>{q}</li>)}</ul></div>)}</div>
+            </>
+          ) : (
+            <>
+              <div class="two-col">
+                <div class="flow"><h3 class="hwp-heading-m">May offer</h3><ul class="list">{f.considerations.strengths.map(s => <li>{s}</li>)}</ul></div>
+                <div class="flow"><h3 class="hwp-heading-m">May cost</h3><ul class="list">{f.considerations.tradeoffs.map(s => <li>{s}</li>)}</ul></div>
+              </div>
+              <ol class="list measure">{f.reviewQuestions.map(q => <li>{q}</li>)}</ol>
+              <p class="source-line">Source: {f.status.source}. {f.notDrawn}</p>
+            </>
+          )}
+        </div></div>
+      </section>
+    )}
     <div slot="fallback"></div>
   </Gated>
 </Base>

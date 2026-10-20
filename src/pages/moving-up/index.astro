@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Facts from '../../components/Facts.astro';
 import Gated from '../../components/Gated.astro';
+import Scoreboard from '../../components/Scoreboard.astro';
 import model from '../../lib/content.mjs';
 import { checklist } from '../../lib/ui.mjs';
 
@@ -10,61 +11,58 @@ const facts = model.facts.facts;
 const byGroup = g => facts.filter(f => f.group === g).map(f => f.id);
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Moving up' }];
 ---
-<Base title="Moving from 7v7 to 9v9 football: what changes | How We Play" description="Moving your team from 7v7 to 9v9? What changes, what stays the same and what to check before pre-season. Rules checked against England Football for 2026/27." ids={['moving-up', 'moving-up-7v7-9v9']} nav="moving-up" crumbs={crumbs}>
-  <div class="guide-head">
-    <div class="flow">
-      <p class="hwp-label over">Moving up</p>
-      <h1 class="hwp-heading-l">Moving from 7v7 to 9v9</h1>
-      <p class="hwp-standfirst">Two more players, a much bigger pitch and offside for the first time. A lot also stays the same, and that's the place to start.</p>
-      <ul class="list lede">
-        <li><strong>Bigger:</strong> the recommended pitch has about two-thirds more grass.</li>
-        <li><strong>New rules:</strong> offside, heading and throw-ins; no retreat line.</li>
-        <li><strong>Same game:</strong> support, space, protect the goal, decide.</li>
-      </ul>
+<Base title="Moving from 7v7 to 9v9 football: what changes | How We Play" description="Moving your team from 7v7 to 9v9? What changes, what stays the same and what to check before pre-season. Rules checked against England Football for 2026/27." ids={['moving-up', 'moving-up-7v7-9v9']} nav="moving-up" crumbs={crumbs} editorial>
+  <div class="page-head ed-grid">
+    <div class="page-head__text">
+      <p class="ed-kicker">Moving up · 7v7 to 9v9</p>
+      <h1>Nine a side</h1>
+      <p class="ed-stand">Two more players, a much bigger pitch and offside for the first time. A lot also stays the same, and that's the place to start.</p>
     </div>
-    <div class="flow">
-      <h2 class="hwp-heading-m">Other moves</h2>
-      <p class="lede">Moving Up will cover each step between formats. 5v5 to 7v7 and 9v9 to 11v11 are planned and not written yet.</p>
-      <div class="hwp-chips"><span class="hwp-chip hwp-chip--soon">5v5 → 7v7 · Coming soon</span><span class="hwp-chip hwp-chip--soon">9v9 → 11v11 · Coming soon</span></div>
+    <div class="page-head__aside">
+      <ul class="devlist" aria-label="In short">
+        <li><strong>Bigger</strong> <em>about two-thirds more grass</em></li>
+        <li><strong>New rules</strong> <em>offside, heading, throw-ins</em></li>
+        <li><strong>Same game</strong> <em>support, space, protect, decide</em></li>
+      </ul>
     </div>
   </div>
 
-  <section class="section" id="changes" aria-labelledby="h-changes">
-    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">What changes</span><span class="hwp-label hwp-secondary">7v7 → 9v9</span></div>
-    <h2 class="hwp-heading-l" id="h-changes">What changes</h2>
-    <div class="two-col">
-      <div class="flow"><h3 class="hwp-heading-m">The game</h3><Facts ids={byGroup('game')} mode="compare" caption="The game: 7v7 compared with 9v9" /></div>
-      <div class="flow"><h3 class="hwp-heading-m">New rules</h3><Facts ids={byGroup('rules')} mode="compare" caption="Rules: 7v7 compared with 9v9" /></div>
-    </div>
-    <div class="flow measure"><h3 class="hwp-heading-m">Competition</h3><Facts ids={byGroup('competition')} mode="compare" caption="Competition: 7v7 compared with 9v9" /></div>
-  </section>
+  <nav class="ed-grid" aria-label="Moving between formats" style="margin-top:var(--ed-s4)">
+    <ol class="transitions">
+      <li><b>5v5 to 7v7</b><span>Planned. Not researched yet.</span></li>
+      <li aria-current="page"><b>7v7 to 9v9</b><span>This page</span></li>
+      <li><b>9v9 to 11v11</b><span>Later</span></li>
+    </ol>
+  </nav>
 
-  <section class="section" id="same" aria-labelledby="h-same">
-    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">What stays familiar</span></div>
-    <div class="two-col">
-      <h2 class="hwp-heading-l" id="h-same">What stays familiar</h2>
+  <div style="margin-top:var(--ed-s4)" id="changes">
+    <Scoreboard ids={[...byGroup('game'), ...byGroup('rules'), ...byGroup('competition')]} kicker="What changes" title="7v7 against 9v9" id="score" from="7v7" to="9v9">
+      <p class="ed-small">England Football's maximum formats, side by side. The left column is what your players know; the right is what they're stepping into.</p>
+    </Scoreboard>
+  </div>
+
+  <section class="ed-section ed-grid split" id="same" aria-labelledby="h-same">
+    <div class="split__main">
+      <p class="ed-kicker">What stays familiar</p>
+      <h2 class="ed-h2" id="h-same" style="margin:12px 0 20px">Same game, bigger pitch</h2>
       <Facts ids={['subs', 'playing-time', 'positions', 'smaller-formats']} />
     </div>
-  </section>
-
-  <section class="section" id="guides" aria-labelledby="h-guides">
-    <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Choosing a 9v9 shape</span></div>
-    <div class="two-col">
-      <h2 class="hwp-heading-m" id="h-guides">Picking a starting shape</h2>
-      <div class="flow">
-        <p class="lede">England Football's 9v9 guidance shows example shapes rather than a single correct one. Our 9v9 formation guides set out a few possibilities, each with four simple rules and a job for every position.</p>
-        <p><a class="hwp-golink" href="/formations/9v9/">See the 9v9 formations →</a></p>
-      </div>
+    <div class="split__side">
+      <p class="ed-kicker">Choosing a shape</p>
+      <p class="ed-lede" style="margin-top:12px">England Football's 9v9 guidance shows example shapes rather than a single correct one. Our guides set out one way to start, with four simple rules and a job for every position.</p>
+      <p style="margin-top:16px"><a class="ed-go" href="/formations/9v9/">See the 9v9 formations</a></p>
     </div>
   </section>
 
   <Gated ids={['moving-up-checklist']}>
-    <section class="section" id="checklist" aria-labelledby="h-check">
-      <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label">Before pre-season</span></div>
-      <h2 class="hwp-heading-l" id="h-check">Pre-season checklist</h2>
-      <p class="hwp-small hwp-secondary measure" style="margin:0">Ticks are kept on this device only. Two items ("Tell parents what is changing", "Note one thing to work on after each game") are our own additions and await review.</p>
-      <div class="two-col">
-        {groups.map((g, k) => <Fragment set:html={checklist(g.items.map(x => `${x.text}. ${x.detail}`), { id: `moving-up-${k}`, title: g.heading })} />)}
+    <section class="ed-section ed-grid" id="checklist" aria-labelledby="h-check">
+      <div style="grid-column:1/-1" class="flow">
+        <div class="ed-sh"><h2 class="ed-label" id="h-check">Before pre-season</h2></div>
+        <h3 class="ed-h2">Pre-season checklist</h3>
+        <p class="ed-small" style="color:var(--hwp-text-secondary)">Ticks are kept on this device only. Two items ("Tell parents what is changing", "Note one thing to work on after each game") are our own additions and await review.</p>
+        <div class="two-col">
+          {groups.map((g, k) => <Fragment set:html={checklist(g.items.map(x => `${x.text}. ${x.detail}`), { id: `moving-up-${k}`, title: g.heading })} />)}
+        </div>
       </div>
     </section>
   </Gated>

@@ -23,7 +23,9 @@
     "preview": "astro preview",
     "test:leak": "bash scripts/test-leak.sh",
     "deploy": "wrangler deploy",
-    "deploy:preview": "wrangler versions upload"
+    "deploy:preview": "wrangler versions upload",
+    "review": "node scripts/review.mjs status",
+    "review:register": "node scripts/review.mjs register"
   },
   "dependencies": {
     "astro": "7.3.8"

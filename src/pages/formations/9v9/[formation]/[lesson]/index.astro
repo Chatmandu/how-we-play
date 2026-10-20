@@ -1,11 +1,13 @@
 ---
-/* Lesson: one rule, explained inside its formation. Figure column first (sticky on wide screens). */
+/* Lesson: one rule as a feature spread. Folio number and headline, the stepped live diagram with the
+ * touchline cue beside it, then what to look for, the positions that use the rule and the next rule. */
 import Base from '../../../../../layouts/Base.astro';
-import Figure from '../../../../../components/Figure.astro';
-import GuideNav from '../../../../../components/GuideNav.astro';
-import Pager from '../../../../../components/Pager.astro';
+import LessonFigure from '../../../../../components/LessonFigure.astro';
+import EdGuideNav from '../../../../../components/EdGuideNav.astro';
+import Byline from '../../../../../components/Byline.astro';
 import model from '../../../../../lib/content.mjs';
-import { statusChips, cue, reviewNote, exploratoryStrip } from '../../../../../lib/ui.mjs';
+import { statusChips, reviewNote, exploratoryStrip } from '../../../../../lib/ui.mjs';
+import { pad2, word } from '../../../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).flatMap(f =>
@@ -21,7 +23,6 @@ const full = Array.isArray(f.roles);
 const total = full ? f.rules.length : (f.ruleTable || []).length;
 const base = `/formations/9v9/${f.slug}/`;
 const users = full ? f.roles.filter(x => (x.rules || []).includes(r.id)) : [];
-/* Reviewer questions are working notes: preview builds only. */
 const reviewerNotes = model.target !== 'public';
 const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x => x.id === id)).filter(Boolean) : [];
 const draftReviews = reviewerNotes && !full ? f.review : [];
@@ -29,42 +30,56 @@ const prev = rules[i - 1], next = rules[i + 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
 const title = full ? `${r.title}: ${r.seo ? r.seo.split(': ')[1] : '9v9 principle'} (${f.name}) | How We Play` : `${r.title} (${f.name} draft) | How We Play`;
 const description = full ? `${r.summary} ${r.cue} A ${f.name} lesson for 9v9 coaches, with wrong and right diagrams.` : `${r.tag} Private draft lesson, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} (${f.name})`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} (${f.name})`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
+const source = full ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.` : `From ${f.status.source}, ${r.src}. Positions are illustrative.`;
+const pagerNext = next ? { href: `${base}${next.id}/`, over: `Next · Rule ${next.n}`, title: next.title } : (full ? { href: `${base}positions/${f.roles[0].id}/`, over: 'Next · Positions', title: f.roles[0].title } : { href: base, over: 'Back to', title: `${f.name} guide` });
+const pagerPrev = prev ? { href: `${base}${prev.id}/`, over: `Rule ${prev.n}`, title: prev.title } : { href: base, over: 'Back to', title: `The ${f.name} guide` };
 ---
-<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" activeFormat="9v9" crumbs={crumbs} jsonLd={jsonLd}>
-  <GuideNav formation={f} current={r.id} />
-  <div class="lesson">
-    <div class="lesson__figure">
-      <Figure frames={set.frames} label={set.label} figLabel={`Fig. ${r.n} · ${r.title}`} context={`9v9 · ${f.name}`} sequence={!!set.sequence} exploratory={exploratory} />
-    </div>
-    <article class="lesson__article" aria-labelledby="lesson-h">
-      {exploratory && <Fragment set:html={exploratoryStrip()} />}
-      <header class="lesson-head">
-        <p class="hwp-label over">9v9 · {f.name} · Rule {r.n} of {total}</p>
-        <div class="lesson-head__row"><span class="hwp-big-number" aria-hidden="true">{String(r.n).padStart(2, '0')}</span><h1 class="hwp-heading-l" id="lesson-h">{r.title}</h1></div>
-        <p class="hwp-standfirst">{r.tag}</p>
-        {r.summary && <p class="lede">{r.summary}</p>}
-        <Fragment set:html={statusChips(f.register)} />
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
+  <EdGuideNav f={f} current={r.id} />
+
+  <article aria-labelledby="lesson-h">
+    <div class="feature ed-grid" style="padding-top:var(--ed-s4)">
+      <div class="feature__rail" aria-hidden="true"><span class="feature__num">{pad2(r.n)}</span><p>Rule {word(r.n)} of {word(total)}<br>{f.name}</p></div>
+      <header class="feature__head" data-num={pad2(r.n)}>
+        <p class="ed-kicker feature__kicker">Rule {word(r.n)} of {word(total)} · 9v9 · {f.name}</p>
+        <h1 class="feature__title" id="lesson-h">{r.title}</h1>
+        <p class="ed-stand">{r.tag}{r.summary && ` ${r.summary}`}</p>
       </header>
-      <Fragment set:html={cue({ label: 'Say it on the touchline', text: r.cue, extra: r.extra })} />
-      {r.look && (
-        <section aria-labelledby="look-h" class="flow">
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="look-h">What to look for</span></div>
-          <ol class="look-list">{r.look.map(l => <li>{l}</li>)}</ol>
-        </section>
-      )}
-      <p class="source-line">{full ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.` : `From ${f.status.source}, ${r.src}. Positions are illustrative, placed from written briefs.`}</p>
-      {reviews.map(rv => <div data-hwp-reviewer-only set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
-      {draftReviews.map(rv => <div data-hwp-reviewer-only set:html={reviewNote(`${rv.title}:`, rv.qs.join(' '))} />)}
+      <div class="feature__body">
+        {exploratory && <Fragment set:html={exploratoryStrip()} />}
+        <LessonFigure id="lesson-fig" frames={set.frames} figLabel={`Fig. ${r.n} · ${r.title}`} context={`9v9 · ${f.name}`} source={source} exploratory={exploratory}>
+          <div class="ed-cue"><p>Say it on the touchline</p><blockquote>{r.cue}</blockquote>{r.extra && <p class="ed-small">{r.extra}</p>}</div>
+          <div class="ed-chips" set:html={statusChips(f.register)} />
+          <Byline f={f} />
+        </LessonFigure>
+      </div>
+    </div>
+
+    <section class="ed-section ed-grid split" aria-label="More on this rule">
+      <div class="split__main">
+        {r.look && (
+          <>
+            <h2 class="ed-label" id="look-h" style="margin-bottom:10px">What to look for</h2>
+            <ol class="looks" aria-labelledby="look-h">{r.look.map(l => <li>{l}</li>)}</ol>
+          </>
+        )}
+        {reviews.map(rv => <div data-hwp-reviewer-only style="margin-top:16px" set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
+        {draftReviews.map(rv => <div data-hwp-reviewer-only style="margin-top:16px" set:html={reviewNote(`${rv.title}:`, rv.qs.join(' '))} />)}
+      </div>
       {users.length > 0 && (
-        <section class="flow" aria-labelledby="users-h">
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="users-h">Positions that use this rule</span></div>
-          <div class="rows">{users.map(u => <a class="row-link" href={`${base}positions/${u.id}/`}><span class="pos-nums">{u.nums.map(n => <span class="pos-num">{n}</span>)}</span><span><span class="row-link__title">{u.title}</span><span class="row-link__meta">{u.head}</span></span><span aria-hidden="true">→</span></a>)}</div>
-        </section>
+        <div class="split__side sheet__col">
+          <h2 class="ed-label" id="users-h" style="margin-bottom:4px">Positions that use this rule</h2>
+          <ol class="roster" aria-labelledby="users-h">{users.map(u => <li><a href={`${base}positions/${u.id}/`}><span class="nums">{u.nums.join(' · ')}</span><span><strong>{u.title}</strong><span>{u.head}</span></span><span class="arr" aria-hidden="true">→</span></a></li>)}</ol>
+        </div>
       )}
-      <Pager label="Other rules"
-        prev={prev ? { href: `${base}${prev.id}/`, over: `Rule ${prev.n}`, title: prev.title } : { href: base, over: 'Back to', title: `${f.name} guide` }}
-        next={next ? { href: `${base}${next.id}/`, over: `Rule ${next.n}`, title: next.title } : (full ? { href: `${base}positions/${f.roles[0].id}/`, over: 'Positions', title: f.roles[0].title } : { href: base, over: 'Back to', title: `${f.name} guide` })} />
-    </article>
-  </div>
+    </section>
+
+    <nav class="ed-section ed-grid" aria-label="Other rules">
+      <div class="ed-pager">
+        <a href={pagerPrev.href}><small>{pagerPrev.over}</small><b>{pagerPrev.title}</b></a>
+        <a href={pagerNext.href}><small>{pagerNext.over}</small><b>{pagerNext.title}</b></a>
+      </div>
+    </nav>
+  </article>
 </Base>

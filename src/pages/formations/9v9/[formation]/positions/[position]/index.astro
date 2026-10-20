@@ -1,11 +1,14 @@
 ---
-/* Position page (formations with full position content: currently the 3-1-3-1). */
+/* Position page in the editorial layout: the shirt numbers as the folio, the role as the headline, the
+ * position's own diagram stepped beside its "ask yourself" cue, then the jobs, the situations and the
+ * rules this position uses. Content is exactly the formation file's; nothing is added. */
 import Base from '../../../../../../layouts/Base.astro';
-import Figure from '../../../../../../components/Figure.astro';
-import GuideNav from '../../../../../../components/GuideNav.astro';
-import Pager from '../../../../../../components/Pager.astro';
+import LessonFigure from '../../../../../../components/LessonFigure.astro';
+import EdGuideNav from '../../../../../../components/EdGuideNav.astro';
+import Byline from '../../../../../../components/Byline.astro';
 import model from '../../../../../../lib/content.mjs';
-import { statusChips, cue, reviewNote } from '../../../../../../lib/ui.mjs';
+import { statusChips, reviewNote } from '../../../../../../lib/ui.mjs';
+import { word } from '../../../../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
@@ -16,45 +19,61 @@ const i = f.roles.findIndex(r => r.id === Astro.props.roleId);
 const r = f.roles[i];
 const set = f.diagrams[r.diagram];
 const base = `/formations/9v9/${f.slug}/`;
-const related = (r.rules || []).map(id => f.rules.find(x => x.id === id));
-const reviewerNotes = model.target !== 'public'; // reviewer questions: preview builds only
+const related = (r.rules || []).map(id => f.rules.find(x => x.id === id)).filter(Boolean);
+const reviewerNotes = model.target !== 'public';
 const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x => x.id === id)).filter(Boolean) : [];
 const prev = f.roles[i - 1], next = f.roles[i + 1];
+const last = f.rules[f.rules.length - 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
 const title = `${r.title} in a 9v9 ${f.name}: role and responsibilities | How We Play`;
-const description = `${r.head}. What the ${r.title.toLowerCase()} does in a 9v9 ${f.notation}, with diagrams and one question for players to ask themselves.`;
+const description = `${r.head} What the ${r.title.toLowerCase()} does in a 9v9 ${f.notation}, with diagrams and one question for players to ask themselves.`;
+const folio = r.nums.join('·');
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} in the ${f.name}`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
+const pPrev = prev ? { href: `${base}positions/${prev.id}/`, over: 'Previous position', title: prev.title } : { href: `${base}${last.id}/`, over: `Rule ${last.n}`, title: last.title };
+const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next position', title: next.title } : { href: base, over: 'Back to the guide', title: `The ${f.name}` };
 ---
-<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" activeFormat="9v9" crumbs={crumbs}>
-  <GuideNav formation={f} current={'pos-' + r.id} />
-  <div class="lesson">
-    <div class="lesson__figure">
-      <Figure frames={set.frames} label={set.label} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} />
-    </div>
-    <article class="lesson__article" aria-labelledby="pos-h">
-      <header class="lesson-head">
-        <p class="hwp-label over">9v9 · {f.name} · Position</p>
-        <div class="lesson-head__row"><span class="pos-nums" aria-hidden="true">{r.nums.map(n => <span class="pos-num" style="min-width:44px;height:44px;font-size:17px">{n}</span>)}</span><h1 class="hwp-heading-l" id="pos-h">{r.title}</h1></div>
-        <p class="hwp-standfirst">{r.head}</p>
-        <Fragment set:html={statusChips(f.register)} />
+<Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
+  <EdGuideNav f={f} current={'pos-' + r.id} />
+  <article aria-labelledby="pos-h">
+    <div class="feature feature--pos ed-grid" style="padding-top:var(--ed-s4)">
+      <div class="feature__rail" aria-hidden="true"><span class="feature__num">{folio}</span><p>Position {word(i + 1)} of {word(f.roles.length)}<br>{f.name}</p></div>
+      <header class="feature__head" data-num={folio}>
+        <p class="ed-kicker feature__kicker">Position {word(i + 1)} of {word(f.roles.length)} · 9v9 · {f.name}</p>
+        <h1 class="feature__title" id="pos-h">{r.title}</h1>
+        <p class="ed-stand">{r.head}</p>
       </header>
-      <Fragment set:html={cue({ label: 'Ask yourself', text: r.cue })} />
-      <section class="flow" aria-labelledby="jobs-h">
-        <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="jobs-h">Your jobs</span></div>
-        <ul class="look-list">{r.points.map(p => <li>{p}</li>)}</ul>
-      </section>
-      {r.steps && <section class="flow" aria-labelledby="steps-h"><div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="steps-h">Carry it forward</span></div><ol class="look-list">{r.steps.map(s => <li>{s}</li>)}</ol></section>}
-      {r.situations && r.situations.map(([h, t], k) => <section class="flow" aria-labelledby={`sit-${k}`}><div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id={`sit-${k}`}>{h}</span></div><p class="lede">{t}</p></section>)}
-      {reviews.map(rv => <div data-hwp-reviewer-only set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
-      <p class="source-line">Redrawn from the source playbook, {r.src}. Shirt numbers describe the starting picture; every player should try more than one role.</p>
+      <div class="feature__body">
+        <LessonFigure id="pos-fig" frames={set.frames} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} source={`Redrawn from the source playbook, ${r.src}. Shirt numbers describe the starting picture.`}>
+          <div class="ed-cue"><p>Ask yourself</p><blockquote>{r.cue}</blockquote></div>
+          <div class="ed-chips" set:html={statusChips(f.register)} />
+          <Byline f={f} />
+        </LessonFigure>
+      </div>
+    </div>
+
+    <section class="ed-section ed-grid split" aria-label="The job in detail">
+      <div class="split__main jobs">
+        <h2 class="ed-label" id="jobs-h">Your jobs</h2>
+        <ol class="looks" aria-labelledby="jobs-h">{r.points.map(p => <li>{p}</li>)}</ol>
+        {r.steps && <><h2 class="ed-label" id="steps-h" style="margin:28px 0 10px">Carry it forward</h2><ol class="looks" aria-labelledby="steps-h">{r.steps.map(s => <li>{s}</li>)}</ol></>}
+        {reviews.map(rv => <div data-hwp-reviewer-only style="margin-top:16px" set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
+      </div>
       {related.length > 0 && (
-        <section class="flow" aria-labelledby="rel-h">
-          <div class="hwp-section-divider hwp-rule-section"><span class="hwp-label" id="rel-h">Rules this position uses</span></div>
-          <div class="rows">{related.map(x => <a class="row-link" href={`${base}${x.id}/`}><span class="row-link__num" aria-hidden="true">{String(x.n).padStart(2, '0')}</span><span><span class="row-link__title">{x.title}</span><span class="row-link__meta">{x.summary}</span></span><span aria-hidden="true">→</span></a>)}</div>
-        </section>
+        <div class="split__side sheet__col">
+          <h2 class="ed-label" id="rel-h" style="margin-bottom:4px">Rules this position uses</h2>
+          <ol class="rulelist" aria-labelledby="rel-h">{related.map(x => <li><a href={`${base}${x.id}/`}><b>Rule {x.n}</b><strong>{x.title}</strong><i>{x.cue}</i></a></li>)}</ol>
+        </div>
       )}
-      <Pager label="Other positions"
-        prev={prev ? { href: `${base}positions/${prev.id}/`, over: 'Previous position', title: prev.title } : { href: `${base}${f.rules[f.rules.length - 1].id}/`, over: `Rule ${f.rules.length}`, title: f.rules[f.rules.length - 1].title }}
-        next={next ? { href: `${base}positions/${next.id}/`, over: 'Next position', title: next.title } : (reviewerNotes ? { href: `${base}#review`, over: 'Back to the guide', title: 'Still being written' } : { href: base, over: 'Back to the guide', title: `${f.name} guide` })} />
-    </article>
-  </div>
+      {r.situations && (
+        <div class="situ" style="grid-column:1/-1">{r.situations.map(([h, t]) => <section><h3>{h}</h3><p>{t}</p></section>)}</div>
+      )}
+    </section>
+
+    <nav class="ed-section ed-grid" aria-label="Other positions">
+      <div class="ed-pager">
+        <a href={pPrev.href}><small>{pPrev.over}</small><b>{pPrev.title}</b></a>
+        <a href={pNext.href}><small>{pNext.over}</small><b>{pNext.title}</b></a>
+      </div>
+    </nav>
+  </article>
 </Base>

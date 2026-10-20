@@ -8,8 +8,9 @@ import '../../design-system/diagrams/diagram.css';
 import '../../design-system/components/components.css';
 import '../styles/fonts.css';
 import '../styles/site.css';
+import '../styles/editorial.css';
 import model from '../lib/content.mjs';
-import { header, footer, breadcrumbs, privateStrip, ASSET_BASE } from '../lib/ui.mjs';
+import { breadcrumbs, privateStrip, ASSET_BASE } from '../lib/ui.mjs';
 
 interface Crumb { label: string; href?: string }
 interface Props {
@@ -22,8 +23,9 @@ interface Props {
   ogType?: 'website' | 'article';
   jsonLd?: object[];
   noindex?: boolean;
+  editorial?: boolean;      // editorial pages own their grid; others sit in the standard container
 }
-const { title, description, ids = [], crumbs = [], nav, activeFormat, ogType = 'article', jsonLd = [], noindex = false } = Astro.props;
+const { title, description, ids = [], crumbs = [], nav, activeFormat, ogType = 'article', jsonLd = [], noindex = false, editorial = false } = Astro.props;
 
 const access = model.access(ids);
 if (!access.allowed) {
@@ -42,15 +44,10 @@ const navItems = [
   { id: 'moving-up', label: 'Moving up', href: '/moving-up/' },
   { id: 'about', label: 'About', href: '/about/' }
 ];
-const formats = site.formats.map(f => ({
-  id: f.id, ages: f.ages, href: f.href, soon: f.availability !== 'live',
-  note: f.id === '9v9' ? (model.publicFormations.length || !isPublic ? (n => `${n} formation${n === 1 ? '' : 's'}`)(isPublic ? model.publicFormations.length : model.formations.length) : 'guides in review') : undefined
-}));
-const headerHtml = header({ items: navItems, current: nav, newsletterHref: '/coaching-notes/', formats, activeFormat });
-const footerHtml = footer({ columns: [
-  { title: 'Guides', links: [{ label: '9v9 formations', href: '/formations/9v9/' }, { label: 'Moving from 7v7 to 9v9', href: '/moving-up/' }] },
-  { title: 'How We Play', links: [{ label: 'About and standards', href: '/about/' }, { label: 'The Coaching Notes', href: '/coaching-notes/' }] }
-]});
+const footLinks = [
+  { label: '9v9 formations', href: '/formations/9v9/' }, { label: 'Moving from 7v7 to 9v9', href: '/moving-up/' },
+  { label: 'About and standards', href: '/about/' }, { label: 'The Coaching Notes', href: '/coaching-notes/' }
+];
 
 const crumbLd = crumbs.length ? [{
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -93,15 +90,37 @@ const pageItems = ids.join(' ');
   {!isPublic && (
     <aside class="preview-banner" aria-label="Preview notice" set:html={privateStrip().replace('Private preview · not for publication', `Private preview build (${model.target}) · not for publication · not indexed`)} ></aside>
   )}
-  <div class="site-header" set:html={headerHtml} />
-  <main id="main" class="site-main hwp-container" tabindex="-1">
-    {crumbs.length > 0 && <Fragment set:html={breadcrumbs(crumbs.map(c => ({ label: c.label, href: c.href })))} />}
+  <header class="mast">
+    <div class="ed-wrap mast__bar">
+      <a class="mast__logo" href="/"><img src={`${ASSET_BASE}logo/hwp-lockup-inline.svg`} alt="How We Play, home" width="180" height="28"></a>
+      <p class="mast__issue">Free guides for grassroots coaches · Issue one: 9v9</p>
+      <button class="mast__menu" type="button" aria-expanded="false" aria-controls="mast-nav" hidden><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu</button>
+      <nav class="mast__nav" id="mast-nav" aria-label="Main">{navItems.map(i => <a href={i.href} aria-current={i.id === nav ? 'page' : undefined}>{i.label}</a>)}</nav>
+    </div>
+  </header>
+  <main id="main" class={editorial ? 'ed-main' : 'site-main hwp-container'} tabindex="-1">
+    {crumbs.length > 0 && (editorial
+      ? <div class="ed-wrap ed-crumbs"><Fragment set:html={breadcrumbs(crumbs.map(c => ({ label: c.label, href: c.href })))} /></div>
+      : <Fragment set:html={breadcrumbs(crumbs.map(c => ({ label: c.label, href: c.href })))} />)}
     <slot />
   </main>
-  <Fragment set:html={footerHtml} />
+  <footer class="foot">
+    <div class="ed-wrap foot__grid">
+      <a class="foot__logo" href="/"><img src={`${ASSET_BASE}logo/hwp-lockup-inline-reverse.svg`} alt="How We Play, home" width="180" height="28"></a>
+      <nav class="foot__nav" aria-label="Footer">{footLinks.map(l => <a href={l.href}>{l.label}</a>)}</nav>
+      <p class="foot__note">{site.independence || 'How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.'} Official rules link to their source with the date we checked them.</p>
+    </div>
+  </footer>
   <script>
     import { enhance } from '../../design-system/components/behaviours.mjs';
     enhance(document);
+    /* Masthead menu on small screens: the nav is visible without JavaScript; the button only collapses it. */
+    const btn = document.querySelector('.mast__menu'), navEl = document.getElementById('mast-nav');
+    if (btn && navEl) {
+      btn.hidden = false; document.documentElement.classList.add('js-mast');
+      btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') !== 'true'; btn.setAttribute('aria-expanded', String(open)); navEl.classList.toggle('is-open', open); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && navEl.classList.contains('is-open')) { btn.setAttribute('aria-expanded', 'false'); navEl.classList.remove('is-open'); btn.focus(); } });
+    }
   </script>
 </body>
 </html>

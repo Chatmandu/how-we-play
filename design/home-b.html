@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treatment B · Lesson first · How We Play</title>
+<link rel="stylesheet" href="base.css">
+<style>
+/* Treatment B: "Lesson first". The site opens on the teaching itself: an interactive lesson on the pitch,
+   then a matchday team sheet for the 3-1-3-1, then a scoreboard for the step up. Asymmetric 7 / 5 rhythm. */
+:root { --edge: max(20px, calc((100vw - 1312px) / 2)); --g: 24px; }
+.wrap { padding-inline: var(--edge); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); }
+.grid > * { min-width: 0; }
+.label { font: 800 12px/1.2 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; }
+
+/* Masthead: logo with the tagline stacked, nav on a baseline */
+.mast { display: flex; justify-content: space-between; align-items: end; gap: 24px; padding-top: 18px; padding-bottom: 14px; }
+.mast .brand { display: grid; gap: 6px; text-decoration: none; }
+.mast .brand img { height: 26px; width: auto; }
+.mast .brand span { font: italic 400 14px/1 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); }
+.mast nav { display: flex; gap: 28px; font: 600 15px/1 var(--hwp-font-family-sans); }
+.mast nav a { text-decoration: none; padding: 10px 0; }
+.mast nav a[aria-current] { box-shadow: inset 0 -3px 0 var(--hwp-color-pitch-blue); }
+.mast .menu { display: none; }
+
+/* The lesson band: the only full-bleed blue on the page, because it is the figure */
+.band { background: var(--hwp-surface-pitch); color: #fff; }
+.band .grid { padding-block: 40px 0; align-items: stretch; }
+.band .figure { grid-column: 1 / span 7; display: grid; grid-template-rows: auto 1fr auto; }
+.band .fighead { display: flex; justify-content: space-between; border-bottom: 1px solid var(--hwp-color-pitch-line); padding-bottom: 10px; }
+.band .stage { padding: 20px 4% 8px; }
+.band .foot { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0 28px; font: italic 400 18px/1.35 var(--hwp-font-family-sans); border-top: 1px solid var(--hwp-color-pitch-line); }
+.verdict { flex: none; font: 800 13px/1 var(--hwp-font-family-display); font-style: normal; letter-spacing: .08em; text-transform: uppercase; padding: 6px 8px; background: #fff; color: var(--hwp-color-pitch-blue); }
+.verdict[data-v="wrong"] { background: var(--hwp-color-coral); color: var(--hwp-color-ink); }
+.band .text { grid-column: 9 / -1; display: grid; align-content: start; padding-bottom: 32px; }
+.band .text .label { color: var(--hwp-color-space-yellow); }
+.band h1 { font: 900 clamp(56px, 6.2vw, 92px)/.86 var(--hwp-font-family-display); text-transform: uppercase; margin: 14px 0 0; }
+.band h1 span { display: block; }
+.band .stand { font: italic 400 20px/1.35 var(--hwp-font-family-sans); margin-top: 18px; max-width: 26ch; }
+.band ol { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1.5px solid #fff; }
+.band li { border-bottom: 1px solid var(--hwp-color-pitch-line); }
+.band button { width: 100%; background: none; border: 0; color: #fff; text-align: left; display: grid; grid-template-columns: 36px 1fr; gap: 2px 12px; padding: 14px 0; cursor: pointer; }
+.band button i { grid-row: span 2; font: 900 34px/.9 var(--hwp-font-family-display); font-style: normal; color: var(--hwp-color-pitch-line); }
+.band button b { font: 900 22px/1 var(--hwp-font-family-display); text-transform: uppercase; }
+.band button span { font: 400 16px/1.4 var(--hwp-font-family-sans); color: var(--hwp-color-pitch-line); }
+.band button[aria-pressed="true"] i { color: var(--hwp-color-space-yellow); }
+.band button[aria-pressed="true"] span { color: #fff; }
+.band .cue { margin-top: 24px; background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); padding: 12px 14px 14px; }
+.band .cue p { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; }
+.band .cue blockquote { margin: 6px 0 0; font: 900 30px/.92 var(--hwp-font-family-display); text-transform: uppercase; }
+.band .meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font: 600 13px/1.3 var(--hwp-font-family-sans); }
+.band .meta a { color: #fff; font: 800 14px/1 var(--hwp-font-family-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-bottom: 3px solid var(--hwp-color-space-yellow); padding-bottom: 3px; }
+
+/* What How We Play is: one paragraph, set like a magazine standfirst, beside the route in */
+.intro { padding-block: 48px 0; align-items: end; }
+.intro p { grid-column: 1 / span 7; font: 400 clamp(24px, 2.4vw, 34px)/1.22 var(--hwp-font-family-sans); letter-spacing: -.005em; }
+.intro p strong { font-weight: 700; }
+.intro .route { grid-column: 9 / -1; display: grid; gap: 10px; justify-items: start; }
+.btn { display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; background: var(--hwp-color-ink); color: var(--hwp-color-paper); text-decoration: none; font: 700 16px/1 var(--hwp-font-family-sans); }
+.btn:hover { background: var(--hwp-color-pitch-blue); }
+.golink { font: 800 15px/1 var(--hwp-font-family-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-bottom: 3px solid var(--hwp-color-pitch-blue); padding: 8px 0 4px; }
+
+/* Team sheet */
+.sheet { margin-top: 96px; border-top: 6px solid var(--hwp-color-ink); }
+.sheet .grid { padding-top: 14px; }
+.sheet .head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--hwp-color-ink); padding-bottom: 12px; }
+.sheet h2 { font: 900 clamp(44px, 5vw, 72px)/.86 var(--hwp-font-family-display); text-transform: uppercase; margin: 0; }
+.sheet h2 small { display: block; font: 800 13px/1 var(--hwp-font-family-display); letter-spacing: .16em; color: var(--hwp-color-pitch-blue); margin-bottom: 10px; }
+.sheet .head p { font: italic 400 18px/1.35 var(--hwp-font-family-sans); max-width: 40ch; }
+.sheet .pitch { grid-column: 1 / span 4; margin-top: 24px; background: var(--hwp-surface-pitch); padding: 12px; align-self: start; }
+.sheet .pitch figcaption { color: #fff; font: italic 400 14px/1.35 var(--hwp-font-family-sans); border-top: 1px solid var(--hwp-color-pitch-line); padding-top: 8px; margin-top: 6px; }
+.sheet .pitch svg a:focus-visible circle { stroke: var(--hwp-color-space-yellow); stroke-width: 1.8; }
+.sheet .roles { grid-column: 5 / span 5; margin-top: 24px; }
+.sheet .rules { grid-column: 10 / -1; margin-top: 24px; }
+.sheet h3 { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 4px; }
+.roles ol, .rules ol { list-style: none; margin: 0; padding: 0; }
+.roles a { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--hwp-color-rule); text-decoration: none; }
+.roles .nums { font: 900 26px/1 var(--hwp-font-family-display); color: var(--hwp-color-pitch-blue); white-space: nowrap; }
+.roles strong { font: 900 22px/1 var(--hwp-font-family-display); text-transform: uppercase; }
+.roles span span { display: block; font: 400 14px/1.35 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); margin-top: 3px; }
+.roles a:hover strong, .roles a.lit strong { color: var(--hwp-color-pitch-blue); }
+.rules a { display: block; padding: 10px 0 12px; border-bottom: 1px solid var(--hwp-color-rule); text-decoration: none; }
+.rules b { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-color-pitch-blue); }
+.rules strong { display: block; font: 900 26px/.95 var(--hwp-font-family-display); text-transform: uppercase; margin-top: 4px; }
+.rules i { display: block; font: italic 400 14px/1.35 var(--hwp-font-family-sans); margin-top: 4px; }
+.rules a[aria-current] strong { color: var(--hwp-color-pitch-blue); }
+.rules .reviewed { margin-top: 14px; display: inline-block; font: 600 12px/1 var(--hwp-font-family-sans); color: var(--hwp-color-pitch-blue); border: 1.5px solid currentColor; padding: 6px 8px; }
+
+/* Scoreboard: the step from 7v7 to 9v9 */
+.score { margin-top: 112px; background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
+.score .grid { padding-block: 40px 44px; align-items: start; }
+.score .lead { grid-column: 1 / span 4; }
+.score .lead .label { color: var(--hwp-color-space-yellow); }
+.score h2 { font: 900 clamp(40px, 4.4vw, 60px)/.86 var(--hwp-font-family-display); text-transform: uppercase; margin: 12px 0 0; }
+.score .lead p { font: 400 16px/1.5 var(--hwp-font-family-sans); margin-top: 16px; max-width: 36ch; }
+.score .lead a { color: var(--hwp-color-paper); }
+.score table { grid-column: 6 / -1; border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.score th { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; text-align: left; padding: 0 0 10px; color: #A8AFB6; }
+.score th:last-child, .score td:last-child { text-align: right; }
+.score tbody th { font: 400 15px/1.3 var(--hwp-font-family-sans); letter-spacing: 0; text-transform: none; color: var(--hwp-color-paper); padding: 12px 0; border-top: 1px solid #3A4651; }
+.score td { padding: 8px 0; border-top: 1px solid #3A4651; font: 900 34px/1 var(--hwp-font-family-display); }
+.score td.was { color: #A8AFB6; font-weight: 800; font-size: 26px; }
+.score td.now { color: var(--hwp-color-paper); }
+.score .chip { display: inline-block; margin-top: 18px; background: var(--hwp-color-paper); color: var(--hwp-color-ink); font: 600 12px/1 var(--hwp-font-family-sans); padding: 6px 8px; }
+
+/* Colophon */
+.colo { padding-block: 40px 56px; row-gap: 24px; }
+.colo .motto { grid-column: 1 / span 5; font: 900 clamp(36px, 3.6vw, 52px)/.88 var(--hwp-font-family-display); text-transform: uppercase; }
+.colo .motto span:last-child { color: var(--hwp-color-pitch-blue); }
+.colo div { font: 400 15px/1.5 var(--hwp-font-family-sans); }
+.colo .who { grid-column: 7 / span 3; }
+.colo .dev { grid-column: 10 / -1; }
+.colo h3 { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 8px; border-top: 1.5px solid var(--hwp-color-ink); padding-top: 8px; }
+.colo ul { list-style: none; margin: 0; padding: 0; }
+.colo li { display: flex; justify-content: space-between; border-bottom: 1px solid var(--hwp-color-rule); padding: 5px 0; }
+.colo li em { font-style: normal; color: var(--hwp-text-secondary); }
+
+footer { border-top: 1px solid var(--hwp-color-ink); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-block: 18px 28px; font: 400 13px/1.5 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+footer nav a { color: var(--hwp-text-primary); }
+
+/* ---- Tablet and mobile ---- */
+@media (max-width: 1023px) {
+  .grid { grid-template-columns: repeat(6, minmax(0, 1fr)); --g: 20px; }
+  .band .figure, .band .text { grid-column: 1 / -1; }
+  .band .grid { padding-top: 24px; }
+  .band .grid { display: flex; flex-direction: column; padding-bottom: 28px; }
+  .band .text { display: contents; }
+  .band .text > .label { order: 1; } .band h1 { order: 2; } .band .stand { order: 3; }
+  .band .figure { order: 4; margin-top: 20px; } .band ol { order: 5; margin-top: 4px; } .band .cue { order: 6; } .band .meta { order: 7; }
+  .band .fighead span:last-child { display: none; }
+  .band h1 { font-size: clamp(56px, 15vw, 96px); }
+  .band .foot { padding-bottom: 20px; }
+  .intro p, .intro .route { grid-column: 1 / -1; }
+  .intro .route { margin-top: 20px; }
+  .sheet .pitch { grid-column: 1 / span 3; }
+  .sheet .roles { grid-column: 4 / -1; }
+  .sheet .rules { grid-column: 1 / -1; }
+  .rules ol { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .score .lead, .score table { grid-column: 1 / -1; }
+  .score table { margin-top: 24px; }
+  .colo .motto, .colo .who, .colo .dev { grid-column: 1 / -1; }
+}
+@media (max-width: 599px) {
+  .mast nav { display: none; }
+  .mast .menu { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; background: none; border: 0; font: 700 15px/1 var(--hwp-font-family-sans); }
+  .band .stand { font-size: 18px; }
+  .band .stage { padding-inline: 0; }
+  .band .cue blockquote { font-size: 26px; }
+  .intro p { font-size: 22px; }
+  .sheet { margin-top: 64px; }
+  .sheet .pitch { grid-column: 1 / -1; width: 72%; justify-self: center; }
+  .sheet .roles { grid-column: 1 / -1; }
+  .rules ol { grid-template-columns: 1fr; }
+  .score { margin-top: 72px; }
+  .score td { font-size: 26px; } .score td.was { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<header class="wrap mast">
+  <a class="brand" href="#" aria-label="How We Play, home"><img src="../design-system/assets/logo/hwp-lockup-inline.svg" alt="" width="180" height="28"><span>Helping your team take the next step.</span></a>
+  <nav aria-label="Main"><a href="#" aria-current="page">9v9 formations</a><a href="#">Moving up</a><a href="#">About</a></nav>
+  <button class="menu" type="button" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu</button>
+</header>
+
+<main>
+  <section class="band on-pitch" aria-labelledby="lesson-h" data-lesson>
+    <div class="wrap grid">
+      <figure class="figure" aria-label="One goes, one stays: diagram">
+        <div class="fighead label"><span>9v9 · 3-1-3-1 · Rule 2 of 4</span><span data-src></span></div>
+        <div class="stage" data-stage></div>
+        <figcaption class="foot"><span class="verdict" data-verdict></span><span data-cap aria-live="polite"></span></figcaption>
+      </figure>
+      <div class="text">
+        <p class="label">Learn 9v9 one decision at a time</p>
+        <h1 id="lesson-h"><span>One goes.</span><span>One stays.</span></h1>
+        <p class="stand" data-tag></p>
+        <ol data-steps></ol>
+        <div class="cue"><p>Say it on the touchline</p><blockquote data-cue></blockquote></div>
+        <div class="meta"><span>✓ Coaching reviewed · 19 October 2026</span><a href="#">Full lesson</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid intro" aria-label="About How We Play">
+    <p><strong>How We Play</strong> is a free, visual coaching resource for grassroots coaches. Formations, playing principles and each player's job, in straightforward words and tactical pictures you can show your team.</p>
+    <div class="route"><a class="btn" href="#">Open the 3-1-3-1 guide →</a><a class="golink" href="#">Moving from 7v7 to 9v9</a></div>
+  </section>
+
+  <section class="sheet" aria-labelledby="sheet-h">
+    <div class="wrap grid">
+      <div class="head"><h2 id="sheet-h"><small>Team sheet · 9v9</small>The 3-1-3-1</h2><p>One possible way to play 9v9: a starting shape, four rules and a job for every position. Tap a player.</p></div>
+      <figure class="pitch on-pitch"><div data-picker></div><figcaption data-shape-cap></figcaption></figure>
+      <div class="roles"><h3>Positions</h3><ol data-roles></ol></div>
+      <div class="rules"><h3>Four rules</h3><ol data-rules></ol><span class="reviewed">✓ Coaching reviewed · 19 October 2026</span></div>
+    </div>
+  </section>
+
+  <section class="score" aria-labelledby="score-h">
+    <div class="wrap grid">
+      <div class="lead"><p class="label">Moving up</p><h2 id="score-h">7v7 to 9v9</h2><p>Two more players, a bigger pitch and offside for the first time. England Football's maximum formats for 2026/27; check your league. <a href="#">What else changes</a></p><span class="chip">Official rule verified · 19 October 2026</span></div>
+      <table data-score><caption class="sr">7v7 compared with 9v9</caption><thead><tr><th scope="col"></th><th scope="col">7v7</th><th scope="col">9v9</th></tr></thead><tbody></tbody></table>
+    </div>
+  </section>
+
+  <section class="wrap grid colo" aria-label="Who we are">
+    <p class="motto"><span>Simple pictures. Simple decisions.</span> <span>Play together.</span></p>
+    <div class="who"><h3>Who's behind it</h3><p>Written by Niall Walsh, a volunteer grassroots coach. Reviewed by Greg Williams before anything is published.</p></div>
+    <div class="dev"><h3>In development</h3><ul><li>3-3-2 <em>In review</em></li><li>2-2-3-1 <em>Exploratory</em></li><li>5v5 · 7v7 · 11v11 <em>Later</em></li></ul></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><nav aria-label="Footer"><a href="#">9v9 formations</a><a href="#">Moving up</a><a href="#">About and standards</a><a href="#">The Coaching Notes</a></nav><span>Independent. Not affiliated with or endorsed by The FA or England Football.</span></div></footer>
+
+<script type="module">
+import { load, renderPitch, wireLesson, esc } from './shared.mjs';
+const { f, rule, frames, fact } = await load();
+const q = s => document.querySelector(s);
+
+// Lesson band
+const r = rule('one-goes-one-stays');
+q('[data-tag]').textContent = r.tag;
+q('[data-cue]').textContent = r.cue;
+q('[data-src]').textContent = 'Redrawn from the source playbook, ' + r.src;
+const fr = frames('one-goes');
+const titles = ['Ball on the right', 'Ball on the left', 'Never both'];
+q('[data-steps]').innerHTML = fr.map((x, i) => `<li><button type="button" data-step aria-pressed="false"><i>${i + 1}</i><b>${titles[i]}</b><span>${esc(r.look[i].replace(/^[^:]+:\s*/, ''))}</span></button></li>`).join('');
+wireLesson(q('[data-lesson]'), fr);
+
+// Team sheet: the shape with each player linking to its position
+const PICK = { GK: 'goalkeeper', '5': 'centre-back', '2': 'outside-defenders', '3': 'outside-defenders', '6': 'screen', '7': 'wide-players', '11': 'wide-players', '10': 'number-10', '9': 'striker' };
+const roleOf = id => f.roles.find(x => x.id === id);
+q('[data-picker]').innerHTML = renderPitch(f.shape, { theme: 'blue', title: f.shape.title, desc: f.shape.altSummary })
+  .replace(/<g data-player="us-([^"]+)">/g, (m, l) => { const ro = roleOf(PICK[l]); return ro ? `<a href="#${ro.id}" aria-label="${l}: ${esc(ro.title)}" data-role="${ro.id}"><g>` : m; })
+  .replace(/(<a href="#[^"]+"[^>]*><g>[\s\S]*?<\/g>)/g, '$1</a>');
+q('[data-shape-cap]').textContent = f.shape.caption;
+q('[data-roles]').innerHTML = f.roles.map(x => `<li><a href="#" id="${x.id}"><span class="nums">${x.nums.join(' · ')}</span><span><strong>${esc(x.title)}</strong><span>${esc(x.head)}</span></span></a></li>`).join('');
+document.querySelectorAll('[data-role]').forEach(a => { const lit = on => document.getElementById(a.dataset.role).classList.toggle('lit', on); a.addEventListener('mouseenter', () => lit(true)); a.addEventListener('mouseleave', () => lit(false)); a.addEventListener('focus', () => lit(true)); a.addEventListener('blur', () => lit(false)); });
+q('[data-rules]').innerHTML = f.rules.map(x => `<li><a href="#" ${x.id === 'one-goes-one-stays' ? 'aria-current="true"' : ''}><b>Rule ${x.n}</b><strong>${esc(x.title)}</strong><i>${esc(x.cue)}</i></a></li>`).join('');
+
+// Scoreboard (verified facts, shortened for display)
+const clean = v => v.replace(/ \(minimum[^)]*\)/, '').replace('Up to ', '');
+const rows = [['Players a side', '7', '9'], ['Recommended pitch', clean(fact('pitch').v7), clean(fact('pitch').v9)], ['Ball', fact('ball').v7, fact('ball').v9], ['Match length, up to', clean(fact('length').v7), clean(fact('length').v9)], ['Goals', fact('goals').v7, fact('goals').v9], ['Offside', 'None', fact('offside').v9], ['Heading', fact('heading').v7, fact('heading').v9]];
+q('[data-score] tbody').innerHTML = rows.map(([k, a, b]) => `<tr><th scope="row">${k}</th><td class="was">${esc(a)}</td><td class="now">${esc(b)}</td></tr>`).join('');
+</script>
+</body>
+</html>

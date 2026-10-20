@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treatment A · The 9v9 issue · How We Play</title>
+<link rel="stylesheet" href="base.css">
+<style>
+/* Treatment A: "The issue". A magazine cover, a contents page and one feature spread.
+   12-column grid, 1360 max. Rhythm from an 8px base: 8 / 16 / 24 / 40 / 72 / 120. */
+:root { --g: 24px; --edge: max(20px, calc((100vw - 1312px) / 2)); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); padding-inline: var(--edge); }
+.grid > * { min-width: 0; }
+
+/* Masthead: one line, small, confident */
+.mast { border-top: 6px solid var(--hwp-color-ink); }
+.mast .grid { align-items: center; height: 60px; border-bottom: 1px solid var(--hwp-color-ink); }
+.mast .logo { grid-column: 1 / span 3; display: flex; align-items: center; }
+.mast .logo img { height: 24px; width: auto; }
+.mast .issue { grid-column: 4 / span 5; font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-text-secondary); }
+.mast nav { grid-column: 9 / -1; display: flex; justify-content: flex-end; gap: 28px; font: 600 15px/1 var(--hwp-font-family-sans); }
+.mast nav a { text-decoration: none; padding: 14px 0; }
+.mast .menu { display: none; }
+.mast nav a:hover { box-shadow: inset 0 -3px 0 var(--hwp-color-pitch-blue); }
+
+/* Cover */
+.cover { position: relative; padding-top: 40px; }
+.cover .text { grid-column: 1 / span 7; grid-row: 1; padding-bottom: 40px; display: grid; align-content: start; }
+.kicker { font: 800 13px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-color-pitch-blue); }
+.cover h1 { font: 900 clamp(64px, 11.4vw, 168px)/.8 var(--hwp-font-family-display); text-transform: uppercase; letter-spacing: -.01em; margin: 16px 0 0; }
+.cover h1 span { display: block; }
+.cover h1 .num { color: var(--hwp-color-pitch-blue); }
+.deck { font: 400 22px/1.38 var(--hwp-font-family-sans); max-width: 30ch; margin-top: 32px; }
+.deck em { font-style: italic; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 32px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; background: var(--hwp-color-ink); color: var(--hwp-color-paper); text-decoration: none; font: 700 16px/1 var(--hwp-font-family-sans); }
+.btn:hover { background: var(--hwp-color-pitch-blue); }
+.golink { font: 800 15px/1 var(--hwp-font-family-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-bottom: 3px solid var(--hwp-color-pitch-blue); padding: 8px 0 4px; }
+
+/* The cover image: a figure that runs to the right edge of the window */
+.cover .plate { grid-column: 8 / -1; grid-row: 1 / span 2; margin-right: calc(-1 * var(--edge)); margin-top: 29px; background: var(--hwp-surface-pitch); color: #fff; display: grid; grid-template-rows: auto 1fr auto; padding: 16px 20px 20px; min-height: 0; }
+.plate .fighead { display: flex; justify-content: space-between; font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .14em; text-transform: uppercase; }
+.plate .stage { align-self: center; justify-self: center; width: min(100%, 470px); padding-block: 8px; }
+.plate figcaption { font: italic 400 16px/1.4 var(--hwp-font-family-sans); max-width: 34ch; border-top: 1px solid var(--hwp-color-pitch-line); padding-top: 10px; }
+
+/* Contents: sits under the headline, beside the plate */
+.contents { grid-column: 1 / span 7; grid-row: 2; align-self: end; border-top: 1.5px solid var(--hwp-color-ink); padding: 10px 0 0; margin-bottom: 0; }
+.contents h2 { font: 800 13px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 6px; }
+.contents ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--g); }
+.contents li { border-bottom: 1px solid var(--hwp-color-rule); }
+.contents a { display: grid; grid-template-columns: 44px 1fr; gap: 0 8px; padding: 12px 0 12px; text-decoration: none; }
+.contents b { grid-row: span 2; font: 900 30px/.9 var(--hwp-font-family-display); color: var(--hwp-color-pitch-blue); }
+.contents strong { font: 900 22px/1 var(--hwp-font-family-display); text-transform: uppercase; }
+.contents span { font: 400 14px/1.35 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); margin-top: 3px; }
+.contents a:hover strong { color: var(--hwp-color-pitch-blue); }
+
+/* Feature spread: the lesson */
+.feature { padding-top: 120px; padding-bottom: 40px; row-gap: 0; }
+.feature .rail { grid-column: 1 / span 2; }
+.feature .rail .big { font: 900 220px/.72 var(--hwp-font-family-display); color: var(--hwp-color-pitch-blue); letter-spacing: -.02em; }
+.feature .rail p { font: 800 13px/1.3 var(--hwp-font-family-display); letter-spacing: .14em; text-transform: uppercase; margin-top: 16px; }
+.feature .head { grid-column: 3 / span 10; display: grid; grid-template-columns: subgrid; align-items: end; border-bottom: 1.5px solid var(--hwp-color-ink); padding-bottom: 16px; }
+.feature .head h2 { grid-column: 1 / span 6; font: 900 clamp(48px, 6.4vw, 92px)/.84 var(--hwp-font-family-display); text-transform: uppercase; margin: 0; }
+.feature .head .stand { grid-column: 7 / span 4; font: italic 400 21px/1.35 var(--hwp-font-family-sans); }
+.feature .fig { grid-column: 3 / span 5; margin-top: 24px; background: var(--hwp-surface-pitch); color: #fff; padding: 16px; display: grid; gap: 12px; align-content: start; position: sticky; top: 16px; align-self: start; }
+.fig .foot { display: flex; gap: 10px; align-items: flex-start; font: italic 400 16px/1.35 var(--hwp-font-family-sans); min-height: 2.8em; }
+.verdict { flex: none; font: 800 13px/1 var(--hwp-font-family-display); letter-spacing: .08em; text-transform: uppercase; padding: 6px 8px; background: #fff; color: var(--hwp-color-pitch-blue); font-style: normal; }
+.verdict[data-v="wrong"] { background: var(--hwp-color-coral); color: var(--hwp-color-ink); }
+.fig .tools { display: flex; justify-content: space-between; border-top: 1px solid var(--hwp-color-pitch-line); padding-top: 8px; font: 600 14px/1 var(--hwp-font-family-sans); }
+.feature .steps { grid-column: 8 / span 5; margin-top: 24px; display: grid; align-content: start; }
+.steps ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps button { width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--hwp-color-rule); padding: 16px 0 18px 56px; position: relative; cursor: pointer; display: grid; gap: 4px; }
+.steps button::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 10px; font: 900 44px/1 var(--hwp-font-family-display); color: var(--hwp-color-rule); }
+.steps button[aria-pressed="true"]::before { color: var(--hwp-color-pitch-blue); }
+.steps button b { font: 900 26px/1 var(--hwp-font-family-display); text-transform: uppercase; }
+.steps button span { font: 400 17px/1.45 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); }
+.steps button[aria-pressed="true"] span { color: var(--hwp-text-primary); }
+.steps button:hover b { color: var(--hwp-color-pitch-blue); }
+.cue { margin-top: 24px; border-top: 4px solid var(--hwp-color-ink); padding-top: 10px; }
+.cue p:first-child { font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-color-pitch-blue); }
+.cue blockquote { margin: 8px 0 0; font: 900 40px/.9 var(--hwp-font-family-display); text-transform: uppercase; }
+.cue .extra { font: 400 16px/1.45 var(--hwp-font-family-sans); margin-top: 10px; }
+.status { display: inline-flex; margin-top: 16px; font: 600 12px/1 var(--hwp-font-family-sans); color: var(--hwp-color-pitch-blue); border: 1.5px solid currentColor; padding: 6px 8px; }
+.steps .more { margin-top: 24px; }
+
+/* Rest of the guide: a compact running list, not a card grid */
+.others { padding-top: 72px; }
+.others h3 { grid-column: 1 / span 2; font: 800 13px/1.3 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; margin: 0; padding-top: 4px; }
+.others ul { grid-column: 3 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1.15fr 1fr 1fr; border-top: 1.5px solid var(--hwp-color-ink); }
+.others li + li { border-left: 1px solid var(--hwp-color-rule); }
+.others a { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 14px 16px 14px 0; text-decoration: none; height: 100%; }
+.others li + li a { padding-left: 16px; }
+.others .thumb { background: var(--hwp-surface-pitch); padding: 3px; align-self: start; }
+.others b { display: block; font: 800 12px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-color-pitch-blue); }
+.others strong { display: block; font: 900 24px/1 var(--hwp-font-family-display); text-transform: uppercase; margin-top: 4px; }
+.others i { display: block; font: italic 400 15px/1.35 var(--hwp-font-family-sans); margin-top: 6px; }
+.others a:hover strong { color: var(--hwp-color-pitch-blue); }
+
+/* Moving up + philosophy: an 8 / 4 split of two different densities */
+.lower { padding-top: 120px; padding-bottom: 96px; align-items: start; }
+.moving { grid-column: 1 / span 8; }
+.moving .kicker { display: block; }
+.moving h2 { font: 900 clamp(40px, 4.6vw, 64px)/.86 var(--hwp-font-family-display); text-transform: uppercase; margin: 12px 0 0; max-width: 12ch; }
+.moving .lede { font: 400 18px/1.5 var(--hwp-font-family-sans); max-width: 46ch; margin-top: 16px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 32px; border-top: 1.5px solid var(--hwp-color-ink); }
+.stats div { padding: 12px 16px 0 0; }
+.stats div + div { padding-left: 16px; border-left: 1px solid var(--hwp-color-rule); }
+.stats dt { font: 400 13px/1.3 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); }
+.stats dd { margin: 6px 0 0; font: 900 40px/.9 var(--hwp-font-family-display); }
+.stats small { display: block; font: 400 13px/1.3 var(--hwp-font-family-sans); color: var(--hwp-text-secondary); margin-top: 6px; }
+.chip { display: inline-block; margin-top: 16px; font: 600 12px/1 var(--hwp-font-family-sans); background: var(--hwp-color-ink); color: var(--hwp-color-paper); padding: 6px 8px; }
+.moving .golink { display: inline-block; margin-left: 16px; }
+.side { grid-column: 10 / -1; border-left: 1.5px solid var(--hwp-color-ink); padding-left: 20px; display: grid; gap: 28px; }
+.side .motto { font: 900 44px/.86 var(--hwp-font-family-display); text-transform: uppercase; }
+.side .motto span { display: block; }
+.side .motto span:last-child { color: var(--hwp-color-pitch-blue); }
+.side p { font: 400 15px/1.5 var(--hwp-font-family-sans); }
+.side h3 { font: 800 13px/1 var(--hwp-font-family-display); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 8px; }
+.side ul { margin: 0; padding: 0; list-style: none; font: 400 15px/1.5 var(--hwp-font-family-sans); }
+.side ul li { border-top: 1px solid var(--hwp-color-rule); padding: 6px 0; display: flex; justify-content: space-between; gap: 8px; }
+.side ul li em { font-style: normal; color: var(--hwp-text-secondary); white-space: nowrap; }
+
+footer { background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
+footer .grid { padding-block: 32px; row-gap: 16px; font: 400 14px/1.5 var(--hwp-font-family-sans); align-items: start; }
+footer .logo { grid-column: 1 / span 3; }
+footer .logo img { height: 22px; width: auto; }
+footer nav { grid-column: 4 / span 5; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer nav a { color: var(--hwp-color-paper); }
+footer p { grid-column: 9 / -1; color: var(--hwp-color-paper); opacity: .85; }
+
+/* ---- Tablet and mobile ---- */
+@media (max-width: 1023px) {
+  .grid { grid-template-columns: repeat(6, minmax(0, 1fr)); --g: 20px; }
+  .mast .logo { grid-column: 1 / span 3; } .mast .issue { display: none; } .mast nav { grid-column: 4 / -1; gap: 18px; font-size: 14px; }
+  .cover .text, .contents { grid-column: 1 / -1; grid-row: auto; }
+  .cover .plate { grid-column: 1 / -1; grid-row: auto; margin-right: calc(-1 * var(--edge)); margin-left: calc(-1 * var(--edge)); min-height: 0; }
+  .contents { margin-top: 32px; }
+  .feature .rail { grid-column: 1 / -1; display: flex; align-items: flex-end; gap: 16px; }
+  .feature .rail .big { font-size: 120px; }
+  .feature .head, .feature .fig, .feature .steps { grid-column: 1 / -1; }
+  .feature .head { display: block; } .feature .head .stand { margin-top: 12px; }
+  .feature .fig { position: static; }
+  .others h3 { grid-column: 1 / -1; margin-bottom: 8px; }
+  .others ul { grid-column: 1 / -1; grid-template-columns: 1fr; }
+  .others li + li { border-left: 0; border-top: 1px solid var(--hwp-color-rule); }
+  .others li + li a { padding-left: 0; }
+  .moving, .side { grid-column: 1 / -1; }
+  .side { border-left: 0; padding-left: 0; border-top: 1.5px solid var(--hwp-color-ink); padding-top: 16px; margin-top: 48px; grid-template-columns: 1fr 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats div:nth-child(3) { border-left: 0; padding-left: 0; }
+  footer .logo, footer nav, footer p { grid-column: 1 / -1; }
+}
+@media (max-width: 599px) {
+  .mast nav { display: none; } .mast .menu { display: inline-flex; grid-column: 5 / -1; justify-self: end; align-items: center; gap: 6px; min-height: 44px; background: none; border: 0; font: 700 15px/1 var(--hwp-font-family-sans); }
+  .feature .fig { margin-inline: calc(-1 * var(--edge)); }
+  .plate .stage { width: 78%; }
+  .mast .logo img { height: 20px; }
+  .cover { padding-top: 24px; }
+  .cover h1 { font-size: 22vw; }
+  .deck { font-size: 19px; margin-top: 20px; }
+  .cover .text { padding-bottom: 28px; }
+  .plate .stage { width: min(100%, 300px); }
+  .contents ol { grid-template-columns: 1fr; }
+  .feature { padding-top: 72px; }
+  .feature .rail .big { font-size: 96px; }
+  .cue blockquote { font-size: 32px; }
+  .lower { padding-top: 72px; padding-bottom: 56px; }
+  .stats dd { font-size: 32px; }
+  .side { grid-template-columns: 1fr; }
+  .moving .golink { display: block; margin: 16px 0 0; width: fit-content; }
+}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="grid">
+    <a class="logo" href="#" aria-label="How We Play, home"><img src="../design-system/assets/logo/hwp-lockup-inline.svg" alt="How We Play" width="180" height="28"></a>
+    <p class="issue">The 9v9 issue · Free guides for grassroots coaches</p>
+    <nav aria-label="Main"><a href="#">9v9 formations</a><a href="#">Moving up</a><a href="#">About</a></nav>
+    <button class="menu" type="button" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu</button>
+  </div>
+</header>
+
+<main>
+  <section class="cover grid" aria-labelledby="cover-h">
+    <div class="text">
+      <p class="kicker">How We Play · For U12 and U13 coaches</p>
+      <h1 id="cover-h"><span>The step</span><span>up to</span><span class="num">9v9</span></h1>
+      <p class="deck">Two more players, a much bigger pitch and offside for the first time. <em>Free, visual guides that help volunteer coaches get their team ready.</em></p>
+      <div class="cta"><a class="btn" href="#">Open the 3-1-3-1 guide →</a><a class="golink" href="#">What changes from 7v7</a></div>
+    </div>
+    <figure class="plate on-pitch" aria-labelledby="plate-cap">
+      <div class="fighead"><span>Fig. 1 · Starting shape</span><span>9v9 · 1-3-1-3-1</span></div>
+      <div class="stage" data-shape></div>
+      <figcaption id="plate-cap" data-shape-cap></figcaption>
+    </figure>
+    <nav class="contents" aria-labelledby="contents-h">
+      <h2 id="contents-h">In this issue</h2>
+      <ol data-contents></ol>
+    </nav>
+  </section>
+
+  <section class="feature grid" aria-labelledby="lesson-h" data-lesson>
+    <div class="rail"><div class="big" aria-hidden="true">02</div><p>Rule two of four<br>3-1-3-1</p></div>
+    <div class="head"><h2 id="lesson-h">One goes, one stays</h2><p class="stand" data-tag></p></div>
+    <figure class="fig on-pitch" aria-label="One goes, one stays: diagram">
+      <div data-stage></div>
+      <div class="foot"><span class="verdict" data-verdict></span><span data-cap aria-live="polite"></span></div>
+      <div class="tools"><span data-src></span><span>Tap a step to play it</span></div>
+    </figure>
+    <div class="steps">
+      <ol data-steps></ol>
+      <div class="cue"><p>Say it on the touchline</p><blockquote data-cue></blockquote><p class="extra" data-extra></p></div>
+      <span class="status">✓ Coaching reviewed · 19 October 2026</span>
+      <a class="golink more" href="#">Read the full lesson</a>
+    </div>
+  </section>
+
+  <section class="others grid" aria-labelledby="others-h">
+    <h3 id="others-h">The other three rules</h3>
+    <ul data-others></ul>
+  </section>
+
+  <section class="lower grid">
+    <div class="moving" aria-labelledby="mov-h">
+      <span class="kicker">Moving up · 7v7 to 9v9</span>
+      <h2 id="mov-h">What changes at nine a side</h2>
+      <p class="lede">A lot stays the same, and that's the place to start. These are England Football's maximum formats for 2026/27; check your league for local rules.</p>
+      <dl class="stats" data-stats></dl>
+      <span class="chip">Official rule verified · 19 October 2026</span>
+      <a class="golink" href="#">Read Moving Up</a>
+    </div>
+    <aside class="side" aria-label="How we work">
+      <p class="motto"><span>Simple pictures.</span><span>Simple decisions.</span><span>Play together.</span></p>
+      <div><h3>Who's behind it</h3><p>Written by Niall Walsh, a volunteer grassroots coach. Coaching content reviewed by Greg Williams before it's published. Independent: not affiliated with or endorsed by The FA.</p></div>
+      <div><h3>In development</h3><ul><li>3-3-2 guide <em>In review</em></li><li>2-2-3-1 guide <em>Exploratory</em></li><li>5v5, 7v7, 11v11 <em>Later</em></li></ul></div>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="grid">
+    <div class="logo"><img src="../design-system/assets/logo/hwp-lockup-inline-reverse.svg" alt="How We Play" width="180" height="28"></div>
+    <nav aria-label="Footer"><a href="#">9v9 formations</a><a href="#">Moving from 7v7 to 9v9</a><a href="#">About and standards</a><a href="#">The Coaching Notes</a></nav>
+    <p>How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.</p>
+  </div>
+</footer>
+
+<script type="module">
+import { load, renderPitch, wireLesson, esc } from './shared.mjs';
+const { f, rule, frames, fact } = await load();
+const q = s => document.querySelector(s);
+
+// Cover plate: the reviewed 3-1-3-1 starting shape
+q('[data-shape]').innerHTML = renderPitch({ ...f.shape, altSummary: f.shape.altSummary }, { theme: 'blue', title: f.shape.title });
+q('[data-shape-cap]').textContent = f.shape.caption;
+
+// Contents
+const items = [
+  ['01', 'The 3-1-3-1 guide', 'A starting shape, four rules and a job for every position'],
+  ['02', 'One goes, one stays', 'This issue’s lesson, with the diagram that plays it'],
+  ['03', 'Eight positions', f.roles.slice(0, 4).map(r => r.title).join(', ') + ' and more'],
+  ['04', 'Moving from 7v7 to 9v9', 'What changes, what stays and what to sort out before pre-season']
+];
+q('[data-contents]').innerHTML = items.map(([n, t, s]) => `<li><a href="#"><b>${n}</b><strong>${esc(t)}</strong><span>${esc(s)}</span></a></li>`).join('');
+
+// Feature lesson: the three source lines drive the three source frames
+const r = rule('one-goes-one-stays');
+q('[data-tag]').textContent = `${r.tag} ${r.summary}`;
+q('[data-cue]').textContent = r.cue;
+q('[data-extra]').textContent = r.extra;
+const fr = frames('one-goes');
+const titles = ['Ball on the right', 'Ball on the left', 'Never both'];
+q('[data-steps]').innerHTML = fr.map((x, i) => `<li><button type="button" data-step aria-pressed="false"><b>${titles[i]}</b><span>${esc(r.look[i].replace(/^[^:]+:\s*/, ''))}</span></button></li>`).join('');
+wireLesson(q('[data-lesson]'), fr);
+
+// The other three rules, each with a small thumbnail of its own diagram
+const others = f.rules.filter(x => x.id !== 'one-goes-one-stays');
+q('[data-others]').innerHTML = others.map(x => {
+  const d = f.diagrams[x.diagram].frames[x.thumb || 0];
+  return `<li><a href="#"><span class="thumb" aria-hidden="true">${renderPitch(d, { theme: 'blue', numbers: false, labels: false })}</span><span><b>Rule ${x.n}</b><strong>${esc(x.title)}</strong><i>${esc(x.cue)}</i></span></a></li>`;
+}).join('');
+
+// Moving up stats (verified facts)
+// Verified values, shortened for display only (the full table is on Moving Up)
+const stat = (label, now, was) => `<div><dt>${label}</dt><dd>${now}</dd><small>${was}</small></div>`;
+const clean = v => v.replace(/ \(minimum[^)]*\)/, '');
+document.querySelector('[data-src]').textContent = 'Redrawn from the source playbook, ' + rule('one-goes-one-stays').src;
+q('[data-stats]').innerHTML = stat('Recommended pitch', clean(fact('pitch').v9), `7v7: ${clean(fact('pitch').v7)}`) + stat('Ball', fact('ball').v9, `7v7: ${fact('ball').v7}`) + stat('Match length, up to', fact('length').v9.replace('Up to ', ''), `7v7: ${fact('length').v7.replace('Up to ', '')}`) + stat('Offside', fact('offside').v9, '7v7: none');
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@
  *
  * Usage: HWP_TARGET=public node scripts/check-build.mjs [distDir]
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, rmSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 import { loadModel, ROOT } from './load-content.mjs';
 import { resolveTarget } from '../src/lib/model.mjs';
@@ -24,6 +24,13 @@ const dist = join(ROOT, process.argv[2] || 'dist');
 const model = loadModel(target);
 const errors = [], notes = [];
 const fail = (page, msg) => errors.push(`${page}: ${msg}`);
+
+// Gated static assets: files listed under a register item's `assets` are removed from any build that item is
+// blocked from, so an unlinked file can't be found at its URL. A page that still references one then fails below.
+for (const item of Object.values(model.items)) {
+  if (!item.assets || model.gate[item.id].allowed) continue;
+  for (const a of item.assets) { const p = join(dist, a); if (existsSync(p)) { rmSync(p); notes.push(`removed gated asset ${a} (${item.id})`); } }
+}
 
 const walk = d => readdirSync(d).flatMap(n => { const p = join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const files = walk(dist);

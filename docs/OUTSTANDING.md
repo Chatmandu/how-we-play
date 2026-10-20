@@ -4,9 +4,10 @@
 
 - Design system approved by Niall Walsh, 19 October 2026 (recorded on every register entry).
 - Source playbook: Niall's own work; permission granted.
-- Coaching reviewer: Greg Williams. **3-1-3-1 reviewed by Greg Williams, 19 October 2026**: guide, four lessons and eight position pages are public. 3-3-2, 2-2-3-1 and the Moving Up checklist are not reviewed and stay private.
+- 20 October 2026: the earlier Greg Williams review entry was withdrawn (no documented approval). Intended coaching reviewer: **David Le Tissier**. No review is recorded yet, so the 3-1-3-1, 3-3-2, 2-2-3-1 and the Moving Up checklist are all private. See `CONTENT-REVIEW-REGISTER.md`.
 - Author on About: Niall Walsh.
-- Domain: stays switched off for now.
+- Domain: live at howweplayfootball.com (Cloudflare Workers).
+- Positioning: How We Play covers grassroots formats generally; 9v9 is the first collection. No claim of 3v3 coaching experience.
 
 ## Still open
 

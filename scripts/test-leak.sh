@@ -20,23 +20,30 @@ build_public() { (cd "$TMP/site" && HWP_TARGET=public npx astro build >/dev/null
 
 # 1. Link to a blocked guide
 fresh
-sed -i 's|<h1 class="hwp-display-xl"|<a href="/formations/9v9/3-3-2/">Leak</a><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
+grep -q '<h1 id="cover-h"' "$TMP/site/src/pages/index.astro" || { echo "FAIL  injection anchor missing from homepage; update this test"; exit 1; }
+sed -i 's|<h1 id="cover-h"|<a href="/formations/9v9/3-3-2/">Leak</a><h1 id="cover-h"|' "$TMP/site/src/pages/index.astro"
 if build_public; then bad "public build with a link to an unreviewed guide should fail"; else grep -q "broken reference /formations/9v9/3-3-2/" "$TMP/check.log" && ok "public build fails on a link to an unreviewed guide" || bad "failed, but not for the expected reason"; fi
 
 # 2. Unreviewed status chip or private strip on a public page
 fresh
-sed -i 's|<h1 class="hwp-display-xl"|<span class="hwp-chip hwp-chip--review">Coaching review required</span><h1 class="hwp-display-xl"|' "$TMP/site/src/pages/index.astro"
+sed -i 's|<h1 id="cover-h"|<span class="hwp-chip hwp-chip--review">Coaching review required</span><h1 id="cover-h"|' "$TMP/site/src/pages/index.astro"
 if build_public; then bad "public build containing unreviewed-content markers should fail"; else grep -q "private, unreviewed, exploratory or demo content" "$TMP/check.log" && ok "public build fails when unreviewed content is pasted into a public page" || bad "failed, but not for the expected reason"; fi
 
-# 3. A reviewed formation is published
+# 3. A reviewed formation is published (recorded through the review tool, for the current content version)
 fresh
-node -e '
-const fs=require("fs"); const p=process.argv[1];
-const set=(file,fn)=>{const j=JSON.parse(fs.readFileSync(file,"utf8")); fn(j); fs.writeFileSync(file, JSON.stringify(j,null,2));};
-set(p+"/content/register.json", r=>{const i=r.find(x=>x.id==="9v9-3-1-3-1"); Object.assign(i.content,{status:"reviewed",reviewedBy:"Test Reviewer",reviewedOn:"2026-10-19"});});
-set(p+"/content/formations/9v9/3-1-3-1.json", f=>{f.status.content="reviewed"; f.status.reviewedBy="Test Reviewer"; f.status.reviewedOn="2026-10-19";});
-' "$TMP/site"
+(cd "$TMP/site" && node scripts/review.mjs record --id 9v9-3-1-3-1 --by "Test Reviewer" --on 2026-10-20 --decision approved --evidence "test fixture" >/dev/null)
 if build_public && [ -f "$TMP/site/dist/formations/9v9/3-1-3-1/one-goes-one-stays/index.html" ] && [ ! -e "$TMP/site/dist/formations/9v9/3-3-2" ]; then ok "a reviewed formation publishes its guide and lessons; unreviewed ones stay out"; else bad "reviewed 3-1-3-1 did not publish cleanly"; cat "$TMP/check.log" | tail -20; fi
+
+# 4. Changing coaching content after review sends it back to review (no stale approval reaches public)
+fresh
+(cd "$TMP/site" && node scripts/review.mjs record --id 9v9-3-1-3-1 --by "Test Reviewer" --on 2026-10-20 --decision approved --evidence "test fixture" >/dev/null)
+node -e 'const fs=require("fs"),p=process.argv[1]+"/content/formations/9v9/3-1-3-1.json";const j=JSON.parse(fs.readFileSync(p));j.rules[1].cue="Changed after review";fs.writeFileSync(p,JSON.stringify(j,null,2));' "$TMP/site"
+if build_public && [ ! -e "$TMP/site/dist/formations/9v9/3-1-3-1" ]; then ok "content changed after review is not published"; else bad "a stale review still published the 3-1-3-1"; fi
+
+# 5. Reviewer profile and reproduced playbook pages stay out of public until confirmed
+fresh
+node -e 'const fs=require("fs"),p=process.argv[1]+"/content/register.json";const r=JSON.parse(fs.readFileSync(p));r.filter(x=>x.kind==="confirmation").forEach(x=>Object.assign(x.confirmation,{status:"awaiting",confirmedBy:null,confirmedOn:null}));fs.writeFileSync(p,JSON.stringify(r,null,2));' "$TMP/site"
+if build_public && ! grep -q "Le Tissier" "$TMP/site/dist/about/index.html" && [ ! -e "$TMP/site/dist/about/playbook-cover.jpg" ]; then ok "unconfirmed reviewer profile and playbook pages are absent from public"; else bad "unconfirmed profile or playbook pages reached the public build"; fi
 
 echo "$pass/$((pass+fail)) passed"
 exit $fail

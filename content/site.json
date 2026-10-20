@@ -4,14 +4,55 @@
   "url": "https://howweplayfootball.com",
   "tagline": "Helping your team take the next step.",
   "philosophy": "Simple pictures. Simple decisions. Play together.",
-  "description": "Free, visual football coaching guides for grassroots coaches. Formations, playing principles and individual responsibilities, explained in straightforward language with clear tactical illustrations.",
+  "description": "Free football formation guides, tactical diagrams and practical advice for grassroots coaches. Understand how your team plays, explain the decisions that matter and help young players work together.",
   "independence": "How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.",
   "locale": "en_GB",
-  "social": { "youtube": "@howweplayfootball", "instagram": "@howweplayfootball" },
+  "social": {
+    "youtube": {
+      "handle": "@howweplayfootball",
+      "url": "https://www.youtube.com/@howweplayfootball"
+    },
+    "instagram": {
+      "handle": "@howweplayfootball",
+      "url": "https://www.instagram.com/howweplayfootball/"
+    },
+    "tiktok": {
+      "handle": "@howweplayfootball",
+      "url": "https://www.tiktok.com/@howweplayfootball"
+    }
+  },
   "formats": [
-    { "id": "5v5", "ages": "U8–U9", "availability": "coming-soon" },
-    { "id": "7v7", "ages": "U10–U11", "availability": "coming-soon" },
-    { "id": "9v9", "ages": "U12–U13", "availability": "live", "href": "/formations/9v9/" },
-    { "id": "11v11", "ages": "U14+", "availability": "coming-soon" }
-  ]
+    {
+      "id": "5v5",
+      "ages": "U8–U9",
+      "availability": "coming-soon",
+      "note": "Planned"
+    },
+    {
+      "id": "7v7",
+      "ages": "U10–U11",
+      "availability": "coming-soon",
+      "note": "Planned"
+    },
+    {
+      "id": "9v9",
+      "ages": "U12–U13",
+      "availability": "live",
+      "href": "/formations/9v9/",
+      "note": "First collection"
+    },
+    {
+      "id": "11v11",
+      "ages": "U14+",
+      "availability": "coming-soon",
+      "note": "Later"
+    }
+  ],
+  "proposition": "From the early small-sided formats to the challenges of moving up, How We Play is about making football easier to understand and easier to teach.",
+  "author": {
+    "name": "Niall Walsh",
+    "role": "Grassroots football coach and founder of How We Play",
+    "short": "Volunteer grassroots football coach for seven years",
+    "url": "/about/"
+  }
 }
