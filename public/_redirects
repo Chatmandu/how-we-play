@@ -1,0 +1,3 @@
+# Permanent redirects (Cloudflare Workers static assets)
+/moving-up /formations/9v9/#moving-up 301
+/moving-up/ /formations/9v9/#moving-up 301

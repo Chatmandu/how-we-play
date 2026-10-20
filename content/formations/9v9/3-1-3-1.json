@@ -3567,7 +3567,8 @@
         "id": "shape",
         "n": 1,
         "title": "Starting shape",
-        "dek": "Where the nine players begin, and the spine that runs through the middle."
+        "dek": "Where the nine players begin, and the spine that runs through the middle.",
+        "preview": "Where the players begin and how the formation fits together."
       },
       {
         "id": "principles",
@@ -3579,7 +3580,8 @@
           "one-goes-one-stays",
           "far-side-in",
           "show-them-wide"
-        ]
+        ],
+        "preview": "Four simple ideas to help the team play together."
       },
       {
         "id": "jobs",
@@ -3594,7 +3596,8 @@
           "wide-players",
           "number-10",
           "striker"
-        ]
+        ],
+        "preview": "Understand the responsibilities of each position."
       },
       {
         "id": "together",
@@ -3624,9 +3627,12 @@
               }
             ]
           }
-        ]
+        ],
+        "preview": "How players support each other with and without the ball."
       }
     ],
-    "features": []
+    "features": [],
+    "published": "2026-10-20",
+    "summary": "One way of playing 9v9: where the players start, four principles everyone can remember, a job for every position and how the team plays together."
   }
 }

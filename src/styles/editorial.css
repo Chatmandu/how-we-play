@@ -754,3 +754,7 @@
 .srcs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .srcs a { display: inline-flex; min-height: 24px; align-items: center; }
 @media (max-width: 1023px) { .nine-a-side .stats { grid-template-columns: 1fr 1fr; } .nine-a-side .stats div:nth-child(odd) { border-left: 0; padding-left: 0; } .nine-a-side .stats div:nth-child(even) { border-left: 1px solid var(--hwp-color-rule); padding-left: 16px; } }
+.featured__chapters li { display: grid; grid-template-columns: 82px minmax(0, 1fr); column-gap: 10px; align-items: baseline; padding: 10px 0; }
+.featured__chapters b { grid-row: span 2; margin: 0; }
+.featured__chapters strong { font: 900 22px/1 var(--ed-display); text-transform: uppercase; }
+.featured__chapters span { font: 400 15px/1.4 var(--ed-sans); margin-top: 3px; }

@@ -38,3 +38,12 @@ export function chapterOf(f, { rule, role }) {
 }
 /** Formats for the primary navigation, with honest states. */
 export const FORMATS_PRIMARY = ['5v5', '7v7', '9v9'];
+
+/** Published formation issues, newest first. The homepage shows only these: complete issues whose coaching
+ * review is recorded for the current version and which the gate allows. Lessons, positions, set pieces and
+ * other stories are never listed on their own; they live inside their issue. */
+export function publishedIssues(model) {
+  return model.formations
+    .filter(f => f.issue && f.issue.published && reviewRecord(f.register) && f.gate.allowed)
+    .sort((a, b) => b.issue.published.localeCompare(a.issue.published) || a.issue.number - b.issue.number);
+}
