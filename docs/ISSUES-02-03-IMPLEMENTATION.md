@@ -97,3 +97,19 @@ Browser and visual QA still requires a deployed **private preview**, at desktop 
 - Public PDF downloads from unreviewed issues.
 
 The 3-1-3-1 source content remains unchanged by this PR.
+
+## Animation refinement — 20 October 2026
+
+The two issues now opt into a **presentation-only movement transition** on their tactical lesson pages. When two successive authored frames show a named player in different positions, the browser can animate that same player between those existing endpoints, using a start marker and run arrow. Movements of less than 7 pitch units or more than 40 units are not inferred. The 3-3-2 “Read the switch” alternative is explicitly excluded, because it represents a choice rather than a continuation.
+
+- Hand-authored animations in Issue 01, plus the original 3-3-2 forward pairing and 2-2-3-1 wing-back recovery sequences, are preserved and take precedence.
+- A visible **Replay movement** button appears only when the current illustration has movement; clicking it repeats the animation. It remains hidden for users who request reduced motion.
+- Without JavaScript all frames stay visible as static illustrations; with reduced motion the full final position renders immediately.
+- All movement stays entirely in the client presentation layer (`src/scripts/figure-motion.mjs`); the recorded JSON content version, tactical destinations, ball locations and review logs remain unchanged.
+- The test `scripts/test-motion.mjs` verifies exactly this for both formations. It checks that every principle has meaningful animation, authored movement paths are untouched, and derived frames render without error.
+
+This is not a new coaching exercise or an instruction to make every player's movement simultaneously. Any future change to a lesson's underlying tactical picture should be made in its content JSON and re-enter the existing coaching review process.
+
+### Manual checks to complete
+
+Use the 3-1-3-1 as the quality reference. On desktop and mobile, switch to the second step in each lesson, observe the player movement, test **Replay movement**, keyboard navigation, the Enlarge view, and reduced-motion settings. Confirm that the arrows accurately explain the existing step captions.
