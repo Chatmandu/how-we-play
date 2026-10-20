@@ -9,7 +9,7 @@
   "order": 3,
   "registerId": "9v9-2-2-3-1",
   "summary": "Two central defenders and two wing-backs.",
-  "sourceLabel": "Exploratory draft 0.1",
+  "sourceLabel": "Exploratory tactical proposal, not approved coaching advice",
   "structure": [
     [
       "Notation",
@@ -142,11 +142,11 @@
     "Are all diagrams and pressing cues appropriate for the target age and league rules, including offside?",
     "If the qualified reviewer is uncomfortable with the system, do not publish it as a recommended option. Rework or replace it."
   ],
-  "notDrawn": "Only the wing-back recovery sequence has diagrams so far. The other diagram briefs in the draft (rules 1 to 3, shape states, positions, problems) are not drawn yet.",
+  "notDrawn": "Private editorial examples are present for review, but no tactical movement or developmental suitability has been signed off.",
   "status": {
     "content": "review-required",
     "exploratory": true,
-    "source": "How We Play exploratory draft 0.1",
+    "source": "How We Play Issue 03 exploratory editorial draft 0.2; based on research draft 0.1",
     "reviewedBy": null,
     "reviewedOn": null,
     "publicApproval": null
@@ -222,22 +222,814 @@
         "y": 44,
         "id": "us-9"
       }
-    ]
+    ],
+    "title": "Exploratory starting shape: 1-2-2-3-1",
+    "caption": "An exploratory starting picture; jobs change as the ball moves and this system has not been coaching approved.",
+    "altSummary": "Exploratory starting picture, not reviewed: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest."
   },
   "rules": [
     {
+      "id": "two-connected",
+      "n": 1,
+      "title": "Two stay connected",
+      "tag": "Our centre-backs defend together.",
+      "summary": "The two defenders recognise pressure and cover as a partnership.",
+      "cue": "Am I close enough to help?",
+      "extra": "One may have to challenge while the other is ready to cover.",
+      "diagram": "two-connected",
+      "thumb": 0,
+      "seo": "Two stay connected: 9v9 2-2-3-1 playing principle",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "look": [
+        "Do 4 and 5 communicate about who meets the ball?",
+        "Is either defender leaving too much space behind?",
+        "Can one defender help if the other is beaten?"
+      ]
+    },
+    {
+      "id": "width-cover",
+      "n": 2,
+      "title": "Width with cover",
+      "tag": "Wing-backs go when someone can protect behind.",
+      "summary": "Width can help our attack, but it changes the space we must defend.",
+      "cue": "If I go, who covers?",
+      "extra": "The covering pattern depends on where the ball, defenders and midfielders are.",
+      "diagram": "width-cover",
+      "thumb": 0,
+      "seo": "Width with cover: 9v9 2-2-3-1 playing principle",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "look": [
+        "Is the advancing wing-back offering a useful wide option?",
+        "Which teammate recognises the space left behind?",
+        "Is the distance to recover realistic for this group?"
+      ]
+    },
+    {
+      "id": "protect-middle",
+      "n": 3,
+      "title": "Someone protects the middle",
+      "tag": "Don't leave the route to our goal open.",
+      "summary": "A player must notice central danger when teammates support near the ball.",
+      "cue": "Who is stopping the pass through?",
+      "extra": "This is a shared team decision, not a permanent instruction for 6 to stay back.",
+      "diagram": "protect-middle",
+      "thumb": 0,
+      "seo": "Someone protects the middle: 9v9 2-2-3-1 playing principle",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "look": [
+        "Do we recognise when the central route is open?",
+        "Can 6 connect play while noticing defensive cover?",
+        "Are the other midfielders helping rather than crowding the same area?"
+      ]
+    },
+    {
       "id": "lose-it-find-home",
       "n": 4,
-      "title": "Wing-back recovery",
-      "tag": "Lose it? Find home. Press, protect or recover.",
+      "title": "Lose it? Find home",
+      "tag": "Press if you can, recover if you can't.",
+      "summary": "After losing the ball, choose the nearest useful defensive job.",
       "cue": "Press, protect or recover: which is my job?",
-      "extra": "\"Find home\" doesn't mean race back to a painted position and ignore the ball.",
+      "extra": "Find home doesn't mean blindly running to a fixed position. The wording itself needs coaching review.",
       "diagram": "wb-recovery",
-      "sequence": true,
-      "src": "Draft p. 6, briefs 6A–6C"
+      "thumb": 0,
+      "seo": "Lose it? Find home: 9v9 2-2-3-1 playing principle",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "look": [
+        "Can the nearest player delay the opponent with the ball?",
+        "Who covers the central route during the transition?",
+        "Are the wing-back recovery demands appropriate for our players?"
+      ]
     }
   ],
   "diagrams": {
+    "two-connected": {
+      "label": "Two stay connected",
+      "frames": [
+        {
+          "key": "both-go",
+          "tab": "Both go",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: both central defenders step towards the same opponent, potentially exposing space behind.",
+          "altSummary": "Two defenders 4 and 5 have moved towards an opponent carrying the ball, leaving another opponent free closer to our goal.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 46,
+              "y": 103
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 61,
+              "y": 102
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 12,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 83
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 31,
+              "y": 72
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 69,
+              "y": 72
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            },
+            {
+              "id": "them-1",
+              "t": "them",
+              "x": 56,
+              "y": 88
+            },
+            {
+              "id": "them-2",
+              "t": "them",
+              "x": 42,
+              "y": 125
+            }
+          ],
+          "ball": [
+            61,
+            93
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                32,
+                111,
+                32,
+                21
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE BEHIND",
+              "x": 49,
+              "y": 118
+            }
+          ]
+        },
+        {
+          "key": "cover",
+          "tab": "Pressure and cover",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: one central defender meets the threat while the other provides depth and cover.",
+          "altSummary": "Central defender 4 approaches the opponent on the ball; defender 5 remains slightly deeper and nearer goal to provide cover while 6 stays available centrally.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 43,
+              "y": 104
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 65,
+              "y": 120
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 12,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 82
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 31,
+              "y": 72
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 69,
+              "y": 72
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            },
+            {
+              "id": "them-1",
+              "t": "them",
+              "x": 49,
+              "y": 91
+            },
+            {
+              "id": "them-2",
+              "t": "them",
+              "x": 37,
+              "y": 124
+            }
+          ],
+          "ball": [
+            54,
+            96
+          ],
+          "labels": [
+            {
+              "t": "COVER",
+              "x": 76,
+              "y": 131
+            }
+          ]
+        }
+      ]
+    },
+    "width-cover": {
+      "label": "Width with cover",
+      "frames": [
+        {
+          "key": "start",
+          "tab": "Starting width",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory starting picture: wing-back 2 provides a wide option with central defenders behind.",
+          "altSummary": "Wing-backs 2 and 3 start in wide positions ahead of defenders 4 and 5; midfield 6 remains central with 8 and 11 nearby.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "labels": [
+            {
+              "t": "WIDE OPTION",
+              "x": 84,
+              "y": 84
+            }
+          ]
+        },
+        {
+          "key": "advance",
+          "tab": "2 goes forward",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: right wing-back 2 advances wide while the team must decide who covers behind.",
+          "altSummary": "Wing-back 2 moves up the right side, leaving a channel behind; 5 and 8 may need to consider the danger, but the covering pattern is not yet agreed.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 91,
+              "y": 66
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 82
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 67,
+              "y": 77
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            }
+          ],
+          "ghosts": [
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 90,
+              "y": 98
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                90,
+                98
+              ],
+              "to": [
+                91,
+                66
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                78,
+                92,
+                20,
+                19
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "WHO COVERS?",
+              "x": 81,
+              "y": 105
+            }
+          ]
+        },
+        {
+          "key": "change",
+          "tab": "If we lose it",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: after a turnover, the space behind 2 becomes the next defensive decision.",
+          "altSummary": "An opponent has the ball on our right while our right wing-back 2 is still high; the team must choose which player delays and which protects the channel.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 91,
+              "y": 66
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 82
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 67,
+              "y": 77
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            },
+            {
+              "id": "them-1",
+              "t": "them",
+              "x": 84,
+              "y": 92
+            }
+          ],
+          "ball": [
+            90,
+            97
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                78,
+                100,
+                19,
+                19
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CHANNEL",
+              "x": 88,
+              "y": 123
+            }
+          ]
+        }
+      ]
+    },
+    "protect-middle": {
+      "label": "Someone protects the middle",
+      "frames": [
+        {
+          "key": "opened",
+          "tab": "Middle left open",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: the central midfielder follows the ball towards the right while a central route may be exposed.",
+          "altSummary": "With play towards our right, midfielder 6 has drifted towards the wing-back and an opponent can threaten space between our midfield and the two central defenders.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 80
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 74,
+              "y": 85
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 69
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            },
+            {
+              "id": "them-1",
+              "t": "them",
+              "x": 52,
+              "y": 99
+            }
+          ],
+          "ball": [
+            57,
+            104
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                39,
+                88,
+                24,
+                19
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CENTRAL ROUTE",
+              "x": 49,
+              "y": 90
+            }
+          ]
+        },
+        {
+          "key": "noticed",
+          "tab": "Protect the route",
+          "crop": [
+            30,
+            150
+          ],
+          "caption": "Exploratory example: 6 notices the central route and maintains a protective position.",
+          "altSummary": "As the right wing-back remains high, midfielder 6 stays more central with the two defenders behind; this illustrates an option to protect the direct route to goal.",
+          "players": [
+            {
+              "id": "us-GK",
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7
+            },
+            {
+              "id": "us-4",
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120
+            },
+            {
+              "id": "us-5",
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120
+            },
+            {
+              "id": "us-3",
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98
+            },
+            {
+              "id": "us-2",
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 80
+            },
+            {
+              "id": "us-11",
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74
+            },
+            {
+              "id": "us-6",
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88
+            },
+            {
+              "id": "us-8",
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 69
+            },
+            {
+              "id": "us-9",
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44
+            },
+            {
+              "id": "them-1",
+              "t": "them",
+              "x": 65,
+              "y": 101
+            }
+          ],
+          "ball": [
+            70,
+            106
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                39,
+                88,
+                23,
+                17
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "MIDDLE PROTECTED",
+              "x": 49,
+              "y": 84
+            }
+          ]
+        }
+      ]
+    },
     "wb-recovery": {
       "label": "Wing-back recovery",
       "sequence": true,
@@ -358,7 +1150,9 @@
           "key": "delay",
           "tab": "1 · Delay",
           "stage": 1,
-          "caption": "We lose it near our right wing-back. The nearest midfielder, 8, delays."
+          "caption": "We lose it near our right wing-back. The nearest midfielder, 8, delays.",
+          "altSummary": "Stage 1. We lose the ball near our right wing-back, 2, who is high up the pitch. The nearest midfielder, 8, moves to delay the opponent on the ball.",
+          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
         },
         {
           "crop": [
@@ -526,7 +1320,9 @@
           "key": "track",
           "tab": "2 · Track and screen",
           "stage": 2,
-          "caption": "Both wing-backs track towards defensive lanes. 6 screens the middle."
+          "caption": "Both wing-backs track towards defensive lanes. 6 screens the middle.",
+          "altSummary": "Stage 2. 8 delays the ball. Both wing-backs, 3 and 2, track back towards defensive lanes. 6 moves goal-side to screen the central lane.",
+          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
         },
         {
           "crop": [
@@ -658,21 +1454,867 @@
           "key": "together",
           "tab": "3 · Move together",
           "stage": 3,
-          "caption": "4 and 5 move together. A back four is only an outcome of real recovery, not an instant switch."
+          "caption": "4 and 5 move together. A back four is only an outcome of real recovery, not an instant switch.",
+          "altSummary": "Stage 3. The two centre-backs, 4 and 5, move across together towards the ball side, staying connected. The wing-backs and 6 hold their recovered positions.",
+          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "label": "Goalkeeper",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for goalkeeper in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting GK as goalkeeper, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                50,
+                141.7,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "GOALKEEPER",
+              "x": 50,
+              "y": 14
+            }
+          ]
+        }
+      ]
+    },
+    "role-central-defenders": {
+      "label": "Central defenders",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for central defenders in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 4 and 5 as central defenders, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                36,
+                120,
+                8
+              ]
+            },
+            {
+              "k": "space",
+              "c": [
+                64,
+                120,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CENTRAL DEFENDERS",
+              "x": 50,
+              "y": 14
+            }
+          ]
+        }
+      ]
+    },
+    "role-wing-backs": {
+      "label": "Wing-backs",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for wing-backs in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 3 and 2 as wing-backs, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                10,
+                98,
+                8
+              ]
+            },
+            {
+              "k": "space",
+              "c": [
+                90,
+                98,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "WING-BACKS",
+              "x": 50,
+              "y": 14
+            }
+          ]
+        }
+      ]
+    },
+    "role-central-midfielder": {
+      "label": "Central midfielder",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for central midfielder in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 6 as central midfielder, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                50,
+                78,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CENTRAL MIDFIELDER",
+              "x": 50,
+              "y": 14
+            }
+          ]
+        }
+      ]
+    },
+    "role-interior-midfielders": {
+      "label": "Interior midfielders",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for interior midfielders in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 11 and 8 as interior midfielders, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                32,
+                74,
+                8
+              ]
+            },
+            {
+              "k": "space",
+              "c": [
+                68,
+                74,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "INTERIOR MIDFIELDERS",
+              "x": 50,
+              "y": 14
+            }
+          ]
+        }
+      ]
+    },
+    "role-striker": {
+      "label": "Striker",
+      "frames": [
+        {
+          "key": "starting-role",
+          "tab": "Starting role",
+          "crop": [
+            -6,
+            156
+          ],
+          "caption": "Exploratory starting picture for striker in a 2-2-3-1. Not a coaching recommendation.",
+          "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 9 as striker, with our team attacking upwards.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 141.7,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 36,
+              "y": 120,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 64,
+              "y": 120,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 10,
+              "y": 98,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 90,
+              "y": 98,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 32,
+              "y": 74,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 78,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 68,
+              "y": 74,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "c": [
+                50,
+                44,
+                8
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "STRIKER",
+              "x": 50,
+              "y": 14
+            }
+          ]
         }
       ]
     }
   },
   "review": [
     {
-      "id": "find-home",
-      "title": "Rule wording",
+      "id": "suitability",
+      "title": "Formation suitability and notation",
+      "why": "This formation may not be appropriate as a regular approach for the intended age group.",
       "qs": [
-        "Does \"Lose it? Find home\" accidentally discourage immediate pressure? Would \"Press or recover\" be clearer?"
+        "Is 2-2-3-1 a clear and honest label?",
+        "Would this be a teaching variation, a recommended shape, or should it not be published?"
+      ]
+    },
+    {
+      "id": "wingbacks",
+      "title": "Cover and recovery demands",
+      "why": "Wing-back recovery and central overloads may exceed what this team can handle.",
+      "qs": [
+        "What are reasonable recovery distances and first actions?",
+        "How should the team protect the middle when wing-backs advance?",
+        "What happens against a two or three-player counterattack?"
+      ]
+    },
+    {
+      "id": "wording",
+      "title": "Language and player development",
+      "why": "Some draft instructions could be mistaken for fixed or universal patterns.",
+      "qs": [
+        "Should Lose it? Find home be replaced with Press or recover?",
+        "Can players rotate without specialised positional demands?",
+        "Does the guidance prioritise learning and enjoyment?"
       ]
     }
   ],
   "issue": {
-    "number": 3
-  }
+    "number": 3,
+    "intro": "Two central defenders, two wing-backs, three midfielders and one striker. An exploratory 9v9 idea with unusually demanding recovery and cover decisions.",
+    "summary": "An exploratory 2-2-3-1 formation: proposed principles, player responsibilities and questions to test before it can be recommended.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "What the 2-2-3-1 picture might give a team, and what it could leave exposed.",
+        "preview": "A starting shape with wing-backs and two central defenders."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Four proposed playing principles",
+        "dek": "Questions for players and coaches, with tactical scenes awaiting qualified review.",
+        "preview": "Provisional decisions about pressure, width and cover.",
+        "rules": [
+          "two-connected",
+          "width-cover",
+          "protect-middle",
+          "lose-it-find-home"
+        ]
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "Roles to test with a coach before being given to a team.",
+        "preview": "Possible responsibilities for each position.",
+        "roles": [
+          "goalkeeper",
+          "central-defenders",
+          "wing-backs",
+          "central-midfielder",
+          "interior-midfielders",
+          "striker"
+        ]
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How wing-back support, midfield protection and recovery could work together.",
+        "preview": "Attacking width and the cover it depends upon.",
+        "groups": [
+          {
+            "title": "When we have the ball",
+            "items": [
+              {
+                "rule": "width-cover"
+              },
+              {
+                "rule": "protect-middle"
+              },
+              {
+                "role": "wing-backs"
+              }
+            ]
+          },
+          {
+            "title": "When they have the ball",
+            "items": [
+              {
+                "rule": "two-connected"
+              },
+              {
+                "rule": "lose-it-find-home"
+              },
+              {
+                "role": "central-defenders"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "features": []
+  },
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "See danger early",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Notice where the ball might go if the team loses possession.",
+        "Help the two central defenders see and communicate danger.",
+        "Find a sensible passing option rather than forcing play into pressure."
+      ],
+      "cue": "What could happen if we lose this pass?",
+      "rules": [
+        "two-connected",
+        "protect-middle"
+      ]
+    },
+    {
+      "id": "central-defenders",
+      "nums": [
+        "4",
+        "5"
+      ],
+      "short": "4·5",
+      "title": "Central defenders",
+      "head": "Protect each other",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-central-defenders",
+      "points": [
+        "Stay aware of your partner when deciding whether to challenge.",
+        "Recognise opponents threatening the space behind the wing-backs.",
+        "Help protect the central route when possession changes."
+      ],
+      "cue": "Am I the pressure or the cover?",
+      "rules": [
+        "two-connected",
+        "width-cover",
+        "protect-middle"
+      ]
+    },
+    {
+      "id": "wing-backs",
+      "nums": [
+        "3",
+        "2"
+      ],
+      "short": "3·2",
+      "title": "Wing-backs",
+      "head": "Two jobs, one decision",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-wing-backs",
+      "points": [
+        "Offer a wide option when the team has appropriate cover.",
+        "Recognise who can protect the area left behind when you advance.",
+        "When possession changes, decide whether to delay the ball or recover."
+      ],
+      "cue": "If I leave this space, who has it?",
+      "rules": [
+        "width-cover",
+        "lose-it-find-home"
+      ]
+    },
+    {
+      "id": "central-midfielder",
+      "nums": [
+        "6"
+      ],
+      "short": "6",
+      "title": "Central midfielder",
+      "head": "Our connection and protection",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-central-midfielder",
+      "points": [
+        "Offer a central passing option without crowding teammates.",
+        "Recognise when an advancing wing-back leaves space to defend.",
+        "Help protect central passes when the team loses the ball."
+      ],
+      "cue": "Who is protecting the middle?",
+      "rules": [
+        "protect-middle",
+        "width-cover"
+      ]
+    },
+    {
+      "id": "interior-midfielders",
+      "nums": [
+        "11",
+        "8"
+      ],
+      "short": "11·8",
+      "title": "Interior midfielders",
+      "head": "Make angles, not crowds",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-interior-midfielders",
+      "points": [
+        "Offer different supporting angles to keep possession moving.",
+        "Notice where support is needed when the wing-backs advance.",
+        "Help the team react when possession is lost."
+      ],
+      "cue": "Am I helping the player on the ball or making it crowded?",
+      "rules": [
+        "protect-middle",
+        "lose-it-find-home"
+      ]
+    },
+    {
+      "id": "striker",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Striker",
+      "head": "Give us a way forward",
+      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "diagram": "role-striker",
+      "points": [
+        "Make yourself available for a useful pass.",
+        "Look for a teammate close enough to combine with instead of becoming isolated.",
+        "Recognise when to put pressure on the ball and when teammates need recovery time."
+      ],
+      "cue": "Can I receive, turn, or help someone run?",
+      "rules": [
+        "lose-it-find-home"
+      ]
+    }
+  ],
+  "gives": [
+    "possible wide support from two wing-backs",
+    "three midfielders who may connect passes centrally",
+    "one forward offering a higher passing option",
+    "opportunities to discuss when players support and recover"
+  ],
+  "spineText": "GK, the shared cover of 4 and 5, 6 in midfield, and 9 further forward",
+  "shapeCue": "An exploratory starting picture; jobs change as the ball moves and this system has not been coaching approved."
 }
