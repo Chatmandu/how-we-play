@@ -96,6 +96,12 @@
 .lf__verdict { flex: none; font: 800 13px/1 var(--ed-display); font-style: normal; letter-spacing: .08em; text-transform: uppercase; padding: 6px 8px; background: var(--hwp-color-paper); color: var(--hwp-color-pitch-blue); }
 .lf__verdict[data-v="wrong"] { background: var(--hwp-color-coral); color: var(--hwp-color-ink); }
 .lf__tools { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; border-top: 1px solid var(--hwp-color-pitch-line); padding-top: 8px; font: 400 13px/1.4 var(--ed-sans); }
+.lf__tools-act { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.lf__replay { color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 2px; padding: 5px 10px; min-height: 36px; font: 600 13px/1.2 var(--ed-sans); cursor: pointer; }
+.lf__replay:hover { color: var(--hwp-color-pitch-blue); background: var(--hwp-color-paper); }
+.lf__replay:focus-visible { outline: 3px solid var(--hwp-color-pitch-blue); outline-offset: 2px; }
+.lf__replay[hidden] { display: none !important; }
+@media print { .lf__replay { display: none !important; } }
 .lf__tools details { position: relative; }
 .lf__tools summary { cursor: pointer; font-weight: 600; min-height: 24px; list-style: none; }
 .lf__tools summary::-webkit-details-marker { display: none; }
