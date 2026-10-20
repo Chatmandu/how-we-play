@@ -28,6 +28,11 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '
 const title = `${r.title} in a 9v9 ${f.name}: role and responsibilities | How We Play`;
 const description = `${r.head} What the ${r.title.toLowerCase()} does in a 9v9 ${f.notation}, with diagrams and one question for players to ask themselves.`;
 const folio = r.nums.join('·');
+const roleSource = f.shape.sourcePage
+  ? `Redrawn from the source playbook, ${r.src}. Shirt numbers describe the starting picture.`
+  : f.register.content.status === 'reviewed'
+    ? 'How We Play illustration based on reviewed guidance. Starting positions are not fixed.'
+    : `How We Play draft, ${r.src}. Illustration awaiting qualified coaching review.`;
 const chapter = chapterOf(f, { role: r.id });
 const jobs = chapter && chapter.roles ? chapter.roles : null;
 const where = chapter ? (jobs ? `Chapter ${chapter.n} · Position ${word(jobs.indexOf(r.id) + 1)} of ${word(jobs.length)}` : `Chapter ${chapter.n} · ${chapter.title}`) : `Position ${word(i + 1)} of ${word(f.roles.length)}`;
@@ -46,7 +51,7 @@ const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next positio
         <p class="ed-stand">{r.head}</p>
       </header>
       <div class="feature__body">
-        <LessonFigure id="pos-fig" frames={set.frames} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} source={`Redrawn from the source playbook, ${r.src}. Shirt numbers describe the starting picture.`}>
+        <LessonFigure id="pos-fig" frames={set.frames} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} source={roleSource}>
           <div class="ed-cue"><p>Ask yourself</p><blockquote>{r.cue}</blockquote></div>
           <div class="ed-chips" set:html={statusChips(f.register)} />
           <Byline f={f} />
