@@ -62,7 +62,7 @@
   "newsletter": {
     "$comment": "Paste the form action from Mailchimp: Audience > Signup forms > Embedded forms (the <form action=\"https://….list-manage.com/subscribe/post?u=…&id=…\"> value). Until it is set, public builds show no form. Never put API keys here.",
     "name": "The Coaching Notes",
-    "action": null,
+    "action": "https://howweplayfootball.us15.list-manage.com/subscribe/post?u=5bf86483316a9d4dad43208b4&amp;id=0508d94e1a&amp;f_id=007599e1f0",
     "doubleOptIn": true
   },
   "analytics": {
