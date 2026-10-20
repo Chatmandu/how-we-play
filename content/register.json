@@ -290,10 +290,11 @@
       "approvedOn": "2026-10-20"
     },
     "confirmation": {
-      "status": "awaiting",
+      "status": "confirmed",
       "scope": "David Wilson's name, role as coaching reviewer, qualifications (UEFA B Licence, PGCE, BA (Hons)) and the biography on /about/, as supplied by Niall Walsh on 20 October 2026. David to confirm: wording of qualifications and experience, preferred description of his Liverpool FC role, the League One-level playing description, and any portrait.",
-      "confirmedBy": null,
-      "confirmedOn": null
+      "confirmedBy": "Niall Walsh, on David Wilson's behalf",
+      "confirmedOn": "2026-10-20",
+      "evidence": "Written instruction from Niall Walsh, 20 October 2026 14:10: 'David's bio is approved too'. David's own written approval to be filed."
     }
   }
 ]

@@ -12,7 +12,7 @@ Three separate tracks: **coaching review** (David Wilson, intended reviewer), **
 | Pre-season checklist (7v7 to 9v9) | — | — | Draft | No |
 | Reviewer profile: David Le Tissier | /about/ | — | Awaiting confirmation | No |
 | Original playbook pages on /about/ | /about/ | — | Confirmed by Niall Walsh, 2026-10-20 | Yes |
-| Reviewer profile: David Wilson | /about/ | — | Awaiting confirmation | No |
+| Reviewer profile: David Wilson | /about/ | — | Confirmed by Niall Walsh, on David Wilson's behalf, 2026-10-20 | Yes |
 
 ## Review log
 
