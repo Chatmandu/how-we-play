@@ -8,7 +8,8 @@ import Byline from '../../../../components/Byline.astro';
 import Support from '../../../../components/Support.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
-import { pad2, word, issueLabel } from '../../../../lib/editorial.mjs';
+import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
+import { issueStructuredData } from '../../../../lib/seo.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).map(f => ({ params: { formation: f.slug }, props: { slug: f.slug } }));
@@ -25,17 +26,18 @@ const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; retur
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
+const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
     ? 'Illustrated by How We Play from reviewed coaching guidance.'
     : 'Provisional illustration for coaching review; not published coaching advice.';
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: `${label}: ${f.name}` }];
-const title = `${f.name} 9v9 formation guide (${f.notation}) | How We Play`;
+const title = `${f.name} formation guide for 9v9 | How We Play`;
 const description = full
   ? `The ${f.notation} for 9v9 football: starting shape, four playing principles with diagrams, a job for every position and how the team plays together. Free guide.`
   : `${f.sourceLabel} of a ${f.notation} guide for 9v9. Private preview, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `The ${f.name}: a 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation', isPartOf: { '@type': 'CollectionPage', name: '9v9 formations', url: model.site.url + '/formations/9v9/' } }];
+const jsonLd = issueStructuredData(model.site, f);
 const contents = full ? [
   ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })),
   ...(f.issue.features && f.issue.features.length ? [{ href: '#features', n: 'Features', t: 'More from this issue' }] : []),
@@ -127,6 +129,21 @@ const contents = full ? [
         </section>
 
         {f.register.content.status === 'reviewed' && <Support />}
+
+        {otherIssues.length > 0 && (
+          <nav class="ed-section ed-grid split" aria-labelledby="other-issues-h">
+            <div class="split__main">
+              <p class="ed-kicker">Keep exploring</p>
+              <h2 class="ed-h2" id="other-issues-h">Other 9v9 formation issues</h2>
+              <p class="ed-small">Different shapes ask different things of your players. Explore another complete issue, or <a href="/formations/9v9/">return to all 9v9 formations</a>.</p>
+            </div>
+            <div class="split__side">
+              <ol class="issue-list">
+                {otherIssues.map(other => <li><a href={`/formations/9v9/${other.slug}/`}><b>{pad2(other.issue.number)}</b><span><strong>The {other.name}</strong><em>{other.issue.summary}</em></span></a></li>)}
+              </ol>
+            </div>
+          </nav>
+        )}
 
         {reviewerNotes && (
           <section class="ed-section ed-grid" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>

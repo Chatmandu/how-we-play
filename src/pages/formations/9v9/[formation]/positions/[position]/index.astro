@@ -9,6 +9,7 @@ import Byline from '../../../../../../components/Byline.astro';
 import model from '../../../../../../lib/content.mjs';
 import { statusChips, reviewNote, exploratoryStrip } from '../../../../../../lib/ui.mjs';
 import { word, issueLabel, chapterOf } from '../../../../../../lib/editorial.mjs';
+import { positionStructuredData } from '../../../../../../lib/seo.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
@@ -26,7 +27,7 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const prev = f.roles[i - 1], next = f.roles[i + 1];
 const last = f.rules[f.rules.length - 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
-const title = `${r.title} in a 9v9 ${f.name}: role and responsibilities | How We Play`;
+const title = `${r.title}: ${f.name} 9v9 roles | How We Play`;
 const description = `${r.head} What the ${r.title.toLowerCase()} does in a 9v9 ${f.notation}, with diagrams and one question for players to ask themselves.`;
 const folio = r.nums.join('·');
 const roleSource = f.shape.sourcePage
@@ -37,7 +38,7 @@ const roleSource = f.shape.sourcePage
 const chapter = chapterOf(f, { role: r.id });
 const jobs = chapter && chapter.roles ? chapter.roles : null;
 const where = chapter ? (jobs ? `Chapter ${chapter.n} · Position ${word(jobs.indexOf(r.id) + 1)} of ${word(jobs.length)}` : `Chapter ${chapter.n} · ${chapter.title}`) : `Position ${word(i + 1)} of ${word(f.roles.length)}`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} in the ${f.name}`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
+const jsonLd = positionStructuredData(model.site, f, r);
 const pPrev = prev ? { href: `${base}positions/${prev.id}/`, over: 'Previous position', title: prev.title } : { href: `${base}${last.id}/`, over: `Principle ${last.n}`, title: last.title };
 const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next position', title: next.title } : { href: base, over: `Back to ${issueLabel(f)}`, title: `The ${f.name}` };
 ---

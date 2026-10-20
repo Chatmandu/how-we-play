@@ -8,6 +8,7 @@ import Byline from '../../../../../components/Byline.astro';
 import model from '../../../../../lib/content.mjs';
 import { statusChips, reviewNote, exploratoryStrip } from '../../../../../lib/ui.mjs';
 import { pad2, word, issueLabel } from '../../../../../lib/editorial.mjs';
+import { lessonStructuredData } from '../../../../../lib/seo.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).flatMap(f =>
@@ -32,9 +33,9 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const draftReviews = reviewerNotes && !full ? f.review : [];
 const prev = rules[i - 1], next = rules[i + 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
-const title = full ? `${r.title}: ${r.seo ? r.seo.split(': ')[1] : '9v9 principle'} (${f.name}) | How We Play` : `${r.title} (${f.name} draft) | How We Play`;
-const description = full ? `${r.summary} ${r.cue} A ${f.name} lesson for 9v9 coaches, with wrong and right diagrams.` : `${r.tag} Private draft lesson, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} (${f.name})`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
+const title = full ? `${r.title} | ${f.name} 9v9 tactics | How We Play` : `${r.title} (${f.name} draft) | How We Play`;
+const description = full ? `${r.summary} ${r.cue} Explore the ${f.name} principle with interactive diagrams and practical coaching cues.` : `${r.tag} Private draft lesson, not reviewed.`;
+const jsonLd = lessonStructuredData(model.site, f, r);
 const source = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.`
   : f.register.content.status === 'reviewed'
