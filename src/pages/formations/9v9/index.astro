@@ -4,8 +4,10 @@
 import Base from '../../../layouts/Base.astro';
 import Gated from '../../../components/Gated.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
+import Scoreboard from '../../../components/Scoreboard.astro';
+import Facts from '../../../components/Facts.astro';
 import model from '../../../lib/content.mjs';
-import { longDate } from '../../../lib/ui.mjs';
+import { longDate, checklist } from '../../../lib/ui.mjs';
 import { issueLabel, pad2 } from '../../../lib/editorial.mjs';
 
 const issues = model.formations.filter(f => f.issue).sort((a, b) => a.issue.number - b.issue.number);
@@ -22,13 +24,11 @@ const glance = [
   ['Offside', fact('offside').v9]
 ];
 const ex = fact('example-shapes');
-const main = v => String(v).replace(/\s*\(.*\)$/, '').replace(/^Up to /, '');
-const steps = [['pitch', 'Recommended pitch'], ['ball', 'Ball'], ['length', 'Match length, up to'], ['offside', 'Offside']].map(([id, k]) => [k, main(fact(id).v9), main(fact(id).v7)]);
-const srcs = [...new Map(['pitch', 'ball', 'length', 'offside'].map(id => fact(id)).map(x => [x.source, x.sourceInfo])).values()];
+const byGroup = g => model.facts.facts.filter(x => x.group === g).map(x => x.id);
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
-const ids = ['9v9-hub', ...published.map(f => f.registerId)];
+const ids = ['9v9-hub', 'moving-up-7v7-9v9', ...published.map(f => f.registerId)];
 ---
-<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 is the maximum format for U12 and U13. Formation guides for 9v9 football, each with a starting shape, four playing principles and a job for every position." ids={ids} nav="9v9" crumbs={crumbs} editorial>
+<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 football formations for U12 and U13: formation guides with playing principles and positions, plus what changes when moving up from 7v7." ids={ids} nav="9v9" crumbs={crumbs} editorial>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Format · U12 and U13</p>
@@ -49,7 +49,7 @@ const ids = ['9v9-hub', ...published.map(f => f.registerId)];
     </section>
   ))}
   {published.length === 0 && (
-    <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 issue is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</p></div>
+    <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 issue is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="#moving-up">what changes at nine a side</a> is below.</p></div>
   )}
 
   <section class="ed-section" aria-labelledby="h-next">
@@ -71,19 +71,29 @@ const ids = ['9v9-hub', ...published.map(f => f.registerId)];
     </div>
   </section>
 
-  <section class="ed-section ed-grid nine-a-side" aria-labelledby="h-step">
+  <div class="ed-section" id="moving-up">
+    <Scoreboard ids={[...byGroup('game'), ...byGroup('rules'), ...byGroup('competition')]} kicker="Moving up from 7v7" title="What changes at nine a side" id="score" from="7v7" to="9v9">
+      <p class="ed-small">If your team is stepping up, start here: what your players know, beside what they're moving into. Two more players, a bigger pitch, and offside and heading for the first time.</p>
+    </Scoreboard>
+  </div>
+
+  <section class="ed-section ed-grid split" aria-labelledby="h-same">
     <div class="split__main">
-      <p class="ed-kicker">Moving up from 7v7</p>
-      <h2 class="ed-h2" id="h-step" style="margin-top:12px">What changes at nine a side</h2>
-      <p class="ed-lede" style="margin-top:14px">If your team is stepping up, start here. Two more players, a bigger pitch, and offside and heading for the first time. A lot also stays the same.</p>
-      <dl class="stats">{steps.map(([k, now, was]) => <div><dt>{k}</dt><dd>{now}<small>7v7: {was}</small></dd></div>)}</dl>
+      <p class="ed-kicker">What stays familiar</p>
+      <h2 class="ed-h2" id="h-same" style="margin:12px 0 20px">Same game, bigger pitch</h2>
+      <Facts ids={['subs', 'playing-time', 'positions', 'smaller-formats']} />
     </div>
-    <div class="split__side nine-a-side__side">
-      <a class="ed-btn" href="/moving-up/">Read Moving Up: 7v7 to 9v9 →</a>
-      <p class="ed-small">Every rule that changes, side by side, and what stays familiar.</p>
-      <span class="hwp-chip hwp-chip--verified">Official rule verified · {longDate(fact('pitch').checkedOn)}</span>
-      <ul class="ed-small srcs" aria-label="Sources">{srcs.map(x => <li><a href={x.url} rel="noopener" target="_blank">{x.publisher}: {x.title}<span class="hwp-sr-only"> (opens in a new tab)</span></a></li>)}</ul>
-      <p class="ed-small" style="color:var(--hwp-text-secondary)">Season {fact('pitch').season}. England Football's maximum formats; check your league for local rules.</p>
+    <div class="split__side">
+      <p class="ed-small">The formation issues above are one way to start at nine a side. {ex.fact}.</p>
     </div>
   </section>
+
+  <Gated ids={['moving-up-checklist']}>
+    <section class="ed-section ed-grid" id="checklist" aria-labelledby="h-check">
+      <div style="grid-column:1/-1" class="flow">
+        <div class="ed-sh"><h2 class="ed-label" id="h-check">Before pre-season (draft, preview only)</h2></div>
+        <div class="two-col">{model.checklist.groups.map((g, k) => <Fragment set:html={checklist(g.items.map(x => `${x.text}. ${x.detail}`), { id: `nine-${k}`, title: g.heading })} />)}</div>
+      </div>
+    </section>
+  </Gated>
 </Base>
