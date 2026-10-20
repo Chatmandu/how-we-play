@@ -1,16 +1,17 @@
 ---
-/* 9v9 hub. Reflects what exists: the reviewed guide(s) as team sheets, and a development shelf that names
- * unreviewed formations with their status only. No shapes, rules or comparisons of unreviewed work in a
- * public build. Preview builds show the drafts' team sheets too, marked by the gate. */
+/* The 9v9 collection: each formation is an issue. Published issues get their team sheet; issues still in
+ * preparation are named with their number and status only (linked in preview builds for the reviewer). */
 import Base from '../../../layouts/Base.astro';
 import Gated from '../../../components/Gated.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
 import model from '../../../lib/content.mjs';
 import { longDate } from '../../../lib/ui.mjs';
-import { developmentShelf, word } from '../../../lib/editorial.mjs';
+import { issueLabel, pad2 } from '../../../lib/editorial.mjs';
 
-const list = model.target === 'public' ? model.publicFormations : model.formations;
-const shelf = developmentShelf(model);
+const issues = model.formations.filter(f => f.issue).sort((a, b) => a.issue.number - b.issue.number);
+const published = issues.filter(f => f.register.content.status === 'reviewed' && f.gate.allowed);
+const preparing = issues.filter(f => !published.includes(f));
+const preview = model.target !== 'public';
 const fact = id => model.fact(id);
 const glance = [
   ['Age groups', 'U12 and U13'],
@@ -22,15 +23,14 @@ const glance = [
 ];
 const ex = fact('example-shapes');
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
-const ids = ['9v9-hub', ...list.map(f => f.registerId)];
-const count = list.length;
+const ids = ['9v9-hub', ...published.map(f => f.registerId)];
 ---
-<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 is the maximum format for U12 and U13. Starting shapes for 9v9 football, with clear diagrams, four simple rules per formation and a job for every position." ids={ids} nav="9v9" crumbs={crumbs} editorial>
+<Base title="9v9 football formations for grassroots coaches | How We Play" description="9v9 is the maximum format for U12 and U13. Formation guides for 9v9 football, each with a starting shape, four playing principles and a job for every position." ids={ids} nav="9v9" crumbs={crumbs} editorial>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Format · U12 and U13</p>
       <h1>9v9 formations</h1>
-      <p class="ed-stand">A formation is a starting picture: where nine players begin before the ball moves. There's no single correct one, and each guide here is one possible way to play.</p>
+      <p class="ed-stand">Each 9v9 formation is a complete issue: a starting shape, four playing principles, a job for every position and how the team plays together. There's no single correct formation; each one is a starting point that adapts to your players.</p>
     </div>
     <div class="page-head__aside">
       <dl class="glance" aria-label="9v9 at a glance">{glance.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
@@ -38,30 +38,32 @@ const count = list.length;
     </div>
   </div>
 
-  <section class="ed-section" aria-labelledby="h-available">
-    <div class="ed-grid"><div class="ed-sh"><h2 class="ed-label" id="h-available">{count === 0 ? 'Guides in review' : `Available now · ${word(count)} guide${count === 1 ? '' : 's'}`}</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Same pitch, same symbols</span></div></div>
-    {count === 0 ? (
-      <div class="ed-grid"><p class="ed-lede" style="grid-column:1/span 7">Our 9v9 formation guides are waiting for coaching review. Each will appear here once its review is recorded. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</p></div>
-    ) : list.map((f, i) => (
-      <div style={i ? 'margin-top:var(--ed-s5)' : undefined}>
-        <Gated ids={[f.registerId]}>
-          <TeamSheet f={f} third="rules" />
-          <div class="ed-grid" style="margin-top:var(--ed-s3)"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Open the {f.name} guide →</a></p></div>
-        </Gated>
-      </div>
-    ))}
-  </section>
+  {published.map(f => (
+    <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
+      <div class="ed-grid"><div class="ed-sh"><p class="ed-label">9v9 · {issueLabel(f)} · Published</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Four principles · {f.roles.length} positions</span></div></div>
+      <TeamSheet f={f} third="rules" />
+      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Open {issueLabel(f)}: the {f.name} →</a></p></div>
+    </section>
+  ))}
+  {published.length === 0 && (
+    <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 issue is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="/moving-up/">Moving Up</a> explains what changes from 7v7.</p></div>
+  )}
 
-  <section class="ed-section" aria-labelledby="h-dev">
+  <section class="ed-section" aria-labelledby="h-next">
     <div class="ed-grid split">
       <div class="shelf">
-        <p class="ed-kicker">In development</p>
-        <h2 class="ed-h2" id="h-dev" style="margin-top:12px">More shapes, once they're reviewed</h2>
-        <p class="ed-lede">We only publish a formation after its coaching review is recorded. The guides listed here are being written or reviewed, so they aren't shown yet.</p>
+        <p class="ed-kicker">In preparation</p>
+        <h2 class="ed-h2" id="h-next" style="margin-top:12px">Coming issues</h2>
+        <p class="ed-lede">We publish an issue only after its coaching review is recorded, so these aren't available yet.</p>
         <p class="ed-small" style="color:var(--hwp-text-secondary)">{ex.fact}. Ours are one way among several.</p>
       </div>
       <div class="shelf__side">
-        <ul class="devlist" aria-label="Guides in development">{shelf.map(x => <li>{x.name} <em>{x.status}</em></li>)}</ul>
+        <ol class="issue-list" aria-label="9v9 issues in preparation">
+          {preparing.map(f => {
+            const inner = <><b>{pad2(f.issue.number)}</b><span><strong>The {f.name}</strong><em>{f.register.content.exploratory ? 'Exploratory · in preparation' : 'In preparation'}</em></span></>;
+            return <li>{preview && f.gate.allowed ? <a href={`/formations/9v9/${f.slug}/`}>{inner}</a> : <div>{inner}</div>}</li>;
+          })}
+        </ol>
         <p class="ed-small">New to nine a side? <a href="/moving-up/">What changes from 7v7</a>.</p>
       </div>
     </div>

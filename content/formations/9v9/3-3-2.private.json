@@ -658,5 +658,8 @@
         "Confirm offside illustrations before publication."
       ]
     }
-  ]
+  ],
+  "issue": {
+    "number": 2
+  }
 }

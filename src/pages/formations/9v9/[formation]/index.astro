@@ -1,111 +1,163 @@
 ---
-/* Formation guide. A page head with the formation name, then the team sheet (shape, positions, what the
- * shape gives us), the four rules as an index with their real diagrams, and the playbook note.
- * One template for every formation; draft formations only exist in preview builds (the gate decides). */
+/* Formation issue landing page, e.g. 9v9 · Issue 01 · The 3-1-3-1. A cover, a contents list, then four chapters:
+ * starting shape, the playing principles, a job for every player, playing together. Then any further features
+ * (only when written and reviewed) and the playbook. Draft formations (preview builds only) use the same shell. */
 import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
-import TeamSheet from '../../../../components/TeamSheet.astro';
 import Byline from '../../../../components/Byline.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
-import { pad2, word } from '../../../../lib/editorial.mjs';
+import { pad2, word, issueLabel } from '../../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).map(f => ({ params: { formation: f.slug }, props: { slug: f.slug } }));
 }
 const f = model.formation(Astro.props.slug);
 const exploratory = !!f.register.content.exploratory;
-const visible = model.target === 'public' ? model.publicFormations : model.formations;
 const base = `/formations/9v9/${f.slug}/`;
-const full = Array.isArray(f.roles);
+const full = Array.isArray(f.roles) && f.issue && f.issue.chapters;
 const reviewerNotes = model.target !== 'public';
+const chap = id => full ? f.issue.chapters.find(c => c.id === id) : null;
+const rule = id => f.rules.find(r => r.id === id);
+const role = id => f.roles.find(r => r.id === id);
 const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: d.altSummary || d.caption }); };
-const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name }];
+const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
+const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
+const label = issueLabel(f);
+const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: `${label}: ${f.name}` }];
 const title = `${f.name} 9v9 formation guide (${f.notation}) | How We Play`;
 const description = full
-  ? `One possible way to play 9v9: the ${f.notation} starting shape, four simple rules with diagrams and a job for every position. Free guide for grassroots coaches.`
+  ? `The ${f.notation} for 9v9 football: starting shape, four playing principles with diagrams, a job for every position and how the team plays together. Free guide.`
   : `${f.sourceLabel} of a ${f.notation} guide for 9v9. Private preview, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${f.name}: 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation' }];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `The ${f.name}: a 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation', isPartOf: { '@type': 'CollectionPage', name: '9v9 formations', url: model.site.url + '/formations/9v9/' } }];
+const contents = full ? [
+  ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })),
+  ...(f.issue.features && f.issue.features.length ? [{ href: '#features', n: 'Features', t: 'More from this issue' }] : []),
+  { href: '#playbook', n: 'Playbook', t: 'The printable edition' }
+] : [];
 ---
 <Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
   <Gated ids={[f.registerId]}>
-    <div class="page-head ed-grid">
-      <div class="page-head__text">
-        <p class="ed-kicker">9v9 · Formation guide · {f.notation}</p>
-        <h1>{f.name}</h1>
-        <p class="ed-stand">{full ? 'One possible way to play 9v9: a starting shape, four rules and a job for every position.' : f.idea}</p>
-      </div>
-      <div class="page-head__aside">
+    <header class="issue-cover ed-grid">
+      <div class="issue-cover__text">
+        <p class="ed-kicker">9v9 · {label} · Formation guide</p>
+        <h1><span class="issue-cover__no" aria-hidden="true">{pad2(f.issue ? f.issue.number : 0)}</span><span>The {f.name}</span></h1>
+        <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
-        <Byline f={f} />
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
-        <p class="ed-small" style="color:var(--hwp-text-secondary)">{full ? `Redrawn from the source playbook. The formation is a starting picture, not where players have to stand.` : `${f.sourceLabel}. Positions in the diagrams are illustrative.`}</p>
-        {visible.length > 1 && <p class="ed-small">Other 9v9 guides: {visible.filter(x => x.slug !== f.slug).map((x, i) => <>{i > 0 && ', '}<a href={`/formations/9v9/${x.slug}/`}>{x.name}</a></>)}</p>}
+        <Byline f={f} />
       </div>
-    </div>
+      {contents.length > 0 && (
+        <nav class="issue-toc" aria-labelledby="toc-h">
+          <h2 id="toc-h">In this issue</h2>
+          <ol>{contents.map(c => <li><a href={c.href}><b>{c.n}</b><span>{c.t}</span></a></li>)}</ol>
+        </nav>
+      )}
+    </header>
 
-    <div id="positions" class="ed-section" style="padding-top:var(--ed-s3)">
-      <TeamSheet f={f} third={full ? 'gives' : 'rules'} showHead={false} />
-    </div>
+    {full ? (
+      <>
+        <section class="ed-section chapter ed-grid" id="shape" aria-labelledby="c1-h">
+          <div class="chapter__head"><p class="chapter__n">Chapter 1</p><h2 class="chapter__t" id="c1-h">{chap('shape').title}</h2><p class="ed-small">{chap('shape').dek}</p></div>
+          <figure class="sheet__pitch on-pitch chapter__fig">
+            <Fragment set:html={shapeSvg} />
+            <figcaption>{f.shapeCue} Redrawn from the source playbook, {f.shape.sourcePage}.</figcaption>
+          </figure>
+          <div class="chapter__side">
+            <h3 class="ed-label">This shape gives us</h3>
+            <ul class="gives">{f.gives.map(g => <li>{g}</li>)}</ul>
+            <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {f.spineText}.</p>
+            <dl class="glance" style="margin-top:20px" aria-label="Notation">{f.structure.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+          </div>
+        </section>
 
-    <section class="ed-section ed-section--tight" id="rules" aria-labelledby="h-rules">
-      <div class="ed-grid">
-        <div class="ed-sh"><h2 class="ed-label" id="h-rules">{full ? `${word(f.rules.length)} rules`.replace(/^./, c => c.toUpperCase()) : 'Four rules (draft)'}</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Each with its diagram and a touchline cue</span></div>
-        {full ? (
+        <section class="ed-section chapter ed-grid" id="principles" aria-labelledby="c2-h">
+          <div class="chapter__head chapter__head--wide"><p class="chapter__n">Chapter 2</p><h2 class="chapter__t" id="c2-h">{chap('principles').title}</h2><p class="ed-small">{chap('principles').dek}</p></div>
           <ol class="rules4">
-            {f.rules.map(r => (
+            {chap('principles').rules.map(id => rule(id)).map(r => (
               <li><a href={`${base}${r.id}/`}>
                 <span class="thumb" aria-hidden="true" set:html={thumb(r)} />
                 <span><span class="n" aria-hidden="true">{pad2(r.n)}</span><strong>{r.title}</strong><p>{r.summary}</p><span class="cueline" style="display:block">“{r.cue}”</span></span>
               </a></li>
             ))}
           </ol>
-        ) : (
-          <ol class="rules4">
-            {f.ruleTable.map(r => {
-              const inner = <span><span class="n" aria-hidden="true">{pad2(r.n)}</span><strong>{r.title}</strong><p>{r.say} Question: {r.question}</p>{!r.lesson && <p>Diagram not drawn yet.</p>}</span>;
-              return <li>{r.lesson ? <a href={`${base}${r.lesson}/`} style="grid-template-columns:1fr">{inner}</a> : <div style="padding:16px 0 28px">{inner}</div>}</li>;
-            })}
+        </section>
+
+        <section class="ed-section chapter ed-grid" id="jobs" aria-labelledby="c3-h">
+          <div class="chapter__head"><p class="chapter__n">Chapter 3</p><h2 class="chapter__t" id="c3-h">{chap('jobs').title}</h2><p class="ed-small">{chap('jobs').dek}</p></div>
+          <ol class="roster chapter__list">
+            {chap('jobs').roles.map(id => role(id)).map(r => <li><a href={`${base}positions/${r.id}/`}><span class="nums">{r.nums.join(' · ')}</span><span><strong>{r.title}</strong><span>{r.head} <i>Ask yourself: {r.cue}</i></span></span><span class="arr" aria-hidden="true">→</span></a></li>)}
           </ol>
-        )}
-      </div>
-    </section>
+        </section>
 
-    {full && (
-      <section class="ed-section" id="playbook" aria-labelledby="h-pdf">
-        <div class="ed-grid split">
-          <div class="split__main ed-download">
-            <p class="ed-kicker">Free download · no email, no payment</p>
-            <h2 class="ed-h2" id="h-pdf">The {f.name} playbook</h2>
-            <p class="ed-lede">An A4 version to share with players and parents, built from the same content as these pages. It isn't released yet.</p>
-            <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+        <section class="ed-section chapter ed-grid" id="together" aria-labelledby="c4-h">
+          <div class="chapter__head"><p class="chapter__n">Chapter 4</p><h2 class="chapter__t" id="c4-h">{chap('together').title}</h2><p class="ed-small">{chap('together').dek}</p></div>
+          <div class="together">
+            {chap('together').groups.map(g => (
+              <div>
+                <h3 class="ed-label">{g.title}</h3>
+                <ol class="rulelist">{g.items.map(it => it.rule
+                  ? (r => <li><a href={`${base}${r.id}/`}><b>Principle {r.n}</b><strong>{r.title}</strong><i>{r.summary}</i></a></li>)(rule(it.rule))
+                  : (r => <li><a href={`${base}positions/${r.id}/`}><b>Partnership · {r.nums.join(' and ')}</b><strong>{r.title}</strong><i>{r.head}</i></a></li>)(role(it.role)))}
+                </ol>
+              </div>
+            ))}
           </div>
-          <div class="split__side"><p class="ed-small">New to 9v9? <a href="/moving-up/">What changes from 7v7</a>, from pitch size to offside.</p></div>
-        </div>
-      </section>
-    )}
+        </section>
 
-    {reviewerNotes && (
-      <section class="ed-section" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>
-        <div class="ed-grid"><div style="grid-column:1/-1" class="flow">
-          <div class="ed-sh"><h2 class="ed-label" id="h-review">{full ? 'Still being written (reviewer only)' : 'Reviewer questions (preview only)'}</h2></div>
-          {full ? (
-            <>
+        {f.issue.features && f.issue.features.length > 0 && (
+          <section class="ed-section chapter ed-grid" id="features" aria-labelledby="f-h">
+            <div class="chapter__head"><p class="chapter__n">Features</p><h2 class="chapter__t" id="f-h">More from this issue</h2></div>
+          </section>
+        )}
+
+        <section class="ed-section chapter ed-grid" id="playbook" aria-labelledby="pb-h">
+          <div class="chapter__head"><p class="chapter__n">The playbook</p><h2 class="chapter__t" id="pb-h">{label} in print</h2></div>
+          <div class="chapter__side ed-download">
+            <p class="ed-lede">A printable edition of this issue to share with players and parents, built from the same content as these pages. Free, no email, no payment. It isn't released yet.</p>
+            <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+            <p class="ed-small" style="color:var(--hwp-text-secondary)">More features for this issue, such as restarts and matchday guidance, will be added only once they've been written and reviewed.</p>
+          </div>
+        </section>
+
+        {reviewerNotes && (
+          <section class="ed-section ed-grid" id="review" aria-labelledby="h-review" data-hwp-reviewer-only>
+            <div style="grid-column:1/-1" class="flow">
+              <div class="ed-sh"><h2 class="ed-label" id="h-review">Still being written (reviewer only)</h2></div>
               <Fragment set:html={reviewNote('Needs a qualified coach.', "The source playbook doesn't cover these. We've listed the questions rather than guess the answers.")} />
               <div class="placeholders">{f.review.map(r => <div class="placeholder" id={`review-${r.id}`}><h3>{r.title}</h3><p class="hwp-small" style="margin:0">{r.why}</p><p class="hwp-label">Questions for the reviewer</p><ul>{r.qs.map(q => <li>{q}</li>)}</ul></div>)}</div>
-            </>
-          ) : (
-            <>
+            </div>
+          </section>
+        )}
+      </>
+    ) : (
+      <>
+        <section class="ed-section chapter ed-grid" id="shape" aria-labelledby="c1-h">
+          <div class="chapter__head"><p class="chapter__n">Draft</p><h2 class="chapter__t" id="c1-h">Starting shape</h2><p class="ed-small">{f.playerFacing}</p></div>
+          <figure class="sheet__pitch on-pitch chapter__fig"><Fragment set:html={shapeSvg} /><figcaption>{f.sourceLabel}. Positions are illustrative.</figcaption></figure>
+          <div class="chapter__side">
+            <h3 class="ed-label">Four rules (draft)</h3>
+            <ol class="rulelist">{f.ruleTable.map(r => <li>{r.lesson ? <a href={`${base}${r.lesson}/`}><b>Rule {r.n}</b><strong>{r.title}</strong><i>{r.say}</i></a> : <div class="row"><b>Rule {r.n}</b><strong>{r.title}</strong><i>{r.say} Diagram not drawn yet.</i></div>}</li>)}</ol>
+          </div>
+        </section>
+        <section class="ed-section chapter ed-grid" aria-labelledby="c3-h">
+          <div class="chapter__head"><p class="chapter__n">Draft</p><h2 class="chapter__t" id="c3-h">Positions</h2></div>
+          <ol class="roster chapter__list">{f.roleSummary.map(r => <li><div class="row"><span class="nums">{r.nums.join(' · ')}</span><span><strong>{r.title}</strong><span>{r.head}. Ask yourself: {r.ask}</span></span><span></span></div></li>)}</ol>
+        </section>
+        {reviewerNotes && (
+          <section class="ed-section ed-grid" data-hwp-reviewer-only aria-labelledby="h-cons">
+            <div style="grid-column:1/-1" class="flow">
+              <div class="ed-sh"><h2 class="ed-label" id="h-cons">Reviewer questions (preview only)</h2></div>
               <div class="two-col">
                 <div class="flow"><h3 class="hwp-heading-m">May offer</h3><ul class="list">{f.considerations.strengths.map(s => <li>{s}</li>)}</ul></div>
                 <div class="flow"><h3 class="hwp-heading-m">May cost</h3><ul class="list">{f.considerations.tradeoffs.map(s => <li>{s}</li>)}</ul></div>
               </div>
               <ol class="list measure">{f.reviewQuestions.map(q => <li>{q}</li>)}</ol>
               <p class="source-line">Source: {f.status.source}. {f.notDrawn}</p>
-            </>
-          )}
-        </div></div>
-      </section>
+            </div>
+          </section>
+        )}
+      </>
     )}
     <div slot="fallback"></div>
   </Gated>

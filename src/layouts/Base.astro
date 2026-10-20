@@ -39,13 +39,17 @@ const robots = noindex || access.noindex ? 'noindex, nofollow' : 'index, follow'
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og/default.png', site.url).href;
 
+/* Primary navigation: the playing formats (11v11 stays out until it has content). Secondary: supporting sections.
+ * A format still in development keeps its link, which leads to an honest, noindex placeholder with a way back. */
+const formatNav = ['5v5', '7v7', '9v9'].map(id => { const fm = site.formats.find(x => x.id === id); return { id, label: id, href: `/formations/${id}/`, soon: fm && fm.availability !== 'live' }; });
 const navItems = [
-  { id: '9v9', label: '9v9 formations', href: '/formations/9v9/' },
   { id: 'moving-up', label: 'Moving up', href: '/moving-up/' },
+  { id: 'football-explained', label: 'Football explained', href: '/football-explained/' },
   { id: 'about', label: 'About', href: '/about/' }
 ];
 const footLinks = [
-  { label: '9v9 formations', href: '/formations/9v9/' }, { label: 'Moving from 7v7 to 9v9', href: '/moving-up/' },
+  ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
+  { label: 'Moving up', href: '/moving-up/' }, { label: 'Football explained', href: '/football-explained/' },
   { label: 'About and standards', href: '/about/' }, { label: 'The Coaching Notes', href: '/coaching-notes/' }
 ];
 
@@ -93,9 +97,12 @@ const pageItems = ids.join(' ');
   <header class="mast">
     <div class="ed-wrap mast__bar">
       <a class="mast__logo" href="/"><img src={`${ASSET_BASE}logo/hwp-lockup-inline.svg`} alt="How We Play, home" width="180" height="28"></a>
-      <p class="mast__issue">Free guides for grassroots coaches · Issue one: 9v9</p>
+      <p class="mast__issue">A grassroots football coaching publication</p>
       <button class="mast__menu" type="button" aria-expanded="false" aria-controls="mast-nav" hidden><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu</button>
-      <nav class="mast__nav" id="mast-nav" aria-label="Main">{navItems.map(i => <a href={i.href} aria-current={i.id === nav ? 'page' : undefined}>{i.label}</a>)}</nav>
+      <nav class="mast__nav" id="mast-nav" aria-label="Main">
+        <span class="mast__formats" role="group" aria-label="Playing formats">{formatNav.map(i => <a class="mast__fmt" href={i.href} aria-current={i.id === nav ? 'page' : undefined}>{i.label}{i.soon && <span class="mast__soon"> · in development</span>}</a>)}</span>
+        <span class="mast__more" role="group" aria-label="Sections">{navItems.map(i => <a href={i.href} aria-current={i.id === nav ? 'page' : undefined}>{i.label}</a>)}</span>
+      </nav>
     </div>
   </header>
   <main id="main" class={editorial ? 'ed-main' : 'site-main hwp-container'} tabindex="-1">

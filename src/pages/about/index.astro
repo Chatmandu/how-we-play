@@ -1,6 +1,6 @@
 ---
 /* About: an editorial feature in Niall Walsh's own words (copy supplied 20 October 2026, lightly edited for
- * rhythm only). The reviewer profile and the reproduced playbook pages are separate register items that stay
+ * rhythm only). The reviewer profile is a separate register item that stays
  * out of public builds until each is confirmed. Coaching review, authorship and official-rule checks are
  * described as three separate things, because they are. */
 import Base from '../../layouts/Base.astro';
@@ -13,7 +13,6 @@ const site = model.site;
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
 const showReviewer = reviewerVisible(model);
 const f = model.formation('3-1-3-1');
-const pageCount = (f.register.content.source.match(/(\d+) pp/) || [])[1];
 const chip = (k, t) => `<span class="hwp-chip hwp-chip--${k}">${t}</span>`;
 const checkedOn = longDate(model.fact('pitch').checkedOn);
 const labels = [
@@ -35,7 +34,7 @@ const jsonLd = [
       <div class="about-open__text">
         <p class="ed-kicker">About How We Play · Niall Walsh</p>
         <h1 id="about-h">I volunteered for a few months. Seven years later, I'm still coaching.</h1>
-        <p class="ed-stand">How We Play started as a playbook for one grassroots team. This is why it exists, and how we decide what's ready to publish.</p>
+        <p class="ed-stand">How We Play grew out of seven seasons of coaching notes. This is why it exists, and how we decide what's ready to publish.</p>
         <p class="byline">By <strong>{site.author.name}</strong>, {site.author.role.charAt(0).toLowerCase() + site.author.role.slice(1)}</p>
       </div>
       <figure class="about-plate" aria-label="Seven years on the touchline">
@@ -62,29 +61,19 @@ const jsonLd = [
         <p>And you've got to explain all of that to a group of children who, understandably, just want to play football.</p>
         <p>I wanted something simple I could share with the team. Something that explained where we started, what each player was responsible for and how we could work together.</p>
         <p>So I started putting down what I'd picked up over the years. Simple diagrams. Short instructions. A few principles everyone could remember.</p>
-        <p>That became our first team playbook, and eventually the idea for How We Play.</p>
+
+        {/* DRAFT from Niall's brief of 20 Oct 2026: replace with his own revised copy when supplied. */}
+        <h2 class="story__h">Notes on my phone</h2>
+        <p>Most seasons started the same way. I'd jot down a basic playbook in the Notes app on my phone.</p>
+        <p>How we wanted to play. What each position was responsible for. The principles I wanted everyone to understand.</p>
+        <p>Those notes never stayed the same for long. They changed through the season as players developed, joined, left or moved positions.</p>
+        <p>The value was never in a fixed set of instructions. It was in having some early foundations, and a shared understanding we could all build on.</p>
+        <p>How We Play is my attempt to pull those seven years of notes together into something other grassroots coaches can use. The formations and principles here are starting points. They should adapt to your players, the same way ours did.</p>
       </div>
       <aside class="story__aside" aria-label="From the story">
         <p class="pull">“You're delighted for them, obviously. But where on earth are your goals going to come from next season?”</p>
       </aside>
     </div>
-
-    <section class="ed-section playbook" aria-labelledby="pb-h">
-      <div class="ed-grid">
-        <div class="ed-sh"><h2 class="ed-label" id="pb-h">The original playbook</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Where the guides come from</span></div>
-        <div class="playbook__text">
-          <p class="ed-lede">The first playbook was{pageCount ? ` ${pageCount} pages` : ''} for one under-13s team moving up to nine a side: a starting shape, four rules everyone could remember, and a page for each position.</p>
-          <p class="ed-small" style="margin-top:12px">The website's diagrams are redrawn from it with the same coaching content, so the site, the printable playbook and any future animations say the same thing. Every formation guide still goes through coaching review before it's published.</p>
-        </div>
-        <Gated ids={['about-original-playbook']}>
-          <figure class="playbook__pages">
-            <img src="/about/playbook-cover.jpg" alt="Cover of the original team playbook: How We Play, 3-1-3-1, with the starting shape and the line Simple pictures, simple decisions, play together." width="909" height="1287" loading="lazy">
-            <img src="/about/playbook-rule-two.jpg" alt="Rule two page of the original playbook: One goes, one stays, with ball-right, ball-left and never-both diagrams." width="909" height="1287" loading="lazy">
-            <figcaption>Two pages from the original playbook, shown as the document it was. Club crest removed.</figcaption>
-          </figure>
-        </Gated>
-      </div>
-    </section>
 
     <div class="ed-grid about-body">
       <div class="story">
@@ -104,7 +93,7 @@ const jsonLd = [
           <div class="reviewer__story story">
             <h2 class="story__h" id="rev-h">A little help from someone who knows what he's talking about</h2>
             <p>I was fortunate during my early years of coaching to have David Le Tissier as a sounding board. Whenever I had questions about formations, players or how to approach a situation, David was someone I could turn to.</p>
-            <p>So when I decided to turn the original team playbook into a resource other coaches could use, it made sense to ask him to look over my homework.</p>
+            <p>So when I decided to turn my coaching notes into a resource other coaches could use, it made sense to ask him to look over my homework.</p>
             <p>David now supports How We Play as our coaching reviewer, bringing his experience and a fresh pair of eyes to the advice we develop. His role is to help make sure our explanations are clear, practical and appropriate for the players they're meant to help.</p>
           </div>
           <aside class="reviewer__card" aria-labelledby="rev-name">
@@ -123,7 +112,7 @@ const jsonLd = [
       <div class="ed-grid">
         <div class="ed-sh"><h2 class="ed-label" id="std-h">How we produce our guides</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Three separate checks</span></div>
         <ol class="tracks">
-          <li><b>1</b><h3>Written by a coach</h3><p>{site.author.name} writes every guide from coaching experience and the original playbook. That's practical advice, and it's labelled as his.</p></li>
+          <li><b>1</b><h3>Written by a coach</h3><p>{site.author.name} writes every guide from seven years of coaching notes and experience. That's practical advice, and it's labelled as his.</p></li>
           <li><b>2</b><h3>Coaching review</h3><p>{showReviewer ? <>Our coaching reviewer, <a href={REVIEWER.href}>{REVIEWER.name}</a>, checks each guide</> : 'An experienced coaching reviewer checks each guide'} before it's published. We record the guide, the version reviewed, the date, the decision and any changes asked for. If the coaching content changes materially, it goes back for review.</p></li>
           <li><b>3</b><h3>Official rules</h3><p>Competition rules, like pitch sizes and offside, are checked against England Football and shown with the date we checked them. A rule being official doesn't make a tactic right, and a reviewed tactic doesn't make a rule official.</p></li>
         </ol>

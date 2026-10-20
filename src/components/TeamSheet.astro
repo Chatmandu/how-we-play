@@ -55,11 +55,11 @@ const sheetId = `sheet-${f.slug}`;
   <div class="sheet__col sheet__col--third">
     {third === 'rules' ? (
       <>
-        <h3>Four rules</h3>
+        <h3>Four principles</h3>
         <ol class="rulelist">
           {rules.map((r: any) => {
             const href = full ? `${base}${r.id}/` : (r.lesson ? `${base}${r.lesson}/` : null);
-            const inner = <><b>Rule {r.n}</b><strong>{r.title}</strong><i>{full ? r.cue : r.say}</i></>;
+            const inner = <><b>Principle {r.n}</b><strong>{r.title}</strong><i>{full ? r.cue : r.say}</i></>;
             return <li>{href ? <a href={href}>{inner}</a> : <div class="row">{inner}</div>}</li>;
           })}
         </ol>

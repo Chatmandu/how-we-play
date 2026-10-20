@@ -42,7 +42,7 @@ const exists = urlPath => {
   return existsSync(p) && statSync(p).isFile() || existsSync(join(p, 'index.html'));
 };
 const exploratoryIds = Object.values(model.items).filter(i => i.content?.exploratory).map(i => i.id);
-const teaserOk = ['/404.html', '/coaching-notes/', '/football-explained/'];
+const teaserOk = ['/404.html', '/coaching-notes/', '/football-explained/', '/formations/5v5/', '/formations/7v7/'];
 const indexable = [];
 
 for (const file of pages) {
