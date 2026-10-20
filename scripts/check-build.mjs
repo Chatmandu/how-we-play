@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, rmSync 
 import { join, relative, dirname } from 'node:path';
 import { loadModel, ROOT } from './load-content.mjs';
 import { resolveTarget } from '../src/lib/model.mjs';
+import { sitemapLastmod, issueFeedXml, escapeXml } from '../src/lib/seo.mjs';
 
 const target = resolveTarget(process.env);
 const dist = join(ROOT, process.argv[2] || 'dist');
@@ -32,6 +33,10 @@ for (const item of Object.values(model.items)) {
   for (const a of item.assets) { const p = join(dist, a); if (existsSync(p)) { rmSync(p); notes.push(`removed gated asset ${a} (${item.id})`); } }
 }
 
+// Generate the public issue feed before checking references, because the shared
+// layout advertises it on every indexable page. Preview builds never expose it.
+if (target === 'public') writeFileSync(join(dist, 'feed.xml'), issueFeedXml(model));
+
 const walk = d => readdirSync(d).flatMap(n => { const p = join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const files = walk(dist);
 const pages = files.filter(f => f.endsWith('.html'));
@@ -44,6 +49,7 @@ const exists = urlPath => {
 const exploratoryIds = Object.values(model.items).filter(i => i.content?.exploratory && !i.content?.publicApproval).map(i => i.id);
 const teaserOk = ['/404.html', '/coaching-notes/', '/formations/5v5/', '/formations/7v7/'];
 const indexable = [];
+const seenTitles = new Map();
 
 for (const file of pages) {
   const html = readFileSync(file, 'utf8');
@@ -64,6 +70,24 @@ for (const file of pages) {
   if (!/<title>[^<]+<\/title>/.test(html)) fail(route, 'missing <title>');
   if (!/<meta name="description" content="[^"]{20,}"/.test(html)) fail(route, 'missing meta description');
   if (!/<link rel="canonical" href="https:\/\/howweplayfootball\.com\//.test(html)) fail(route, 'missing canonical URL');
+  // Rendered, static JSON-LD must be valid and describe the page it appears on.
+  const ld = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => {
+    try { return JSON.parse(match[1]); }
+    catch { fail(route, 'malformed JSON-LD block'); return null; }
+  }).filter(Boolean);
+  const pageType = (html.match(/data-hwp-type="([^"]+)"/) || [])[1] || '';
+  if (target === 'public' && ['formation_issue', 'lesson', 'position'].includes(pageType)) {
+    const article = ld.find(o => o['@type'] === 'Article');
+    const webpage = ld.find(o => o['@type'] === 'WebPage');
+    if (!article || !webpage) fail(route, 'missing Article / WebPage schema for published coaching guide');
+    else {
+      if (article.url !== model.site.url + route || article.mainEntityOfPage?.['@id'] !== article.url) fail(route, 'Article schema canonical URL mismatch');
+      if (!article.datePublished || !/^\d{4}-\d{2}-\d{2}$/.test(article.datePublished)) fail(route, 'Article missing real publication date');
+      if (!article.author?.name || !article.publisher?.name || article.isAccessibleForFree !== true) fail(route, 'Article missing grounded author, publisher or free-access description');
+      if (webpage['@id'] !== article.url || webpage.mainEntity?.['@id'] !== article['@id']) fail(route, 'WebPage to Article relation mismatch');
+      if (!article.isPartOf) fail(route, 'Article missing parent issue or collection relationship');
+    }
+  }
   const noindex = /<meta name="robots" content="noindex/.test(html);
   // Diagrams
   for (const m of html.matchAll(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*role="(?:img|group)"[^>]*>([\s\S]*?)<\/svg>/g)) {
@@ -76,7 +100,14 @@ for (const file of pages) {
     const scan = html.replace(/<dl[^>]*data-hwp-legend[\s\S]*?<\/dl>/g, ''); // the About page's label key is allowed to show every chip
     if (/data-hwp-private="true"|hwp-strip--private|hwp-chip--review(?!ed)|hwp-chip--draft|hwp-strip--exploratory|hwp-chip--exploratory|nl-status|data-hwp="newsletter"|data-hwp-reviewer-only/.test(scan)) fail(route, 'public page contains private, unreviewed, exploratory or demo content');
     if (noindex && !teaserOk.includes(route)) fail(route, 'public page is noindex');
-    if (!noindex) indexable.push(route);
+    if (!noindex) {
+      indexable.push(route);
+      const titleText = (html.match(/<title>([^<]+)<\/title>/) || [])[1];
+      if (titleText) {
+        if (seenTitles.has(titleText)) fail(route, `duplicate page title (same as ${seenTitles.get(titleText)})`);
+        else seenTitles.set(titleText, route);
+      }
+    }
   } else {
     if (!noindex) fail(route, `${target} build page is indexable`);
   }
@@ -87,7 +118,10 @@ for (const file of pages) {
 // Generated files
 const site = model.site.url;
 if (target === 'public') {
-  writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.sort().map(r => `  <url><loc>${site}${r}</loc></url>`).join('\n')}\n</urlset>\n`);
+  writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.sort().map(r => {
+    const modified = sitemapLastmod(r, model);
+    return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}</url>`;
+  }).join('\n')}\n</urlset>\n`);
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
   writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 } else {
