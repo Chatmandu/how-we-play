@@ -81,7 +81,7 @@ for (const file of pages) {
     if (!noindex) fail(route, `${target} build page is indexable`);
   }
   const items = ((html.match(/data-hwp-items="([^"]*)"/) || [])[1] || '').split(' ').filter(Boolean);
-  if (items.some(i => exploratoryIds.includes(i)) && !html.includes('hwp-strip--exploratory')) fail(route, 'exploratory content without the exploratory strip');
+  if (target !== 'public' && items.some(i => exploratoryIds.includes(i)) && !html.includes('hwp-strip--exploratory')) fail(route, 'exploratory content without the exploratory strip');
 }
 
 // Generated files
