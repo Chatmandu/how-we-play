@@ -1,42 +1,21 @@
-# QA report: publication architecture (branch `issues`, 20 October 2026)
+# QA report: simplified homepage (20 October 2026, fourth pass)
 
-Headless Chromium (Playwright) against the public build (22 pages, 17 in sitemap) and preview build (26 pages). No screen-reader or real-device testing.
+Headless Chromium against the public build (21 pages, 17 in sitemap) and preview build (25 pages).
 
-| Area | Result |
+## Changes
+- Homepage: introduction, format chooser (5v5 and 7v7 in development, 9v9 live), featured issue (9v9 · Issue 01 · The 3-1-3-1: starting shape, intro, four chapters, link), then **Latest additions** from `content/editorial/feed.json`. The One goes, one stays feature, the nine-a-side comparison and the colophon are gone; About is a small link.
+- Latest additions: each item has title, excerpt, type, format, parent issue, publication date, required register ids and an illustration. An item appears only if everything it requires is public; the featured issue isn't repeated. Launch items: One goes, one stays (lesson, 20 Oct) and Moving from 7v7 to 9v9 (19 Oct).
+- 9v9 page: introduction and format facts, published issues (team sheet), issues in development, then **What changes at nine a side** (four verified rules, sources, check date, link to Moving Up). The full comparison stays only on Moving Up. There was no multi-formation comparison table on the live page to remove.
+- Football Explained removed: page, navigation, footer, homepage mention and register entry. The old URL now returns 404. It was always noindex and never in the sitemap, so there's nothing to redirect.
+
+## Checks
+| Check | Result |
 |---|---|
-| Builds and build checks (both targets) | Pass |
-| Unit, gate and content tests | Pass: 24/24, 13/13, content valid |
-| Publishing-gate negative tests | Pass: 5/5 |
-| Responsive (1440, 834, 390px; 10 pages) | No horizontal overflow, no console errors, all HTTP 200 |
-
-## Routing
-- Existing URLs preserved: `/`, `/about/`, `/formations/9v9/`, `/formations/9v9/3-1-3-1/`, four lessons, eight positions, `/moving-up/`.
-- New: `/formations/5v5/`, `/formations/7v7/` (noindex, not in sitemap, link back to Issue 01 and Moving Up).
-- Sitemap: 17 URLs (homepage, About, 9v9 collection, Issue 01 and its 12 stories, Moving Up). Placeholders, Football Explained, Coaching Notes and 404 excluded and noindex.
-- No duplicate URLs; issue numbers aren't in any URL.
-- Every internal link resolves (the build fails otherwise).
-
-## Navigation
-- Primary formats and secondary sections on every page. The current format is marked (`aria-current`).
-- Phone menu: hidden by default, opens as a grid of three formats then the secondary links, `aria-expanded` updates, Esc closes and returns focus.
-- Issue navigation on lessons and positions: previous/next 44 × 44px; the "Contents of this issue" disclosure lists all 12 stories.
-- Issue 01 contents list jumps to each chapter.
-
-## Tactical diagrams
-- Step controls: click, Arrow keys, Home and End; live-region announcement; Enlarge opens and returns focus; Key opens; reduced motion respected; every frame readable without JavaScript.
-- No coaching content changed: the 3-1-3-1 review version is unchanged (`cv-353fff2a`).
-
-## Publishing safeguards
-- The 3-1-3-1 shows "Coaching reviewed by David Le Tissier on 20 October 2026" only because the register holds that approval for this exact version.
-- 3-3-2 and 2-2-3-1 appear by number, name and status only; no shapes, principles or diagrams in public.
-- No further features (set pieces, restarts) were added; the section is hidden while empty.
-- Reproduced playbook pages removed from About and from the build.
-
-## Accessibility (axe-core 4.10, WCAG A and AA rules)
-- Fixed: low-contrast labels for 5v5 and 7v7 in the format chooser.
-- Outstanding (unchanged from last pass): faded "started here" ghost numbers in two diagrams (renderer style; needs your sign-off to change).
-- Not claimed: WCAG 2.2 AA compliance. Screen-reader and device testing still to do.
-
-## Open
-- Your revised About copy (the Notes app section is a draft from your brief).
-- David's own written confirmation of his biography and his review of the 3-1-3-1 to file with the project records (currently recorded from your instruction).
+| Builds and build checks | Pass, both targets |
+| `npm test` | 24/24, 13/13, content valid |
+| Publishing-gate tests | 5/5 |
+| Overflow and console errors at 1440, 834, 390px | None |
+| Lessons, positions, LessonFigure, behaviour script, formation files | Unchanged (no diff against main); review version still `cv-353fff2a` |
+| Step controls, keyboard, Enlarge, Key, no-JS, menu | Pass |
+| axe-core | Only the known faded ghost-number contrast in two diagrams |
+| Sitemap | 17 URLs; no 5v5, 7v7 or Football Explained |
