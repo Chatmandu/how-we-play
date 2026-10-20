@@ -87,7 +87,29 @@ export function suite(ctx) {
     ok(!G.evaluate({ ...m, rules: [{ fact: 'x', status: 'unchecked' }] }, 'public', { now }).allowed);
   });
   test('coming-soon formats may only show a teaser', () => { const r = G.evaluate({ availability: 'coming-soon', hasBody: true }, 'public', { now }); ok(!r.allowed); });
-  test('private content files are marked private and not reviewed', () => { ['3-3-2', '2-2-3-1'].forEach(k => ok(content[k].status.content !== 'reviewed' && /PRIVATE/.test(content[k].$comment))); ok(content['2-2-3-1'].status.exploratory === true); });
+  test('formation statuses match the release register, with separate approval for the alternative', () => {
+    const pairs = [['3-3-2', '9v9-3-3-2'], ['2-2-3-1', '9v9-2-2-3-1']];
+    for (const [key, id] of pairs) {
+      const formation = content[key];
+      const item = ctx.liveRegister.find(x => x.id === id);
+      ok(item && item.kind === 'coaching', `Missing live review entry for ${id}`);
+      ok(formation.status.content === item.content.status, `${id}: status drift`);
+      ok(formation.status.reviewedBy === item.content.reviewedBy, `${id}: reviewer drift`);
+      ok(formation.status.reviewedOn === item.content.reviewedOn, `${id}: review date drift`);
+      if (item.content.status === 'reviewed') {
+        ok(!!item.content.reviewedVersion, `${id}: missing version for review`);
+        ok((item.content.reviewLog || []).some(log => log.version === item.content.reviewedVersion && log.reviewer === item.content.reviewedBy && log.decision === 'approved' && log.evidence), `${id}: missing review trail`);
+        ok(G.evaluate(item, 'public', { now }).allowed, `${id}: public release gate blocks reviewed issue`);
+      } else {
+        ok(!G.evaluate(item, 'public', { now }).allowed, `${id}: unreviewed formation must stay private`);
+      }
+    }
+    const alternative = ctx.liveRegister.find(x => x.id === '9v9-2-2-3-1');
+    ok(content['2-2-3-1'].status.exploratory === true, 'Alternative classification must be retained');
+    if (alternative.content.status === 'reviewed') {
+      ok(!!alternative.content.publicApproval?.by && !!alternative.content.publicApproval?.on, 'Alternative needs explicit editorial approval');
+    }
+  });
   return T;
 }
 
