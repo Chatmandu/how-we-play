@@ -18,6 +18,10 @@ const rules = f.rules.filter(r => r.diagram);
 const i = rules.findIndex(r => r.id === Astro.props.ruleId);
 const r = rules[i];
 const set = f.diagrams[r.diagram];
+// The new issues use approved before/after positions to animate existing snapshots.
+// Issue 01 retains its fully hand-authored movement sequences.
+const deriveTransitions = f.slug === "3-3-2" || f.slug === "2-2-3-1";
+const skipDerivedOn = f.slug === "3-3-2" && r.diagram === "ball-side-wide" ? ["choose"] : [];
 const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
 const full = Array.isArray(f.roles);
 const total = full ? f.rules.length : (f.ruleTable || []).length;
@@ -52,7 +56,7 @@ const pagerPrev = prev ? { href: `${base}${prev.id}/`, over: `Principle ${prev.n
       </header>
       <div class="feature__body">
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
-        <LessonFigure id="lesson-fig" frames={set.frames} figLabel={`Fig. ${r.n} · ${r.title}`} context={`9v9 · ${f.name}`} source={source} exploratory={exploratory}>
+        <LessonFigure id="lesson-fig" frames={set.frames} figLabel={`Fig. ${r.n} · ${r.title}`} context={`9v9 · ${f.name}`} source={source} exploratory={exploratory} deriveTransitions={deriveTransitions} skipDerivedOn={skipDerivedOn}>
           <div class="ed-cue"><p>Say it on the touchline</p><blockquote>{r.cue}</blockquote>{r.extra && <p class="ed-small">{r.extra}</p>}</div>
           <div class="ed-chips" set:html={statusChips(f.register)} />
           <Byline f={f} />

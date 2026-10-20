@@ -1,6 +1,7 @@
 /* Lesson figure behaviour: one frame at a time, step buttons, keyboard, animated movement.
  * Progressive enhancement over server-rendered panels; with no JavaScript every frame stays visible. */
 import { renderPitch, frameAt } from '../../design-system/diagrams/renderer.mjs';
+import { inferStepMotion } from './figure-motion.mjs';
 
 const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -25,21 +26,41 @@ export function initLessonFigures(root) {
   root.querySelectorAll('[data-lesson-figure]:not([data-ready])').forEach(el => {
     el.dataset.ready = '1';
     const frames = JSON.parse(el.querySelector('[data-frames]').textContent);
+    // Only opted-in issues animate between existing diagrams; other issues
+    // retain their authored motion paths unchanged.
+    const skipKeys = (el.dataset.motionSkip || '').split(' ').filter(Boolean);
+    const motionFrames = el.hasAttribute('data-motion-transitions')
+      ? frames.map((_, i) => inferStepMotion(frames, i, { skipKeys }))
+      : frames;
+    const replay = el.querySelector('[data-replay]');
     const panels = [...el.querySelectorAll('[data-panel]')];
     const steps = [...el.querySelectorAll('[data-step]')];
     const live = el.querySelector('[data-live]');
     let current = 0;
     wireEnlarge(el, () => current, panels, frames);
-    if (panels.length < 2 || !steps.length) return;
+    const updateReplay = () => {
+      if (!replay) return;
+      replay.hidden = reduce() || !(motionFrames[current].ghosts || []).length;
+    };
+    if (replay) replay.addEventListener('click', () => {
+      const stage = panels[current].querySelector('[data-stage]');
+      play(stage, motionFrames[current]);
+    });
+    if (panels.length < 2 || !steps.length) { updateReplay(); return; }
     document.documentElement.classList.add('js-lf');
     el.querySelector('[data-steps]').hidden = false;
     const hint = el.querySelector('[data-hint]'); if (hint) hint.hidden = false;
     const go = (i, { animate = true, announce = true } = {}) => {
       current = i;
-      panels.forEach((p, k) => { p.hidden = k !== i; });
+      panels.forEach((p, k) => {
+        const old = p.querySelector('[data-stage]');
+        if (old && old._raf) cancelAnimationFrame(old._raf);
+        p.hidden = k !== i;
+      });
       steps.forEach((s, k) => { s.setAttribute('aria-pressed', String(k === i)); s.tabIndex = k === i ? 0 : -1; });
       const stage = panels[i].querySelector('[data-stage]');
-      if (animate) play(stage, frames[i]); else draw(stage, frames[i], 1);
+      if (animate) play(stage, motionFrames[i]); else draw(stage, frames[i], 1);
+      updateReplay();
       if (announce && live) {
         const v = frames[i].verdict === 'wrong' ? 'Wrong. ' : frames[i].verdict === 'right' ? 'Right. ' : '';
         live.textContent = `Step ${i + 1} of ${frames.length}: ${steps[i].querySelector('b').textContent}. ${v}${frames[i].caption}`;
