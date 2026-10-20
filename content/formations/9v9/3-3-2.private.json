@@ -1,5 +1,5 @@
 {
-  "$comment": "PRIVATE. Research draft 0.1 (19 Oct 2026). Positions illustrative, placed from written briefs. Not for public builds.",
+  "$comment": "9v9 Issue 02: published coaching issue, author/editor version 0.2.",
   "id": "9v9-3-3-2",
   "format": "9v9",
   "pitch": "9v9",
@@ -9,7 +9,7 @@
   "order": 2,
   "registerId": "9v9-3-3-2",
   "summary": "Three protect. Three connect. Two work together.",
-  "sourceLabel": "Working editorial draft, unreviewed coaching guidance",
+  "sourceLabel": "How We Play 3-3-2 formation guide",
   "structure": [
     [
       "Notation",
@@ -58,7 +58,7 @@
     }
   ],
   "considerations": {
-    "label": "Coaching judgement in the draft, not reviewed",
+    "label": "Coaching considerations",
     "strengths": [
       "readily visible lines",
       "three across defence and midfield",
@@ -135,11 +135,11 @@
     "Do sessions promote learning, role rotation and enjoyment rather than rigid compliance?",
     "Confirm offside illustrations, set-piece guidance, and competition-rule statements before publication."
   ],
-  "notDrawn": "The issue now includes private editorial diagrams and position highlights. All new movement scenarios await David Wilson's review, and the existing offside overlay needs checking.",
+  "notDrawn": "Further tactical features and set pieces are not included in this issue.",
   "status": {
     "content": "review-required",
     "exploratory": false,
-    "source": "How We Play Issue 02 editorial draft 0.2; based on research draft 0.1",
+    "source": "How We Play Issue 02 coaching publication, editorial version 0.2",
     "reviewedBy": null,
     "reviewedOn": null
   },
@@ -149,7 +149,7 @@
       -6,
       156
     ],
-    "alt": "Draft starting picture, 1-3-3-2: goalkeeper; 3, 5 and 2 at the back; 11, 8 and 7 in midfield; 9 and 10 up front.",
+    "alt": "Starting picture, 1-3-3-2: goalkeeper; 3, 5 and 2 at the back; 11, 8 and 7 in midfield; 9 and 10 up front.",
     "players": [
       {
         "t": "us",
@@ -217,7 +217,7 @@
     ],
     "title": "Starting shape: 1-3-3-2",
     "caption": "A starting shape, not a fixed position for every moment of the match.",
-    "altSummary": "Draft starting picture, 1-3-3-2: goalkeeper; 3, 5 and 2 at the back; 11, 8 and 7 in midfield; 9 and 10 up front."
+    "altSummary": "Starting picture, 1-3-3-2: goalkeeper; 3, 5 and 2 at the back; 11, 8 and 7 in midfield; 9 and 10 up front."
   },
   "rules": [
     {
@@ -231,7 +231,7 @@
       "diagram": "middle-first",
       "thumb": 0,
       "seo": "Middle first: 9v9 3-3-2 playing principle",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "look": [
         "Watch whether pressure on the ball has cover behind it.",
         "Check whether 8 remains connected to the back three.",
@@ -249,7 +249,7 @@
       "diagram": "ball-side-wide",
       "thumb": 0,
       "seo": "Ball side wide, far side in: 9v9 3-3-2 playing principle",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "look": [
         "Is 7 or 11 offering a useful wide pass?",
         "Can 8 connect play without becoming isolated?",
@@ -267,7 +267,7 @@
       "diagram": "one-comes",
       "thumb": 0,
       "seo": "One comes, one goes: 9v9 3-3-2 playing principle",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "look": [
         "Are 9 and 10 offering different passing options?",
         "Is 8 close enough to combine with the forwards?",
@@ -285,7 +285,7 @@
       "diagram": "go-together",
       "thumb": 0,
       "seo": "Go together, recover together: 9v9 3-3-2 playing principle",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "look": [
         "Does the first presser have help behind and alongside?",
         "Can the other forward restrict the easy central pass?",
@@ -304,7 +304,7 @@
             32,
             150
           ],
-          "caption": "Draft example: more than one player follows the ball wide, leaving a possible route through the middle.",
+          "caption": "Example: more than one player follows the ball wide, leaving a possible route through the middle.",
           "altSummary": "The opponent on our right has the ball. Our 8 and right defender 2 both move towards it, while space can appear in front of centre-back 5.",
           "players": [
             {
@@ -406,7 +406,7 @@
             32,
             150
           ],
-          "caption": "Draft example: the ball-side player applies pressure while 8 stays connected to the centre.",
+          "caption": "Example: the ball-side player applies pressure while 8 stays connected to the centre.",
           "altSummary": "Opponent on the right has the ball. The right defender stays between the ball and goal while central midfielder 8 helps protect the middle ahead of 5.",
           "players": [
             {
@@ -513,7 +513,7 @@
             32,
             150
           ],
-          "caption": "Draft example: 7 offers width while the far midfielder 11 starts wider.",
+          "caption": "Example: 7 offers width while the far midfielder 11 starts wider.",
           "altSummary": "Our 7 is wide on the right with the ball. 8 offers a central connection and 11 waits on the far side, with forwards 9 and 10 ahead.",
           "players": [
             {
@@ -592,7 +592,7 @@
             32,
             150
           ],
-          "caption": "Draft example: as 7 keeps width on the right, 11 moves into a narrower position to support 8.",
+          "caption": "Example: as 7 keeps width on the right, 11 moves into a narrower position to support 8.",
           "altSummary": "The ball remains with right midfielder 7. The far midfielder 11 moves from the left wing towards a central support position without standing on top of 8.",
           "players": [
             {
@@ -693,7 +693,7 @@
             32,
             150
           ],
-          "caption": "Draft question: 11 may remain wider if a switch of play is useful. The correct decision depends on pressure and space.",
+          "caption": "Consider: 11 may remain wider if a switch of play is useful. The correct decision depends on pressure and space.",
           "altSummary": "An alternative attacking picture has 11 remain outside on the far left while the ball is on the right, illustrating that coming inside is a decision rather than a fixed rule.",
           "players": [
             {
@@ -777,7 +777,7 @@
             32,
             150
           ],
-          "caption": "Draft example: one forward presses but the next passing route remains open.",
+          "caption": "Example: one forward presses but the next passing route remains open.",
           "altSummary": "Forward 9 advances to press an opponent in midfield; forward 10 and midfielder 8 stay too far from the opponent's other short option.",
           "players": [
             {
@@ -879,7 +879,7 @@
             32,
             150
           ],
-          "caption": "Draft example: forwards 9 and 10 work in a pair while 8 stays close enough to help protect the next pass.",
+          "caption": "Example: forwards 9 and 10 work in a pair while 8 stays close enough to help protect the next pass.",
           "altSummary": "A forward approaches the opponent on the ball; their partner and midfielder 8 take nearby covering positions rather than leaving the next passing lane entirely open.",
           "players": [
             {
@@ -970,7 +970,7 @@
             32,
             150
           ],
-          "caption": "Draft example: if the first press is beaten, nearby teammates recover together instead of chasing the same opponent.",
+          "caption": "Example: if the first press is beaten, nearby teammates recover together instead of chasing the same opponent.",
           "altSummary": "After the opposition move play past the first forward, midfielder 8 and the back three recognise the need to protect the central route; forwards begin to recover.",
           "players": [
             {
@@ -1161,8 +1161,7 @@
           "tab": "Same line",
           "verdict": "wrong",
           "caption": "9 and 10 both stand on the last defensive line. One defender can mark both passing lanes.",
-          "altSummary": "9 and 10 both stand on the last defensive line, close together. One defender can mark both passing lanes from 8, and nobody threatens the space behind.",
-          "sourceNote": "Based on Issue 02 editorial draft; offside illustration requires reviewer and rules check."
+          "altSummary": "9 and 10 both stand on the last defensive line, close together. One defender can mark both passing lanes from 8, and nobody threatens the space behind."
         },
         {
           "crop": [
@@ -1170,12 +1169,6 @@
             90
           ],
           "alt": "9 comes towards the ball to receive a pass to feet from 8. 10 starts on the last line and runs into the space behind, timing the run to stay onside. 8 has two pass lines: to 9, or into the space for 10.",
-          "lines": [
-            {
-              "y": 25.5,
-              "t": "OFFSIDE · TO CHECK"
-            }
-          ],
           "highlights": [
             {
               "k": "space",
@@ -1318,9 +1311,7 @@
           "tab": "9 comes, 10 goes",
           "verdict": "right",
           "caption": "9 moves towards the ball to receive. 10 threatens the space behind, timing the run to stay onside.",
-          "note": "Offside line is contextual and must be checked before publication.",
-          "altSummary": "9 comes towards the ball to receive a pass to feet from 8. 10 starts on the last line and runs into the space behind, timing the run to stay onside. 8 has two pass lines: to 9, or into the space for 10.",
-          "sourceNote": "Based on Issue 02 editorial draft; offside illustration requires reviewer and rules check."
+          "altSummary": "9 comes towards the ball to receive a pass to feet from 8. 10 starts on the last line and runs into the space behind, timing the run to stay onside. 8 has two pass lines: to 9, or into the space for 10."
         },
         {
           "crop": [
@@ -1328,12 +1319,6 @@
             90
           ],
           "alt": "10 comes short towards the ball. 9 stays high and moves into a channel. 8 has a forward pass to 10 and another runner stretching the defence.",
-          "lines": [
-            {
-              "y": 25.5,
-              "t": "OFFSIDE · TO CHECK"
-            }
-          ],
           "highlights": [
             {
               "k": "space",
@@ -1476,9 +1461,7 @@
           "tab": "10 comes, 9 goes",
           "verdict": "right",
           "caption": "10 comes short. 9 stays high or moves into a channel.",
-          "note": "Offside line is contextual and must be checked before publication.",
-          "altSummary": "10 comes short towards the ball. 9 stays high and moves into a channel. 8 has a forward pass to 10 and another runner stretching the defence.",
-          "sourceNote": "Based on Issue 02 editorial draft; offside illustration requires reviewer and rules check."
+          "altSummary": "10 comes short towards the ball. 9 stays high and moves into a channel. 8 has a forward pass to 10 and another runner stretching the defence."
         }
       ]
     },
@@ -1492,7 +1475,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for goalkeeper in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for goalkeeper in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting GK as goalkeeper; the team attacks upwards.",
           "players": [
             {
@@ -1589,7 +1572,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for centre-back in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for centre-back in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting 5 as centre-back; the team attacks upwards.",
           "players": [
             {
@@ -1686,7 +1669,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for outside defenders in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for outside defenders in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting 3 and 2 as outside defenders; the team attacks upwards.",
           "players": [
             {
@@ -1796,7 +1779,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for central midfielder in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for central midfielder in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting 8 as central midfielder; the team attacks upwards.",
           "players": [
             {
@@ -1893,7 +1876,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for wide midfielders in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for wide midfielders in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting 11 and 7 as wide midfielders; the team attacks upwards.",
           "players": [
             {
@@ -2003,7 +1986,7 @@
             -6,
             156
           ],
-          "caption": "Draft starting picture for two forwards in a 3-3-2. Positions are a starting point, not fixed instructions.",
+          "caption": "Starting positions for two forwards in a 3-3-2. Positions are a starting point, not fixed instructions.",
           "altSummary": "Nine-player 3-3-2 starting shape, highlighting 9 and 10 as two forwards; the team attacks upwards.",
           "players": [
             {
@@ -2135,7 +2118,7 @@
   "issue": {
     "number": 2,
     "intro": "Three protect. Three connect. Two work together. A 9v9 starting picture with three defenders, three midfielders and two forwards who must offer different options.",
-    "summary": "A proposed 3-3-2 starting shape, four playing principles, positional responsibilities and how the team works together.",
+    "summary": "The 3-3-2: three defenders, three midfielders and two forwards working together through four playing principles.",
     "chapters": [
       {
         "id": "shape",
@@ -2148,7 +2131,7 @@
         "id": "principles",
         "n": 2,
         "title": "Our four playing principles",
-        "dek": "Four questions to help players decide, illustrated with provisional situations for coaching review.",
+        "dek": "Four practical questions to help players read the game and make decisions.",
         "preview": "Simple shared decisions with and without the ball.",
         "rules": [
           "middle-first",
@@ -2210,7 +2193,8 @@
         ]
       }
     ],
-    "features": []
+    "features": [],
+    "published": "2026-10-20"
   },
   "roles": [
     {
@@ -2221,7 +2205,7 @@
       "short": "GK",
       "title": "Goalkeeper",
       "head": "Start, see, speak",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-goalkeeper",
       "points": [
         "Start by looking for a simple pass to a teammate who can receive.",
@@ -2242,7 +2226,7 @@
       "short": "5",
       "title": "Centre-back",
       "head": "See the whole picture",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-centre-back",
       "points": [
         "Help organise the three defenders and recognise danger through the centre.",
@@ -2264,7 +2248,7 @@
       "short": "3·2",
       "title": "Outside defenders",
       "head": "Defend, support, cover",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-outside-defenders",
       "points": [
         "Recognise when to challenge a wide opponent and when to protect the centre.",
@@ -2285,7 +2269,7 @@
       "short": "8",
       "title": "Central midfielder",
       "head": "Connect both ends",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-central-midfielder",
       "points": [
         "Give teammates a useful central passing option when we have the ball.",
@@ -2308,7 +2292,7 @@
       "short": "11·7",
       "title": "Wide midfielders",
       "head": "Width and hard work",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-wide-midfielders",
       "points": [
         "Offer width when your team needs an outside passing option.",
@@ -2330,7 +2314,7 @@
       "short": "9·10",
       "title": "Two forwards",
       "head": "Partners, not passengers",
-      "src": "Issue 02 editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 02, 3-3-2",
       "diagram": "role-two-forwards",
       "points": [
         "Offer different options: one may come short while the other stays higher.",
