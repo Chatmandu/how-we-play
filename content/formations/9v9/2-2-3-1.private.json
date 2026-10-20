@@ -1,5 +1,5 @@
 {
-  "$comment": "PRIVATE. Exploratory draft 0.1 (19 Oct 2026). Experimental formation. Positions illustrative. Not for public builds.",
+  "$comment": "9v9 Issue 03: publicly approved alternative formation. Its exploratory history remains recorded in governance metadata.",
   "id": "9v9-2-2-3-1",
   "format": "9v9",
   "pitch": "9v9",
@@ -9,7 +9,7 @@
   "order": 3,
   "registerId": "9v9-2-2-3-1",
   "summary": "Two central defenders and two wing-backs.",
-  "sourceLabel": "Exploratory tactical proposal, not approved coaching advice",
+  "sourceLabel": "How We Play 2-2-3-1 alternative formation guide",
   "structure": [
     [
       "Notation",
@@ -62,7 +62,7 @@
     }
   ],
   "considerations": {
-    "label": "Hypotheses in the exploratory draft, not reviewed",
+    "label": "Points to consider when using this alternative formation",
     "strengths": [
       "clear width from wing-backs",
       "three players able to combine centrally",
@@ -142,11 +142,11 @@
     "Are all diagrams and pressing cues appropriate for the target age and league rules, including offside?",
     "If the qualified reviewer is uncomfortable with the system, do not publish it as a recommended option. Rework or replace it."
   ],
-  "notDrawn": "Private editorial examples are present for review, but no tactical movement or developmental suitability has been signed off.",
+  "notDrawn": "Further tactical features and set pieces are not included in this issue.",
   "status": {
     "content": "review-required",
     "exploratory": true,
-    "source": "How We Play Issue 03 exploratory editorial draft 0.2; based on research draft 0.1",
+    "source": "How We Play Issue 03 coaching publication, editorial version 0.2",
     "reviewedBy": null,
     "reviewedOn": null,
     "publicApproval": null
@@ -157,7 +157,7 @@
       -6,
       156
     ],
-    "alt": "Exploratory starting picture, not reviewed: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest.",
+    "alt": "Starting picture for an alternative system: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest.",
     "players": [
       {
         "t": "us",
@@ -223,9 +223,9 @@
         "id": "us-9"
       }
     ],
-    "title": "Exploratory starting shape: 1-2-2-3-1",
-    "caption": "An exploratory starting picture; jobs change as the ball moves and this system has not been coaching approved.",
-    "altSummary": "Exploratory starting picture, not reviewed: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest."
+    "title": "Starting shape: 1-2-2-3-1",
+    "caption": "An alternative starting shape. Wing-backs support the attack while teammates cover the space they leave.",
+    "altSummary": "Starting picture for an alternative system: a 1-2-2-3-1 with central defenders 4 and 5, wing-backs 3 and 2 wide and ahead of them, midfield 11, 6 and 8, and 9 highest."
   },
   "rules": [
     {
@@ -239,7 +239,7 @@
       "diagram": "two-connected",
       "thumb": 0,
       "seo": "Two stay connected: 9v9 2-2-3-1 playing principle",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "look": [
         "Do 4 and 5 communicate about who meets the ball?",
         "Is either defender leaving too much space behind?",
@@ -257,7 +257,7 @@
       "diagram": "width-cover",
       "thumb": 0,
       "seo": "Width with cover: 9v9 2-2-3-1 playing principle",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "look": [
         "Is the advancing wing-back offering a useful wide option?",
         "Which teammate recognises the space left behind?",
@@ -275,7 +275,7 @@
       "diagram": "protect-middle",
       "thumb": 0,
       "seo": "Someone protects the middle: 9v9 2-2-3-1 playing principle",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "look": [
         "Do we recognise when the central route is open?",
         "Can 6 connect play while noticing defensive cover?",
@@ -293,7 +293,7 @@
       "diagram": "wb-recovery",
       "thumb": 0,
       "seo": "Lose it? Find home: 9v9 2-2-3-1 playing principle",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "look": [
         "Can the nearest player delay the opponent with the ball?",
         "Who covers the central route during the transition?",
@@ -312,7 +312,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: both central defenders step towards the same opponent, potentially exposing space behind.",
+          "caption": "Example: both central defenders step towards the same opponent, potentially exposing space behind.",
           "altSummary": "Two defenders 4 and 5 have moved towards an opponent carrying the ball, leaving another opponent free closer to our goal.",
           "players": [
             {
@@ -421,7 +421,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: one central defender meets the threat while the other provides depth and cover.",
+          "caption": "Example: one central defender meets the threat while the other provides depth and cover.",
           "altSummary": "Central defender 4 approaches the opponent on the ball; defender 5 remains slightly deeper and nearer goal to provide cover while 6 stays available centrally.",
           "players": [
             {
@@ -524,7 +524,7 @@
             30,
             150
           ],
-          "caption": "Exploratory starting picture: wing-back 2 provides a wide option with central defenders behind.",
+          "caption": "Starting picture: wing-back 2 provides a wide option with central defenders behind.",
           "altSummary": "Wing-backs 2 and 3 start in wide positions ahead of defenders 4 and 5; midfield 6 remains central with 8 and 11 nearby.",
           "players": [
             {
@@ -606,7 +606,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: right wing-back 2 advances wide while the team must decide who covers behind.",
+          "caption": "Example: right wing-back 2 advances wide while the team must decide who covers behind.",
           "altSummary": "Wing-back 2 moves up the right side, leaving a channel behind; 5 and 8 may need to consider the danger, but the covering pattern is not yet agreed.",
           "players": [
             {
@@ -721,7 +721,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: after a turnover, the space behind 2 becomes the next defensive decision.",
+          "caption": "Example: after a turnover, the space behind 2 becomes the next defensive decision.",
           "altSummary": "An opponent has the ball on our right while our right wing-back 2 is still high; the team must choose which player delays and which protects the channel.",
           "players": [
             {
@@ -829,7 +829,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: the central midfielder follows the ball towards the right while a central route may be exposed.",
+          "caption": "Example: the central midfielder follows the ball towards the right while a central route may be exposed.",
           "altSummary": "With play towards our right, midfielder 6 has drifted towards the wing-back and an opponent can threaten space between our midfield and the two central defenders.",
           "players": [
             {
@@ -932,7 +932,7 @@
             30,
             150
           ],
-          "caption": "Exploratory example: 6 notices the central route and maintains a protective position.",
+          "caption": "Example: 6 notices the central route and maintains a protective position.",
           "altSummary": "As the right wing-back remains high, midfielder 6 stays more central with the two defenders behind; this illustrates an option to protect the direct route to goal.",
           "players": [
             {
@@ -1151,8 +1151,7 @@
           "tab": "1 · Delay",
           "stage": 1,
           "caption": "We lose it near our right wing-back. The nearest midfielder, 8, delays.",
-          "altSummary": "Stage 1. We lose the ball near our right wing-back, 2, who is high up the pitch. The nearest midfielder, 8, moves to delay the opponent on the ball.",
-          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
+          "altSummary": "Stage 1. We lose the ball near our right wing-back, 2, who is high up the pitch. The nearest midfielder, 8, moves to delay the opponent on the ball."
         },
         {
           "crop": [
@@ -1321,8 +1320,7 @@
           "tab": "2 · Track and screen",
           "stage": 2,
           "caption": "Both wing-backs track towards defensive lanes. 6 screens the middle.",
-          "altSummary": "Stage 2. 8 delays the ball. Both wing-backs, 3 and 2, track back towards defensive lanes. 6 moves goal-side to screen the central lane.",
-          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
+          "altSummary": "Stage 2. 8 delays the ball. Both wing-backs, 3 and 2, track back towards defensive lanes. 6 moves goal-side to screen the central lane."
         },
         {
           "crop": [
@@ -1455,8 +1453,7 @@
           "tab": "3 · Move together",
           "stage": 3,
           "caption": "4 and 5 move together. A back four is only an outcome of real recovery, not an instant switch.",
-          "altSummary": "Stage 3. The two centre-backs, 4 and 5, move across together towards the ball side, staying connected. The wing-backs and 6 hold their recovered positions.",
-          "sourceNote": "Exploratory 2-2-3-1 research draft; all recovery decisions await a qualified coach."
+          "altSummary": "Stage 3. The two centre-backs, 4 and 5, move across together towards the ball side, staying connected. The wing-backs and 6 hold their recovered positions."
         }
       ]
     },
@@ -1470,7 +1467,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for goalkeeper in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for goalkeeper in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting GK as goalkeeper, with our team attacking upwards.",
           "players": [
             {
@@ -1567,7 +1564,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for central defenders in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for central defenders in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 4 and 5 as central defenders, with our team attacking upwards.",
           "players": [
             {
@@ -1677,7 +1674,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for wing-backs in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for wing-backs in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 3 and 2 as wing-backs, with our team attacking upwards.",
           "players": [
             {
@@ -1787,7 +1784,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for central midfielder in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for central midfielder in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 6 as central midfielder, with our team attacking upwards.",
           "players": [
             {
@@ -1884,7 +1881,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for interior midfielders in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for interior midfielders in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 11 and 8 as interior midfielders, with our team attacking upwards.",
           "players": [
             {
@@ -1994,7 +1991,7 @@
             -6,
             156
           ],
-          "caption": "Exploratory starting picture for striker in a 2-2-3-1. Not a coaching recommendation.",
+          "caption": "Starting positions for striker in a 2-2-3-1. Positions are starting points, not fixed instructions.",
           "altSummary": "Nine-player 2-2-3-1 starting formation, highlighting 9 as striker, with our team attacking upwards.",
           "players": [
             {
@@ -2115,22 +2112,22 @@
   ],
   "issue": {
     "number": 3,
-    "intro": "Two central defenders, two wing-backs, three midfielders and one striker. An exploratory 9v9 idea with unusually demanding recovery and cover decisions.",
-    "summary": "An exploratory 2-2-3-1 formation: proposed principles, player responsibilities and questions to test before it can be recommended.",
+    "intro": "An alternative way to organise nine players: two central defenders, two wing-backs, three midfielders and a striker. It asks for careful cover and realistic recovery runs.",
+    "summary": "The 2-2-3-1: an alternative nine-a-side formation using wing-backs, four playing principles and clear player responsibilities.",
     "chapters": [
       {
         "id": "shape",
         "n": 1,
         "title": "Starting shape",
-        "dek": "What the 2-2-3-1 picture might give a team, and what it could leave exposed.",
+        "dek": "How two central defenders and wing-backs might connect, and the space to protect when players advance.",
         "preview": "A starting shape with wing-backs and two central defenders."
       },
       {
         "id": "principles",
         "n": 2,
-        "title": "Four proposed playing principles",
-        "dek": "Questions for players and coaches, with tactical scenes awaiting qualified review.",
-        "preview": "Provisional decisions about pressure, width and cover.",
+        "title": "Our four playing principles",
+        "dek": "Four decisions around pressure, width, cover and recovery.",
+        "preview": "Pressure, width, cover and recovery as a team.",
         "rules": [
           "two-connected",
           "width-cover",
@@ -2142,8 +2139,8 @@
         "id": "jobs",
         "n": 3,
         "title": "A job for every player",
-        "dek": "Roles to test with a coach before being given to a team.",
-        "preview": "Possible responsibilities for each position.",
+        "dek": "Responsibilities to adapt as players develop and circumstances change.",
+        "preview": "What each position contributes with and without the ball.",
         "roles": [
           "goalkeeper",
           "central-defenders",
@@ -2157,7 +2154,7 @@
         "id": "together",
         "n": 4,
         "title": "Playing together",
-        "dek": "How wing-back support, midfield protection and recovery could work together.",
+        "dek": "How width, central support and defensive recovery depend on one another.",
         "preview": "Attacking width and the cover it depends upon.",
         "groups": [
           {
@@ -2191,7 +2188,8 @@
         ]
       }
     ],
-    "features": []
+    "features": [],
+    "published": "2026-10-20"
   },
   "roles": [
     {
@@ -2202,7 +2200,7 @@
       "short": "GK",
       "title": "Goalkeeper",
       "head": "See danger early",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-goalkeeper",
       "points": [
         "Notice where the ball might go if the team loses possession.",
@@ -2224,7 +2222,7 @@
       "short": "4·5",
       "title": "Central defenders",
       "head": "Protect each other",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-central-defenders",
       "points": [
         "Stay aware of your partner when deciding whether to challenge.",
@@ -2247,7 +2245,7 @@
       "short": "3·2",
       "title": "Wing-backs",
       "head": "Two jobs, one decision",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-wing-backs",
       "points": [
         "Offer a wide option when the team has appropriate cover.",
@@ -2268,7 +2266,7 @@
       "short": "6",
       "title": "Central midfielder",
       "head": "Our connection and protection",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-central-midfielder",
       "points": [
         "Offer a central passing option without crowding teammates.",
@@ -2290,7 +2288,7 @@
       "short": "11·8",
       "title": "Interior midfielders",
       "head": "Make angles, not crowds",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-interior-midfielders",
       "points": [
         "Offer different supporting angles to keep possession moving.",
@@ -2311,7 +2309,7 @@
       "short": "9",
       "title": "Striker",
       "head": "Give us a way forward",
-      "src": "Issue 03 exploratory editorial manuscript, draft 0.2",
+      "src": "How We Play Issue 03, 2-2-3-1",
       "diagram": "role-striker",
       "points": [
         "Make yourself available for a useful pass.",
@@ -2331,5 +2329,5 @@
     "opportunities to discuss when players support and recover"
   ],
   "spineText": "GK, the shared cover of 4 and 5, 6 in midfield, and 9 further forward",
-  "shapeCue": "An exploratory starting picture; jobs change as the ball moves and this system has not been coaching approved."
+  "shapeCue": "An alternative starting shape. Wing-backs support the attack while teammates cover the space they leave."
 }
