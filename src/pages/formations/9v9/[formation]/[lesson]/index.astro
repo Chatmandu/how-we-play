@@ -31,7 +31,11 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '
 const title = full ? `${r.title}: ${r.seo ? r.seo.split(': ')[1] : '9v9 principle'} (${f.name}) | How We Play` : `${r.title} (${f.name} draft) | How We Play`;
 const description = full ? `${r.summary} ${r.cue} A ${f.name} lesson for 9v9 coaches, with wrong and right diagrams.` : `${r.tag} Private draft lesson, not reviewed.`;
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${r.title} (${f.name})`, inLanguage: 'en-GB', isPartOf: { '@type': 'WebPage', url: model.site.url + base }, author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true }];
-const source = full ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.` : `From ${f.status.source}, ${r.src}. Positions are illustrative.`;
+const source = f.shape.sourcePage
+  ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.`
+  : f.register.content.status === 'reviewed'
+    ? `How We Play illustration based on reviewed guidance. Pictures show ideas, not fixed moves.`
+    : `How We Play draft, ${r.src}. Illustrations await qualified coaching review.`;
 const pagerNext = next ? { href: `${base}${next.id}/`, over: `Next · Principle ${next.n}`, title: next.title } : (full ? { href: `${base}positions/${f.roles[0].id}/`, over: 'Next · Chapter 3', title: f.roles[0].title } : { href: base, over: 'Back to', title: `${f.name} guide` });
 const pagerPrev = prev ? { href: `${base}${prev.id}/`, over: `Principle ${prev.n}`, title: prev.title } : { href: base, over: `Back to ${issueLabel(f)}`, title: `The ${f.name}` };
 ---
