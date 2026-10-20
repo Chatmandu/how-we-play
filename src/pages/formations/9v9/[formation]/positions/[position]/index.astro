@@ -7,7 +7,7 @@ import LessonFigure from '../../../../../../components/LessonFigure.astro';
 import EdGuideNav from '../../../../../../components/EdGuideNav.astro';
 import Byline from '../../../../../../components/Byline.astro';
 import model from '../../../../../../lib/content.mjs';
-import { statusChips, reviewNote } from '../../../../../../lib/ui.mjs';
+import { statusChips, reviewNote, exploratoryStrip } from '../../../../../../lib/ui.mjs';
 import { word, issueLabel, chapterOf } from '../../../../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
@@ -17,6 +17,7 @@ export function getStaticPaths() {
 const f = model.formation(Astro.props.slug);
 const i = f.roles.findIndex(r => r.id === Astro.props.roleId);
 const r = f.roles[i];
+const exploratory = !!f.register.content.exploratory;
 const set = f.diagrams[r.diagram];
 const base = `/formations/9v9/${f.slug}/`;
 const related = (r.rules || []).map(id => f.rules.find(x => x.id === id)).filter(Boolean);
@@ -51,6 +52,7 @@ const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next positio
         <p class="ed-stand">{r.head}</p>
       </header>
       <div class="feature__body">
+        {exploratory && <Fragment set:html={exploratoryStrip()} />}
         <LessonFigure id="pos-fig" frames={set.frames} figLabel={`${r.nums.join(' · ')} · ${r.title}`} context={`9v9 · ${f.name}`} source={roleSource}>
           <div class="ed-cue"><p>Ask yourself</p><blockquote>{r.cue}</blockquote></div>
           <div class="ed-chips" set:html={statusChips(f.register)} />
