@@ -10,12 +10,12 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "review-required",
+      "status": "reviewed",
       "exploratory": false,
       "source": "Mossley Hill U13 playbook (15 pp.), Niall Walsh",
-      "reviewedBy": null,
-      "reviewedOn": null,
-      "reviewedVersion": null,
+      "reviewedBy": "David Wilson",
+      "reviewedOn": "2026-10-20",
+      "reviewedVersion": "cv-353fff2a",
       "reviewer": "David Wilson (designated coaching reviewer; no review recorded)",
       "history": [
         {
@@ -43,6 +43,14 @@
           "decision": "withdrawn",
           "limitations": "Approval not carried over: David Wilson is now the designated coaching reviewer (instruction from Niall Walsh, 20 October 2026). Needs review by David Wilson.",
           "evidence": null
+        },
+        {
+          "version": "cv-353fff2a",
+          "reviewer": "David Wilson",
+          "date": "2026-10-20",
+          "decision": "approved",
+          "limitations": "None recorded",
+          "evidence": "Written instruction from Niall Walsh (site owner), 20 October 2026 14:04: 'David Wilson has approved 3-1-3-1'. David's own written approval to be filed."
         }
       ]
     }
