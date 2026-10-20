@@ -14,7 +14,7 @@ export function getStaticPaths() {
   return model.formations.filter(f => f.gate.allowed).map(f => ({ params: { formation: f.slug }, props: { slug: f.slug } }));
 }
 const f = model.formation(Astro.props.slug);
-const exploratory = !!f.register.content.exploratory;
+const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
 const base = `/formations/9v9/${f.slug}/`;
 const full = Array.isArray(f.roles) && f.issue && f.issue.chapters;
 const reviewerNotes = model.target !== 'public';
@@ -25,6 +25,11 @@ const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; retur
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
+const shapeAttribution = f.shape.sourcePage
+  ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
+  : f.register.content.status === 'reviewed'
+    ? 'Illustrated by How We Play from reviewed coaching guidance.'
+    : 'Provisional illustration for coaching review; not published coaching advice.';
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: `${label}: ${f.name}` }];
 const title = `${f.name} 9v9 formation guide (${f.notation}) | How We Play`;
 const description = full
@@ -62,7 +67,7 @@ const contents = full ? [
           <div class="chapter__head"><p class="chapter__n">Chapter 1</p><h2 class="chapter__t" id="c1-h">{chap('shape').title}</h2><p class="ed-small">{chap('shape').dek}</p></div>
           <figure class="sheet__pitch on-pitch chapter__fig">
             <Fragment set:html={shapeSvg} />
-            <figcaption>{f.shapeCue} Redrawn from the source playbook, {f.shape.sourcePage}.</figcaption>
+            <figcaption>{f.shapeCue} {shapeAttribution}</figcaption>
           </figure>
           <div class="chapter__side">
             <h3 class="ed-label">This shape gives us</h3>

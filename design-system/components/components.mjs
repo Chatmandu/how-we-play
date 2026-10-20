@@ -75,7 +75,7 @@ export function statusChips(item = {}) {
   if (st === 'draft') out.push(['draft', 'Draft']);
   if (st === 'review-required') out.push(['review', 'Coaching review required']);
   if (st === 'reviewed') out.push(['reviewed', `✓ Coaching reviewed${c.reviewedOn ? ' · ' + longDate(c.reviewedOn) : ''}`]);
-  if (c.exploratory) out.push(['exploratory', 'Exploratory']);
+  if (c.exploratory && !c.publicApproval) out.push(['exploratory', 'Exploratory']);
   (item.rules || []).forEach(r => out.push(r.status === 'verified' ? ['verified', `Official rule verified · ${r.checkedOn || ''}`] : ['review', `Rule not yet checked: ${r.fact}`]));
   return `<div class="hwp-chips">${out.map(([k, t]) => `<span class="hwp-chip hwp-chip--${k}">${esc(t)}</span>`).join('')}</div>`;
 }

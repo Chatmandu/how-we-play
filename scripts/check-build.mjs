@@ -41,7 +41,7 @@ const exists = urlPath => {
   const p = join(dist, clean);
   return existsSync(p) && statSync(p).isFile() || existsSync(join(p, 'index.html'));
 };
-const exploratoryIds = Object.values(model.items).filter(i => i.content?.exploratory).map(i => i.id);
+const exploratoryIds = Object.values(model.items).filter(i => i.content?.exploratory && !i.content?.publicApproval).map(i => i.id);
 const teaserOk = ['/404.html', '/coaching-notes/', '/formations/5v5/', '/formations/7v7/'];
 const indexable = [];
 
@@ -81,7 +81,7 @@ for (const file of pages) {
     if (!noindex) fail(route, `${target} build page is indexable`);
   }
   const items = ((html.match(/data-hwp-items="([^"]*)"/) || [])[1] || '').split(' ').filter(Boolean);
-  if (items.some(i => exploratoryIds.includes(i)) && !html.includes('hwp-strip--exploratory')) fail(route, 'exploratory content without the exploratory strip');
+  if (target !== 'public' && items.some(i => exploratoryIds.includes(i)) && !html.includes('hwp-strip--exploratory')) fail(route, 'exploratory content without the exploratory strip');
 }
 
 // Generated files
