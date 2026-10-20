@@ -8,18 +8,16 @@ export function reviewRecord(reg) {
   return { by: c.reviewedBy, on: c.reviewedOn };
 }
 
-/** Reviewer names with a recorded review on at least one coaching item, for the colophon. */
-export function recordedReviewers(model) {
-  return [...new Set(model.formations.map(f => reviewRecord(f.register)).filter(Boolean).map(r => r.by))];
-}
+/** The named coaching reviewer, only where this build may show his profile (confirmation recorded, or a preview build). */
+export const REVIEWER = { name: 'David Le Tissier', profileId: 'profile-david-le-tissier', href: '/about/#reviewer' };
+export const reviewerVisible = model => model.allowed(REVIEWER.profileId);
 
-/** Formations not yet reviewed, by name and status only (no shapes, rules or diagrams), plus formats not started. */
+/** What's in development: unpublished formation guides by name and status only, then formats not started. */
 export function developmentShelf(model) {
   const rows = model.formations
     .filter(f => !reviewRecord(f.register))
-    .map(f => ({ name: `${f.name} guide`, status: f.register.content.exploratory ? 'Exploratory' : 'In review' }));
-  const later = model.site.formats.filter(x => x.availability !== 'live').map(x => x.id);
-  if (later.length) rows.push({ name: later.join(', '), status: 'Later' });
+    .map(f => ({ name: `${f.name} guide (9v9)`, status: f.register.content.exploratory ? 'Exploratory draft' : 'In coaching review' }));
+  model.site.formats.filter(x => x.availability !== 'live').forEach(x => rows.push({ name: `${x.id} guides`, status: x.note || 'Later' }));
   return rows;
 }
 

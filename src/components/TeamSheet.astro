@@ -19,6 +19,10 @@ if (full) {
     return r ? `<a href="${base}positions/${r.id}/" tabindex="-1" data-role="${r.id}"><g data-player="us-${l}">${inner}</g></a>` : m;
   });
 }
+/* The roster is the accessible route to each position. The pitch stays a picture for assistive technology
+   (its summary is given as text); its player links are pointer shortcuts only, so no interactive content
+   sits inside an image role. */
+if (full) svg = svg.replace('role="img"', 'aria-hidden="true" focusable="false"');
 const rules = full ? f.rules : (f.ruleTable || []);
 const sheetId = `sheet-${f.slug}`;
 ---
@@ -32,8 +36,10 @@ const sheetId = `sheet-${f.slug}`;
       </div>
     </div>
   )}
+  {!showHead && <h2 class="hwp-sr-only">{f.name} team sheet: starting shape and positions</h2>}
   <figure class="sheet__pitch on-pitch">
     <Fragment set:html={svg} />
+    {full && <p class="hwp-sr-only">{shape.altSummary}</p>}
     <figcaption>{f.shapeCue || f.shape.caption || f.playerFacing}</figcaption>
   </figure>
   <div class="sheet__col sheet__col--roles">

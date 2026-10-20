@@ -1,62 +1,81 @@
-# Accessibility and browser QA report: website foundation
+# QA report: refinement pass (branch `editorial`, 20 October 2026)
 
-**Date:** 19 October 2026 · **Target:** WCAG 2.2 AA · **Builds tested:** `dist-public` (7 pages) and `dist-preview` (24 pages), served locally.
-**Tools:** Playwright with **Chromium 141 only**, axe-core 4.10.2, the design-system test suite, the site's build checks. Scripts: `scripts/qa/browser-qa.py` (results in `scripts/qa/results.json`), `scripts/check-build.mjs`, `scripts/test-leak.sh`.
+Tested on the public build (`dist-public`, 7 pages, 4 in sitemap) and the preview build (`dist-preview`, 24 pages, all noindex). Automated checks run in headless Chromium (Playwright). Nothing here was tested on real devices or with a screen reader.
 
-Nothing in this report was tested by a person using assistive technology, on a real phone, or in Safari or Firefox. Those are listed in section 6.
-
-## 1. Summary
+## Summary
 
 | Area | Result |
 |---|---|
-| Design-system tests (renderer, mirror, validation, timeline, gate) | 24/24 pass |
-| Site publishing-gate tests | 10/10 pass |
-| Leak tests against real builds | 3/3 pass |
-| Content validation | No errors; 10 warnings for the content team (below) |
-| Post-build checks, both targets | Pass (links, metadata, one h1, diagram title/desc, gate markers, noindex) |
-| Layout at 320, 375, 768, 1024, 1440px, both builds (155 page loads) | No horizontal scroll, one h1 per page, no console errors |
-| axe-core, WCAG 2.0/2.1/2.2 A and AA plus best practice, 31 pages | 0 violations, except 2 false positives (section 3) |
-| Keyboard and interaction checks | 25/25 pass |
+| Builds and build checks | Pass, both targets |
+| Unit, gate and content tests (`npm test`) | Pass: 24/24, 13/13, content valid |
+| Publishing-gate negative tests (`npm run test:leak`) | Pass: 5/5 (two new: stale review, unconfirmed profile and playbook pages) |
+| Layout at 1440, 834 and 390px | No horizontal overflow, no console errors, all pages HTTP 200 (39 screenshots) |
+| Automated accessibility (axe-core 4.10, WCAG 2.0/2.1/2.2 A and AA rules) | 4 rule types found and fixed; 1 outstanding (below) |
+| Keyboard | Pass (below) |
 
-## 2. Fixed during QA
+## Functional
 
-| Issue | Fix |
+| Check | Result |
 |---|---|
-| 9v9 hub overflowed by 205 to 260px at 320 and 375px | Grid children allowed to shrink (`.gated`, figure and comparison panels) |
-| Wing-back sequence controls overflowed by 39px at 320px | Figure toolbar wraps (design system 1.0.1) |
-| Diagram key swatches rendered at full width | Stylesheet order: `diagram.css` before `components.css` |
-| Cue "extra" line rendered in display capitals | Design-system cue uses its own block class (1.0.1) |
-| Preview banner outside a landmark (axe `region`) | Now an `<aside aria-label="Preview notice">` |
-| "Back to the guide" and "Open" go-links 22px tall (target size) | Go-links padded to 30px |
-| Rule sources separated by a stray ";" on mobile | Sources listed one per line |
-| Breadcrumbs and overlines overlapping large headings | Spacing added |
-| Exploratory strip shown above all three formations on the hub | Strip moved onto the 2-2-3-1 panel and its considerations |
-| Homepage and hub said guides "are being checked by a qualified coach" (no reviewer is appointed) | Now "waiting for review by a qualified coach" |
-| Leak test found reviewer questions would publish once a formation is reviewed | Reviewer notes are preview-only and the build fails if one reaches a public page |
-| Build check mistook "Coaching reviewed" chips for "review required" | Pattern corrected |
+| Internal links, images, scripts | Pass: build check fails on any broken reference; none |
+| Lesson steps: click, Arrow keys, Home, End | Pass: `aria-pressed`, focus and visible frame stay in step |
+| Step announcements | Pass: polite live region, e.g. "Step 2 of 3: Ball left. Right. 3 goes. 2, 5 and 6 protect us." |
+| Enlarge | Pass: opens a modal, focus moves to Close, Esc closes and returns focus to Enlarge; works on single-frame position diagrams |
+| Key | Pass: disclosure opens |
+| Animated sequences | Pass: movement plays from recorded "started here" positions only; reduced motion shows the final frame |
+| Without JavaScript | Pass: every frame and caption visible, navigation visible |
+| Phone guide navigation | Pass: previous/next are 44 × 44px; "All rules and positions" lists 12 links |
+| Responsive menu | Pass: hidden by default on phones, opens with `aria-expanded="true"`, Esc closes and returns focus to Menu |
+| Team sheet | Pass: hovering a player lights the roster row; pitch links are pointer-only (`tabindex=-1`), the roster is the keyboard route |
+| Newsletter demo states | Pass: preview shows the marked demo form; public shows the teaser only, no form |
+| Tab order, lesson page | 33 stops, every one with a visible focus indicator |
 
-## 3. axe-core findings left open
+## Accessibility (automated, axe-core 4.10)
 
-- `color-contrast` on two pages (Far side in, The screen): axe measured a "started here" shirt number inside the SVG against the page's Paper background, because it cannot see the blue pitch behind it. Calculated against the pitch, white at 85% on Pitch Blue is about 5.4:1. **False positive**, checked by calculation and screenshot.
+Fixed during QA:
+- `color-contrast`: transitions labels on Moving Up (pale grey on paper).
+- `target-size`: source links in the scoreboard were under 24px tall.
+- `definition-list`: homepage stats had a `small` directly inside the `dl`.
+- `nested-interactive`: the team-sheet pitch had links inside an image role. The pitch is now hidden from assistive technology with its summary given as text; the roster carries the links.
 
-## 4. Interaction checks (all pass, Chromium, 375px)
+Outstanding:
+- `color-contrast` on "started here" ghost player numbers inside two diagrams (Far side in, The screen). This is the design-system renderer's deliberate faded style. The diagrams are images with full text descriptions, so the information is available, but the faded numbers are hard to read for low-vision users. **Recommendation:** raise ghost-number contrast in the renderer (design-system change, so it needs your sign-off).
 
-Skip link is the first Tab stop and moves focus to main · diagram tabs: arrow keys, Home and End, focus follows selection, one panel visible · Enlarge opens a modal on the selected view, focus starts on Close, caption and diagram title/description present, Tab stays inside, Next syncs the page tabs, Escape closes and focus returns · Key lists only the symbols in the current frame · mobile menu opens with focus inside, Escape closes and returns focus · checklist ticks persist after reload (blocked storage is handled in code with try/catch but was not tested here) · newsletter demo: email and consent errors with focus on the first error, success says nothing was sent, no network request · sequence Play with reduced motion steps without animating.
+Not done, and needed before claiming WCAG 2.2 AA:
+- Screen-reader testing (VoiceOver on iOS and macOS, NVDA on Windows).
+- Real-device testing (iPhone Safari, Android Chrome), 200% and 400% zoom, Windows high-contrast mode.
+- Manual review of reading order and alternative text by a person.
+We don't claim the site is WCAG 2.2 AA compliant.
 
-## 5. Other checks
+## Editorial
 
-- **Contrast of tokens:** the design system's generated report (`design-system/docs/contrast-report.md`) passes every permitted pairing; coral and yellow never carry text.
-- **Touch targets at 375px:** all controls at least 24px; buttons, tabs, menu and nav at least 44px. The 22px checkboxes sit inside 48px labels, which are the real targets.
-- **Diagram readability:** numbered diagrams render at 280px or wider at 320px viewport; compact previews have numbers and labels off (design rule 7.5).
-- **Content warnings (left for the content team, not changed):** far-side-in has a 5.3-unit marking contact between 11 (or 7) and an opponent; eight frames have unlabelled highlighted areas (needed for greyscale and print).
-- **No dark theme:** the brand has none ("calm pages" on Paper). Pages ignore `prefers-color-scheme`. Flagged in `OUTSTANDING.md`.
+| Check | Result |
+|---|---|
+| Author information | Niall Walsh, from `content/site.json`; byline on guides, lessons and positions; About uses your copy |
+| Reviewer attribution | No review is recorded, so no page says "reviewed". Greg Williams removed from templates, content and current docs. David appears only in preview until his profile is confirmed |
+| Review-status labels | Preview pages show "Coaching review required" and "Awaiting coaching review. Not yet published." |
+| Official rule sources | Every fact links to England Football with checked date (19 October 2026, season 2026/27) |
+| Publication dates | No publication dates are shown; review dates will come from the register when they exist |
+| Content versioning | Each formation has a content version (3-1-3-1: `cv-353fff2a`). A changed formation drops back to review (tested) |
+| Formation-specific explanations | Position and lesson text is unchanged from the 3-1-3-1 file, which is redrawn from the source playbook |
+| Unreviewed content restrictions | Public build: no formation pages, no diagrams of unreviewed content, no reviewer profile, no playbook pages (files deleted from output). Development shelf names guides by status only |
 
-## 6. Not tested (needs a person or other browsers)
+## Search
 
-- Screen readers: VoiceOver (iOS, macOS), TalkBack, NVDA. In particular, how the diagram descriptions sound, the tab pattern, both dialogs, the format strip.
-- Safari (iOS and macOS) and Firefox: not available in this environment. `<dialog>`, `:focus-visible`, `text-wrap: balance` and `inline SVG <use href>` sprites are the features to watch.
-- Real phones outdoors; pinch-zoom in the enlarged diagram (`touch-action: pinch-zoom` is set, not tested on a device).
-- Browser zoom to 200% and 400%, text-only zoom, Windows forced-colours mode.
-- Print stylesheet (diagrams switch to the light theme in `@media print`; not checked on paper).
-- Performance on a slow connection (no Lighthouse run).
-- The deployed site on Cloudflare (headers, Access, redirects): not deployed yet.
+| Check | Result |
+|---|---|
+| Indexable URLs (public) | `/`, `/about/`, `/formations/9v9/`, `/moving-up/` |
+| Noindex (public) | `/coaching-notes/`, `/football-explained/` (teasers), `/404.html` |
+| Titles | 28 to 60 characters |
+| Descriptions | 118 to 159 characters on indexable pages |
+| Canonicals | All on `https://howweplayfootball.com/` |
+| Headings | One `h1` per page (build check); no skipped levels after the team-sheet fix |
+| Structured data | Valid JSON-LD: WebSite, Organization (founder, sameAs), AboutPage with Person, BreadcrumbList; Article with Person author on preview guide pages |
+| Sitemap and robots | Public sitemap lists the 4 indexable pages; robots allows all. Preview: robots disallows all, `X-Robots-Tag: noindex` on every response |
+| Draft pages | Preview only, noindex, private strip |
+
+## Not verified
+- The social accounts (YouTube, Instagram, TikTok @howweplayfootball) exist and are live. They are linked in structured data as supplied.
+- Behaviour in Safari and Firefox.
+- That the original playbook pages may be shown (awaiting your confirmation).
+- David Le Tissier's biography (awaiting his confirmation).

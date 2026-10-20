@@ -10,12 +10,19 @@
       "version": "Design Spec v1.1 / design system 1.0.1"
     },
     "content": {
-      "status": "reviewed",
+      "status": "review-required",
       "exploratory": false,
-      "source": "Mossley Hill playbook (15 pp.)",
-      "reviewedBy": "Greg Williams",
-      "reviewedOn": "2026-10-19",
-      "reviewEvidence": "Recorded from the site owner's written instruction (Niall Walsh, 19 October 2026). No reviewer-signed record is held in the repository yet."
+      "source": "Mossley Hill U13 playbook (15 pp.), Niall Walsh",
+      "reviewedBy": null,
+      "reviewedOn": null,
+      "reviewedVersion": null,
+      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)",
+      "history": [
+        {
+          "on": "2026-10-20",
+          "note": "Review entry for Greg Williams (19 October 2026) withdrawn: no documented approval held. Returned to review-required."
+        }
+      ]
     }
   },
   {
@@ -34,7 +41,7 @@
       "source": "Research draft 0.1, 19 Oct 2026",
       "reviewedBy": null,
       "reviewedOn": null,
-      "reviewer": "Greg Williams (appointed 2026-10-19; review not yet recorded)"
+      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
     }
   },
   {
@@ -54,7 +61,7 @@
       "reviewedBy": null,
       "reviewedOn": null,
       "publicApproval": null,
-      "reviewer": "Greg Williams (appointed 2026-10-19; review not yet recorded)"
+      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
     }
   },
   {
@@ -192,7 +199,7 @@
       "source": "P1 prototype; two items are our additions",
       "reviewedBy": null,
       "reviewedOn": null,
-      "reviewer": "Greg Williams (appointed 2026-10-19; review not yet recorded)"
+      "reviewer": "David Le Tissier (intended coaching reviewer; no review recorded)"
     }
   },
   {
@@ -213,5 +220,41 @@
       "provider": null,
       "privacyNotice": false
     }
+  },
+  {
+    "id": "profile-david-le-tissier",
+    "kind": "confirmation",
+    "title": "Reviewer profile: David Le Tissier",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-20"
+    },
+    "confirmation": {
+      "status": "awaiting",
+      "scope": "David's name, role as coaching reviewer and the biography on /about/, as supplied by Niall Walsh on 20 October 2026",
+      "confirmedBy": null,
+      "confirmedOn": null
+    }
+  },
+  {
+    "id": "about-original-playbook",
+    "kind": "confirmation",
+    "title": "Original playbook pages on /about/",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-20"
+    },
+    "confirmation": {
+      "status": "awaiting",
+      "scope": "Reproducing two pages of Niall Walsh's original Mossley Hill U13 playbook (cover and rule two), with the club crest masked. Shown as the original document, not as reviewed guidance.",
+      "confirmedBy": null,
+      "confirmedOn": null
+    },
+    "assets": [
+      "/about/playbook-cover.jpg",
+      "/about/playbook-rule-two.jpg"
+    ]
   }
 ]

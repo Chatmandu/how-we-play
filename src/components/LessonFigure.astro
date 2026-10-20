@@ -28,7 +28,7 @@ const data = JSON.stringify(frames).replace(/</g, '\\u003c');
     })}
     <div class="lf__tools">
       {source && <span>{source}</span>}
-      {keyHtml && <details><summary>Key</summary><div class="lf__key" set:html={keyHtml} /></details>}
+      <span class="lf__tools-act"><button type="button" data-enlarge hidden aria-haspopup="dialog">Enlarge</button>{keyHtml && <details><summary>Key</summary><div class="lf__key" set:html={keyHtml} /></details>}</span>
     </div>
   </figure>
   <div class="lf__side">

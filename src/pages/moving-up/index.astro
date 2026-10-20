@@ -24,12 +24,19 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: 'Moving up' }];
         <li><strong>New rules</strong> <em>offside, heading, throw-ins</em></li>
         <li><strong>Same game</strong> <em>support, space, protect, decide</em></li>
       </ul>
-      <p class="ed-small" style="color:var(--hwp-text-secondary)">5v5 to 7v7 and 9v9 to 11v11 are planned and not written yet.</p>
     </div>
   </div>
 
-  <div style="margin-top:var(--ed-s5)" id="changes">
-    <Scoreboard ids={[...byGroup('game'), ...byGroup('rules'), ...byGroup('competition')]} kicker="What changes" title="7v7 against 9v9" id="score">
+  <nav class="ed-grid" aria-label="Moving between formats" style="margin-top:var(--ed-s4)">
+    <ol class="transitions">
+      <li><b>5v5 to 7v7</b><span>Planned. Not researched yet.</span></li>
+      <li aria-current="page"><b>7v7 to 9v9</b><span>This page</span></li>
+      <li><b>9v9 to 11v11</b><span>Later</span></li>
+    </ol>
+  </nav>
+
+  <div style="margin-top:var(--ed-s4)" id="changes">
+    <Scoreboard ids={[...byGroup('game'), ...byGroup('rules'), ...byGroup('competition')]} kicker="What changes" title="7v7 against 9v9" id="score" from="7v7" to="9v9">
       <p class="ed-small">England Football's maximum formats, side by side. The left column is what your players know; the right is what they're stepping into.</p>
     </Scoreboard>
   </div>

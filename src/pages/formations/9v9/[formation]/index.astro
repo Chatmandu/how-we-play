@@ -5,6 +5,7 @@
 import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
 import TeamSheet from '../../../../components/TeamSheet.astro';
+import Byline from '../../../../components/Byline.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
 import { pad2, word } from '../../../../lib/editorial.mjs';
@@ -24,7 +25,7 @@ const title = `${f.name} 9v9 formation guide (${f.notation}) | How We Play`;
 const description = full
   ? `One possible way to play 9v9: the ${f.notation} starting shape, four simple rules with diagrams and a job for every position. Free guide for grassroots coaches.`
   : `${f.sourceLabel} of a ${f.notation} guide for 9v9. Private preview, not reviewed.`;
-const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${f.name}: 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Organization', name: 'How We Play' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation' }];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${f.name}: 9v9 formation guide`, inLanguage: 'en-GB', author: { '@type': 'Person', name: model.site.author.name, url: model.site.url + '/about/' }, publisher: { '@type': 'Organization', name: 'How We Play' }, isAccessibleForFree: true, about: '9v9 youth football formation' }];
 ---
 <Base title={title} description={description} ids={['9v9-hub', f.registerId]} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} editorial>
   <Gated ids={[f.registerId]}>
@@ -36,17 +37,18 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'Article', headline
       </div>
       <div class="page-head__aside">
         <div class="ed-chips" set:html={statusChips(f.register)} />
+        <Byline f={f} />
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
         <p class="ed-small" style="color:var(--hwp-text-secondary)">{full ? `Redrawn from the source playbook. The formation is a starting picture, not where players have to stand.` : `${f.sourceLabel}. Positions in the diagrams are illustrative.`}</p>
         {visible.length > 1 && <p class="ed-small">Other 9v9 guides: {visible.filter(x => x.slug !== f.slug).map((x, i) => <>{i > 0 && ', '}<a href={`/formations/9v9/${x.slug}/`}>{x.name}</a></>)}</p>}
       </div>
     </div>
 
-    <div id="positions" class="ed-section" style="padding-top:var(--ed-s4)">
+    <div id="positions" class="ed-section" style="padding-top:var(--ed-s3)">
       <TeamSheet f={f} third={full ? 'gives' : 'rules'} showHead={false} />
     </div>
 
-    <section class="ed-section ed-section--far" id="rules" aria-labelledby="h-rules">
+    <section class="ed-section ed-section--tight" id="rules" aria-labelledby="h-rules">
       <div class="ed-grid">
         <div class="ed-sh"><h2 class="ed-label" id="h-rules">{full ? `${word(f.rules.length)} rules`.replace(/^./, c => c.toUpperCase()) : 'Four rules (draft)'}</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Each with its diagram and a touchline cue</span></div>
         {full ? (

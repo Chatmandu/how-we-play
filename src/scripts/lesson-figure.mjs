@@ -28,11 +28,12 @@ export function initLessonFigures(root) {
     const panels = [...el.querySelectorAll('[data-panel]')];
     const steps = [...el.querySelectorAll('[data-step]')];
     const live = el.querySelector('[data-live]');
+    let current = 0;
+    wireEnlarge(el, () => current, panels, frames);
     if (panels.length < 2 || !steps.length) return;
     document.documentElement.classList.add('js-lf');
     el.querySelector('[data-steps]').hidden = false;
     const hint = el.querySelector('[data-hint]'); if (hint) hint.hidden = false;
-    let current = 0;
     const go = (i, { animate = true, announce = true } = {}) => {
       current = i;
       panels.forEach((p, k) => { p.hidden = k !== i; });
@@ -57,5 +58,28 @@ export function initLessonFigures(root) {
       });
     });
     go(0, { animate: false, announce: false });
+  });
+}
+
+/* Enlarge: the current frame, full size, in a modal dialog. Esc or the Close button returns focus to Enlarge. */
+function wireEnlarge(el, getCurrent, panels, frames) {
+  const btn = el.querySelector('[data-enlarge]');
+  if (!btn || typeof HTMLDialogElement === 'undefined') return;
+  btn.hidden = false;
+  const label = el.querySelector('.lf__head span')?.textContent || 'Diagram';
+  btn.addEventListener('click', () => {
+    const i = getCurrent(), f = frames[i];
+    const d = document.createElement('dialog');
+    d.className = 'lf-dialog';
+    d.setAttribute('aria-label', `${label}, enlarged`);
+    d.innerHTML = `<div class="lf-dialog__in on-pitch"><div class="lf-dialog__bar"><span>${label}${panels.length > 1 ? ` · step ${i + 1} of ${panels.length}` : ''}</span><button type="button" data-close>Close</button></div><div data-big></div><p></p></div>`;
+    d.querySelector('[data-big]').innerHTML = renderPitch(f, { theme: 'blue', title: f.caption, desc: f.altSummary || f.alt || f.caption });
+    d.querySelector('p').textContent = f.caption;
+    document.body.appendChild(d);
+    d.querySelector('[data-close]').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });
+    d.addEventListener('close', () => { d.remove(); btn.focus(); });
+    d.showModal();
+    d.querySelector('[data-close]').focus();
   });
 }

@@ -93,7 +93,7 @@ const pageItems = ids.join(' ');
   <header class="mast">
     <div class="ed-wrap mast__bar">
       <a class="mast__logo" href="/"><img src={`${ASSET_BASE}logo/hwp-lockup-inline.svg`} alt="How We Play, home" width="180" height="28"></a>
-      <p class="mast__issue">The 9v9 issue · Free guides for grassroots coaches</p>
+      <p class="mast__issue">Free guides for grassroots coaches · Issue one: 9v9</p>
       <button class="mast__menu" type="button" aria-expanded="false" aria-controls="mast-nav" hidden><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2"/></svg>Menu</button>
       <nav class="mast__nav" id="mast-nav" aria-label="Main">{navItems.map(i => <a href={i.href} aria-current={i.id === nav ? 'page' : undefined}>{i.label}</a>)}</nav>
     </div>

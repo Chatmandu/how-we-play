@@ -3,10 +3,13 @@
  * unchanged; a bracketed minimum is moved to a note under the value, never dropped. */
 import model from '../lib/content.mjs';
 import { longDate } from '../lib/ui.mjs';
-interface Props { ids: string[]; kicker?: string; title: string; titleTag?: 'h1' | 'h2'; id?: string; }
-const { ids, kicker = 'Moving up', title, titleTag = 'h2', id = 'scoreboard' } = Astro.props;
+/* from/to: the two formats compared. Facts store each format's value under its own key (v7, v9 today; v5, v11 when researched). */
+interface Props { ids: string[]; kicker?: string; title: string; titleTag?: 'h1' | 'h2'; id?: string; from?: string; to?: string; }
+const { ids, kicker = 'Moving up', title, titleTag = 'h2', id = 'scoreboard', from = '7v7', to = '9v9' } = Astro.props;
+const kf = 'v' + from.split('v')[0], kt = 'v' + to.split('v')[0];
 const H = titleTag;
 const facts = ids.map(i => model.fact(i)).filter(Boolean);
+if (facts.some((f: any) => f['v' + (Astro.props.from || '7v7').split('v')[0]] == null)) throw new Error(`Scoreboard: a fact has no value for ${Astro.props.from}`);
 const split = (v: string) => { const m = String(v).match(/^(.*?)\s*\((.*)\)$/); return m ? [m[1], m[2]] : [String(v), '']; };
 const isText = (v: string) => split(v)[0].length > 12;
 const sources = [...new Map(facts.map((f: any) => [f.source, f.sourceInfo])).values()] as any[];
@@ -27,12 +30,12 @@ const seasons = [...new Set(facts.map((f: any) => f.season))];
     </div>
     <div class="score__table">
       <table>
-        <caption class="hwp-sr-only">{title}: 7v7 compared with 9v9</caption>
-        <thead><tr><th scope="col">Rule</th><th scope="col">7v7</th><th scope="col">9v9</th></tr></thead>
+        <caption class="hwp-sr-only">{title}: {from} compared with {to}</caption>
+        <thead><tr><th scope="col">Rule</th><th scope="col">{from}</th><th scope="col">{to}</th></tr></thead>
         <tbody>
           {facts.map((f: any) => {
-            const [a, an] = split(f.v7), [b, bn] = split(f.v9);
-            const t = isText(f.v7) || isText(f.v9);
+            const [a, an] = split(f[kf]), [b, bn] = split(f[kt]);
+            const t = isText(f[kf]) || isText(f[kt]);
             return <tr><th scope="row">{f.fact}</th><td class={`was${t ? ' txt' : ''}`}>{a}{an && <small>{an}</small>}</td><td class={`now${t ? ' txt' : ''}`}>{b}{bn && <small>{bn}</small>}</td></tr>;
           })}
         </tbody>
