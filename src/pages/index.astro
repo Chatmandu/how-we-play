@@ -1,25 +1,24 @@
 ---
-/* Homepage: "The issue" (approved 20 Oct 2026). The brand proposition on the cover, issue one (9v9) in the
- * contents and feature. The page adapts to what the publishing gate allows: with a reviewed formation the
- * feature is its lesson; without one it is the verified 7v7 to 9v9 scoreboard, and nothing unreviewed is shown. */
+/* Homepage: How We Play is the publication. The cover states the proposition; the formats are the way in;
+ * the featured issue (9v9 · Issue 01 · The 3-1-3-1) is the main story, with its contents grouped by chapter and
+ * one lesson from it playable on the page. Everything from a formation sits behind the publishing gate. */
 import Base from '../layouts/Base.astro';
 import LessonFigure from '../components/LessonFigure.astro';
-import Scoreboard from '../components/Scoreboard.astro';
 import model from '../lib/content.mjs';
 import { renderPitch, statusChips, longDate } from '../lib/ui.mjs';
-import { developmentShelf, pad2, word, REVIEWER, reviewerVisible } from '../lib/editorial.mjs';
+import { developmentShelf, pad2, word, issueLabel, REVIEWER, reviewerVisible } from '../lib/editorial.mjs';
 
 const site = model.site;
 const f = model.formation('3-1-3-1');
-const live = f && f.gate.allowed;                 // may this build show the 3-1-3-1?
+const live = f && f.gate.allowed;
 const fBase = `/formations/9v9/${f.slug}/`;
+const ch = id => f.issue.chapters.find(c => c.id === id);
 const feature = f.rules.find(r => r.id === 'one-goes-one-stays');
-const others = f.rules.filter(r => r.id !== feature.id);
+const role = id => f.roles.find(r => r.id === id);
+const rule = id => f.rules.find(r => r.id === id);
 const plateSvg = live
   ? renderPitch(f.shape, { theme: 'blue', title: f.shape.title, desc: f.shape.altSummary })
   : renderPitch({ title: 'The 9v9 pitch', altSummary: 'An empty 9v9 pitch, drawn to the recommended proportions, attacking up the page.', players: [] }, { theme: 'blue' });
-const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: d.altSummary || d.caption }); };
-const shelf = developmentShelf(model);
 const fact = id => model.fact(id);
 const main = v => String(v).replace(/\s*\(.*\)$/, '').replace(/^Up to /, '');
 const stats = [
@@ -29,17 +28,13 @@ const stats = [
   ['Offside', fact('offside').v9, fact('offside').v7]
 ];
 const checked = [...new Set(['pitch', 'ball', 'length', 'offside'].map(i => fact(i).checkedOn))].map(longDate).join(', ');
-const contents = live ? [
-  { n: '01', href: fBase, t: `The ${f.name} guide`, s: 'A starting shape, four rules and a job for every position' },
-  { n: '02', href: '#feature', t: feature.title, s: 'This issue’s lesson, with the diagram that plays it' },
-  { n: '03', href: '/moving-up/', t: 'Moving from 7v7 to 9v9', s: 'What changes, what stays and what to sort out before pre-season' },
-  { n: '04', href: '/about/', t: 'Why How We Play exists', s: 'Seven years on the touchline, and the playbook that started it' }
-] : [
-  { n: '01', href: '#feature', t: '7v7 against 9v9', s: 'Every rule that changes, checked against England Football' },
-  { n: '02', href: '/moving-up/', t: 'Moving from 7v7 to 9v9', s: 'What changes, what stays and what to sort out before pre-season' },
-  { n: '03', href: '/formations/9v9/', t: '9v9 formations', s: 'Our first formation guide is with our coaching reviewer' },
-  { n: '04', href: '/about/', t: 'Why How We Play exists', s: 'Seven years on the touchline, and the playbook that started it' }
-];
+const nineIssues = model.formations.filter(x => x.issue);
+const formats = ['5v5', '7v7', '9v9'].map(id => {
+  const fm = site.formats.find(x => x.id === id);
+  if (id !== '9v9') return { id, ages: fm.ages, href: `/formations/${id}/`, state: 'In development', note: 'No guides published yet' };
+  const pub = nineIssues.filter(x => x.register.content.status === 'reviewed');
+  return { id, ages: fm.ages, href: '/formations/9v9/', state: `${word(pub.length).replace(/^./, c => c.toUpperCase())} issue published`, note: `${word(nineIssues.length - pub.length).replace(/^./, c => c.toUpperCase())} more in preparation`, live: true };
+});
 const showReviewer = reviewerVisible(model);
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url + '/', description: site.description, inLanguage: 'en-GB' },
@@ -49,78 +44,78 @@ const jsonLd = [
 <Base title="How We Play: free grassroots football coaching guides" description="Free football formation guides, tactical diagrams and practical advice for grassroots coaches, from small-sided games to moving up a format." ids={['home']} ogType="website" jsonLd={jsonLd} editorial>
   <section class="cover ed-grid" aria-labelledby="cover-h">
     <div class="cover__text">
-      <p class="ed-kicker">Free guides for grassroots football coaches</p>
+      <p class="ed-kicker">A grassroots football coaching publication</p>
       <h1 id="cover-h">Helping <br class="br-d">your team <br class="br-d">take the <span class="num">next step.</span></h1>
-      <p class="cover__deck">Free formation guides, tactical diagrams and practical advice. <em>Understand how your team plays, explain the decisions that matter and help young players work together.</em></p>
-      <div class="cover__cta">
-        {live ? <a class="ed-btn" href={fBase}>Open the {f.name} guide →</a> : <a class="ed-btn" href="/moving-up/">Moving from 7v7 to 9v9 →</a>}
-        <a class="ed-go" href="/about/">Why we started</a>
-      </div>
+      <p class="cover__deck">Visual formation guides, practical coaching advice and simple explanations <em>that help young players understand how to play together.</em></p>
     </div>
     <figure class="plate on-pitch">
-      <div class="plate__head"><span>Issue one · {live ? 'Starting shape' : 'The 9v9 pitch'}</span><span>{live ? `9v9 · ${f.notation}` : '9v9 · U12 and U13'}</span></div>
+      <div class="plate__head"><span>{live ? `Featured · 9v9 · ${issueLabel(f)}` : 'The 9v9 pitch'}</span><span>{live ? `The ${f.name}` : 'U12 and U13'}</span></div>
       <div class="plate__stage" set:html={plateSvg} />
-      <figcaption>{live ? f.shapeCue : `Nine a side on a recommended ${main(fact('pitch').v9)} pitch. Our first formation guide is with our coaching reviewer.`}</figcaption>
+      <figcaption>{live ? f.shapeCue : `Nine a side on a recommended ${main(fact('pitch').v9)} pitch.`}</figcaption>
     </figure>
-    <nav class="contents" aria-labelledby="contents-h">
-      <h2 id="contents-h">Issue one: the step up to 9v9</h2>
-      <ol>{contents.map(c => <li><a href={c.href}><b aria-hidden="true">{c.n}</b><strong>{c.t}</strong><span>{c.s}</span></a></li>)}</ol>
+    <nav class="formats" aria-labelledby="formats-h">
+      <h2 id="formats-h">Choose your format</h2>
+      <ol>{formats.map(x => <li><a href={x.href} class={x.live ? 'is-live' : undefined}><b>{x.id}</b><span class="formats__ages">{x.ages}</span><span class="formats__state">{x.state}</span><span class="formats__note">{x.note}</span></a></li>)}</ol>
     </nav>
   </section>
 
   {live ? (
     <>
+      <section class="issue-feature ed-grid" id="issue" aria-labelledby="issue-h">
+        <div class="issue-feature__head">
+          <p class="ed-kicker">Featured issue · 9v9 · {issueLabel(f)}</p>
+          <h2 class="issue-feature__title" id="issue-h"><span class="issue-feature__no" aria-hidden="true">{pad2(f.issue.number)}</span>The {f.name}</h2>
+          <p class="ed-stand">{f.issue.intro}</p>
+          <div class="issue-feature__cta"><a class="ed-btn" href={fBase}>Open {issueLabel(f)}: the {f.name} →</a><div class="ed-chips" set:html={statusChips(f.register)} /></div>
+        </div>
+        <nav class="issue-contents" aria-labelledby="inside-h">
+          <h3 id="inside-h">Inside the issue</h3>
+          <ol>
+            <li><a href={`${fBase}#shape`}><b>Chapter 1</b><strong>{ch('shape').title}</strong><span>{ch('shape').dek}</span></a></li>
+            <li><a href={`${fBase}#principles`}><b>Chapter 2</b><strong>{ch('principles').title}</strong><span>{ch('principles').rules.map(id => rule(id).title).join(' · ')}</span></a></li>
+            <li><a href={`${fBase}#jobs`}><b>Chapter 3</b><strong>{ch('jobs').title}</strong><span>{word(ch('jobs').roles.length).replace(/^./, c => c.toUpperCase())} positions, from goalkeeper to striker</span></a></li>
+            <li><a href={`${fBase}#together`}><b>Chapter 4</b><strong>{ch('together').title}</strong><span>With and without the ball, and the 9 and 10 partnership</span></a></li>
+          </ol>
+        </nav>
+      </section>
+
       <section class="feature ed-grid" id="feature" aria-labelledby="feature-h">
-        <div class="feature__rail" aria-hidden="true"><span class="feature__num">{pad2(feature.n)}</span><p>Rule {word(feature.n)} of {word(f.rules.length)}<br>{f.name}</p></div>
+        <div class="feature__rail" aria-hidden="true"><span class="feature__num">{pad2(feature.n)}</span><p>From {issueLabel(f)}<br>Chapter 2 · Principle {word(feature.n)}</p></div>
         <div class="feature__head" data-num={pad2(feature.n)}>
-          <p class="ed-kicker feature__kicker">Rule {word(feature.n)} of {word(f.rules.length)} · {f.name}</p>
+          <p class="ed-kicker feature__kicker">From {issueLabel(f)} · Chapter 2 · Principle {word(feature.n)} of {word(f.rules.length)}</p>
           <h2 class="feature__title" id="feature-h">{feature.title}</h2>
           <p class="ed-stand">{feature.tag} {feature.summary}</p>
         </div>
         <div class="feature__body">
-          <LessonFigure id="home-lesson" frames={f.diagrams[feature.diagram].frames} figLabel={`Fig. 2 · ${feature.title}`} context={`9v9 · ${f.name}`} source={`Redrawn from the source playbook, ${feature.src}.`}>
+          <LessonFigure id="home-lesson" frames={f.diagrams[feature.diagram].frames} figLabel={`${issueLabel(f)} · ${feature.title}`} context={`9v9 · ${f.name}`} source={`Redrawn from the source playbook, ${feature.src}.`}>
             <div class="ed-cue"><p>Say it on the touchline</p><blockquote>{feature.cue}</blockquote>{feature.extra && <p class="ed-small">{feature.extra}</p>}</div>
-            <div class="ed-status"><div class="ed-chips" set:html={statusChips(f.register)} /><a class="ed-go" href={`${fBase}${feature.id}/`}>Read the full lesson</a></div>
+            <p class="ed-status"><a class="ed-go" href={`${fBase}${feature.id}/`}>Read the full lesson</a></p>
           </LessonFigure>
         </div>
       </section>
-      <section class="index-row ed-grid" aria-labelledby="others-h" style={`--n:${others.length}`}>
-        <h2 id="others-h">The other {word(others.length)} rules</h2>
-        <ul>{others.map(r => <li><a href={`${fBase}${r.id}/`}><span class="thumb" aria-hidden="true" set:html={thumb(r)} /><span><b>Rule {r.n}</b><strong>{r.title}</strong><i>{r.cue}</i></span></a></li>)}</ul>
-      </section>
     </>
   ) : (
-    <div class="ed-feature-band" id="feature">
-      <Scoreboard ids={['pitch', 'goals', 'ball', 'length', 'offside', 'heading', 'retreat']} kicker="This issue · Moving up" title="7v7 against 9v9" id="home-score">
-        <p class="ed-small">What your players know, beside what they're stepping into. England Football's maximum formats; the full list is on <a href="/moving-up/">Moving Up</a>.</p>
-      </Scoreboard>
-    </div>
+    <section class="issue-feature ed-grid" id="issue" aria-labelledby="issue-h">
+      <div class="issue-feature__head">
+        <p class="ed-kicker">Coming next · 9v9 · {issueLabel(f)}</p>
+        <h2 class="issue-feature__title" id="issue-h"><span class="issue-feature__no" aria-hidden="true">{pad2(f.issue.number)}</span>The {f.name}</h2>
+        <p class="ed-stand">Our first issue is with our coaching reviewer. It will appear here once his review is recorded.</p>
+      </div>
+    </section>
   )}
 
   <section class="lower ed-grid">
-    {live ? (
-      <div class="lower__main">
-        <p class="ed-kicker">Moving up · 7v7 to 9v9</p>
-        <h2 class="ed-h2">What changes at nine a side</h2>
-        <p class="ed-lede">A lot stays the same, and that's the place to start. These are England Football's maximum formats for {fact('pitch').season}; check your league for local rules.</p>
-        <dl class="stats">{stats.map(([k, now, was]) => <div><dt>{k}</dt><dd>{now}<small>7v7: {was}</small></dd></div>)}</dl>
-        <div class="lower__foot"><span class="hwp-chip hwp-chip--verified">Official rule verified · {checked}</span><a class="ed-go" href="/moving-up/">Read Moving Up</a></div>
-      </div>
-    ) : (
-      <div class="lower__main editor">
-        <p class="ed-kicker">From the touchline · Niall Walsh</p>
-        <h2 class="ed-h2 editor__h">I volunteered for a few months. Seven years later, I'm still coaching.</h2>
-        <div class="editor__body">
-          <p>Like a lot of grassroots football coaches, I didn't exactly plan on becoming one.</p>
-          <p>One thing I always found difficult was moving the team into a new playing format. It's not simply a case of adding a couple more players and making the pitch bigger. So I started putting down what I'd picked up over the years. Simple diagrams. Short instructions. A few principles everyone could remember.</p>
-        </div>
-        <p class="lower__foot"><a class="ed-go" href="/about/">Read the story</a></p>
-      </div>
-    )}
+    <div class="lower__main">
+      <p class="ed-kicker">Moving up · 7v7 to 9v9</p>
+      <h2 class="ed-h2">What changes at nine a side</h2>
+      <p class="ed-lede">A lot stays the same, and that's the place to start. These are England Football's maximum formats for {fact('pitch').season}; check your league for local rules.</p>
+      <dl class="stats">{stats.map(([k, now, was]) => <div><dt>{k}</dt><dd>{now}<small>7v7: {was}</small></dd></div>)}</dl>
+      <div class="lower__foot"><span class="hwp-chip hwp-chip--verified">Official rule verified · {checked}</span><a class="ed-go" href="/moving-up/">Read Moving Up</a></div>
+    </div>
     <aside class="colophon" aria-label="How we work">
       <p class="motto"><span>Simple pictures.</span><span>Simple decisions.</span><span>Play together.</span></p>
-      <div><h2>Who's behind it</h2><p class="ed-small">Written by {site.author.name}, a volunteer grassroots coach for seven years. Coaching guidance is published only after it has been reviewed{showReviewer ? <> by our coaching reviewer, <a href={REVIEWER.href}>{REVIEWER.name}</a></> : ''}. Independent: not affiliated with or endorsed by The FA. <a href="/about/#standards">How we produce our guides</a></p></div>
-      <div><h2>Formats and guides</h2><ul class="devlist">{shelf.map(x => <li>{x.name} <em>{x.status}</em></li>)}</ul></div>
+      <div><h2>Who's behind it</h2><p class="ed-small">Written by {site.author.name}, a grassroots coach for seven years. Coaching guidance is published only after it has been reviewed{showReviewer ? <> by our coaching reviewer, <a href={REVIEWER.href}>{REVIEWER.name}</a></> : ''}. <a href="/about/">Read the story</a></p></div>
+      <div><h2>Football explained</h2><p class="ed-small">Rules and ideas that apply to every formation, like offside, will live in their own section. <a href="/football-explained/">In development</a></p></div>
     </aside>
   </section>
 </Base>

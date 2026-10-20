@@ -3557,5 +3557,76 @@
         "How do we keep the four rules while players rotate?"
       ]
     }
-  ]
+  ],
+  "issue": {
+    "$comment": "Editorial metadata: the issue number within the 9v9 collection and how the issue's stories are grouped. Not coaching content, so not part of the review version.",
+    "number": 1,
+    "intro": "A complete guide to one way of playing 9v9: where nine players start, four principles everyone can remember, a job for every position, and how the team attacks and defends together.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "Where the nine players begin, and the spine that runs through the middle."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Our four playing principles",
+        "dek": "Four short rules, each with its own illustrated lesson.",
+        "rules": [
+          "middle-first",
+          "one-goes-one-stays",
+          "far-side-in",
+          "show-them-wide"
+        ]
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "What each position does, and one question every player can ask themselves.",
+        "roles": [
+          "goalkeeper",
+          "centre-back",
+          "outside-defenders",
+          "screen",
+          "wide-players",
+          "number-10",
+          "striker"
+        ]
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How the team moves as one, with and without the ball.",
+        "groups": [
+          {
+            "title": "When we have the ball",
+            "items": [
+              {
+                "rule": "far-side-in"
+              },
+              {
+                "role": "nine-and-ten"
+              }
+            ]
+          },
+          {
+            "title": "When they have the ball",
+            "items": [
+              {
+                "rule": "middle-first"
+              },
+              {
+                "rule": "show-them-wide"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "features": []
+  }
 }

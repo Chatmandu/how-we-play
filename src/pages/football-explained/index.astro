@@ -1,11 +1,24 @@
 ---
+/* Football explained: universal topics that apply to every formation (offside, restarts, the laws by format).
+ * In development, so noindex, with routes back to published material. Articles here link out to the formation
+ * issues where they matter; formation-specific advice stays inside its issue. */
 import Base from '../../layouts/Base.astro';
+import model from '../../lib/content.mjs';
+import { issueLabel } from '../../lib/editorial.mjs';
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Football explained' }];
+const first = model.formations.find(f => f.register.content.status === 'reviewed' && f.gate.allowed);
 ---
-<Base title="Football explained | How We Play" description="Football explained is a planned How We Play section. Nothing to read yet." ids={['football-explained']} crumbs={crumbs} noindex>
-  <div class="flow measure">
-    <p class="hwp-label over">Coming soon</p>
-    <h1 class="hwp-heading-l">Football explained</h1>
-    <p class="lede">This section is planned and not written yet. In the meantime, start with the <a href="/formations/9v9/">9v9 formations</a> or <a href="/moving-up/">Moving Up</a>.</p>
+<Base title="Football explained | How We Play" description="Football explained is a planned How We Play section for topics that apply to every formation. Nothing to read yet." ids={['football-explained']} nav="football-explained" crumbs={crumbs} noindex editorial>
+  <div class="page-head ed-grid">
+    <div class="page-head__text">
+      <p class="ed-kicker">In development</p>
+      <h1>Football explained</h1>
+      <p class="ed-stand">The ideas that apply whatever formation you play, like offside and restarts, explained simply. This section isn't written yet.</p>
+    </div>
+    <div class="page-head__aside">
+      <p class="ed-label">Read now</p>
+      {first && <a class="ed-btn" href={`/formations/9v9/${first.slug}/`}>9v9 · {issueLabel(first)} · The {first.name} →</a>}
+      <p class="ed-small"><a href="/moving-up/">Moving from 7v7 to 9v9</a>, including offside for the first time.</p>
+    </div>
   </div>
 </Base>

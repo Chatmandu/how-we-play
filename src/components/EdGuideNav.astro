@@ -2,22 +2,23 @@
 /* Guide navigation for lesson and position pages. Wide screens: the guide's rules and positions as one
  * typographic index. Phones: the back link, where you are, and previous/next with 44px targets; the full
  * index sits in a disclosure so long rule names never wrap across the top of the page. */
+import { issueLabel } from '../lib/editorial.mjs';
 interface Props { f: any; current: string; }   // current: rule id, or 'pos-<role id>'
 const { f, current } = Astro.props;
 const base = `/formations/9v9/${f.slug}/`;
-const rules = (f.rules || []).filter((r: any) => r.diagram).map((r: any) => ({ id: r.id, href: `${base}${r.id}/`, label: r.title, short: `${r.n} · ${r.title}`, kind: 'Rule', n: r.n }));
+const rules = (f.rules || []).filter((r: any) => r.diagram).map((r: any) => ({ id: r.id, href: `${base}${r.id}/`, label: r.title, short: `${r.n} · ${r.title}`, kind: 'Principle', n: r.n }));
 const roles = (f.roles || []).map((r: any) => ({ id: 'pos-' + r.id, href: `${base}positions/${r.id}/`, label: r.title, short: r.short, kind: 'Position' }));
 const all = [...rules, ...roles];
 const i = all.findIndex(x => x.id === current);
 const here = all[i];
 const prev = all[i - 1], next = all[i + 1];
-const pos = here.kind === 'Rule' ? `Rule ${here.n} of ${rules.length}` : `Position ${i - rules.length + 1} of ${roles.length}`;
+const pos = here.kind === 'Principle' ? `Principle ${here.n} of ${rules.length}` : `Position ${i - rules.length + 1} of ${roles.length}`;
 ---
-<nav class="egn ed-grid" aria-label={`${f.name} guide`}>
+<nav class="egn ed-grid" aria-label={`${issueLabel(f)}: the ${f.name}`}>
   <div class="egn__in">
-    <a class="egn__back" href={base}>← {f.name} guide</a>
+    <a class="egn__back" href={base}>← {issueLabel(f)}: the {f.name}</a>
     <div class="egn__wide">
-      {rules.length > 0 && <div class="egn__row"><span class="egn__lab">Rules</span>{rules.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short}</a>)}</div>}
+      {rules.length > 0 && <div class="egn__row"><span class="egn__lab">Principles</span>{rules.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short}</a>)}</div>}
       {roles.length > 0 && <div class="egn__row"><span class="egn__lab">Positions</span>{roles.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined} aria-label={x.label}>{x.short}</a>)}</div>}
     </div>
     <div class="egn__narrow">
@@ -27,9 +28,9 @@ const pos = here.kind === 'Rule' ? `Rule ${here.n} of ${rules.length}` : `Positi
         {next ? <a href={next.href} aria-label={`Next: ${next.label}`}>→</a> : <span aria-hidden="true">→</span>}
       </span>
       <details class="egn__all">
-        <summary>All rules and positions</summary>
+        <summary>Contents of this issue</summary>
         <div class="egn__list">
-          {rules.length > 0 && <><span class="egn__lab">Rules</span>{rules.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short}</a>)}</>}
+          {rules.length > 0 && <><span class="egn__lab">Principles</span>{rules.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short}</a>)}</>}
           {roles.length > 0 && <><span class="egn__lab">Positions</span>{roles.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short} · {x.label}</a>)}</>}
         </div>
       </details>
