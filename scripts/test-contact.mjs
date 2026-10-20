@@ -57,7 +57,7 @@ await test('Rejects browser cross-origin attempts', async () => {
 await test('Rejects missing or invalid name, email, topic and body', async () => {
   const changes = [
     { name: '' }, { email: 'not-an-email' }, { topic: 'not-an-option' },
-    { message: 'short' }, { name: 'A\\r\\nB' }
+    { message: 'short' }, { name: 'A' + String.fromCharCode(13, 10) + 'B' }
   ];
   for (const c of changes) {
     const [status] = await unpack(await handleContact(req({ ...defaults, ...c }), {}));
