@@ -1,6 +1,6 @@
 # Issue 01 · Full-length YouTube explainer
 
-Source: the publisher-supplied YouTube URL `https://www.youtube.com/watch?v=4HWQntulHgw`. The publisher confirmed that this is the **four-plus-minute widescreen** video, not the 60-second Reel.
+Source: the corrected publisher-supplied YouTube URL `https://www.youtube.com/watch?v=KEKPal0Upd4`. The publisher provided this corrected video URL on 22 October 2026 to replace the previously embedded version. It is the intended full widescreen explainer, not the 60-second Reel.
 
 ## Location and composition
 
@@ -8,7 +8,7 @@ Source: the publisher-supplied YouTube URL `https://www.youtube.com/watch?v=4HWQ
 - Placement: immediately after the issue cover and contents list, before Chapter 1.
 - Format: prominent, horizontally centred **16:9** embedded player; do **not** crop to portrait.
 - Poster: static, first-party pitch SVG derived from `content/formations/9v9/3-1-3-1.json`, with the design system's fonts and colours.
-- Click Play to load `https://www.youtube-nocookie.com/embed/4HWQntulHgw?autoplay=1&rel=0`.
+- Click Play to load `https://www.youtube-nocookie.com/embed/KEKPal0Upd4?autoplay=1&rel=0`.
 - If the embedded player cannot be loaded, a persistent link to the original YouTube watch page remains visible.
 - Respect keyboard navigation, visible focus ring, readable mobile sizing and the site's existing noindex rules on private previews.
 - The additional `Watch` link in the issue table of contents goes to the full video section.
