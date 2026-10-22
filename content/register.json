@@ -176,6 +176,62 @@
     "hasBody": false
   },
   {
+    "id": "7v7-hub",
+    "kind": "editorial",
+    "title": "7v7 formation hub",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Adapted from approved How We Play 9v9 magazine templates"
+    },
+    "factIds": [
+      "format-ages",
+      "positions"
+    ]
+  },
+  {
+    "id": "7v7-2-3-1",
+    "kind": "coaching",
+    "title": "7v7 2-3-1 · Issue 01",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
+    },
+    "content": {
+      "status": "reviewed",
+      "exploratory": false,
+      "source": "How We Play 7v7 Issue 01, editorial version 1.0",
+      "reviewedBy": "David Wilson",
+      "reviewedOn": "2026-10-22",
+      "reviewer": "David Wilson (designated coaching reviewer; publication sign-off reported by site owner)",
+      "reviewedVersion": "cv-d6b27873",
+      "reviewDateBasis": "The site owner confirmed on 22 October 2026 that David Wilson signed off on this issue. David's underlying written approval has not been separately accessed.",
+      "reviewLog": [
+        {
+          "version": "cv-d6b27873",
+          "reviewer": "David Wilson",
+          "date": "2026-10-22",
+          "decision": "approved",
+          "limitations": "Illustrations are a practical 7v7 playing model, not fixed movements or official FA tactical instructions. Pitch is schematic pending precise technical marking verification.",
+          "evidence": "Site owner Niall Walsh stated in project conversation on 22 October 2026: 'David has also sign this off'. No primary signed document provided to this integration."
+        }
+      ],
+      "history": [
+        {
+          "on": "2026-10-22",
+          "note": "Created research draft from England Football official 7v7 rules/formation examples and secondary practitioner guidance. Editorial interpretations and schematic pitch geometry remain subject to qualified review."
+        },
+        {
+          "on": "2026-10-22",
+          "note": "Project owner confirmed David Wilson's coaching sign-off and directed publication, dated 22 October 2026. Content version recorded. Retain original sign-off evidence outside GitHub."
+        }
+      ]
+    }
+  },
+  {
     "id": "11v11",
     "kind": "editorial",
     "title": "11v11 resources",

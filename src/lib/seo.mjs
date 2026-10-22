@@ -89,12 +89,12 @@ const articleBase = (site, f, page, headline, description) => ({
   author: { '@id': authorId(site), '@type': 'Person', name: site.author.name, url: fullUrl(site, '/about/') },
   publisher: { '@id': orgId(site), '@type': 'Organization', name: site.name, url: fullUrl(site, '/') },
   isAccessibleForFree: true,
-  about: [{ '@type': 'Thing', name: '9v9 grassroots football' }, { '@type': 'Thing', name: f.name + ' formation' }]
+  about: [{ '@type': 'Thing', name: `${f.format} grassroots football` }, { '@type': 'Thing', name: f.name + ' formation' }]
 });
 
 export function issueStructuredData(site, f) {
   const page = fullUrl(site, issuePath(f));
-  const title = `The ${f.name}: a 9v9 football formation guide`;
+  const title = `The ${f.name}: a ${f.format} football formation guide`;
   const description = f.issue?.summary || f.issue?.intro || '';
   const parts = [
     ...(f.rules || []).filter(r => r.diagram).map(r => ({ '@type': 'CreativeWork', name: r.title, url: fullUrl(site, lessonPath(f, r)) })),
@@ -104,8 +104,8 @@ export function issueStructuredData(site, f) {
     {
       ...articleBase(site, f, page, title, description),
       ...dateProperties(f),
-      articleSection: '9v9 formation guides',
-      isPartOf: { '@type': 'CollectionPage', '@id': fullUrl(site, '/formations/9v9/'), url: fullUrl(site, '/formations/9v9/'), name: '9v9 formations' },
+      articleSection: `${f.format} formation guides`,
+      isPartOf: { '@type': 'CollectionPage', '@id': fullUrl(site, `/formations/${f.format}/`), url: fullUrl(site, `/formations/${f.format}/`), name: `${f.format} formations` },
       ...(parts.length ? { hasPart: parts } : {})
     },
     reviewPage(site, f, page, title, articleId(page))
@@ -113,7 +113,7 @@ export function issueStructuredData(site, f) {
 }
 export function lessonStructuredData(site, f, r) {
   const page = fullUrl(site, lessonPath(f, r));
-  const headline = r.title + ' (' + f.name + ' 9v9)';
+  const headline = r.title + ' (' + f.name + ' ' + f.format + ')';
   return [
     {
       ...articleBase(site, f, page, headline, [r.tag, r.summary].filter(Boolean).join(' ')),
@@ -126,7 +126,7 @@ export function lessonStructuredData(site, f, r) {
 }
 export function positionStructuredData(site, f, r) {
   const page = fullUrl(site, positionPath(f, r));
-  const headline = r.title + ' in a ' + f.name + ' 9v9';
+  const headline = r.title + ' in a ' + f.name + ' ' + f.format;
   return [
     {
       ...articleBase(site, f, page, headline, [r.head, ...(r.points || [])].join(' ')),
@@ -137,15 +137,15 @@ export function positionStructuredData(site, f, r) {
     reviewPage(site, f, page, headline, articleId(page))
   ];
 }
-export function collectionStructuredData(site, issues) {
-  const page = fullUrl(site, '/formations/9v9/');
+export function collectionStructuredData(site, issues, format = '9v9') {
+  const page = fullUrl(site, `/formations/${format}/`);
   return [{
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     '@id': page,
     url: page,
-    name: '9v9 football formations',
-    description: 'Free formation guides for nine-a-side grassroots football, including playing principles and player responsibilities.',
+    name: `${format} football formations`,
+    description: `Free formation guides for ${format} grassroots football, including playing principles and player responsibilities.`,
     inLanguage: 'en-GB',
     isPartOf: { '@id': homeId(site) },
     mainEntity: {
@@ -153,7 +153,7 @@ export function collectionStructuredData(site, issues) {
       itemListElement: issues.map((f, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: `9v9 Issue ${String(f.issue.number).padStart(2, '0')}: the ${f.name}`,
+        name: `${f.format} Issue ${String(f.issue.number).padStart(2, '0')}: the ${f.name}`,
         url: fullUrl(site, issuePath(f))
       }))
     }
@@ -175,8 +175,9 @@ export function sitemapLastmod(route, model) {
     const rule = issue.rules?.find(x => x.id + '/' === rest);
     return rule ? lastEdit(issue, rule) : null;
   }
-  if (route === '/formations/9v9/') {
-    const dates = publishedIssues(model).filter(f => f.format === '9v9').map(f => lastEdit(f)).filter(Boolean);
+  if (['/formations/9v9/', '/formations/7v7/'].includes(route)) {
+    const format = route.split('/')[2];
+    const dates = publishedIssues(model).filter(f => f.format === format).map(f => lastEdit(f)).filter(Boolean);
     return dates.length ? dates.sort().at(-1) : null;
   }
   // No guessed 'updated today' dates for About, the homepage or teasers.
@@ -192,7 +193,7 @@ export function issueFeedXml(model) {
   const path = fullUrl(site, '/feed.xml');
   const item = f => {
     const url = fullUrl(site, issuePath(f));
-    const title = `9v9 · Issue ${String(f.issue.number).padStart(2, '0')}: The ${f.name}`;
+    const title = `${f.format} · Issue ${String(f.issue.number).padStart(2, '0')}: The ${f.name}`;
     const summary = f.issue.summary || f.issue.intro;
     // RSS pubDate requires a time; only the editorial calendar DAY is known.
     // Omit pubDate rather than invent a timestamp for publication.

@@ -5,7 +5,7 @@
 import { issueLabel } from '../lib/editorial.mjs';
 interface Props { f: any; current: string; }   // current: rule id, or 'pos-<role id>'
 const { f, current } = Astro.props;
-const base = `/formations/9v9/${f.slug}/`;
+const base = `/formations/${f.format}/${f.slug}/`;
 const rules = (f.rules || []).filter((r: any) => r.diagram).map((r: any) => ({ id: r.id, href: `${base}${r.id}/`, label: r.title, short: `${r.n} · ${r.title}`, kind: 'Principle', n: r.n }));
 const roles = (f.roles || []).map((r: any) => ({ id: 'pos-' + r.id, href: `${base}positions/${r.id}/`, label: r.title, short: r.short, kind: 'Position' }));
 const all = [...rules, ...roles];

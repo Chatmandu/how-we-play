@@ -16,7 +16,7 @@ export const reviewerVisible = model => model.allowed(REVIEWER.profileId);
 export function developmentShelf(model) {
   const rows = model.formations
     .filter(f => !reviewRecord(f.register))
-    .map(f => ({ name: `${f.name} guide (9v9)`, status: f.register.content.exploratory ? 'Exploratory draft' : 'In coaching review' }));
+    .map(f => ({ name: `${f.name} guide (${f.format})`, status: f.register.content.exploratory ? 'Exploratory draft' : 'In coaching review' }));
   model.site.formats.filter(x => x.availability !== 'live').forEach(x => rows.push({ name: `${x.id} guides`, status: x.note || 'Later' }));
   return rows;
 }

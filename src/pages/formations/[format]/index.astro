@@ -1,12 +1,12 @@
 ---
-/* Format collections that have no published issue yet (5v5, 7v7). Honest placeholders: in development,
+/* Format collections that have no published issue yet (5v5). Honest placeholders: in development,
  * noindex, out of the sitemap, with a way back to what is published. 9v9 has its own page. */
 import Base from '../../../layouts/Base.astro';
 import model from '../../../lib/content.mjs';
 import { issueLabel } from '../../../lib/editorial.mjs';
 
 export function getStaticPaths() {
-  return model.site.formats.filter(x => ['5v5', '7v7'].includes(x.id) && x.availability !== 'live').map(x => ({ params: { format: x.id }, props: { fm: x } }));
+  return model.site.formats.filter(x => ['5v5'].includes(x.id) && x.availability !== 'live').map(x => ({ params: { format: x.id }, props: { fm: x } }));
 }
 const { fm } = Astro.props;
 const first = model.formations.find(f => f.register.content.status === 'reviewed' && f.gate.allowed);
