@@ -91,7 +91,7 @@ for (const file of pages) {
   // The only public video explainer belongs to Issue 01; it should be a
   // first-party poster until a visitor explicitly chooses to load YouTube.
   if (route === '/formations/9v9/3-1-3-1/') {
-    if (!html.includes('id="watch"') || !html.includes('data-youtube-id="4HWQntulHgw"')) {
+    if (!html.includes('id="watch"') || !html.includes('data-youtube-id="KEKPal0Upd4"')) {
       fail(route, 'missing original full-length YouTube explainer');
     }
     if (!html.includes('data-youtube-play') || !html.includes('href="/privacy/#video"')) {
