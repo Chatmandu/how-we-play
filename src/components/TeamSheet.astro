@@ -6,7 +6,7 @@ import { renderPitch, statusChips, esc } from '../lib/ui.mjs';
 interface Props { f: any; third?: 'rules' | 'gives'; showHead?: boolean; headingTag?: 'h2' | 'h3'; }
 const { f, third = 'rules', showHead = true, headingTag = 'h2' } = Astro.props;
 const H = headingTag;
-const base = `/formations/9v9/${f.slug}/`;
+const base = `/formations/${f.format}/${f.slug}/`;
 const full = Array.isArray(f.roles);
 const roles = full ? f.roles : (f.roleSummary || []);
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
@@ -29,9 +29,9 @@ const sheetId = `sheet-${f.slug}`;
 <section class="sheet ed-grid" aria-labelledby={showHead ? `${sheetId}-h` : undefined} aria-label={showHead ? undefined : `${f.name} team sheet`} data-sheet>
   {showHead && (
     <div class="sheet__head">
-      <H class="sheet__name" id={`${sheetId}-h`}><small>Team sheet · 9v9 · {f.notation}</small><a href={base}>{f.name}</a></H>
+      <H class="sheet__name" id={`${sheetId}-h`}><small>Team sheet · {f.format} · {f.notation}</small><a href={base}>{f.name}</a></H>
       <div class="sheet__intro">
-        <p class="ed-stand">{full ? 'One possible way to play 9v9: a starting shape, four rules and a job for every position.' : f.idea}</p>
+        <p class="ed-stand">{full ? 'One possible way to play {f.format}: a starting shape, four rules and a job for every position.' : f.idea}</p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
       </div>
     </div>
