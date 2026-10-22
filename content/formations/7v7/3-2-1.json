@@ -1,0 +1,2497 @@
+{
+  "$comment": "How We Play 7v7 Issue 02, the 3-2-1. Coaching review by David Wilson reported by the site owner, dated 22 October 2026. Movements and pitch are coaching illustrations, not prescribed FA tactics or scale pitch plans.",
+  "id": "7v7-3-2-1",
+  "format": "7v7",
+  "pitch": "7v7",
+  "name": "3-2-1",
+  "notation": "1-3-2-1",
+  "slug": "3-2-1",
+  "order": 12,
+  "registerId": "7v7-3-2-1",
+  "summary": "Three protect behind. Two link the play. One gives us a forward option.",
+  "sourceLabel": "How We Play 7v7 3-2-1 formation guide. Coaching reviewed on 22 October 2026.",
+  "structure": [
+    [
+      "Notation",
+      "1-3-2-1 (including goalkeeper) · 3-2-1 (outfield)"
+    ],
+    [
+      "Defenders",
+      "3"
+    ],
+    [
+      "Midfield",
+      "2"
+    ],
+    [
+      "Forwards",
+      "1"
+    ]
+  ],
+  "gives": [
+    "three defenders supporting one another behind the ball",
+    "a chance for an outside defender to provide width",
+    "a midfield pair that can support at different heights",
+    "a striker who can come short or threaten forward space",
+    "simple team decisions that balance support and protection"
+  ],
+  "spineText": "GK, 5 and 9, with 11 and 7 finding different spaces to connect them",
+  "shapeCue": "A starting picture, not where children must stay. Let everyone learn different roles.",
+  "status": {
+    "content": "reviewed",
+    "exploratory": false,
+    "source": "How We Play 7v7 3-2-1 Issue 02, coaching approval recorded following confirmation by the site owner.",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-22"
+  },
+  "shape": {
+    "id": "shape",
+    "pitch": "7v7",
+    "crop": [
+      -6,
+      155
+    ],
+    "title": "Starting shape: 1-3-2-1",
+    "caption": "Goalkeeper; a back three of 3, 5 and 2; midfielders 11 and 7; striker 9.",
+    "altSummary": "Seven players attack up the page. Goalkeeper at bottom; left outside defender 3, centre-back 5 and right outside defender 2 across the back; midfielders 11 and 7 ahead; striker 9 nearest the far goal. Positions are a possible starting shape, not compulsory places to remain.",
+    "players": [
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 135,
+        "id": "us-GK"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 22,
+        "y": 111,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "5",
+        "x": 50,
+        "y": 116,
+        "id": "us-5"
+      },
+      {
+        "t": "us",
+        "l": "2",
+        "x": 78,
+        "y": 111,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 38,
+        "y": 78,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 62,
+        "y": 78,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 40,
+        "id": "us-9"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "three-options",
+      "n": 1,
+      "title": "Use the back three",
+      "tag": "Give the goalkeeper clear choices instead of three players in one line.",
+      "summary": "A centre-back and two outside defenders help create different passing angles when the ball starts with our goalkeeper.",
+      "cue": "Can our keeper see a pass?",
+      "extra": "Three players is not automatically three options. Do not force a risky short pass.",
+      "diagram": "three-options",
+      "thumb": 1,
+      "seo": "7v7 3-2-1 playing out: use the back three",
+      "src": "How We Play 7v7 3-2-1 research synthesis, 22 October 2026",
+      "look": [
+        "The goalkeeper looks at the picture before choosing a pass.",
+        "The outside defenders find space that the goalkeeper can see; the centre-back stays available as a middle option.",
+        "If short passes are blocked, the team does not have to force them."
+      ]
+    },
+    {
+      "id": "one-goes-two-protect",
+      "n": 2,
+      "title": "One goes, two protect",
+      "tag": "Find width without leaving our centre-back alone.",
+      "summary": "An outside defender can support play on the wing if the other two defenders are ready to protect us.",
+      "cue": "One goes. Where are the other two?",
+      "extra": "The right and left outside defenders share the responsibility. Which one advances depends on where the ball and safe spaces are.",
+      "diagram": "one-goes-two-protect",
+      "thumb": 1,
+      "seo": "7v7 3-2-1: outside defender stepping into wide space",
+      "src": "How We Play 7v7 3-2-1 research synthesis, 22 October 2026",
+      "look": [
+        "The outside defender decides whether there is space to support the attack.",
+        "The centre-back and opposite outside defender remain connected and able to defend if the ball is lost.",
+        "The team avoids sending both outside defenders away from the goal at the same moment."
+      ]
+    },
+    {
+      "id": "different-heights",
+      "n": 3,
+      "title": "One short, one higher",
+      "tag": "Two midfielders can give us different passing distances.",
+      "summary": "One midfielder offers a shorter pass while the other can support the striker on a higher line.",
+      "cue": "Can we give two different passes?",
+      "extra": "The jobs can switch. This is about seeing space, not assigning one midfielder to stay back forever.",
+      "diagram": "different-heights",
+      "thumb": 1,
+      "seo": "7v7 3-2-1 midfield pair support and staggered movement",
+      "src": "How We Play 7v7 3-2-1 research synthesis, 22 October 2026",
+      "look": [
+        "If both midfielders are on the same line, one can move to help the player on the ball.",
+        "The other looks for a different space further forward rather than following the first player.",
+        "Both recover to help the back three when we lose possession."
+      ]
+    },
+    {
+      "id": "support-nine",
+      "n": 4,
+      "title": "Don't leave nine alone",
+      "tag": "Give our striker somebody to play with.",
+      "summary": "One midfielder moves near enough to link with the striker, with another option behind and the defenders connected.",
+      "cue": "Who's close enough to help nine?",
+      "extra": "Sometimes our nine shows for the ball, sometimes they stretch the pitch. The team should offer support in either picture.",
+      "diagram": "support-nine",
+      "thumb": 1,
+      "seo": "7v7 3-2-1: support the lone striker in attack",
+      "src": "How We Play 7v7 3-2-1 research synthesis, 22 October 2026",
+      "look": [
+        "Check whether our striker is too far from both midfielders to combine.",
+        "One midfielder can move to support while the other remains a short or safe passing option.",
+        "Players behind the ball keep enough balance to respond if possession is lost."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "Look first. Give us a start.",
+      "src": "How We Play 7v7 3-2-1 research synthesis",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Before restarting, look for a safe pass to the centre-back or either outside defender.",
+        "Use the space and time you have; don't force a short pass when it is not there.",
+        "Stay ready behind the three defenders and share clear, calm information when we defend."
+      ],
+      "cue": "Which pass can I actually make?",
+      "rules": [
+        "three-options"
+      ]
+    },
+    {
+      "id": "centre-back",
+      "nums": [
+        "5"
+      ],
+      "short": "5",
+      "title": "Centre-back",
+      "head": "Connect and protect",
+      "src": "How We Play 7v7 3-2-1 research synthesis",
+      "diagram": "role-centre-back",
+      "points": [
+        "Be available as a passing option through the middle when the goalkeeper or defenders have the ball.",
+        "Look for a simple pass to a midfielder when the path is clear.",
+        "If an outside defender steps forward, help protect the central route to our goal.",
+        "Talk to the other two defenders so the back three stays connected."
+      ],
+      "cue": "Is the middle protected?",
+      "rules": [
+        "three-options",
+        "one-goes-two-protect"
+      ]
+    },
+    {
+      "id": "outside-defenders",
+      "nums": [
+        "3",
+        "2"
+      ],
+      "short": "3 · 2",
+      "title": "Outside defenders",
+      "head": "Defend your side. Know when to join in.",
+      "src": "How We Play 7v7 3-2-1 research synthesis",
+      "diagram": "role-outside-defenders",
+      "points": [
+        "Give our goalkeeper and centre-back a passing angle rather than hiding behind an opponent.",
+        "Look for a chance to support the team in wide space when our cover is ready.",
+        "When the other outside defender goes forward, recover towards the centre-back to help protect the goal.",
+        "Don't both chase forward at once; respond to the ball and your teammates."
+      ],
+      "cue": "Should I go, or am I the cover?",
+      "rules": [
+        "three-options",
+        "one-goes-two-protect"
+      ]
+    },
+    {
+      "id": "midfield-pair",
+      "nums": [
+        "11",
+        "7"
+      ],
+      "short": "11 · 7",
+      "title": "The two midfielders",
+      "head": "Different angles, together",
+      "src": "How We Play 7v7 3-2-1 research synthesis",
+      "diagram": "role-midfield-pair",
+      "points": [
+        "Try not to stand flat together: one can offer a short pass while the other looks further forwards.",
+        "Share the job of supporting our striker instead of leaving them isolated.",
+        "Find different spaces to receive when the back three are in possession.",
+        "Recover towards the middle to help defend when we lose the ball.",
+        "Swap the higher and deeper roles so both players learn different decisions."
+      ],
+      "cue": "Where is my partner? What can I offer?",
+      "rules": [
+        "different-heights",
+        "support-nine"
+      ]
+    },
+    {
+      "id": "striker",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Striker",
+      "head": "Show short or stretch the pitch",
+      "src": "How We Play 7v7 3-2-1 research synthesis",
+      "diagram": "role-striker",
+      "points": [
+        "Give teammates an option ahead when they want to play forwards.",
+        "Sometimes come towards the ball to receive a short pass.",
+        "Other times threaten the space behind the defenders to make room for teammates.",
+        "Look for a supporting midfielder; you aren't expected to attack alone.",
+        "Help slow the next pass when the opposition start with the ball, without chasing everything."
+      ],
+      "cue": "Do we need a short pass or space ahead?",
+      "rules": [
+        "different-heights",
+        "support-nine"
+      ]
+    }
+  ],
+  "diagrams": {
+    "three-options": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "narrow",
+          "tab": "No easy angles",
+          "caption": "When the three defenders crowd the same channel, our goalkeeper sees fewer clear passing options.",
+          "altSummary": "The goalkeeper has possession. The left defender, central defender and right defender are close together in a narrow line. The picture is crowded; three players do not automatically mean three useful passing options.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 36,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 113,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 64,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 38,
+              "y": 78,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 62,
+              "y": 78,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "verdict": "wrong",
+          "ball": [
+            58,
+            136
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                4,
+                101,
+                24,
+                26
+              ]
+            },
+            {
+              "k": "gap",
+              "r": [
+                72,
+                101,
+                24,
+                26
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE",
+              "x": 19,
+              "y": 97
+            },
+            {
+              "t": "SPACE",
+              "x": 81,
+              "y": 97
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "spread",
+          "tab": "Open the picture",
+          "caption": "3 and 2 find passing angles outside, while 5 offers support through the middle. Pick a safe pass.",
+          "altSummary": "The goalkeeper has the ball and sees defenders 3 and 2 wider than before while centre-back 5 is available between them. The arrows represent possible passes only; they do not require playing short under pressure.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 109,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 114,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 109,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 76,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 76,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 41,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            58,
+            136
+          ],
+          "ghosts": [
+            {
+              "id": "us-3",
+              "l": "3",
+              "x": 36,
+              "y": 112
+            },
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 64,
+              "y": 112
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                36,
+                112
+              ],
+              "to": [
+                20,
+                109
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                64,
+                112
+              ],
+              "to": [
+                80,
+                109
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                135
+              ],
+              "to": [
+                20,
+                109
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                135
+              ],
+              "to": [
+                80,
+                109
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                9,
+                100,
+                23,
+                21
+              ]
+            },
+            {
+              "k": "space",
+              "r": [
+                68,
+                100,
+                23,
+                21
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "OPTION",
+              "x": 21,
+              "y": 95
+            },
+            {
+              "t": "OPTION",
+              "x": 79,
+              "y": 95
+            }
+          ]
+        }
+      ]
+    },
+    "one-goes-two-protect": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "both-go",
+          "tab": "Both go: we're open",
+          "caption": "If both outside defenders race forward, 5 can be left alone to protect our goal.",
+          "altSummary": "Our left defender 3 and right defender 2 are both high up the pitch, with only centre-back 5 nearer the goalkeeper. A large unprotected space around number 5 is marked as the risk of advancing both at once.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 81,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 118,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 81,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 64,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 64,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 33,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 65,
+              "y": 97,
+              "id": "them-A"
+            }
+          ],
+          "verdict": "wrong",
+          "ball": [
+            74,
+            98
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                29,
+                102,
+                42,
+                28
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "EXPOSED",
+              "x": 49,
+              "y": 98
+            }
+          ],
+          "ghosts": [
+            {
+              "id": "us-3",
+              "l": "3",
+              "x": 22,
+              "y": 111
+            },
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 78,
+              "y": 111
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                22,
+                111
+              ],
+              "to": [
+                20,
+                81
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                78,
+                111
+              ],
+              "to": [
+                80,
+                81
+              ]
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "right-goes",
+          "tab": "Right goes. Two protect.",
+          "caption": "2 can give us width when the moment is right; 5 and 3 keep the route to goal covered.",
+          "altSummary": "Right outside defender 2 steps towards the space on the right flank to support possession. Centre-back 5 stays central and left defender 3 moves slightly inside. The two remaining defenders protect the middle if the ball is lost.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 136,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 32,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 53,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 83,
+              "y": 89,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 79,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            }
+          ],
+          "verdict": "right",
+          "ball": [
+            73,
+            69
+          ],
+          "ghosts": [
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 78,
+              "y": 111
+            },
+            {
+              "id": "us-3",
+              "l": "3",
+              "x": 22,
+              "y": 111
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                78,
+                111
+              ],
+              "to": [
+                83,
+                89
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                22,
+                111
+              ],
+              "to": [
+                32,
+                113
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                20,
+                104,
+                47,
+                28
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "COVER",
+              "x": 44,
+              "y": 99
+            }
+          ]
+        }
+      ]
+    },
+    "different-heights": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "flat",
+          "tab": "Same line, fewer options",
+          "caption": "When our two midfielders stand flat, the next pass can become difficult to see.",
+          "altSummary": "Midfielders 11 and 7 stand at the same height ahead of centre-back 5. The central defender has the ball but the midfield pair does not yet offer useful different passing distances.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 111,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 111,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 78,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 78,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 39,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 50,
+              "y": 91,
+              "id": "them-A"
+            }
+          ],
+          "verdict": "wrong",
+          "ball": [
+            58,
+            117
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                38,
+                91,
+                26,
+                19
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "NO ANGLE",
+              "x": 50,
+              "y": 87
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "stagger",
+          "tab": "One short. One higher.",
+          "caption": "11 offers a closer pass while 7 gets into a different space nearer our striker.",
+          "altSummary": "Number 11 moves towards a shorter supporting angle for the defender on the ball. Number 7 moves up towards the forward, so the two midfielders are on different lines. These are options rather than fixed lanes.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 33,
+              "y": 92,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 62,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 37,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 54,
+              "y": 80,
+              "id": "them-A"
+            }
+          ],
+          "verdict": "right",
+          "ball": [
+            58,
+            117
+          ],
+          "ghosts": [
+            {
+              "id": "us-11",
+              "l": "11",
+              "x": 37,
+              "y": 78
+            },
+            {
+              "id": "us-7",
+              "l": "7",
+              "x": 63,
+              "y": 78
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                37,
+                78
+              ],
+              "to": [
+                33,
+                92
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                63,
+                78
+              ],
+              "to": [
+                65,
+                62
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                116
+              ],
+              "to": [
+                33,
+                92
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                23,
+                84,
+                23,
+                20
+              ]
+            },
+            {
+              "k": "space",
+              "r": [
+                55,
+                53,
+                22,
+                21
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SHORT",
+              "x": 35,
+              "y": 80
+            },
+            {
+              "t": "HIGH",
+              "x": 66,
+              "y": 49
+            }
+          ]
+        }
+      ]
+    },
+    "support-nine": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "isolated",
+          "tab": "Nine needs help",
+          "caption": "If both midfielders stay deep, our striker can end up too far away to combine.",
+          "altSummary": "Number 9 is alone near the opposition half while both midfielders, 11 and 7, remain much deeper, leaving a large distance for a pass into the forward.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 98,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 98,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 42,
+              "y": 58,
+              "id": "them-A"
+            },
+            {
+              "t": "them",
+              "l": "B",
+              "x": 64,
+              "y": 58,
+              "id": "them-B"
+            }
+          ],
+          "verdict": "wrong",
+          "ball": [
+            57,
+            117
+          ],
+          "highlights": [
+            {
+              "k": "gap",
+              "r": [
+                29,
+                65,
+                42,
+                29
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "TOO FAR",
+              "x": 50,
+              "y": 61
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "support",
+          "tab": "Get near and give options",
+          "caption": "7 joins the attack to support 9; 11 stays available for the next pass and our back three remain connected.",
+          "altSummary": "Number 7 arrives in a supporting position close enough to striker 9 to combine, while number 11 provides a shorter central passing option. The back three stay connected rather than all advancing with the attack.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 22,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 111,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 35,
+              "y": 83,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 59,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 38,
+              "y": 45,
+              "id": "them-A"
+            },
+            {
+              "t": "them",
+              "l": "B",
+              "x": 75,
+              "y": 47,
+              "id": "them-B"
+            }
+          ],
+          "verdict": "right",
+          "ball": [
+            43,
+            84
+          ],
+          "ghosts": [
+            {
+              "id": "us-11",
+              "l": "11",
+              "x": 37,
+              "y": 98
+            },
+            {
+              "id": "us-7",
+              "l": "7",
+              "x": 63,
+              "y": 98
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                37,
+                98
+              ],
+              "to": [
+                35,
+                83
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                63,
+                98
+              ],
+              "to": [
+                65,
+                59
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                35,
+                83
+              ],
+              "to": [
+                65,
+                59
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                43,
+                49,
+                34,
+                20
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SUPPORT",
+              "x": 61,
+              "y": 46
+            }
+          ]
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "first-pass",
+          "tab": "Starting with the ball",
+          "caption": "Three defenders can offer passing angles. Pick the safe option; do not force it.",
+          "altSummary": "The goalkeeper holds the ball, with left defender 3, centre-back 5 and right defender 2 available ahead at three separated positions. Two possible passing arrows are shown.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 136,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 110,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 114,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 110,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 37,
+              "y": 78,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 78,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            58,
+            137
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                135
+              ],
+              "to": [
+                20,
+                110
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                135
+              ],
+              "to": [
+                80,
+                110
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "LOOK FIRST",
+              "x": 50,
+              "y": 96
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "behind",
+          "tab": "When we defend",
+          "caption": "Stay ready, see the ball and give our defenders short information.",
+          "altSummary": "An opponent attacks down the right while three defenders remain between the ball and the goalkeeper. The goalkeeper is ready behind the defensive line.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 119,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 76,
+              "y": 105,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 39,
+              "y": 87,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 82,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 43,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 89,
+              "y": 90,
+              "id": "them-A"
+            }
+          ],
+          "ball": [
+            96,
+            90
+          ],
+          "labels": [
+            {
+              "t": "SEE & SPEAK",
+              "x": 50,
+              "y": 128
+            }
+          ]
+        }
+      ]
+    },
+    "role-centre-back": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "link",
+          "tab": "Help us play out",
+          "caption": "Give the goalkeeper a middle option, then look for a safe pass forwards.",
+          "altSummary": "Centre-back 5 is central between outside defenders 3 and 2 and helps create a central option for a short pass before finding a midfielder.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 136,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 110,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 114,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 110,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 35,
+              "y": 79,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 79,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 40,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            58,
+            136
+          ],
+          "arrows": [
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                136
+              ],
+              "to": [
+                50,
+                114
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                50,
+                114
+              ],
+              "to": [
+                35,
+                79
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "CENTRE",
+              "x": 50,
+              "y": 102
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "protect",
+          "tab": "Protect the middle",
+          "caption": "If an outside defender moves up, protect the route to our goal with the other defender.",
+          "altSummary": "Right outside defender 2 steps forward. Centre-back 5 protects the central channel alongside left defender 3 while the goalkeeper remains behind.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 33,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 53,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 83,
+              "y": 91,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 36,
+              "y": 77,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 64,
+              "y": 68,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 39,
+              "id": "us-9"
+            }
+          ],
+          "ghosts": [
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 78,
+              "y": 111
+            },
+            {
+              "id": "us-3",
+              "l": "3",
+              "x": 22,
+              "y": 111
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                78,
+                111
+              ],
+              "to": [
+                83,
+                91
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                22,
+                111
+              ],
+              "to": [
+                33,
+                113
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                20,
+                105,
+                48,
+                28
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "COVER",
+              "x": 45,
+              "y": 100
+            }
+          ]
+        }
+      ]
+    },
+    "role-outside-defenders": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "step",
+          "tab": "Find our width",
+          "caption": "If the ball and cover are right, an outside defender can step forward into space.",
+          "altSummary": "Our right outside defender 2 steps forward along the touchline to offer width while the centre-back and left defender remain behind as cover.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 30,
+              "y": 114,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 53,
+              "y": 118,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 82,
+              "y": 90,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 34,
+              "y": 80,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 63,
+              "y": 65,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 39,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            71,
+            68
+          ],
+          "ghosts": [
+            {
+              "id": "us-2",
+              "l": "2",
+              "x": 79,
+              "y": 113
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                79,
+                113
+              ],
+              "to": [
+                82,
+                90
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                72,
+                78,
+                24,
+                24
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "WIDE",
+              "x": 84,
+              "y": 74
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "hold",
+          "tab": "Keep us connected",
+          "caption": "If your teammate has stepped forward, help the centre-back defend the space behind.",
+          "altSummary": "Left outside defender 3 shifts inside slightly while right defender 2 is ahead and centre-back 5 protects the middle, keeping two players behind the ball.",
+          "players": [
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 31,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 52,
+              "y": 117,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 82,
+              "y": 91,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 35,
+              "y": 78,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 64,
+              "y": 70,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 40,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 68,
+              "y": 82,
+              "id": "them-A"
+            }
+          ],
+          "ball": [
+            74,
+            85
+          ],
+          "ghosts": [
+            {
+              "id": "us-3",
+              "l": "3",
+              "x": 22,
+              "y": 111
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                22,
+                111
+              ],
+              "to": [
+                31,
+                112
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                19,
+                102,
+                45,
+                29
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "PROTECT",
+              "x": 42,
+              "y": 97
+            }
+          ]
+        }
+      ]
+    },
+    "role-midfield-pair": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "short-high",
+          "tab": "Make different angles",
+          "caption": "One midfielder can show short while the other offers the next option further ahead.",
+          "altSummary": "Midfielder 11 is closer to the defending players as a short passing choice, while midfielder 7 is positioned higher near the striker, forming two different supporting lines.",
+          "players": [
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 33,
+              "y": 93,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 63,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            58,
+            117
+          ],
+          "ghosts": [
+            {
+              "id": "us-11",
+              "l": "11",
+              "x": 38,
+              "y": 78
+            },
+            {
+              "id": "us-7",
+              "l": "7",
+              "x": 62,
+              "y": 78
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                38,
+                78
+              ],
+              "to": [
+                33,
+                93
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                62,
+                78
+              ],
+              "to": [
+                65,
+                63
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SHORT",
+              "x": 31,
+              "y": 82
+            },
+            {
+              "t": "HIGH",
+              "x": 67,
+              "y": 53
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "help",
+          "tab": "Without the ball",
+          "caption": "Recover near enough to help the back three; don't let the space in front of them go empty.",
+          "altSummary": "The opposition have the ball. Midfielders 11 and 7 are closer to the defenders than before and protect the space in front of centre-back 5 and the outside defenders.",
+          "players": [
+            {
+              "t": "us",
+              "l": "3",
+              "x": 23,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 77,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 35,
+              "y": 92,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 92,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 44,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 50,
+              "y": 67,
+              "id": "them-A"
+            }
+          ],
+          "ball": [
+            58,
+            69
+          ],
+          "ghosts": [
+            {
+              "id": "us-11",
+              "l": "11",
+              "x": 34,
+              "y": 76
+            },
+            {
+              "id": "us-7",
+              "l": "7",
+              "x": 66,
+              "y": 76
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                34,
+                76
+              ],
+              "to": [
+                35,
+                92
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                66,
+                76
+              ],
+              "to": [
+                65,
+                92
+              ]
+            }
+          ],
+          "highlights": [
+            {
+              "k": "space",
+              "r": [
+                25,
+                84,
+                50,
+                25
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "HELP",
+              "x": 50,
+              "y": 80
+            }
+          ]
+        }
+      ]
+    },
+    "role-striker": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "key": "show",
+          "tab": "Give a short pass",
+          "caption": "Sometimes show towards the ball so one of the midfielders can combine with you.",
+          "altSummary": "Number 9 comes towards the midfielders to offer a shorter forward pass while the two midfielders stay in different supportive positions.",
+          "players": [
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 36,
+              "y": 82,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 64,
+              "y": 68,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 55,
+              "id": "us-9"
+            }
+          ],
+          "ball": [
+            43,
+            82
+          ],
+          "ghosts": [
+            {
+              "id": "us-9",
+              "l": "9",
+              "x": 50,
+              "y": 39
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                39
+              ],
+              "to": [
+                50,
+                55
+              ]
+            },
+            {
+              "k": "pass",
+              "t": "us",
+              "f": [
+                36,
+                82
+              ],
+              "to": [
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "key": "stretch",
+          "tab": "Make space ahead",
+          "caption": "Other times look for space behind the defenders so your team has a way forward.",
+          "altSummary": "Number 9 runs towards space nearer the far goal while midfielder 7 arrives to offer a second attacking option and 11 supports from deeper.",
+          "players": [
+            {
+              "t": "us",
+              "l": "3",
+              "x": 21,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "5",
+              "x": 50,
+              "y": 116,
+              "id": "us-5"
+            },
+            {
+              "t": "us",
+              "l": "2",
+              "x": 79,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 36,
+              "y": 85,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 65,
+              "y": 60,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 49,
+              "y": 22,
+              "id": "us-9"
+            },
+            {
+              "t": "them",
+              "l": "A",
+              "x": 35,
+              "y": 44,
+              "id": "them-A"
+            },
+            {
+              "t": "them",
+              "l": "B",
+              "x": 66,
+              "y": 45,
+              "id": "them-B"
+            }
+          ],
+          "ball": [
+            43,
+            86
+          ],
+          "ghosts": [
+            {
+              "id": "us-9",
+              "l": "9",
+              "x": 50,
+              "y": 42
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                42
+              ],
+              "to": [
+                49,
+                22
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "t": "SPACE AHEAD",
+              "x": 50,
+              "y": 12
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "shape",
+      "title": "Starting shape and age group",
+      "why": "FA offers 1-3-2-1 as an illustrative example, not a mandated or universally best formation.",
+      "qs": [
+        "Is our back three set too flat, too deep or appropriately spaced for U10/U11?",
+        "Are the midfield pair positioned too close to one another for realistic options?",
+        "Do the exact seven player positions and the attacking direction make sense on the schematic pitch?",
+        "Should the two midfielders be wider or a little staggered in the starting picture?"
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Goalkeeper and back-three passing",
+      "why": "The retreat-line rule and pressure can materially alter the passing choices.",
+      "qs": [
+        "Is the goalkeeper's choice-making simple and age-appropriate?",
+        "Do arrowed potential passes ever look like mandatory short distribution?",
+        "Should we show the centre-back receiving or offering a different angle when one outside defender is marked?"
+      ]
+    },
+    {
+      "id": "wide",
+      "title": "Outside defender steps into width",
+      "why": "The tactical appeal of the back three relies on judicious outside-defender movement; a youth coach must not insist both stay back or both charge forward.",
+      "qs": [
+        "Are 'One goes, two protect' and its source diagrams accurate against common 7v7 opposition shapes?",
+        "Does the right-side stepping example show a credible teammate and time on the ball?",
+        "Does left-side mirroring need a separately reviewed illustration?",
+        "Does the recovering far defender need to come further inside?"
+      ]
+    },
+    {
+      "id": "midfield",
+      "title": "Midfield pair positioning",
+      "why": "The proposed one-short/one-higher rule is coaching synthesis and could create too big a gap if interpreted rigidly.",
+      "qs": [
+        "Will U10/U11 players understand 'one short, one higher'?",
+        "Is the illustrated midfield shift realistic when the defender has the ball?",
+        "What should the nearer player do when both opponents pressure them?",
+        "Do we need a defensive phase in the lesson instead?"
+      ]
+    },
+    {
+      "id": "striker",
+      "title": "How the striker gets support",
+      "why": "A common trade-off of 3-2-1 is that a lone forward can become isolated.",
+      "qs": [
+        "Are our number 9 and supporting midfielders close enough in the second frame?",
+        "Does the striker's movement convey decisions rather than fixed patterns?",
+        "Should the outside defender also be shown helping to provide width near the striker?"
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "FA rules and pitch",
+      "why": "Current 2026/27 mini-soccer has no offside or heading and uses a retreat line; the renderer 7v7 geometry is still provisional.",
+      "qs": [
+        "Are all diagram situations compatible with 2026/27 no-offside, no-heading and retreat-line rules?",
+        "Confirm technical accuracy of schematic pitch markings; keep them explicitly non-scale until independently verified.",
+        "Are roles clearly optional and rotated in keeping with England Football's player-development priorities?"
+      ]
+    },
+    {
+      "id": "editorial",
+      "title": "Final publication sign-off",
+      "why": "The previously approved 2-3-1 review does NOT apply to this new issue.",
+      "qs": [
+        "Does David approve all four principles, role text, and every diagram (including wrong/right examples) as one exact content version?",
+        "Have we captured written corrections, reviewer's name and the actual review date?",
+        "Are any claims of comparative superiority removed or clearly labelled as opinion?"
+      ]
+    }
+  ],
+  "issue": {
+    "number": 2,
+    "intro": "The 3-2-1 gives us three defenders, two midfielders and a striker, supported by our goalkeeper. It's another way to organise 7v7: the back three can protect one another, but the team must still find width and make sure our striker isn't left on their own. The answer isn't to tell children to stand still. It's to give them four small decisions they can practise and change as they learn.",
+    "summary": "Our 7v7 3-2-1: the starting picture, four playing principles, five role groups and how the back three connect to the lone striker.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "Three defenders, two midfielders, a striker and the goalkeeper.",
+        "preview": "Where seven players begin and why our extra defender changes the picture."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Our four playing principles",
+        "dek": "Four simple decisions that connect our defenders, midfielders and striker.",
+        "rules": [
+          "three-options",
+          "one-goes-two-protect",
+          "different-heights",
+          "support-nine"
+        ],
+        "preview": "Find passing angles, use width safely and get our striker support."
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "One team with five starting role groups and opportunities to rotate.",
+        "roles": [
+          "goalkeeper",
+          "centre-back",
+          "outside-defenders",
+          "midfield-pair",
+          "striker"
+        ],
+        "preview": "The goalkeeper, centre-back, outside defenders, midfield pair and striker."
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How we build, find width, create different options and recover.",
+        "groups": [
+          {
+            "title": "When we have the ball",
+            "items": [
+              {
+                "rule": "three-options"
+              },
+              {
+                "rule": "one-goes-two-protect"
+              },
+              {
+                "role": "outside-defenders"
+              }
+            ]
+          },
+          {
+            "title": "Connecting to the striker",
+            "items": [
+              {
+                "rule": "different-heights"
+              },
+              {
+                "rule": "support-nine"
+              },
+              {
+                "role": "midfield-pair"
+              }
+            ]
+          },
+          {
+            "title": "When we lose the ball",
+            "items": [
+              {
+                "role": "centre-back"
+              },
+              {
+                "role": "outside-defenders"
+              },
+              {
+                "role": "midfield-pair"
+              }
+            ]
+          }
+        ],
+        "preview": "Give the ball-player options without leaving the team exposed."
+      }
+    ],
+    "features": [],
+    "published": "2026-10-22"
+  }
+}
