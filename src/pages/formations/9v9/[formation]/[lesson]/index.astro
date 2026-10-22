@@ -11,7 +11,7 @@ import { pad2, word, issueLabel } from '../../../../../lib/editorial.mjs';
 import { lessonStructuredData } from '../../../../../lib/seo.mjs';
 
 export function getStaticPaths() {
-  return model.formations.filter(f => f.gate.allowed).flatMap(f =>
+  return model.formations.filter(f => f.format === '9v9' && f.gate.allowed).flatMap(f =>
     (f.rules || []).filter(r => r.diagram).map(r => ({ params: { formation: f.slug, lesson: r.id }, props: { slug: f.slug, ruleId: r.id } })));
 }
 const f = model.formation(Astro.props.slug);
