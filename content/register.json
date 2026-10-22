@@ -234,7 +234,7 @@
   {
     "id": "7v7-3-2-1",
     "kind": "coaching",
-    "title": "7v7 3-2-1 · Issue 02 (research draft)",
+    "title": "7v7 3-2-1 · Issue 02",
     "design": {
       "status": "approved",
       "approvedBy": "Niall Walsh",
@@ -242,16 +242,32 @@
       "version": "Adapted from How We Play approved 7v7 Issue 01 magazine templates"
     },
     "content": {
-      "status": "review-required",
+      "status": "reviewed",
       "exploratory": false,
-      "source": "How We Play 7v7 3-2-1 synthesis, 22 October 2026. England Football Learning lists 1-3-2-1 as a possible 7v7 shape; specific tactical instructions and diagrams require separate coaching review.",
-      "reviewedBy": null,
-      "reviewedOn": null,
-      "reviewer": "David Wilson (prospective reviewer; Issue 02 review not yet recorded)",
+      "source": "How We Play 7v7 3-2-1 Issue 02, editorial review record",
+      "reviewedBy": "David Wilson",
+      "reviewedOn": "2026-10-22",
+      "reviewer": "David Wilson (coaching reviewer; sign-off confirmed by site owner)",
+      "reviewedVersion": "cv-c14e6957",
+      "reviewDateBasis": "The site owner confirmed David Wilson's coaching approval for this specific 3-2-1 issue on 22 October 2026. Underlying written sign-off was not independently accessed.",
+      "reviewLog": [
+        {
+          "version": "cv-c14e6957",
+          "reviewer": "David Wilson",
+          "date": "2026-10-22",
+          "decision": "approved",
+          "evidence": "Site owner's confirmation in the project conversation dated 22 October 2026: 'David has approved'.",
+          "limitations": "The 7v7 pitch renderer remains schematic; no independent verification of exact pitch markings is implied."
+        }
+      ],
       "history": [
         {
           "on": "2026-10-22",
           "note": "New issue developed from official 7v7 format guidance, practitioner discussion and original How We Play tactical illustrations. Draft only; previous review of 2-3-1 does not extend to 3-2-1."
+        },
+        {
+          "on": "2026-10-22",
+          "note": "The site owner confirmed David Wilson's separate sign-off for 7v7 3-2-1 Issue 02. The exact coaching-content fingerprint was recorded for release; retain primary review evidence externally."
         }
       ]
     }
