@@ -1,5 +1,5 @@
 {
-  "$comment": "PRIVATE research-informed editorial draft: 7v7 3-2-1 Issue 02. Coaching review not yet recorded. England Football illustrates 1-3-2-1 as an example, not prescribed tactics. All playing rules, positions and diagrams are proposed How We Play syntheses for David Wilson to review.",
+  "$comment": "How We Play 7v7 Issue 02, the 3-2-1. Coaching review by David Wilson reported by the site owner, dated 22 October 2026. Movements and pitch are coaching illustrations, not prescribed FA tactics or scale pitch plans.",
   "id": "7v7-3-2-1",
   "format": "7v7",
   "pitch": "7v7",
@@ -9,7 +9,7 @@
   "order": 12,
   "registerId": "7v7-3-2-1",
   "summary": "Three protect behind. Two link the play. One gives us a forward option.",
-  "sourceLabel": "How We Play 7v7 3-2-1 research draft, 22 October 2026; official age/formation example from England Football Learning; tactical cues are unreviewed editorial proposals.",
+  "sourceLabel": "How We Play 7v7 3-2-1 formation guide. Coaching reviewed on 22 October 2026.",
   "structure": [
     [
       "Notation",
@@ -38,11 +38,11 @@
   "spineText": "GK, 5 and 9, with 11 and 7 finding different spaces to connect them",
   "shapeCue": "A starting picture, not where children must stay. Let everyone learn different roles.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
-    "source": "How We Play research draft, 22 October 2026. Qualified coaching review not yet recorded.",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "source": "How We Play 7v7 3-2-1 Issue 02, coaching approval recorded following confirmation by the site owner.",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-22"
   },
   "shape": {
     "id": "shape",
@@ -2491,6 +2491,7 @@
         "preview": "Give the ball-player options without leaving the team exposed."
       }
     ],
-    "features": []
+    "features": [],
+    "published": "2026-10-22"
   }
 }
