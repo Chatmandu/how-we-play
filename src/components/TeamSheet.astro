@@ -24,14 +24,14 @@ if (full) {
    sits inside an image role. */
 if (full) svg = svg.replace('role="img"', 'aria-hidden="true" focusable="false"');
 const rules = full ? f.rules : (f.ruleTable || []);
-const sheetId = `sheet-${f.slug}`;
+const sheetId = `sheet-${f.format}-${f.slug}`;
 ---
 <section class="sheet ed-grid" aria-labelledby={showHead ? `${sheetId}-h` : undefined} aria-label={showHead ? undefined : `${f.name} team sheet`} data-sheet>
   {showHead && (
     <div class="sheet__head">
       <H class="sheet__name" id={`${sheetId}-h`}><small>Team sheet · {f.format} · {f.notation}</small><a href={base}>{f.name}</a></H>
       <div class="sheet__intro">
-        <p class="ed-stand">{full ? 'One possible way to play {f.format}: a starting shape, four rules and a job for every position.' : f.idea}</p>
+        <p class="ed-stand">{full ? `One possible way to play ${f.format}: a starting shape, four rules and a job for every position.` : f.idea}</p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
       </div>
     </div>
