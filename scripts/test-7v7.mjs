@@ -76,23 +76,29 @@ assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(f)), 'Approved iss
 console.log(`PASS  Approved 7v7 Issue 01: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, signed-off ${contentVersion(f)} and public`);
 
 
-// Issue 02 is a separate coaching publication. Approval of Issue 01 must
-// never give this new formation a public route or a misleading review credit.
+// Issue 02 has a separate versioned approval dated 22 October 2026.
+// Verify its exact content independently of Issue 01's earlier review.
 const draft = pre.formations.find(x => x.format === '7v7' && x.slug === '3-2-1');
 assert.ok(draft, 'Issue 02 should exist in the complete review model');
 assert.equal(draft.id, '7v7-3-2-1');
 assert.equal(draft.registerId, '7v7-3-2-1');
 assert.equal(draft.issue.number, 2);
-assert.equal(draft.register.content.status, 'review-required');
-assert.equal(draft.status.content, 'review-required');
-assert.equal(draft.register.content.reviewedBy, null, 'Do not inherit Issue 01 reviewer approval');
-assert.equal(draft.register.content.reviewedOn, null);
-assert.equal(draft.issue.published, undefined, 'Issue 02 is not published');
-assert.equal(pub.formation('3-2-1').gate.allowed, false);
-assert.ok(!pub.publicFormations.some(x => x.registerId === draft.registerId));
+assert.equal(draft.register.content.status, 'reviewed');
+assert.equal(draft.status.content, 'reviewed');
+assert.equal(draft.register.content.reviewedBy, 'David Wilson');
+assert.equal(draft.status.reviewedBy, 'David Wilson');
+assert.equal(draft.register.content.reviewedOn, '2026-10-22');
+assert.equal(draft.status.reviewedOn, '2026-10-22');
+assert.equal(draft.issue.published, '2026-10-22');
+assert.equal(draft.register.content.reviewedVersion, contentVersion(draft), 'Issue 02 review must match exact coaching content');
+assert.equal(draft.register.content.reviewLog.at(-1)?.version, contentVersion(draft));
+assert.equal(pub.formation('3-2-1').gate.allowed, true);
+assert.ok(pub.publicFormations.some(x => x.registerId === draft.registerId));
 assert.equal(pre.formation('3-2-1').gate.allowed, true);
 assert.equal(pre.formation('3-2-1').gate.noindex, true);
-assert.equal(pre.formation('3-2-1').gate.watermark, true);
+assert.equal(pre.formation('3-2-1').gate.watermark, false);
+assert.ok(publishedIssues(pub).some(x => x.registerId === draft.registerId));
+assert.equal(publishedIssues(pub).filter(x => x.format === '7v7').length, 2);
 assert.equal(draft.shape.pitch, '7v7');
 assert.deepEqual(draft.shape.players.map(p => p.l).sort(), ['2','3','5','7','9','11','GK'].sort());
 assert.equal(new Set(draft.shape.players.map(p => p.id)).size, 7);
@@ -130,8 +136,9 @@ for (const [name, set] of Object.entries(draft.diagrams)) {
 assert.equal(newFrames, 18);
 const [draftArticle] = issueStructuredData(pub.site, draft);
 assert.equal(draftArticle.url, pub.site.url + '/formations/7v7/3-2-1/');
-assert.equal(draftArticle.datePublished, undefined, 'Do not invent publication metadata for a draft');
-assert.equal(sitemapLastmod(issuePath(draft), pub), null);
-assert.ok(!issueFeedXml(pub).includes(pub.site.url + issuePath(draft)), 'Draft never appears in published RSS');
-assert.ok(!publishedIssues(pub).includes(draft), 'Draft never appears as latest published issue');
-console.log(`PASS  7v7 Issue 02 draft: ${draft.rules.length} principles, ${draft.roles.length} position groups, ${newFrames} frames, reviewer gate enforced`);
+assert.equal(draftArticle.datePublished, '2026-10-22');
+assert.equal(draftArticle.articleSection, '7v7 formation guides');
+assert.equal(draftArticle.isPartOf.url, pub.site.url + '/formations/7v7/');
+assert.equal(sitemapLastmod(issuePath(draft), pub), '2026-10-22');
+assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(draft)), 'Reviewed Issue 02 must appear in published RSS');
+console.log(`PASS  7v7 Issue 02 published: ${draft.rules.length} principles, ${draft.roles.length} position groups, ${newFrames} frames, reviewed version ${contentVersion(draft)}`);
