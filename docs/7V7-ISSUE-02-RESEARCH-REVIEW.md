@@ -1,7 +1,11 @@
 # How We Play · 7v7 Issue 02 · The 3-2-1
 
 **Research dossier · 22 October 2026**  
-**PRIVATE DRAFT. Coaching review required. No approval or publication date is recorded.**
+**Published Issue 02 · Reviewed by David Wilson · 22 October 2026**
+
+**Publication evidence:** Site owner confirmed in the project conversation on 22 October 2026 that David Wilson approved this 3-2-1 guide. This confirmation is the source of the recorded review; the underlying signed review document has not been independently provided. Keep it with the editorial record.
+
+**Approved version:** `cv-c14e6957`. The register and formation record the same reviewer and date. Source movements and tactical content have not been changed as part of release. The diagrams remain schematic, not independently certified regulation-scale pitch drawings.
 
 ## 1. Editorial approach
 
@@ -52,7 +56,7 @@ This comparison is **How We Play's coaching assessment**, not an England Footbal
 
 ## 3. Four new proposed playing principles
 
-All four are How We Play research-informed editorial interpretations **awaiting David Wilson's separate review**. They are not official England Football instructions.
+All four are How We Play research-informed editorial interpretations **approved by David Wilson for this issue, as reported by the site owner on 22 October 2026**. They are not official England Football instructions.
 
 1. **Use the back three.** Give the goalkeeper different angles to pass to, rather than three teammates crowded together. **Cue:** “Can our keeper see a pass?”
 2. **One goes, two protect.** When safe, an outside defender can provide width; the centre-back and opposite outside defender stay connected. **Cue:** “One goes. Where are the other two?”
@@ -71,7 +75,7 @@ These are illustrated options, not movement recipes. A run arrow shows a possibl
 
 These pages use the existing How We Play design system and routes `/formations/7v7/3-2-1/`, `/formations/7v7/3-2-1/{lesson}/`, and `/formations/7v7/3-2-1/positions/{role}/`.
 
-## 5. Risks and review questions for David
+## 5. Review questions and future revision checklist
 
 1. **Shape.** Are the back three and midfield pair realistic U10/U11 distances? Are the positions too flat? Do all seven players correctly attack upwards?
 2. **Goalkeeper.** Do the illustrated passing angles work with the retreat-line rule, and is it sufficiently clear never to force a short pass?
@@ -82,16 +86,16 @@ These pages use the existing How We Play design system and routes `/formations/7
 7. **Diagrams.** Inspect all 18 frames for numerical consistency, ball positions, valid run arrows, space labels, collisions and a sensible wrong/right contrast.
 8. **Official rules.** The renderer's 7v7 pitch geometry is labelled **provisional schematic**. Verify pitch markings against the current official mini-soccer rules before calling it a scale drawing. No diagrams may suggest heading or rely on offside.
 9. **Developmental focus.** Emphasise getting experience in different roles, meaningful playing time and players making their own choices rather than touchline commands.
-10. **Approval.** Review the complete *actual version* of the issue. The coach's previous approval of 2-3-1 **does not** count for 3-2-1.
+10. **Approval.** This 3-2-1 guide has its own review record with version `cv-c14e6957`, dated 22 October 2026. The 2-3-1 approval is an independent record and cannot cover future changes to this issue.
 
 ## 6. Publication controls
 
-- Register item: `7v7-3-2-1`; `content.status: "review-required"`; `reviewedBy: null`, `reviewedOn: null`.
-- Formation status agrees with the register and has **no `issue.published` date**.
-- Public builds exclude the 3-2-1 issue and all unreviewed lesson and position pages.
-- Preview builds include them with `noindex` and private-review indicators. Cloudflare preview deployment alone does **not** guarantee password protection.
+- Register item: `7v7-3-2-1`; `content.status: "reviewed"`; `reviewedBy: "David Wilson"`; `reviewedOn: "2026-10-22"`; approved content version `cv-c14e6957`.
+- Formation status agrees with the register, with `issue.published: "2026-10-22"`.
+- Public builds include the 3-2-1 issue and its nine reviewed principle/position pages after this issue's separate approval.
+- Non-production preview builds remain `noindex` regardless of whether this approved issue is public. Cloudflare preview deployment does **not** by itself guarantee password protection.
 - The published 2-3-1 content and its independent David Wilson review must remain intact and unmodified.
-- After fresh coaching sign-off, record the reviewer, actual review date, a content fingerprint via `contentVersion(f)`, and an honest publication date. Only then should this be merged to the production site.
-- Where the site displays a public "coming next" mention of 3-2-1, only a short title/status teaser is permitted.
+- Fresh coaching sign-off has been reported by the site owner for this exact Issue 02 content version. Future material coaching changes require a new review fingerprint and a fresh approval.
+- The 3-2-1 now appears as the second complete issue in the 7v7 hub, homepage issue collection and indexable sitemap/RSS when the production deployment succeeds.
 
 **Note:** The publishing gate validates document status and content fingerprint; it does not replace a human review of tactical quality, accuracy or player-development suitability.
