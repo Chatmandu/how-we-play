@@ -1451,9 +1451,14 @@
           ],
           "labels": [
             {
-              "t": "OPTIONS",
-              "x": 50,
-              "y": 90
+              "t": "LEFT OPTION",
+              "x": 26,
+              "y": 104
+            },
+            {
+              "t": "RIGHT OPTION",
+              "x": 74,
+              "y": 104
             }
           ]
         },
