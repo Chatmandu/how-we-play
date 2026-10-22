@@ -67,12 +67,16 @@ test('Individual principles and positions point to their parent issue', () => {
   }
 });
 
-test('9v9 collection exposes complete published issues only', () => {
-  const collection = collectionStructuredData(site, issues)[0];
-  assert.equal(collection['@type'], 'CollectionPage');
-  assert.equal(collection.mainEntity.itemListElement.length, issues.length);
-  for (const it of collection.mainEntity.itemListElement) {
-    assert.ok(issues.some(f => it.url === site.url + issuePath(f)));
+test('Each format collection exposes only published issues in that format', () => {
+  for (const format of ['9v9', '7v7']) {
+    const inFormat = issues.filter(f => f.format === format);
+    const collection = collectionStructuredData(site, inFormat, format)[0];
+    assert.equal(collection['@type'], 'CollectionPage');
+    assert.equal(collection.url, site.url + '/formations/' + format + '/');
+    assert.equal(collection.mainEntity.itemListElement.length, inFormat.length);
+    for (const it of collection.mainEntity.itemListElement) {
+      assert.ok(inFormat.some(f => it.url === site.url + issuePath(f)));
+    }
   }
 });
 
