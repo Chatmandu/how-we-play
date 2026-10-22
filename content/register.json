@@ -176,6 +176,31 @@
     "hasBody": false
   },
   {
+    "id": "7v7-2-3-1",
+    "kind": "coaching",
+    "title": "7v7 2-3-1 · Issue 01 (research draft)",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Design Spec v1.1 / design system 1.0.1"
+    },
+    "content": {
+      "status": "review-required",
+      "exploratory": false,
+      "source": "How We Play research synthesis, 22 October 2026; England Football Learning and grassroots coaching discussions. Proposed diagrams and principles need separate coaching approval.",
+      "reviewedBy": null,
+      "reviewedOn": null,
+      "reviewer": "David Wilson (designated coaching reviewer; 7v7 Issue 01 review NOT yet recorded)",
+      "history": [
+        {
+          "on": "2026-10-22",
+          "note": "Created research draft from England Football official 7v7 rules/formation examples and secondary practitioner guidance. Editorial interpretations and schematic pitch geometry remain subject to qualified review."
+        }
+      ]
+    }
+  },
+  {
     "id": "11v11",
     "kind": "editorial",
     "title": "11v11 resources",
