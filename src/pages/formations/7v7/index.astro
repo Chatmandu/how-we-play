@@ -1,0 +1,94 @@
+---
+/* 7v7 magazine collection. Draft issues are visible only in private,
+ * noindex builds until coaching review is recorded. The public 7v7
+ * landing stays an honest placeholder until the first approved issue. */
+import Base from '../../../layouts/Base.astro';
+import TeamSheet from '../../../components/TeamSheet.astro';
+import model from '../../../lib/content.mjs';
+import { issueLabel, pad2 } from '../../../lib/editorial.mjs';
+import { collectionStructuredData } from '../../../lib/seo.mjs';
+
+const format = '7v7';
+const fm = model.site.formats.find(x => x.id === format);
+const issues = model.formations.filter(f => f.format === format && f.issue).sort((a, b) => a.issue.number - b.issue.number);
+const published = issues.filter(f => f.register.content.status === 'reviewed' && f.gate.allowed && !!f.issue.published);
+const preparing = issues.filter(f => !published.includes(f));
+const preview = model.target !== 'public';
+const fact = id => model.fact(id);
+const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations' }];
+const glance = [
+  ['Age groups', 'U10 and U11'],
+  ['Players', '7, including a goalkeeper'],
+  ['Pitch', fact('pitch').v7],
+  ['Goals', fact('goals').v7],
+  ['Ball', fact('ball').v7],
+  ['Offside', 'No offside']
+];
+const jsonLd = published.length ? collectionStructuredData(model.site, published, '7v7') : [];
+---
+<Base
+  title={published.length ? '7v7 football formations for U10 and U11 | How We Play' : '7v7 football formations: in development | How We Play'}
+  description={published.length ? 'Free, illustrated 7v7 formation issues for U10 and U11 grassroots football, with principles and a job for each position.' : 'Our 7v7 formation guides are being researched and reviewed. Explore the format and our published football coaching guides.'}
+  ids={['7v7']}
+  nav="7v7"
+  crumbs={crumbs}
+  jsonLd={jsonLd}
+  ogType="website"
+  editorial
+  noindex={published.length === 0}
+  meta={{ type: 'format', format: '7v7', group: 'Formats' }}
+>
+  <header class="page-head ed-grid">
+    <div class="page-head__text">
+      <p class="ed-kicker">Format · U10 and U11</p>
+      <h1>7v7 formations</h1>
+      <p class="ed-stand">Stepping up from 5v5 means two more players and more opportunities to play together. Our guides show starting shapes, simple playing principles and player responsibilities, without treating formations as fixed positions.</p>
+    </div>
+    <div class="page-head__aside">
+      <dl class="glance" aria-label="7v7 at a glance">{glance.map(([k,v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      <p class="ed-small">These format rules are from <a href="https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-7v7-games" target="_blank" rel="noopener noreferrer">England Football Learning</a> for the 2026/27 season. Always check your competition's current rules.</p>
+    </div>
+  </header>
+
+  {published.map(f => (
+    <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
+      <div class="ed-grid"><div class="ed-sh"><p class="ed-label">7v7 · {issueLabel(f)} · Published</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Four principles · {f.roles.length} position groups</span></div></div>
+      <TeamSheet f={f} third="rules"/>
+      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/7v7/${f.slug}/`}>Open {issueLabel(f)}: the {f.name} →</a></p></div>
+    </section>
+  ))}
+
+  {preview && preparing.map(f => (
+    <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}, private research draft`} data-hwp-reviewer-only>
+      <div class="ed-grid"><div class="ed-sh"><p class="ed-label">7v7 · {issueLabel(f)} · Private coaching review</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Unreviewed research draft, not for publication</span></div></div>
+      <TeamSheet f={f} third="rules"/>
+      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/7v7/${f.slug}/`}>Open private draft: the {f.name} →</a></p></div>
+    </section>
+  ))}
+
+  {published.length === 0 && (
+    <section class="ed-section ed-grid split" aria-labelledby="7v7-next">
+      <div class="split__main">
+        <p class="ed-kicker">In preparation</p>
+        <h2 class="ed-h2" id="7v7-next">Our first 7v7 issue</h2>
+        <p class="ed-lede">We're working on the 2-3-1 formation. The full guide, principles and diagrams will appear once the coaching review is complete.</p>
+        <p class="ed-small">England Football illustrates both 1-2-3-1 and 1-3-2-1 (goalkeeper included) as possible 7v7 starting shapes. Neither is prescribed as the only way to play.</p>
+      </div>
+      <div class="split__side">
+        <p class="ed-label">Published guides now</p>
+        <p class="ed-small">In the meantime, <a href="/formations/9v9/">explore our 9v9 formation issues</a>.</p>
+      </div>
+    </section>
+  )}
+
+  {published.length > 0 && preparing.length > 0 && (
+    <section class="ed-section ed-grid split" aria-labelledby="7v7-preparing">
+      <div class="split__main"><p class="ed-kicker">Coming next</p><h2 class="ed-h2" id="7v7-preparing">In coaching review</h2><p class="ed-small">Unreviewed formation issues are not published.</p></div>
+      <div class="split__side">
+        <ol class="issue-list">
+          {preparing.map(f => <li><div><b>{pad2(f.issue.number)}</b><span><strong>The {f.name}</strong><em>In preparation</em></span></div></li>)}
+        </ol>
+      </div>
+    </section>
+  )}
+</Base>
