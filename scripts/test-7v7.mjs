@@ -74,3 +74,64 @@ assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-10-22');
 assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(f)), 'Approved issue must appear in public RSS');
 
 console.log(`PASS  Approved 7v7 Issue 01: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, signed-off ${contentVersion(f)} and public`);
+
+
+// Issue 02 is a separate coaching publication. Approval of Issue 01 must
+// never give this new formation a public route or a misleading review credit.
+const draft = pre.formations.find(x => x.format === '7v7' && x.slug === '3-2-1');
+assert.ok(draft, 'Issue 02 should exist in the complete review model');
+assert.equal(draft.id, '7v7-3-2-1');
+assert.equal(draft.registerId, '7v7-3-2-1');
+assert.equal(draft.issue.number, 2);
+assert.equal(draft.register.content.status, 'review-required');
+assert.equal(draft.status.content, 'review-required');
+assert.equal(draft.register.content.reviewedBy, null, 'Do not inherit Issue 01 reviewer approval');
+assert.equal(draft.register.content.reviewedOn, null);
+assert.equal(draft.issue.published, undefined, 'Issue 02 is not published');
+assert.equal(pub.formation('3-2-1').gate.allowed, false);
+assert.ok(!pub.publicFormations.some(x => x.registerId === draft.registerId));
+assert.equal(pre.formation('3-2-1').gate.allowed, true);
+assert.equal(pre.formation('3-2-1').gate.noindex, true);
+assert.equal(pre.formation('3-2-1').gate.watermark, true);
+assert.equal(draft.shape.pitch, '7v7');
+assert.deepEqual(draft.shape.players.map(p => p.l).sort(), ['2','3','5','7','9','11','GK'].sort());
+assert.equal(new Set(draft.shape.players.map(p => p.id)).size, 7);
+assert.equal(draft.rules.length, 4);
+assert.equal(draft.roles.length, 5);
+assert.deepEqual(draft.issue.chapters.map(c => c.id), ['shape','principles','jobs','together']);
+assert.deepEqual(draft.issue.chapters[1].rules, draft.rules.map(r => r.id));
+assert.deepEqual(draft.issue.chapters[2].roles, draft.roles.map(r => r.id));
+for (const rule of draft.rules) {
+  assert.ok(draft.diagrams[rule.diagram], 'Rule has a real diagram: ' + rule.id);
+  assert.ok(rule.cue && rule.look.length >= 3);
+}
+for (const role of draft.roles) {
+  assert.ok(draft.diagrams[role.diagram], 'Position has a real diagram: ' + role.id);
+  assert.ok(role.cue && role.points.length >= 3);
+  for (const rule of role.rules) assert.ok(draft.rules.some(r => r.id === rule), 'Role references real rule');
+}
+let newFrames = 0;
+for (const [name, set] of Object.entries(draft.diagrams)) {
+  assert.ok(set.frames.length >= 2, name + ' has two frames');
+  for (const state of set.frames) {
+    newFrames++;
+    assert.equal(state.pitch, '7v7');
+    assert.ok(state.caption?.length >= 20 && state.altSummary?.length >= 45);
+    const errors = validate(state, { pitch: '7v7' }).filter(x => x.level === 'error');
+    assert.deepEqual(errors, [], 'Diagram validation: ' + name + '[' + state.key + '] ' + JSON.stringify(errors));
+    for (const ghost of state.ghosts || []) {
+      assert.ok(state.players.some(p => p.id === ghost.id), 'Start-position ghost has matching player: ' + name);
+    }
+    for (const h of state.highlights || []) {
+      assert.ok((state.labels || []).length, 'Highlighted space has accessible source label: ' + name);
+    }
+  }
+}
+assert.equal(newFrames, 18);
+const [draftArticle] = issueStructuredData(pub.site, draft);
+assert.equal(draftArticle.url, pub.site.url + '/formations/7v7/3-2-1/');
+assert.equal(draftArticle.datePublished, undefined, 'Do not invent publication metadata for a draft');
+assert.equal(sitemapLastmod(issuePath(draft), pub), null);
+assert.ok(!issueFeedXml(pub).includes(pub.site.url + issuePath(draft)), 'Draft never appears in published RSS');
+assert.ok(!publishedIssues(pub).includes(draft), 'Draft never appears as latest published issue');
+console.log(`PASS  7v7 Issue 02 draft: ${draft.rules.length} principles, ${draft.roles.length} position groups, ${newFrames} frames, reviewer gate enforced`);
