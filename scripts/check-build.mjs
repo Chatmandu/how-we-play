@@ -88,6 +88,25 @@ for (const file of pages) {
       if (!article.isPartOf) fail(route, 'Article missing parent issue or collection relationship');
     }
   }
+  // The only public video explainer belongs to Issue 01; it should be a
+  // first-party poster until a visitor explicitly chooses to load YouTube.
+  if (route === '/formations/9v9/3-1-3-1/') {
+    if (!html.includes('id="watch"') || !html.includes('data-youtube-id="4HWQntulHgw"')) {
+      fail(route, 'missing original full-length YouTube explainer');
+    }
+    if (!html.includes('data-youtube-play') || !html.includes('href="/privacy/#video"')) {
+      fail(route, 'video must be opt-in and link to its privacy explanation');
+    }
+    if (/<iframe\b/i.test(html) || /src="https:\/\/www\.youtube-nocookie\.com\//.test(html)) {
+      fail(route, 'YouTube iframe must not load before a visitor activates the poster');
+    }
+  }
+  if (route === '/privacy/' && !html.includes('id="video"')) {
+    fail(route, 'privacy notice must explain optional YouTube embeds');
+  }
+  if (['/formations/9v9/3-3-2/', '/formations/9v9/2-2-3-1/'].includes(route) && html.includes('data-youtube-embed')) {
+    fail(route, 'video must not appear on issues without a published film');
+  }
   const noindex = /<meta name="robots" content="noindex/.test(html);
   // Diagrams
   for (const m of html.matchAll(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*role="(?:img|group)"[^>]*>([\s\S]*?)<\/svg>/g)) {
