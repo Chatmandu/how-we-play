@@ -12,7 +12,7 @@ import { word, issueLabel, chapterOf } from '../../../../../../lib/editorial.mjs
 import { positionStructuredData } from '../../../../../../lib/seo.mjs';
 
 export function getStaticPaths() {
-  return model.formations.filter(f => f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
+  return model.formations.filter(f => f.format === '9v9' && f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
     f.roles.map(r => ({ params: { formation: f.slug, position: r.id }, props: { slug: f.slug, roleId: r.id } })));
 }
 const f = model.formation(Astro.props.slug);
