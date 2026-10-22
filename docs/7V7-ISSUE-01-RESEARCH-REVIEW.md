@@ -1,5 +1,9 @@
 # How We Play · 7v7 Issue 01 research and review dossier
-**Research draft: 22 October 2026. PRIVATE. NOT COACHING-REVIEWED.**
+**Publication record: 22 October 2026. Coaching review recorded for version `cv-d6b27873`.**
+
+**Coaching reviewer:** David Wilson. **Review date:** 22 October 2026. Site owner Niall Walsh reported David's sign-off in the project conversation on that date. The primary approval document was not independently provided; retain it with the editorial review record.
+
+**Status:** Published 7v7 Issue 01 following the owner's instruction, using the same formal publishing controls as existing 9v9 issues. The original source ledger and review questions below are retained for audit. The tactical illustrations remain coaching schematics; this approval does not independently verify their exact pitch-marking geometry.
 
 ## Editorial decision
 
@@ -36,9 +40,9 @@ Start the 7v7 collection with **2-3-1** (or **1-2-3-1** including the goalkeeper
 - [England Football Community: 7v7 formations and experiences](https://community.thefa.com/coaching/f/youth-club-football-forum/138/7v7-formations-experiments-experiences). Practitioner advice describes 2-3-1 as a starting point that can be varied; advises role rotation and developmental priorities.
 - [Football DNA: 7-a-side formation analysis](https://footballdna.co.uk/features/formation-analysis7-a-side/). A secondary coaching comparison of 7v7 shapes and links with 5v5; not evidence of official endorsement.
 
-### C. How We Play's new coaching hypotheses (NOT externally verified)
+### C. How We Play's original playing model (editorial coaching synthesis)
 
-The following exact four ideas and all 18 drawn scenario frames are **original proposed editorial synthesis** to be reviewed by a qualified coach. They are not represented as claims from England Football:
+The following four ideas and 18 drawn scenario frames are **original How We Play editorial synthesis**, recorded as reviewed by David Wilson on 22 October 2026 (as reported by the site owner). They are not represented as claims from England Football:
 
 1. **Give two options:** when possible, our goalkeeper sees two separate defenders offering options, with number 8 connecting ahead.
 2. **Big with it, small without it:** 11 and 7 give width in possession, get closer to 8 when defending.
@@ -54,11 +58,11 @@ The following exact four ideas and all 18 drawn scenario frames are **original p
 - Chapter 2: Four illustrated playing principles, each with two authored steps and clear cues.
 - Chapter 3: Five player-role groups: goalkeeper; defender pair; central midfielder; wide midfielders; striker. Each has an interactive illustration, a question and practical points.
 - Chapter 4: How to build and defend together.
-- Private preview now; no `published` metadata or coaching review declaration.
+- Published with `issue.published = 2026-10-22` and an exact-version coaching review record in `content/register.json`.
 
 The pitch uses the existing `PITCHES['7v7']` diagram geometry, which is still labelled **provisional** by the site's renderer. It is a schematic coaching graphic. Before going public, verify pitch markings from a CURRENT approved mini-soccer dimensions/rules source and adjust the renderer as required; don't silently treat older technical diagrams as authoritative.
 
-## Review checklist for David Wilson
+## Review checklist retained for future revisions
 
 Record real coaching feedback before publication:
 1. Is 2-3-1 the right first teaching issue, and are the advantages/trade-offs fairly presented?
@@ -72,15 +76,15 @@ Record real coaching feedback before publication:
 9. Do the notes encourage playing time, role rotation, fun and problem-solving rather than rigid positional labels?
 10. Check the 7v7 pitch drawing and make any required corrections.
 
-**Evidence to retain:** written reviewer feedback, any factual corrections, final coaching file version (`contentVersion`), reviewer name and review date. Don't backdate approval or set the version without an actual sign-off.
+**Evidence to retain:** David Wilson's original sign-off (the site owner confirmed this), written feedback and any future factual corrections. The approved content fingerprint is `cv-d6b27873`. A material coaching-content change will invalidate this version's recorded approval and require fresh review.
 
-## Publish after sign-off
+## Publication and future maintenance
 
-1. Apply requested coaching and diagram changes on the feature branch.
-2. Record a real, explicit review in both the `content/register.json` entry and formation `status`, including current version fingerprint; include an `issue.published` date only when actually published.
-3. Validate official 7v7 pitch markings and any additional displayed rules.
-4. Change `content/site.json` format `7v7` to `availability: "live"` and update its note.
-5. The 7v7 collection automatically becomes indexable once an issue with review and publication date is available. Verify the homepage, sitemap, RSS, Article and CollectionPage structured data and that no draft pages leak from the public build.
-6. Only then merge to `main`. Preview pages and branches should be access controlled, `noindex`, and never linked publicly before sign-off.
+1. The owner has confirmed David Wilson's sign-off; recorded the exact content fingerprint, reviewer and review date 22 October 2026.
+2. The formation and register now both state `reviewed`; the issue has a genuine publication date of `2026-10-22`.
+3. The 7v7 format is `live` in `content/site.json`. Confirm successful production build, homepage discoverability, sitemap, RSS and Article/CollectionPage JSON-LD.
+4. The 7v7 pitch renderer uses schematic dimensions. Verify precise pitch-marking geometry against the current rule source before describing it as a scaled regulation drawing; keep the disclaimer until then.
+5. Preserve the original review evidence. For future changes to coaching moves, positions, rules or diagrams, create a new reviewed version.
+6. Non-production branch previews remain `noindex`, and access controls should be verified independently.
 
 **Separately:** the existing 9v9 content, reviewer record and diagrams should not change to accommodate 7v7. Format-aware template, navigation and SEO generalisation is tested on this branch.
