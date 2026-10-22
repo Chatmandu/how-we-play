@@ -176,6 +176,21 @@
     "hasBody": false
   },
   {
+    "id": "7v7-hub",
+    "kind": "editorial",
+    "title": "7v7 formation hub",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Adapted from approved How We Play 9v9 magazine templates"
+    },
+    "factIds": [
+      "format-ages",
+      "positions"
+    ]
+  },
+  {
     "id": "7v7-2-3-1",
     "kind": "coaching",
     "title": "7v7 2-3-1 · Issue 01 (research draft)",
