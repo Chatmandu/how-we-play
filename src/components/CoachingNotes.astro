@@ -29,22 +29,28 @@ const hp = action ? (() => { try { const u = new URL(action); return `b_${u.sear
         {hp && <div class="cn__hp" aria-hidden="true"><input type="text" name={hp} tabindex="-1" value=""></div>}
         <p class="cn__help" id="cn-help">Free to subscribe. Unsubscribe whenever you like.{nl.doubleOptIn ? " We'll email you to confirm first." : ''} By signing up you agree to receive The Coaching Notes; see our <a href="/privacy/#newsletter">privacy notice</a>.</p>
         <p class="cn__status" id="cn-status" role="status" aria-live="polite">{!action && preview ? 'Preview only: no Mailchimp form is connected yet, so nothing is sent.' : ''}</p>
+        <p class="cn__captcha" data-cn-captcha-wrap hidden><a class="cn__verify" data-cn-captcha-link href="#" target="_blank" rel="noopener noreferrer">Complete security check with Mailchimp ↗</a></p>
       </form>
     </div>
   </section>
 )}
 <script>
   import { track } from '../scripts/analytics.mjs';
+  import { mailchimpCaptchaUrl } from '../lib/mailchimp-captcha.mjs';
   const form = document.querySelector<HTMLFormElement>('form[data-cn]');
   if (form) {
     const input = form.querySelector<HTMLInputElement>('input[type=email]')!;
     const status = form.querySelector<HTMLElement>('.cn__status')!;
     const btn = form.querySelector<HTMLButtonElement>('button')!;
+    const captchaWrap = form.querySelector<HTMLElement>('[data-cn-captcha-wrap]')!;
+    const captchaLink = form.querySelector<HTMLAnchorElement>('[data-cn-captcha-link]')!;
+    const hideCaptcha = () => { captchaWrap.hidden = true; captchaLink.removeAttribute('href'); };
     const say = (msg: string, kind = '') => { status.textContent = msg; status.dataset.kind = kind; };
     const valid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     const clean = (html: string) => { const d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').replace(/^\d+\s*-\s*/, '').trim(); };
     form.addEventListener('submit', e => {
       e.preventDefault();
+      hideCaptcha();
       const email = input.value.trim();
       if (!valid(email)) { input.setAttribute('aria-invalid', 'true'); say('Please enter a valid email address, like name@example.com.', 'error'); input.focus(); return; }
       input.removeAttribute('aria-invalid');
@@ -59,9 +65,21 @@ const hp = action ? (() => { try { const u = new URL(action); return `b_${u.sear
       const s = document.createElement('script');
       const done = () => { btn.disabled = false; s.remove(); delete (window as any)[cb]; clearTimeout(t); };
       const t = setTimeout(() => { done(); say("We couldn't reach the signup service. Please try again in a moment.", 'error'); track('newsletter_error', { reason: 'timeout' }); }, 12000);
-      (window as any)[cb] = (r: { result: string; msg: string }) => {
+      (window as any)[cb] = (r: { result: string; msg: string; params?: Record<string, string | number> }) => {
         done();
-        if (r && r.result === 'success') {
+        if (r && r.msg === 'captcha') {
+          // Mailchimp requests a human check and returns parameters for its
+          // own hosted verification page. Keep that challenge enabled.
+          const verification = mailchimpCaptchaUrl(form.action, r.params);
+          if (verification) {
+            captchaLink.href = verification;
+            captchaWrap.hidden = false;
+            say('One more step: Mailchimp needs to verify you are a person. Use the link below to complete your signup.', 'error');
+          } else {
+            say("Mailchimp needs a security check, but we couldn't open it. Please try again or contact us.", 'error');
+          }
+          track('newsletter_verification_required', { form_location: 'footer' });
+        } else if (r && r.result === 'success') {
           form.reset();
           say("Nearly there. Check your inbox and confirm your email to start receiving The Coaching Notes.", 'ok');
           track('newsletter_signup', { form_location: 'footer', status: 'pending_confirmation' });
