@@ -11,7 +11,7 @@ import { longDate, checklist } from '../../../lib/ui.mjs';
 import { issueLabel, pad2 } from '../../../lib/editorial.mjs';
 import { collectionStructuredData } from '../../../lib/seo.mjs';
 
-const issues = model.formations.filter(f => f.issue).sort((a, b) => a.issue.number - b.issue.number);
+const issues = model.formations.filter(f => f.format === '9v9' && f.issue).sort((a, b) => a.issue.number - b.issue.number);
 const published = issues.filter(f => f.register.content.status === 'reviewed' && f.gate.allowed);
 const preparing = issues.filter(f => !published.includes(f));
 const preview = model.target !== 'public';
