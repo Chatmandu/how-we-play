@@ -786,6 +786,10 @@
 .cn__status { margin: 8px 0 0; min-height: 1.4em; font: 600 15px/1.4 var(--ed-sans); }
 .cn__status[data-kind="ok"] { color: var(--hwp-color-space-yellow); }
 .cn__status[data-kind="error"] { color: #FFB3A3; }
+.cn__captcha { margin: 12px 0 0; }
+.cn__captcha[hidden] { display: none; }
+.cn__verify { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; border: 2px solid var(--hwp-color-space-yellow); background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); font: 700 15px/1.25 var(--ed-sans); text-decoration: none; }
+.cn__verify:hover { background: var(--hwp-color-paper); border-color: var(--hwp-color-paper); }
 .cn__hp { position: absolute; left: -5000px; }
 @media (max-width: 899px) { .cn__in { grid-template-columns: 1fr; row-gap: 20px; padding-top: 28px; padding-bottom: 28px; } .cn__dek { font-size: 15px; } }
 @media (max-width: 399px) { .cn__row { flex-direction: column; } .cn__input { border-right: 2px solid var(--hwp-color-paper); } }
