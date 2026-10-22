@@ -1,22 +1,33 @@
 #!/usr/bin/env node
-/* Seven-a-side launch guard: a complete issue may be staged for review
- * without ever being included in the public build before recorded sign-off. */
+/* Seven-a-side publication guard: check real review record, exact version,
+ * published pages, independent tactical diagram validation and SEO visibility. */
 import assert from 'node:assert/strict';
 import { loadModel } from './load-content.mjs';
+import { contentVersion } from '../src/lib/model.mjs';
+import { publishedIssues } from '../src/lib/editorial.mjs';
 import { validate } from '../design-system/diagrams/renderer.mjs';
 import { issuePath, issueStructuredData, issueFeedXml, sitemapLastmod } from '../src/lib/seo.mjs';
 
 const pub = loadModel('public');
 const pre = loadModel('preview');
 const f = pre.formations.find(x => x.format === '7v7' && x.slug === '2-3-1');
-assert.ok(f, '7v7 Issue 01 should be in the private preview');
+assert.ok(f, '7v7 Issue 01 should be in the complete preview model');
 assert.equal(f.registerId, '7v7-2-3-1');
-assert.equal(f.register.content.status, 'review-required');
-assert.equal(f.issue.published, undefined, 'Publication date must be absent before sign-off');
-assert.equal(pub.formation('2-3-1').gate.allowed, false, 'Draft must not be publicly available');
-assert.equal(pub.publicFormations.some(x => x.registerId === f.registerId), false);
-assert.equal(pre.formation('2-3-1').gate.noindex, true);
-assert.equal(pre.formation('2-3-1').gate.watermark, true);
+assert.equal(f.register.content.status, 'reviewed');
+assert.equal(f.status.content, 'reviewed');
+assert.equal(f.register.content.reviewedBy, 'David Wilson');
+assert.equal(f.status.reviewedBy, 'David Wilson');
+assert.equal(f.register.content.reviewedOn, '2026-10-22');
+assert.equal(f.status.reviewedOn, '2026-10-22');
+assert.equal(f.issue.published, '2026-10-22');
+assert.equal(f.register.content.reviewedVersion, contentVersion(f), 'Signed-off version must match exact publication content');
+assert.equal(f.register.content.reviewLog.at(-1)?.version, contentVersion(f));
+assert.equal(pub.formation('2-3-1').gate.allowed, true, 'Approved issue should be publicly available');
+assert.equal(pub.publicFormations.some(x => x.registerId === f.registerId), true);
+assert.equal(pre.formation('2-3-1').gate.noindex, true, 'Staging must remain noindex');
+assert.equal(pre.formation('2-3-1').gate.watermark, false, 'Reviewed content must not be marked unreviewed');
+assert.equal(pub.site.formats.find(x => x.id === '7v7').availability, 'live');
+assert.equal(publishedIssues(pub).some(x => x.registerId === f.registerId), true);
 
 const players = f.shape.players;
 assert.deepEqual(players.map(p => p.l).sort(), ['2','3','7','8','9','11','GK'].sort());
@@ -57,8 +68,9 @@ const [article] = issueStructuredData(pub.site, f);
 assert.equal(article.url, pub.site.url + '/formations/7v7/2-3-1/');
 assert.equal(article.isPartOf.url, pub.site.url + '/formations/7v7/');
 assert.equal(article.articleSection, '7v7 formation guides');
-assert.equal(article.datePublished, undefined);
-assert.equal(sitemapLastmod(issuePath(f), pub), null);
-assert.ok(!issueFeedXml(pub).includes(issuePath(f)), 'Draft must not leak into public RSS');
+assert.equal(article.datePublished, '2026-10-22');
+assert.equal(sitemapLastmod(issuePath(f), pub), '2026-10-22');
+assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-10-22');
+assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(f)), 'Approved issue must appear in public RSS');
 
-console.log(`PASS  Full 7v7 Issue 01 content: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, private and unreviewed`);
+console.log(`PASS  Approved 7v7 Issue 01: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, signed-off ${contentVersion(f)} and public`);
