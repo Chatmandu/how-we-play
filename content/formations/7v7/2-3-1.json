@@ -1,5 +1,5 @@
 {
-  "$comment": "Private research draft for 7v7 Issue 01. Every tactical explanation and diagram is proposed How We Play editorial synthesis, not England Football's prescribed tactics. Requires qualified coaching review before publication.",
+  "$comment": "7v7 Issue 01: the 2-3-1, published with coaching review as reported by project owner on 22 October 2026. Illustrative playing model, not a fixed or prescribed formation.",
   "id": "7v7-2-3-1",
   "format": "7v7",
   "pitch": "7v7",
@@ -9,7 +9,7 @@
   "order": 11,
   "registerId": "7v7-2-3-1",
   "summary": "Two work together behind. Three connect. One gives us a forward option.",
-  "sourceLabel": "How We Play research draft based on England Football Learning 7v7 guidance and published grassroots coaching discussion (22 October 2026).",
+  "sourceLabel": "How We Play 2-3-1 formation guide, reviewed 22 October 2026.",
   "structure": [
     [
       "Notation",
@@ -38,11 +38,11 @@
   "spineText": "GK, 8, 9 (with 3 and 2 protecting together)",
   "shapeCue": "A starting picture, not somewhere we have to stay. Let players try different roles.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
-    "source": "How We Play researched draft, 22 October 2026. Qualified coaching review pending.",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "source": "How We Play Issue 01 7v7 coaching publication, editorial version 1.0",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-22"
   },
   "shape": {
     "id": "shape",
@@ -118,7 +118,7 @@
       "diagram": "keeper-options",
       "thumb": 1,
       "seo": "7v7 2-3-1: goalkeeper build-up and passing choices",
-      "src": "How We Play research draft, 22 October 2026",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "look": [
         "3 and 2 separate to offer the goalkeeper passing angles.",
         "8 stays available ahead as a potential next pass, rather than hiding behind an opponent.",
@@ -136,7 +136,7 @@
       "diagram": "big-small",
       "thumb": 0,
       "seo": "7v7 width: wide in possession, connected in defence",
-      "src": "How We Play coaching synthesis; England Football community discussion, 22 October 2026",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "look": [
         "When we have the ball, the wide midfielders give their teammates room and an outside pass.",
         "When the opposition have it, the wide midfielders move closer to 8 and help protect the middle.",
@@ -154,7 +154,7 @@
       "diagram": "press-cover",
       "thumb": 1,
       "seo": "7v7 defending pairs: pressing and covering in 2-3-1",
-      "src": "How We Play research draft, 22 October 2026",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "look": [
         "The closest defender chooses whether to meet the ball.",
         "The other defender protects the route towards goal.",
@@ -172,7 +172,7 @@
       "diagram": "lose-it",
       "thumb": 1,
       "seo": "7v7 defensive transition: lose it find home",
-      "src": "How We Play research draft, 22 October 2026",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "look": [
         "The nearest player slows the opposition if it's safe to do so.",
         "Both wide midfielders recover to help the team get connected.",
@@ -189,7 +189,7 @@
       "short": "GK",
       "title": "Goalkeeper",
       "head": "Start us playing",
-      "src": "How We Play research draft",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "diagram": "role-goalkeeper",
       "points": [
         "Look for safe passing options to our two defenders.",
@@ -210,7 +210,7 @@
       "short": "3 · 2",
       "title": "The two defenders",
       "head": "Give options. Protect together.",
-      "src": "How We Play research draft",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "diagram": "role-defenders",
       "points": [
         "With the ball, move apart enough to be seen by our goalkeeper.",
@@ -232,7 +232,7 @@
       "short": "8",
       "title": "Central midfielder",
       "head": "Connect the team",
-      "src": "How We Play research draft",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "diagram": "role-centre-mid",
       "points": [
         "Make yourself available for a pass between the defenders and striker.",
@@ -255,7 +255,7 @@
       "short": "11 · 7",
       "title": "Wide midfielders",
       "head": "Wide with it. Closer without.",
-      "src": "How We Play research draft",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "diagram": "role-wide",
       "points": [
         "When we have the ball, use the space near the touchlines to help the team spread out.",
@@ -276,7 +276,7 @@
       "short": "9",
       "title": "Striker",
       "head": "Give us somewhere to play",
-      "src": "How We Play research draft",
+      "src": "How We Play 2-3-1 coaching issue, reviewed 22 October 2026",
       "diagram": "role-striker",
       "points": [
         "Stay available ahead so we have somewhere to play forwards.",
@@ -2175,7 +2175,7 @@
   "issue": {
     "number": 1,
     "intro": "Moving from 5v5 to 7v7 means two more players and more decisions. The 2-3-1 gives us a starting picture: two defenders, three midfielders and a striker, supported by the goalkeeper. Four simple ideas help players play together, without locking anyone into a role.",
-    "summary": "A researched draft of the 7v7 2-3-1: starting shape, four practical principles, every player role and how the team plays together.",
+    "summary": "The 7v7 2-3-1: starting shape, four practical playing principles, five position groups and how the team plays together.",
     "chapters": [
       {
         "id": "shape",
@@ -2249,6 +2249,7 @@
         "preview": "How we build, recover and make decisions as a team."
       }
     ],
-    "features": []
+    "features": [],
+    "published": "2026-10-22"
   }
 }
