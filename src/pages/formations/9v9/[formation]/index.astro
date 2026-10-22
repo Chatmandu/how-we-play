@@ -30,7 +30,7 @@ const label = issueLabel(f);
 const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
 // Film releases are editorial additions and do not change reviewed coaching data.
 // Keep the first full 16:9 explainer on Issue 01 only.
-const explainer = f.slug === '3-1-3-1' && full ? { youtubeId: '4HWQntulHgw', label: '9v9 · Issue 01 · Full video explainer' } : null;
+const explainer = f.slug === '3-1-3-1' && full ? { youtubeId: 'KEKPal0Upd4', label: '9v9 · Issue 01 · Full video explainer' } : null;
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
