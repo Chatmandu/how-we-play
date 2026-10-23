@@ -124,7 +124,7 @@ test('Generated social image map is complete, unique and excludes unpublished co
   assert.equal(new Set(specs.map(s => s.route)).size, specs.length);
   assert.equal(new Set(specs.map(s => s.image)).size, specs.length);
   assert.equal(specs.length, 5 + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
-  for (const spec of specs) assert.match(spec.image, /^\\/og\\/.+\\.png$/);
+  for (const spec of specs) assert.ok(spec.image.startsWith('/og/') && spec.image.endsWith('.png'), 'Branded PNG: ' + spec.image);
   for (const f of issues) {
     assert.equal(socialImageForRoute(issuePath(f), model).image.includes(f.slug), true);
     assert.equal(socialImageForRoute(issuePath(f) + f.rules[0].id + '/', model).image.includes(f.rules[0].id), true);
