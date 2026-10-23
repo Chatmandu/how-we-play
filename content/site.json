@@ -1,11 +1,12 @@
 {
   "$comment": "Site-wide settings. Editorial copy that appears on several pages lives here so it is changed once.",
-  "name": "How We Play",
+  "name": "How We Play Football",
+  "shortName": "How We Play",
   "url": "https://howweplayfootball.com",
   "tagline": "Helping your team take the next step.",
   "philosophy": "Simple pictures. Simple decisions. Play together.",
   "description": "Free football formation guides, tactical diagrams and practical advice for grassroots coaches. Understand how your team plays, explain the decisions that matter and help young players work together.",
-  "independence": "How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.",
+  "independence": "How We Play Football is an independent project. It is not affiliated with or endorsed by The FA or England Football.",
   "locale": "en_GB",
   "social": {
     "youtube": {
@@ -49,16 +50,16 @@
       "note": "Later"
     }
   ],
-  "proposition": "From the early small-sided formats to the challenges of moving up, How We Play is about making football easier to understand and easier to teach.",
+  "proposition": "From the early small-sided formats to the challenges of moving up, How We Play Football is about making football easier to understand and easier to teach.",
   "author": {
     "name": "Niall Walsh",
-    "role": "Grassroots football coach and founder of How We Play",
+    "role": "Grassroots football coach and founder of How We Play Football",
     "short": "Volunteer grassroots football coach for seven years",
     "url": "/about/"
   },
   "support": {
     "kofi": "https://ko-fi.com/howweplayfootball",
-    "label": "Support How We Play"
+    "label": "Support How We Play Football"
   },
   "newsletter": {
     "$comment": "Paste the form action from Mailchimp: Audience > Signup forms > Embedded forms (the <form action=\"https://….list-manage.com/subscribe/post?u=…&id=…\"> value). Until it is set, public builds show no form. Never put API keys here.",

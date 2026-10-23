@@ -24,11 +24,10 @@
 .hwp-pitch .hwp-x, .hwp-pitch .hwp-line { stroke: var(--hwp-pitch-mark); }
 .hwp-pitch .hwp-lost { stroke: var(--hwp-pitch-them); }
 .hwp-pitch .hwp-spine { stroke: var(--hwp-pitch-us); }
-/* The authentic three-node mark and wordmark are part of each diagram SVG.
- * CSS-mode previews use these classes; inline exports carry the same colours. */
-.hwp-pitch .hwp-brand-bg { fill: var(--hwp-color-ink); fill-opacity: .90; }
-.hwp-pitch .hwp-brand-ink { fill: var(--hwp-color-paper); }
-.hwp-pitch .hwp-brand-stroke { stroke: var(--hwp-color-paper); }
+/* Diagram credit: the small-cut three-node mark and howweplayfootball.com, baked into each SVG by
+ * renderer.mjs (brandMark). Quiet by design: label colour at 60% opacity, no panel behind it. */
+.hwp-pitch .hwp-brand-ink { fill: var(--hwp-pitch-label); }
+.hwp-pitch .hwp-brand-stroke { stroke: var(--hwp-pitch-label); }
 
 .hwp-pitch [role="button"] { cursor: pointer; }
 .hwp-pitch [role="button"]:focus-visible { outline: none; }

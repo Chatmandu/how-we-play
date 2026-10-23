@@ -1,5 +1,11 @@
 # Design system changelog
 
+## 1.1.0 (23 October 2026, How We Play Football)
+- **Name:** the official name is How We Play Football. "How We Play" stays as conversational shorthand in editorial copy.
+- **Logo:** new outlined two-line wordmark (HOW WE PLAY / FOOTBALL in Big Shoulders Display 900 and 800, FOOTBALL in Pitch Blue). It replaces the wordmark in `hwp-masthead*`, `hwp-lockup-inline*` and `hwp-wordmark`; file names are unchanged, so no API changes. New: `hwp-lockup-stacked*` and `hwp-lockup-compact*` (single line, for heights under 36px). The three-node mark and favicons are unchanged.
+- **Minimum sizes:** the masthead is 240px wide, the inline lockup is 36px high and the compact lockup is 18px high.
+- **Diagram credit:** the dark "HOW WE PLAY .COM" panel is replaced by a small bottom-right credit (small-cut mark and howweplayfootball.com at 60% label colour, no background). Compact previews get the mark only. The credit steps down to the mark, or moves bottom-left, if it would touch a player, ball, arrow end or label. It is still baked into the SVG, and `data-hwp-watermark="howweplayfootball.com"` is kept. `opts.brand: false` turns it off and `opts.brand: 'mark'` forces the mark.
+
 ## 1.0.2 (19 October 2026)
 - `statusChips` shows the review date as "19 October 2026" instead of ISO.
 
