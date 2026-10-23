@@ -138,7 +138,7 @@ for (const file of pages) {
   }
   // SVG branding is baked into the actual diagrams, so screenshotting or
   // downloading the image retains a small source attribution.
-  const diagramCount = (html.match(/<svg[^>]*class="hwp-pitch[^"]*"/g) || []).length;
+  const diagramCount = (html.match(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*data-view="/g) || []).length;
   const watermarkCount = (html.match(/data-hwp-watermark="howweplayfootball\.com"/g) || []).length;
   if (diagramCount && watermarkCount < diagramCount) fail(route, 'one or more pitch SVGs lost embedded How We Play branding');
   if (target === 'public' && route === '/') {
