@@ -809,6 +809,33 @@
 .home-social__links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 4px; border-bottom: 1px solid var(--hwp-color-rule); color: var(--hwp-color-ink); font: 800 clamp(20px, 3vw, 28px)/1 var(--hwp-font-family-display); text-transform: uppercase; text-decoration: none; }
 .home-social__links a:hover, .home-social__links a:focus-visible { color: var(--hwp-color-pitch-blue); text-decoration: underline; text-underline-offset: 4px; }
 
+/* USA discovery route: one editorial signpost into the existing formation guides. */
+.usa-home-link { margin-top: 16px; }
+.usa-format-link, .usa-issue-link { margin-top: 18px; max-width: 56ch; }
+.usa-home-link a, .usa-format-link a, .usa-issue-link a { font-weight: 700; text-underline-offset: 3px; }
+.usa-head__note { grid-column: 9 / span 3; align-self: end; padding: 22px 0 0 20px; border-left: 4px solid var(--hwp-color-ink); }
+.usa-head__note p + p { margin: 10px 0 0; font: 400 16px/1.55 var(--ed-sans); }
+.usa-pathway__heading { grid-column: 2 / span 10; display: grid; gap: 12px; margin-bottom: 26px; }
+.usa-pathway__grid { grid-column: 2 / span 10; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.usa-pathway__card { display: flex; flex-direction: column; gap: 12px; min-height: 280px; padding: 22px; background: #E9E6DF; border-top: 5px solid var(--hwp-color-rule); }
+.usa-pathway__card--available { background: var(--hwp-color-ink); color: var(--hwp-color-paper); border-top-color: var(--hwp-color-space-yellow); }
+.usa-pathway__age { margin: 0; font: 800 14px/1.1 var(--ed-sans); letter-spacing: .04em; }
+.usa-pathway__card h3 { margin: 0; font: 900 clamp(40px, 4vw, 62px)/.88 var(--ed-display); }
+.usa-pathway__card p:not(.usa-pathway__age) { margin: 0; font: 400 15px/1.5 var(--ed-sans); }
+.usa-pathway__card a { margin-top: auto; align-self: stretch; display: flex; justify-content: space-between; gap: 8px; padding: 13px 12px; background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); font: 700 15px/1.3 var(--ed-sans); text-decoration: none; }
+.usa-pathway__card a:hover { background: var(--hwp-color-paper); }
+.usa-pathway__card a:focus-visible { outline: 3px solid var(--hwp-color-paper); outline-offset: 3px; }
+.usa-pathway__pending { margin-top: auto; font: 700 13px/1.4 var(--ed-sans); text-transform: uppercase; letter-spacing: .05em; }
+.usa-compare__table { border-collapse: collapse; width: 100%; font: 400 16px/1.35 var(--ed-sans); margin-bottom: 16px; }
+.usa-compare__table caption { text-align: left; font: 700 14px/1.4 var(--ed-sans); margin-bottom: 12px; }
+.usa-compare__table th, .usa-compare__table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid var(--hwp-color-rule); }
+.usa-compare__table thead th { border-bottom: 3px solid var(--hwp-color-ink); }
+.usa-story__cta { display: grid; gap: 14px; align-content: start; }
+.usa-story__cta .ed-btn { justify-content: space-between; }
+.usa-sources > div { grid-column: 2 / span 10; border-top: 1px solid var(--hwp-color-rule); padding-top: 18px; display: grid; gap: 12px; }
+@media (max-width: 1023px) { .usa-head__note { grid-column: 1 / -1; margin: 24px 0; } .usa-pathway__heading, .usa-pathway__grid, .usa-sources > div { grid-column: 1 / -1; } .usa-pathway__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) { .usa-pathway__grid { grid-template-columns: 1fr; } .usa-pathway__card { min-height: 0; } }
+
 .support { margin-top: var(--ed-s5); background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
 .support__in { grid-column: 2 / span 10; display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, .48fr); gap: clamp(28px, 5vw, 80px); align-items: center; padding: clamp(36px, 5vw, 72px) 0; }
 .support__copy { display: grid; gap: 16px; }
