@@ -1,6 +1,36 @@
 # How We Play · Search and AI discoverability
 
-**Technical/editorial audit updated 20 October 2026.** Source of truth is the current GitHub code and the public publishing model, not older launch notes. The public site could not be fetched from the external web inspection tool during this audit, so live Google/Bing indexation, real search impressions, HTTP responses and Core Web Vitals **are not independently verified here**.
+**Technical/editorial audit updated 23 October 2026.** Source of truth is the current GitHub code and the public publishing model, not older launch notes. The public site could not be fetched from the external web inspection tool during this audit, so live Google/Bing indexation, real search impressions, HTTP responses and Core Web Vitals **are not independently verified here**.
+
+## 23 October 2026 · Branded images, clearer guide navigation and discovery hygiene
+
+This update runs through the same Astro content model and publishing gate as the live formation guides. The actual production index status, organic traffic and search/AI appearance still need external Search Console/Bing validation.
+
+- **Homepage discovery:** the featured formation is deliberately pinned to the fully reviewed **9v9 3-1-3-1** playbook instead of changing automatically whenever a newer issue is published. The other complete playbooks remain linked immediately below it. The copy also distinguishes available 7v7/9v9 guides from 5v5 in development.
+- **Clearer public identity:** every playbook now presents itself by its *formation and format*, e.g. **9v9 · The 3-1-3-1**, rather than parallel, ambiguous Issue 01/02 numbers. Internal issue numbers are retained for editorial order and analytics, and the four chapters remain part of each complete guide. Existing URLs and published coaching data are unchanged.
+- **Source attribution:** a small three-node HWP logo and wordmark are inserted **inside every rendered tactical pitch SVG**. This makes ordinary screenshots and saved diagrams visibly attributable, but is not a substitute for copyright/licensing or technical DRM. Compact thumbnails show the mark without small-text clutter.
+- **Each page gets a crawlable image reference:** public builds generate **60 individual 1200×630 PNG previews**, including formation guides, individual principles, positions, format collections, homepage and About. The visuals are based on the actual published diagram data, not generated coaching moves; 5v5's placeholder is explicitly described as in development. Privacy and error pages can legitimately use the generic brand preview.
+- **Meta image consistency:** page-specific `og:image`, image dimensions, alt text and `twitter:image` point to actual served PNGs. Indexable formation, lesson and position `Article` JSON-LD also has a matching `image`, and its `WebPage` entity uses `primaryImageOfPage`.
+- **Social links:** real Instagram, TikTok and YouTube URLs live in both the site footer and a homepage Follow section, without loading tracking-heavy social embeds. The `Organization.sameAs` identity already cites those same handles.
+- **Mailchimp stays:** The Coaching Notes remains connected to the existing Mailchimp signup. Nothing in this change migrates contacts or connects Substack.
+- **Validation:** build-check now verifies actual PNG signatures/dimensions, nonempty descriptive alt attributes in OG tags, matching `Article` and `WebPage` image relationships, correct homepage featured formation, working social URLs and embedded tactical-image branding. Public and preview builds are independently checked.
+
+### What this does not guarantee
+
+There is no mandatory 'AI meta tag', special `llms.txt`, or search-engine instruction that makes Google/Bing/ChatGPT cite the site. Technical SEO and structured data make good pages easier to understand. **Topical quality, real coaching experience, backlinks, engagement, publication cadence and valid indexing** still matter.
+
+A representative image is helpful on every substantive coaching page, but Google does **not require** every utility/privacy page to contain a visible picture. Its meta image can still be branded.
+
+**Still to do outside the repository:** verify domain Search Console and Bing indexing; live sitemap and robots responses; rich-data syntax in Google's testing tools; site speed on mobile; and distribution through existing club/coaching communities. Track which guides genuinely earn organic discovery and adjust copy based on real queries.
+
+### Existing guidance and platform documentation
+
+- [Google Search Central: AI features and websites](https://developers.google.com/search/docs/appearance/ai-features)
+- [Google Search Central: Image SEO best practices](https://developers.google.com/search/docs/appearance/google-images)
+- [Google Search Central: Intro to structured data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+- [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a)
+
+---
 
 ## Our strategy
 
