@@ -135,7 +135,10 @@ const pageItems = ids.join(' ');
         <nav class="foot__nav" aria-label="Footer">{footLinks.map(l => <a href={l.href}>{l.label}</a>)}<button type="button" class="foot__cookie" data-cookie-settings>Cookie settings</button><a class="foot__support" href={site.support.kofi} rel="noopener noreferrer" target="_blank" data-support="footer">{site.support.label}<span class="hwp-sr-only"> on Ko-fi (opens in a new tab)</span></a></nav>
         <nav class="foot__social" aria-label="Follow How We Play">{socialLinks.map(l => <a href={l.url} rel="me noopener noreferrer" target="_blank">{l.label}<span aria-hidden="true"> ↗</span><span class="hwp-sr-only"> (opens in new tab)</span></a>)}</nav>
       </div>
-      <p class="foot__note">{site.independence || 'How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.'} Official rules link to their source with the date we checked them.</p>
+      <div class="foot__fineprint">
+        <p class="foot__note">{site.independence || 'How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.'} Official rules link to their source with the date we checked them.</p>
+        <p class="foot__note">Original diagrams and illustrations © How We Play. If you share them, please credit How We Play and link to the original guide.</p>
+      </div>
     </div>
   </footer>
   <Consent />
