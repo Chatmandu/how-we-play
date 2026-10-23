@@ -13,6 +13,7 @@ import model from '../lib/content.mjs';
 import { breadcrumbs, privateStrip, ASSET_BASE } from '../lib/ui.mjs';
 import CoachingNotes from '../components/CoachingNotes.astro';
 import Consent from '../components/Consent.astro';
+import { socialImageForRoute } from '../lib/social-images.mjs';
 
 interface Crumb { label: string; href?: string }
 interface Props {
@@ -38,9 +39,11 @@ if (!access.allowed) {
 }
 const site = model.site;
 const isPublic = model.target === 'public';
-const robots = noindex || access.noindex ? 'noindex, nofollow' : 'index, follow';
+const robots = noindex || access.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
 const canonical = new URL(Astro.url.pathname, site.url).href;
-const ogImage = new URL('/og/default.png', site.url).href;
+const visual = socialImageForRoute(Astro.url.pathname, model);
+const ogImage = new URL(visual.image, site.url).href;
+const ogImageAlt = visual.alt;
 
 /* Primary navigation: the playing formats (11v11 stays out until it has content). Secondary: supporting sections.
  * A format still in development keeps its link, which leads to an honest, noindex placeholder with a way back. */
@@ -50,9 +53,13 @@ const navItems = [
 ];
 const footLinks = [
   ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
-
   { label: 'About and standards', href: '/about/' }, { label: 'Privacy and cookies', href: '/privacy/' }
 ];
+const socialLinks = [
+  { key: 'instagram', label: 'Instagram' },
+  { key: 'tiktok', label: 'TikTok' },
+  { key: 'youtube', label: 'YouTube' }
+].filter(x => site.social?.[x.key]?.url).map(x => ({ ...x, url: site.social[x.key].url }));
 
 const crumbLd = crumbs.length ? [{
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -78,11 +85,17 @@ const pageItems = ids.join(' ');
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
   <meta property="og:image" content={ogImage}>
+  <meta property="og:image:secure_url" content={ogImage}>
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="How We Play: Helping your team take the next step.">
+  <meta property="og:image:alt" content={ogImageAlt}>
   <meta property="og:locale" content={site.locale}>
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  <meta name="twitter:image:alt" content={ogImageAlt}>
   <link rel="icon" href={`${ASSET_BASE}favicon/favicon.svg`} type="image/svg+xml">
   <link rel="icon" href={`${ASSET_BASE}favicon/favicon-32.png`} sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href={`${ASSET_BASE}favicon/apple-touch-icon.png`}>
@@ -118,8 +131,14 @@ const pageItems = ids.join(' ');
     <CoachingNotes />
     <div class="ed-wrap foot__grid">
       <a class="foot__logo" href="/"><img src={`${ASSET_BASE}logo/hwp-lockup-inline-reverse.svg`} alt="How We Play, home" width="180" height="28"></a>
-      <nav class="foot__nav" aria-label="Footer">{footLinks.map(l => <a href={l.href}>{l.label}</a>)}<button type="button" class="foot__cookie" data-cookie-settings>Cookie settings</button><a class="foot__support" href={site.support.kofi} rel="noopener" target="_blank" data-support="footer">{site.support.label}<span class="hwp-sr-only"> on Ko-fi (opens in a new tab)</span></a></nav>
-      <p class="foot__note">{site.independence || 'How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.'} Official rules link to their source with the date we checked them.</p>
+      <div class="foot__links">
+        <nav class="foot__nav" aria-label="Footer">{footLinks.map(l => <a href={l.href}>{l.label}</a>)}<button type="button" class="foot__cookie" data-cookie-settings>Cookie settings</button><a class="foot__support" href={site.support.kofi} rel="noopener noreferrer" target="_blank" data-support="footer">{site.support.label}<span class="hwp-sr-only"> on Ko-fi (opens in a new tab)</span></a></nav>
+        <nav class="foot__social" aria-label="Follow How We Play">{socialLinks.map(l => <a href={l.url} rel="me noopener noreferrer" target="_blank">{l.label}<span aria-hidden="true"> ↗</span><span class="hwp-sr-only"> (opens in new tab)</span></a>)}</nav>
+      </div>
+      <div class="foot__fineprint">
+        <p class="foot__note">{site.independence || 'How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football.'} Official rules link to their source with the date we checked them.</p>
+        <p class="foot__note">Original diagrams and illustrations © How We Play. If you share them, please credit How We Play and link to the original guide.</p>
+      </div>
     </div>
   </footer>
   <Consent />

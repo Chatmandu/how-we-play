@@ -1,33 +1,32 @@
 ---
-/* Homepage: How We Play is the publication. A short introduction, the formats, the featured issue, then the
- * latest published additions from content/editorial/feed.json. Nothing here is fixed to a particular lesson. */
+/* Homepage: featured evergreen 3-1-3-1; all other completed formation playbooks follow. */
 import Base from '../layouts/Base.astro';
 import model from '../lib/content.mjs';
 import { renderPitch, statusChips, longDate } from '../lib/ui.mjs';
-import { pad2, word, issueLabel, publishedIssues } from '../lib/editorial.mjs';
+import { word, publishedIssues } from '../lib/editorial.mjs';
 import { siteIdentity } from '../lib/seo.mjs';
 
 const site = model.site;
 const issues = publishedIssues(model);
-const f = issues[0];                       // featured: the most recent complete issue
-const others = issues.slice(1);            // Latest issues: every other complete issue (none yet)
+const f = issues.find(x => x.format === '9v9' && x.slug === '3-1-3-1') || issues[0]; // Deliberate featured guide
+const others = issues.filter(x => x !== f);
 const url = x => `/formations/${x.format}/${x.slug}/`;
 const shapeSvg = x => renderPitch(x.shape, { theme: 'blue', title: x.shape.title, desc: x.shape.altSummary });
 const formats = ['5v5', '7v7', '9v9'].map(id => {
   const fm = site.formats.find(x => x.id === id);
   const n = issues.filter(x => x.format === id).length;
   const planned = model.formations.filter(x => x.format === id && x.issue && !issues.includes(x)).length;
-  if (!n) return { id, ages: fm.ages, href: `/formations/${id}/`, state: 'In development', note: 'No issues published yet' };
-  return { id, ages: fm.ages, href: `/formations/${id}/`, state: `${word(n).replace(/^./, c => c.toUpperCase())} issue${n === 1 ? '' : 's'} published`, note: planned ? `${word(planned).replace(/^./, c => c.toUpperCase())} more in development` : '', live: true };
+  if (!n) return { id, ages: fm.ages, href: `/formations/${id}/`, state: 'In development', note: 'No guides published yet' };
+  return { id, ages: fm.ages, href: `/formations/${id}/`, state: `${word(n).replace(/^./, c => c.toUpperCase())} guide${n === 1 ? '' : 's'} published`, note: planned ? `${word(planned).replace(/^./, c => c.toUpperCase())} more in development` : '', live: true };
 });
 const jsonLd = siteIdentity(site);
 ---
-<Base title="How We Play: free grassroots football coaching guides" description="Free football formation guides, tactical diagrams and practical advice for grassroots coaches, for 5v5, 7v7 and 9v9 football." ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
+<Base title="How We Play: free grassroots football coaching guides" description="Free 7v7 and 9v9 football formation guides with tactical diagrams, playing principles and positional advice for grassroots coaches. 5v5 resources coming soon." ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
   <section class="intro ed-grid" aria-labelledby="cover-h">
     <div class="intro__text">
       <p class="ed-kicker">A grassroots football coaching publication</p>
       <h1 id="cover-h">Helping your team take the <span class="num">next step.</span></h1>
-      <p class="cover__deck">Free visual formation guides and practical tactical explanations for 5v5, 7v7 and 9v9 football. <a href="/about/">Written by a grassroots coach</a>.</p>
+      <p class="cover__deck">Free visual formation guides and practical coaching explanations for 7v7 and 9v9 football. Our 5v5 resources are in development. <a href="/about/">Written by a grassroots coach</a>.</p>
     </div>
     <nav class="formats" aria-labelledby="formats-h">
       <h2 id="formats-h">Choose your format</h2>
@@ -38,32 +37,32 @@ const jsonLd = siteIdentity(site);
   {f && (
     <section class="featured ed-grid" aria-labelledby="issue-h">
       <figure class="plate featured__plate on-pitch">
-        <div class="plate__head"><span>{f.format} · {issueLabel(f)}</span><span>Starting shape</span></div>
+        <div class="plate__head"><span>{f.format} · Formation guide</span><span>Starting shape</span></div>
         <div class="plate__stage" set:html={shapeSvg(f)} />
         <figcaption>{f.shapeCue}</figcaption>
       </figure>
       <div class="featured__text">
-        <p class="ed-kicker">Featured issue · {f.format} · {issueLabel(f)}</p>
-        <h2 class="issue-feature__title" id="issue-h"><span class="issue-feature__no" aria-hidden="true">{pad2(f.issue.number)}</span>The {f.name}</h2>
+        <p class="ed-kicker">Featured formation · {f.format} · Complete free playbook</p>
+        <h2 class="issue-feature__title" id="issue-h">The {f.name}</h2>
         <p class="ed-stand">{f.issue.summary || f.issue.intro}</p>
         <ol class="featured__chapters">
           {f.issue.chapters.map(c => <li><b>Chapter {c.n}</b><strong>{c.title}</strong><span>{c.preview}</span></li>)}
         </ol>
-        <div class="issue-feature__cta"><a class="ed-btn" href={url(f)}>Read {issueLabel(f)}: the {f.name} →</a><div class="ed-chips" set:html={statusChips(f.register)} /></div>
+        <div class="issue-feature__cta"><a class="ed-btn" href={url(f)}>Explore the {f.name} playbook →</a><div class="ed-chips" set:html={statusChips(f.register)} /></div>
       </div>
     </section>
   )}
 
   {others.length > 0 && (
     <section class="latest ed-grid" aria-labelledby="latest-h">
-      <div class="ed-sh"><h2 class="ed-label" id="latest-h">Latest issues</h2></div>
+      <div class="ed-sh"><h2 class="ed-label" id="latest-h">More complete formation guides</h2></div>
       <ol class="latest__list">
         {others.map(x => (
           <li><a href={url(x)}>
             <span class="latest__illo on-pitch" aria-hidden="true" set:html={renderPitch(x.shape, { theme: 'blue', labels: false, title: x.shape.title, desc: x.shape.altSummary })} />
             <span class="latest__body">
-              <span class="latest__meta">{x.format} · {issueLabel(x)} · <time datetime={x.issue.published}>{longDate(x.issue.published)}</time></span>
-              <strong>{issueLabel(x)}: The {x.name}</strong>
+              <span class="latest__meta">{x.format} · Formation guide · <time datetime={x.issue.published}>{longDate(x.issue.published)}</time></span>
+              <strong>{x.format} · The {x.name}</strong>
               <span class="latest__ex">{x.issue.summary || x.issue.intro}</span>
             </span>
           </a></li>
@@ -71,4 +70,17 @@ const jsonLd = siteIdentity(site);
       </ol>
     </section>
   )}
+
+  <section class="ed-section ed-grid split home-social" aria-labelledby="follow-how-we-play-h">
+    <div class="split__main">
+      <p class="ed-kicker">More from the touchline</p>
+      <h2 class="ed-h2" id="follow-how-we-play-h">Follow How We Play</h2>
+      <p class="ed-small">Short formation explainers, diagrams and practical coaching ideas. Find us where you watch and share football.</p>
+    </div>
+    <nav class="split__side home-social__links" aria-label="How We Play social channels">
+      <a href={site.social.instagram.url} target="_blank" rel="me noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      <a href={site.social.tiktok.url} target="_blank" rel="me noopener noreferrer">TikTok <span aria-hidden="true">↗</span></a>
+      <a href={site.social.youtube.url} target="_blank" rel="me noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
+    </nav>
+  </section>
 </Base>

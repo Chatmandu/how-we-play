@@ -16,7 +16,7 @@ const pos = here.kind === 'Principle' ? `Principle ${here.n} of ${rules.length}`
 ---
 <nav class="egn ed-grid" aria-label={`${issueLabel(f)}: the ${f.name}`}>
   <div class="egn__in">
-    <a class="egn__back" href={base}>← {issueLabel(f)}: the {f.name}</a>
+    <a class="egn__back" href={base}>← The {f.name} guide</a>
     <div class="egn__wide">
       {rules.length > 0 && <div class="egn__row"><span class="egn__lab">Principles</span>{rules.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined}>{x.short}</a>)}</div>}
       {roles.length > 0 && <div class="egn__row"><span class="egn__lab">Positions</span>{roles.map(x => <a href={x.href} aria-current={x.id === current ? 'page' : undefined} aria-label={x.label}>{x.short}</a>)}</div>}

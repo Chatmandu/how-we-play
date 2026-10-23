@@ -5,6 +5,7 @@
 import assert from 'node:assert/strict';
 import { loadModel } from './load-content.mjs';
 import { publishedIssues } from '../src/lib/editorial.mjs';
+import { socialImageSpecs, socialImageForRoute } from '../src/lib/social-images.mjs';
 import {
   siteIdentity, issueStructuredData, lessonStructuredData,
   positionStructuredData, collectionStructuredData, sitemapLastmod,
@@ -43,6 +44,10 @@ test('Formation issues have real dates, current URLs and discoverable child page
     assert.equal(page.mainEntity['@id'], article['@id']);
     assert.equal(page['@id'], url);
     assert.equal(article.hasPart.length, f.rules.length + f.roles.length);
+    const share = socialImageForRoute(issuePath(f), model);
+    assert.ok(share.image.endsWith('/guide.png'));
+    assert.equal(article.image[0].url, site.url + share.image);
+    assert.equal(page.primaryImageOfPage.url, article.image[0].url);
     const items = new Set(article.hasPart.map(x => x.url));
     for (const r of f.rules) assert.ok(items.has(url + r.id + '/'));
     for (const r of f.roles) assert.ok(items.has(url + 'positions/' + r.id + '/'));
@@ -57,12 +62,18 @@ test('Individual principles and positions point to their parent issue', () => {
       assert.equal(article.isPartOf.url, site.url + issuePath(f));
       assert.equal(page['@id'], article.url);
       assert.equal(article.datePublished, f.issue.published);
+      const share = socialImageForRoute(issuePath(f) + r.id + '/', model);
+      assert.equal(article.image[0].url, site.url + share.image);
+      assert.equal(page.primaryImageOfPage.url, article.image[0].url);
     }
     for (const r of f.roles) {
       const [article, page] = positionStructuredData(site, f, r);
       assert.equal(article.isPartOf.url, site.url + issuePath(f));
       assert.ok(article.description.includes(r.head));
       assert.equal(page['@id'], article.url);
+      const share = socialImageForRoute(issuePath(f) + 'positions/' + r.id + '/', model);
+      assert.equal(article.image[0].url, site.url + share.image);
+      assert.equal(page.primaryImageOfPage.url, article.image[0].url);
     }
   }
 });
@@ -105,6 +116,21 @@ test('RSS feed contains only approved full issues and no lessons or private draf
   }
   for (const f of model.formations.filter(f => !f.gate.allowed)) {
     assert.ok(!xml.includes(site.url + issuePath(f)));
+  }
+});
+
+test('Generated social image map is complete, unique and excludes unpublished coaching content', () => {
+  const specs = socialImageSpecs(model);
+  assert.equal(new Set(specs.map(s => s.route)).size, specs.length);
+  assert.equal(new Set(specs.map(s => s.image)).size, specs.length);
+  assert.equal(specs.length, 5 + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
+  for (const spec of specs) assert.ok(spec.image.startsWith('/og/') && spec.image.endsWith('.png'), 'Branded PNG: ' + spec.image);
+  for (const f of issues) {
+    assert.equal(socialImageForRoute(issuePath(f), model).image.includes(f.slug), true);
+    assert.equal(socialImageForRoute(issuePath(f) + f.rules[0].id + '/', model).image.includes(f.rules[0].id), true);
+  }
+  for (const f of model.formations.filter(f => !f.gate.allowed)) {
+    assert.ok(!specs.some(s => s.route.startsWith(issuePath(f))), 'Never expose draft previews');
   }
 });
 

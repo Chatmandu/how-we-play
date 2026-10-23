@@ -24,6 +24,12 @@
 .hwp-pitch .hwp-x, .hwp-pitch .hwp-line { stroke: var(--hwp-pitch-mark); }
 .hwp-pitch .hwp-lost { stroke: var(--hwp-pitch-them); }
 .hwp-pitch .hwp-spine { stroke: var(--hwp-pitch-us); }
+/* The authentic three-node mark and wordmark are part of each diagram SVG.
+ * CSS-mode previews use these classes; inline exports carry the same colours. */
+.hwp-pitch .hwp-brand-bg { fill: var(--hwp-color-ink); fill-opacity: .90; }
+.hwp-pitch .hwp-brand-ink { fill: var(--hwp-color-paper); }
+.hwp-pitch .hwp-brand-stroke { stroke: var(--hwp-color-paper); }
+
 .hwp-pitch [role="button"] { cursor: pointer; }
 .hwp-pitch [role="button"]:focus-visible { outline: none; }
 .hwp-pitch [role="button"]:focus-visible circle { stroke: var(--hwp-focus-ring-on-pitch); stroke-width: 1.8; }

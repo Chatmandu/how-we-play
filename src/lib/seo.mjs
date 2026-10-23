@@ -6,6 +6,7 @@
  * it does not promise ranking or special AI placement.
  */
 import { publishedIssues, reviewRecord } from './editorial.mjs';
+import { socialImageForRoute } from './social-images.mjs';
 
 const base = site => site.url.replace(/\/$/, '');
 const fullUrl = (site, path) => base(site) + path;
@@ -26,6 +27,7 @@ export function siteIdentity(site) {
       name,
       url,
       description: site.description,
+      image: fullUrl(site, '/og/pages/home.png'),
       inLanguage: 'en-GB',
       publisher: { '@id': orgId(site) }
     },
@@ -74,6 +76,7 @@ const reviewPage = (site, f, page, title, primaryEntity) => {
     inLanguage: 'en-GB',
     isPartOf: { '@id': homeId(site) },
     mainEntity: { '@id': primaryEntity },
+    primaryImageOfPage: { '@type': 'ImageObject', url: fullUrl(site, socialImageForRoute(new URL(page).pathname, { formations: [f] }).image), width: 1200, height: 630 },
     ...(record && f.gate.allowed ? { reviewedBy: { '@id': reviewerId(site), name: record.by, '@type': 'Person' } } : {})
   };
 };
@@ -85,6 +88,7 @@ const articleBase = (site, f, page, headline, description) => ({
   description,
   url: page,
   mainEntityOfPage: { '@id': page },
+  image: [{ '@type': 'ImageObject', url: fullUrl(site, socialImageForRoute(new URL(page).pathname, { site, formations: [f], target: 'public' }).image), width: 1200, height: 630, caption: headline }],
   inLanguage: 'en-GB',
   author: { '@id': authorId(site), '@type': 'Person', name: site.author.name, url: fullUrl(site, '/about/') },
   publisher: { '@id': orgId(site), '@type': 'Organization', name: site.name, url: fullUrl(site, '/') },
@@ -147,13 +151,14 @@ export function collectionStructuredData(site, issues, format = '9v9') {
     name: `${format} football formations`,
     description: `Free formation guides for ${format} grassroots football, including playing principles and player responsibilities.`,
     inLanguage: 'en-GB',
+    image: { '@type': 'ImageObject', url: fullUrl(site, `/og/formats/${format}.png`), width: 1200, height: 630 },
     isPartOf: { '@id': homeId(site) },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: issues.map((f, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: `${f.format} Issue ${String(f.issue.number).padStart(2, '0')}: the ${f.name}`,
+        name: `${f.format} · The ${f.name} formation guide`,
         url: fullUrl(site, issuePath(f))
       }))
     }
@@ -193,7 +198,7 @@ export function issueFeedXml(model) {
   const path = fullUrl(site, '/feed.xml');
   const item = f => {
     const url = fullUrl(site, issuePath(f));
-    const title = `${f.format} · Issue ${String(f.issue.number).padStart(2, '0')}: The ${f.name}`;
+    const title = `${f.format} · The ${f.name} formation guide`;
     const summary = f.issue.summary || f.issue.intro;
     // RSS pubDate requires a time; only the editorial calendar DAY is known.
     // Omit pubDate rather than invent a timestamp for publication.
@@ -208,9 +213,9 @@ export function issueFeedXml(model) {
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<rss version="2.0">',
     '<channel>',
-    `  <title>${escapeXml(site.name + ' · New formation issues')}</title>`,
+    `  <title>${escapeXml(site.name + ' · New formation guides')}</title>`,
     `  <link>${escapeXml(fullUrl(site, '/'))}</link>`,
-    `  <description>${escapeXml('Complete, free grassroots football formation issues from How We Play.')}</description>`,
+    `  <description>${escapeXml('Complete, free grassroots football formation guides from How We Play.')}</description>`,
     '  <language>en-gb</language>',
     `  <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${escapeXml(path)}" rel="self" type="application/rss+xml"/>`,
     ...issues.map(item),
