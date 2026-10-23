@@ -70,6 +70,24 @@ for (const file of pages) {
   if (!/<title>[^<]+<\/title>/.test(html)) fail(route, 'missing <title>');
   if (!/<meta name="description" content="[^"]{20,}"/.test(html)) fail(route, 'missing meta description');
   if (!/<link rel="canonical" href="https:\/\/howweplayfootball\.com\//.test(html)) fail(route, 'missing canonical URL');
+  // Every page has a real, crawlable sharing image. Guide pages must have
+  // their own source-derived PNG, not the generic fallback image.
+  const og = (html.match(/<meta property="og:image" content="([^"]+)"/) || [])[1] || '';
+  const tw = (html.match(/<meta name="twitter:image" content="([^"]+)"/) || [])[1] || '';
+  const ogAlt = (html.match(/<meta property="og:image:alt" content="([^"]+)"/) || [])[1] || '';
+  if (!og.startsWith(model.site.url + '/og/') || !og.endsWith('.png')) fail(route, 'missing absolute PNG Open Graph image');
+  if (tw !== og) fail(route, 'Twitter sharing image differs from Open Graph image');
+  if (!ogAlt.trim()) fail(route, 'missing readable Open Graph image alternative text');
+  if (og.startsWith(model.site.url + '/')) {
+    const image = new URL(og).pathname;
+    if (!exists(image)) fail(route, 'sharing image missing from built files: ' + image);
+    else {
+      const bytes = readFileSync(join(dist, image));
+      if (bytes.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' || bytes.readUInt32BE(16) !== 1200 || bytes.readUInt32BE(20) !== 630) {
+        fail(route, 'sharing image is not an actual 1200×630 PNG');
+      }
+    }
+  }
   // Rendered, static JSON-LD must be valid and describe the page it appears on.
   const ld = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => {
     try { return JSON.parse(match[1]); }
@@ -86,6 +104,10 @@ for (const file of pages) {
       if (!article.author?.name || !article.publisher?.name || article.isAccessibleForFree !== true) fail(route, 'Article missing grounded author, publisher or free-access description');
       if (webpage['@id'] !== article.url || webpage.mainEntity?.['@id'] !== article['@id']) fail(route, 'WebPage to Article relation mismatch');
       if (!article.isPartOf) fail(route, 'Article missing parent issue or collection relationship');
+      const articleImage = article.image?.[0]?.url;
+      if (articleImage !== og) fail(route, 'Article image JSON-LD does not match page-specific social image');
+      if (webpage.primaryImageOfPage?.url !== og) fail(route, 'WebPage primaryImageOfPage does not match the page image');
+      if (og.endsWith('/og/default.png')) fail(route, 'published coaching guide is using the generic image');
     }
   }
   // The only public video explainer belongs to Issue 01; it should be a
@@ -113,6 +135,23 @@ for (const file of pages) {
     const t = (m[1].match(/<title[^>]*>([^<]*)<\/title>/) || [])[1];
     const d = (m[1].match(/<desc[^>]*>([^<]*)<\/desc>/) || [])[1];
     if (!t || !t.trim() || !d || !d.trim()) { fail(route, 'diagram without a title and description'); break; }
+  }
+  // SVG branding is baked into the actual diagrams, so screenshotting or
+  // downloading the image retains a small source attribution.
+  const diagramCount = (html.match(/<svg[^>]*class="hwp-pitch[^"]*"/g) || []).length;
+  const watermarkCount = (html.match(/data-hwp-watermark="howweplayfootball\.com"/g) || []).length;
+  if (diagramCount && watermarkCount < diagramCount) fail(route, 'one or more pitch SVGs lost embedded How We Play branding');
+  if (target === 'public' && route === '/') {
+    if (!html.includes('Featured formation') || !html.includes('The 3-1-3-1')) fail(route, 'homepage must feature 3-1-3-1');
+    if (!html.includes('Follow How We Play')) fail(route, 'homepage missing dedicated social discovery section');
+  }
+  if (target === 'public') {
+    for (const profile of Object.values(model.site.social || {})) {
+      if (!profile.url || !html.includes(profile.url)) fail(route, 'missing official social channel link: ' + (profile.handle || 'unknown'));
+    }
+    if (route.startsWith('/formations/') && route.match(/^\/formations\/(?:7v7|9v9)\/[^/]+\//) && !/meta name="robots" content="noindex/.test(html) && og.endsWith('/og/default.png')) {
+      fail(route, 'formation page must not share the default placeholder image');
+    }
   }
   // Target rules
   if (target === 'public') {
