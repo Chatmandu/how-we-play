@@ -77,6 +77,7 @@
 .foot__social a { display: inline-flex; align-items: center; min-height: 36px; color: var(--hwp-color-paper); font-weight: 700; text-underline-offset: 4px; }
 .foot__social a:hover, .foot__social a:focus-visible { color: var(--hwp-color-space-yellow); }
 .foot__nav a { color: var(--hwp-color-paper); display: inline-flex; min-height: 32px; align-items: center; }
+.foot__fineprint { display: grid; gap: 12px; }
 .foot__note { margin: 0; color: var(--hwp-color-paper); opacity: .85; }
 @media (max-width: 1023px) { .foot__grid { grid-template-columns: 1fr; } }
 
