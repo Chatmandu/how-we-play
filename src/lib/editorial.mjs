@@ -27,9 +27,10 @@ export const pad2 = n => String(n).padStart(2, '0');
 const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 export const word = n => WORDS[n] || String(n);
 
-/* ---------- Issues: How We Play is the publication; each formation is an issue within its format ---------- */
-export const issueLabel = f => f.issue ? `Issue ${pad2(f.issue.number)}` : '';
-export const issueLine = f => [f.format || '9v9', issueLabel(f), `The ${f.name}`].filter(Boolean).join(' · ');
+/* Formation guides retain internal issue numbers for ordering, but the public
+ * identity is the formation. This avoids duplicate "Issue 01" labels across formats. */
+export const issueLabel = f => f.issue ? 'Formation guide' : '';
+export const issueLine = f => [f.format || '9v9', f.name, 'Formation guide'].filter(Boolean).join(' · ');
 /** The chapter a rule or a role belongs to, for kickers and navigation. Rules sit in "principles"; roles in "jobs" or a "together" group. */
 export function chapterOf(f, { rule, role }) {
   const chs = (f.issue && f.issue.chapters) || [];
