@@ -1,4 +1,4 @@
-/* How We Play tactical diagram renderer v2.0
+/* How We Play Football tactical diagram renderer v2.1
  * Framework-independent ES module with no dependencies. Pure functions: data in, SVG string out.
  * Preserves the P0/P1 prototype architecture (renderPitch(d, opts) -> SVG string, mirror(), same data schema
  * and coordinates) and adds: token-driven themes, named views, pitch definitions per format, validation,
@@ -143,26 +143,7 @@ export function renderPitch(d, opts = {}) {
   if (opts.labels !== false) (d.labels || []).forEach(l => out.push(lbl(l.x, l.y, l.t, S.label, '')));
   if (opts.pos) (d.pos || []).forEach(l => out.push(`<text x="${l.x}" y="${l.y}" font-size="${S.posLabel}" text-anchor="middle" ${A('hwp-pos', `fill="${c.label}"`)} font-family="var(--hwp-font-family-display, 'Big Shoulders Display', sans-serif)" font-weight="700" letter-spacing=".3">${esc(l.t)}</text>`));
   if (opts.notes !== false) (d.notes || []).forEach(n => out.push(lbl(n.x, n.y, String(n.t).toUpperCase(), S.note, 'hwp-lbl--note', n.a || 'start')));
-  // Baked into the SVG for screenshots, exports and animation. Keep this
-  // in the tactical artwork, not in CSS applied to the wrapping page.
-  if (opts.brand !== false) {
-    const y = crop[1] - 8;
-    const compact = opts.numbers === false && opts.labels === false;
-    const bg = inline ? 'fill="#0E1A24" fill-opacity=".90"' : 'class="hwp-brand-bg"';
-    const ink = inline ? 'fill="#F2EDE2"' : 'class="hwp-brand-ink"';
-    const stroke = inline ? 'stroke="#F2EDE2"' : 'class="hwp-brand-stroke"';
-    out.push(`<g aria-hidden="true" data-hwp-watermark="howweplayfootball.com">
-      <rect x="2" y="${f2(y)}" width="${compact ? 12 : 57}" height="7.1" rx="1" ${bg}/>
-      <g transform="translate(5 ${f2(y + 0.4)}) scale(.155)" fill="none">
-        <g ${stroke} stroke-width="4.4" stroke-linecap="round"><path d="M20 8L7 29M20 8L33 29M7 29H33"/></g>
-        <circle cx="20" cy="8" r="7.4" ${ink}/>
-        <circle cx="7" cy="29" r="7.4" ${ink}/>
-        <circle cx="33" cy="29" r="7.4" ${ink}/>
-      </g>
-      ${compact ? '' : `<text x="13.5" y="${f2(y + 4.75)}" font-size="4.3" font-family="var(--hwp-font-family-display, 'Big Shoulders Display', sans-serif)" font-weight="900" letter-spacing=".1" ${ink}>HOW WE PLAY</text>
-      <text x="37.5" y="${f2(y + 4.6)}" font-size="2.2" font-family="var(--hwp-font-family-sans, 'Schibsted Grotesk', sans-serif)" font-weight="700" ${ink}>.COM</text>`}
-    </g>`);
-  }
+  if (opts.brand !== false) out.push(brandMark(d, crop, opts, inline, c));
   out.push('</svg>');
   return out.join('');
 }
@@ -292,3 +273,34 @@ export function sequenceAt(frames, s) {
   return frameAt(frames[i], s - i >= 1 ? 1 : s - i);
 }
 const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+// ---------- Attribution (baked into the SVG) ----------
+// A small, quiet credit in the bottom-right corner: the small-cut three-node mark plus
+// "howweplayfootball.com". It is part of the artwork, so it survives screenshots, SVG
+// downloads, generated images and animation frames. It is not copy protection.
+// Compact previews (numbers or labels off), or opts.brand === 'mark', get the mark only.
+// If the credit would touch a player, ball, arrow end, label or note, it drops to the mark,
+// then moves to the bottom-left corner. It never draws a background panel.
+export const BRAND = { url: 'howweplayfootball.com', size: 2.5, textW: 29, markW: 3.4, markH: 3.1, gap: 1, opacity: 0.6 };
+function brandMark(d, crop, opts, inline, c) {
+  const B = BRAND, base = crop[1] - 1.7, top = base - B.markH;
+  const obstacles = [];
+  (d.players || []).forEach(p => obstacles.push([p.x, p.y, SIZES.r + 1]));
+  (d.ghosts || []).forEach(g => obstacles.push([g.x, g.y, SIZES.ghostR + 1]));
+  if (d.ball) obstacles.push([d.ball[0], d.ball[1], SIZES.ball + 1]);
+  (d.arrows || []).forEach(a => { obstacles.push([a.f[0], a.f[1], 1.5], [a.to[0], a.to[1], 2]); });
+  (d.labels || []).concat(d.notes || []).forEach(l => obstacles.push([l.x, l.y - 2, 6]));
+  const clear = (x0, x1) => !obstacles.some(([x, y, r]) => x + r > x0 && x - r < x1 && y + r > top - 0.6 && y - r < base + 0.8);
+  const right = 102.6, left = -2.6;
+  const compact = opts.brand === 'mark' || opts.numbers === false || opts.labels === false;
+  let mode = 'mark', mx = right - B.markW;
+  if (!compact && clear(right - B.textW - B.gap - B.markW, right)) { mode = 'full'; mx = right - B.textW - B.gap - B.markW; }
+  else if (!clear(mx, right) && clear(left, left + B.markW)) mx = left;
+  const fill = inline ? `fill="${c.label}"` : 'class="hwp-brand-ink"';
+  const stroke = inline ? `stroke="${c.label}"` : 'class="hwp-brand-stroke"';
+  const font = inline ? `'Schibsted Grotesk', 'DejaVu Sans', Arial, sans-serif` : `var(--hwp-font-family-sans, 'Schibsted Grotesk', sans-serif)`;
+  const k = B.markW / 40;
+  const mark = `<g transform="translate(${f2(mx)} ${f2(top)}) scale(${f2(k * 1000) / 1000})"><g ${stroke} fill="none" stroke-width="4.4" stroke-linecap="round"><path d="M20 8L7 29M20 8L33 29M7 29H33"/></g><circle cx="20" cy="8" r="7.4" ${fill}/><circle cx="7" cy="29" r="7.4" ${fill}/><circle cx="33" cy="29" r="7.4" ${fill}/></g>`;
+  const text = mode === 'full' ? `<text x="${right}" y="${f2(base)}" font-size="${B.size}" text-anchor="end" font-family="${font}" font-weight="600" letter-spacing=".04" ${fill}>${B.url}</text>` : '';
+  return `<g aria-hidden="true" data-hwp-watermark="${B.url}" data-hwp-watermark-mode="${mode}" opacity="${B.opacity}">${mark}${text}</g>`;
+}

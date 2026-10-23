@@ -12,7 +12,7 @@ const { fm } = Astro.props;
 const first = model.formations.find(f => f.register.content.status === 'reviewed' && f.gate.allowed);
 const crumbs = [{ label: 'Home', href: '/' }, { label: `${fm.id} formations` }];
 ---
-<Base title={`${fm.id} football formations: in development | How We Play`} description={`How We Play's ${fm.id} collection for ${fm.ages} is in development. Nothing is published yet; see our published guides instead.`} ids={[fm.id]} nav={fm.id} crumbs={crumbs} noindex editorial>
+<Base title={`${fm.id} football formations: in development | How We Play Football`} description={`How We Play Football's ${fm.id} collection for ${fm.ages} is in development. Nothing is published yet; see our published guides instead.`} ids={[fm.id]} nav={fm.id} crumbs={crumbs} noindex editorial>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Format · {fm.ages.replace('–', ' and ')}</p>
@@ -22,7 +22,7 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: `${fm.id} formations` }];
     <div class="page-head__aside">
       <p class="ed-label">Published now</p>
       {first && <a class="ed-btn" href={`/formations/9v9/${first.slug}/`}>9v9 · {issueLabel(first)} · The {first.name} →</a>}
-      <p class="ed-small"><a href="/formations/9v9/#moving-up">Moving from 7v7 to 9v9</a> · <a href="/about/">About How We Play</a></p>
+      <p class="ed-small"><a href="/formations/9v9/#moving-up">Moving from 7v7 to 9v9</a> · <a href="/about/">About How We Play Football</a></p>
     </div>
   </div>
 </Base>

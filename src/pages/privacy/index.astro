@@ -9,19 +9,19 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: 'Privacy and cookies' }];
 const preview = model.target !== 'public';
 const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
 ---
-<Base title="Privacy and cookies | How We Play" description="Read how How We Play handles optional analytics, YouTube videos, newsletter subscriptions and your privacy choices." ids={['about']} crumbs={crumbs} editorial>
+<Base title="Privacy and cookies | How We Play Football" description="Read how How We Play Football handles optional analytics, YouTube videos, newsletter subscriptions and your privacy choices." ids={['about']} crumbs={crumbs} editorial>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Privacy and cookies</p>
       <h1 class="privacy-h1">Your data, kept to a minimum</h1>
-      <p class="ed-stand">How We Play is free to read without giving us anything. This page explains optional analytics, YouTube videos, the newsletter and how you can control what you share.</p>
+      <p class="ed-stand">How We Play Football is free to read without giving us anything. This page explains optional analytics, YouTube videos, the newsletter and how you can control what you share.</p>
       <p class="byline">Last updated {longDate(p.lastUpdated)}</p>
     </div>
   </div>
   <div class="ed-grid about-body">
     <div class="story privacy">
-      <h2 class="story__h" id="who">Who runs How We Play</h2>
-      <p>How We Play is an independent project written by {site.author.name}. {p.controller ? `The data controller is ${p.controller}.` : (missing('Data controller name and status') || '')}</p>
+      <h2 class="story__h" id="who">Who runs How We Play Football</h2>
+      <p>How We Play Football is an independent project written by {site.author.name}. {p.controller ? `The data controller is ${p.controller}.` : (missing('Data controller name and status') || '')}</p>
       <p>{p.contactEmail ? <>For any privacy question or request, email <a href={`mailto:${p.contactEmail}`}>{p.contactEmail}</a>.</> : (missing('Contact email for privacy requests') || 'A contact address for privacy questions is being added to this page.')}</p>
 
       <h2 class="story__h" id="cookies">Cookies and analytics</h2>
@@ -42,7 +42,7 @@ const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
       <p>Every email has an unsubscribe link. Unsubscribing takes effect straight away. We don't share or sell your email, and we don't add anyone to the newsletter because they downloaded a playbook or supported us on Ko-fi.</p>
 
       <h2 class="story__h" id="kofi">Supporting us on Ko-fi</h2>
-      <p>"Support How We Play" and "Buy me a coffee" links go to our page on Ko-fi, a separate website with its own privacy policy. We don't receive your payment details. Supporting us never signs you up to anything.</p>
+      <p>"Support How We Play Football" and "Buy me a coffee" links go to our page on Ko-fi, a separate website with its own privacy policy. We don't receive your payment details. Supporting us never signs you up to anything.</p>
 
       <h2 class="story__h" id="rights">Your rights</h2>
       <p>Under UK data protection law you can ask to see the personal data we hold about you, to correct it, to delete it, or to object to how it's used. You can also complain to the Information Commissioner's Office at <a href="https://ico.org.uk/make-a-complaint/" rel="noopener" target="_blank">ico.org.uk<span class="hwp-sr-only"> (opens in a new tab)</span></a>.</p>

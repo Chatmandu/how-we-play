@@ -36,11 +36,12 @@ function preview(spec) {
       .replace('<svg ', '<svg x="800" y="26" width="358" height="578" ')
     : '<g stroke="#9DAEF5" stroke-width="4" fill="none" opacity=".7"><rect x="815" y="65" width="330" height="490"/><line x1="815" y1="310" x2="1145" y2="310"/><circle cx="980" cy="310" r="43"/></g>';
   const wordmark = `
-    <g transform="translate(53 39) scale(.72)" fill="none">
+    <g transform="translate(53 37) scale(.9)" fill="none">
       <g stroke="#2747E8" stroke-width="4.4" stroke-linecap="round"><path d="M20 8L7 29M20 8L33 29M7 29H33"/></g>
       <circle cx="20" cy="8" r="7.4" fill="#2747E8"/><circle cx="7" cy="29" r="7.4" fill="#2747E8"/><circle cx="33" cy="29" r="7.4" fill="#2747E8"/>
     </g>
-    <text x="95" y="68" font-family="Big Shoulders Display, DejaVu Sans, Arial, sans-serif" font-size="29" font-weight="900" fill="#0E1A24">HOW WE PLAY</text>`;
+    <text x="98" y="59" font-family="Big Shoulders Display, DejaVu Sans, Arial, sans-serif" font-size="29" font-weight="900" fill="#0E1A24">HOW WE PLAY</text>
+    <text x="98" y="74" font-family="Big Shoulders Display, DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="5.5" fill="#2747E8">FOOTBALL</text>`;
   const titles = titleLines.map((line, i) => `<text x="57" y="${Math.round(213 + i * step)}" font-family="Big Shoulders Display, DejaVu Sans, Arial, sans-serif" font-size="${titleSize}" font-weight="900" letter-spacing="-1.8" fill="#0E1A24">${esc(line)}</text>`).join('');
   const body = deckLines.map((line, i) => `<text x="61" y="${Math.round(deckY + i * 31)}" font-family="Schibsted Grotesk, DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="500" fill="#0E1A24">${esc(line)}</text>`).join('');
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
@@ -53,7 +54,7 @@ function preview(spec) {
     ${body}
     <rect x="0" y="586" width="754" height="44" fill="#0E1A24"/>
     <text x="60" y="616" font-family="Big Shoulders Display, DejaVu Sans, Arial, sans-serif" font-size="21" font-weight="800" fill="#F2EDE2">HOWWEPLAYFOOTBALL.COM</text>
-    <text x="685" y="615" font-family="Schibsted Grotesk, DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end" fill="#F2EDE2">© HOW WE PLAY</text>
+    <text x="685" y="615" font-family="Schibsted Grotesk, DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end" fill="#F2EDE2">© HOW WE PLAY FOOTBALL</text>
   </svg>`;
 }
 

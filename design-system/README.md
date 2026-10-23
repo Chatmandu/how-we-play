@@ -1,4 +1,4 @@
-# How We Play Design System v1.0.1
+# How We Play Football Design System v1.1.0
 
 > Vendored into the How We Play website repo. Content now lives in `../content/` so there is one copy; tests and the showcase read it from there. See `CHANGELOG.md`.
 

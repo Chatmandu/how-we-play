@@ -30,10 +30,10 @@ const otherIssues = publishedIssues(model).filter(other => other.format === f.fo
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
-    ? 'Illustrated by How We Play from reviewed coaching guidance.'
+    ? 'Illustrated by How We Play Football from reviewed coaching guidance.'
     : 'Provisional illustration for coaching review; not published coaching advice.';
 const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations', href: '/formations/7v7/' }, { label: `${label}: ${f.name}` }];
-const title = `${f.name} formation guide for 7v7 | How We Play`;
+const title = `${f.name} formation guide for 7v7 | How We Play Football`;
 const description = full
   ? `The ${f.notation} for 7v7 football: starting shape, four playing principles with diagrams, a job for every position and how the team plays together. Free guide.`
   : `${f.sourceLabel} of a ${f.notation} guide for 7v7. Private preview, not reviewed.`;

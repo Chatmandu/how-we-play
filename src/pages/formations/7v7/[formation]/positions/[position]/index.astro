@@ -27,13 +27,13 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const prev = f.roles[i - 1], next = f.roles[i + 1];
 const last = f.rules[f.rules.length - 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations', href: '/formations/7v7/' }, { label: f.name, href: base }, { label: r.title }];
-const title = `${r.title}: ${f.name} 7v7 roles | How We Play`;
+const title = `${r.title}: ${f.name} 7v7 roles | How We Play Football`;
 const description = `${r.head} What the ${r.title.toLowerCase()} does in a 7v7 ${f.notation}, with diagrams and one question for players to ask themselves.`;
 const folio = r.nums.join('·');
 const roleSource = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${r.src}. Shirt numbers describe the starting picture.`
   : f.register.content.status === 'reviewed'
-    ? 'How We Play illustration based on reviewed guidance. Starting positions are not fixed.'
+    ? 'How We Play Football illustration based on reviewed guidance. Starting positions are not fixed.'
     : `How We Play draft, ${r.src}. Illustration awaiting qualified coaching review.`;
 const chapter = chapterOf(f, { role: r.id });
 const jobs = chapter && chapter.roles ? chapter.roles : null;

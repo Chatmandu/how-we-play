@@ -8,8 +8,8 @@ export const DEFAULT_SOCIAL_IMAGE = '/og/default.png';
 export function socialImageSpecs(model) {
   const issues = publishedIssues(model);
   const specs = [
-    { route: '/', image: '/og/pages/home.png', title: 'FREE FOOTBALL COACHING GUIDES', eyebrow: 'HOW WE PLAY', deck: 'Simple pictures. Simple decisions. Play together.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape },
-    { route: '/about/', image: '/og/pages/about.png', title: 'SEVEN YEARS ON THE TOUCHLINE', eyebrow: 'ABOUT HOW WE PLAY', deck: 'From grassroots coaching experience to free formation playbooks.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape }
+    { route: '/', image: '/og/pages/home.png', title: 'FREE FOOTBALL COACHING GUIDES', eyebrow: 'HOW WE PLAY FOOTBALL', deck: 'Simple pictures. Simple decisions. Play together.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape },
+    { route: '/about/', image: '/og/pages/about.png', title: 'SEVEN YEARS ON THE TOUCHLINE', eyebrow: 'ABOUT HOW WE PLAY FOOTBALL', deck: 'From grassroots coaching experience to free formation playbooks.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape }
   ];
   for (const format of ['5v5', '7v7', '9v9']) {
     const first = issues.find(f => f.format === format);
@@ -17,7 +17,7 @@ export function socialImageSpecs(model) {
       route: `/formations/${format}/`,
       image: `/og/formats/${format}.png`,
       title: `${format.toUpperCase()} FORMATION GUIDES`,
-      eyebrow: 'HOW WE PLAY · GRASSROOTS FOOTBALL',
+      eyebrow: 'HOW WE PLAY FOOTBALL · GRASSROOTS COACHING',
       deck: first ? 'Complete, free playing principles and illustrated positional guides.' : 'New formation guides in development.',
       frame: first?.shape
     });
@@ -52,9 +52,9 @@ export function socialImageSpecs(model) {
 export function socialImageForRoute(route, model) {
   const clean = route.endsWith('/') ? route : route + '/';
   const spec = socialImageSpecs(model).find(s => s.route === clean);
-  if (!spec) return { image: DEFAULT_SOCIAL_IMAGE, alt: 'How We Play grassroots football coaching publication' };
+  if (!spec) return { image: DEFAULT_SOCIAL_IMAGE, alt: 'How We Play Football: grassroots football coaching publication' };
   return {
     image: spec.image,
-    alt: spec.title + ': How We Play football coaching illustration'
+    alt: spec.title + ': How We Play Football coaching illustration'
   };
 }

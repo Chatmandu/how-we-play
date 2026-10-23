@@ -46,7 +46,7 @@
 .mast { border-top: 6px solid var(--hwp-color-ink); background: var(--hwp-surface-page); }
 .mast__bar { display: flex; align-items: center; gap: var(--ed-s3); min-height: 60px; border-bottom: 1px solid var(--hwp-color-ink); }
 .mast__logo { display: inline-flex; align-items: center; min-height: 44px; }
-.mast__logo img { height: 24px; width: auto; }
+.mast__logo img { height: 44px; width: auto; }
 .mast__issue { flex: 1; margin: 0 0 0 var(--ed-s4); font: 800 12px/1 var(--ed-display); letter-spacing: .16em; text-transform: uppercase; color: var(--hwp-text-secondary); }
 .mast__nav { display: flex; gap: 28px; font: 600 15px/1 var(--ed-sans); }
 .mast__nav a { color: var(--hwp-text-primary); text-decoration: none; padding: 14px 0; }
@@ -54,7 +54,7 @@
 .mast__menu { display: none; }
 @media (max-width: 1023px) { .mast__issue { visibility: hidden; margin: 0; } .mast__nav { gap: 18px; font-size: 14px; } }
 @media (max-width: 599px) {
-  .mast__logo img { height: 20px; }
+  .mast__logo img { height: 38px; }
   .js-mast .mast__bar { flex-wrap: wrap; }
   .js-mast .mast__menu { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 2px; background: none; border: 0; font: 700 15px/1 var(--ed-sans); color: var(--hwp-text-primary); cursor: pointer; }
   .js-mast .mast__nav { display: none; flex-basis: 100%; flex-direction: column; gap: 0; border-top: 1px solid var(--hwp-color-rule); }
@@ -70,7 +70,7 @@
 /* ---------- Footer ---------- */
 .foot { background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
 .foot__grid { display: grid; grid-template-columns: 3fr 5fr 4fr; gap: var(--ed-s2) var(--ed-g); padding-top: 32px; padding-bottom: 40px; font: 400 14px/1.5 var(--ed-sans); align-items: start; }
-.foot__logo img { height: 22px; width: auto; }
+.foot__logo img { height: 44px; width: auto; }
 .foot__links { display: grid; gap: 14px; }
 .foot__nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .foot__social { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 12px; border-top: 1px solid #F2EDE255; }

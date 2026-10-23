@@ -31,7 +31,7 @@ const posterSvg = renderPitch(
     <button class="issue-video__launch" type="button" data-youtube-play aria-label={`Play video: ${videoTitle}. This will load an embedded YouTube player.`}>
       <span class="issue-video__poster" aria-hidden="true">
         <span class="issue-video__poster-copy">
-          <span class="issue-video__poster-eyebrow">9V9 FOOTBALL · HOW WE PLAY</span>
+          <span class="issue-video__poster-eyebrow">9V9 · HOW WE PLAY FOOTBALL</span>
           <span class="issue-video__poster-number">{formation}</span>
           <span class="issue-video__poster-explained">EXPLAINED</span>
           <span class="issue-video__poster-footer">FOUR SIMPLE PLAYING PRINCIPLES</span>
@@ -242,7 +242,7 @@ const posterSvg = renderPitch(
       const id = root.dataset.youtubeId || '';
       if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) return;
       const frame = document.createElement('iframe');
-      frame.title = root.dataset.youtubeTitle || 'How We Play football coaching video';
+      frame.title = root.dataset.youtubeTitle || 'How We Play Football coaching video';
       frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
       frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       frame.referrerPolicy = 'strict-origin-when-cross-origin';

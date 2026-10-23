@@ -17,7 +17,7 @@ export function header({ items = [], current, newsletterHref = '#newsletter', fo
   const links = items.map(i => `<a href="${esc(i.href)}"${i.id === current ? ' aria-current="page"' : ''}>${esc(i.label)}</a>`).join('');
   return `<header class="hwp-header hwp-container">
   <div class="hwp-header__bar">
-    <a class="hwp-header__logo" href="/"><img src="${ASSETS}logo/hwp-lockup-inline.svg" alt="How We Play, home" width="180" height="28"></a>
+    <a class="hwp-header__logo" href="/"><img src="${ASSETS}logo/hwp-lockup-inline.svg" alt="How We Play Football, home" width="236" height="44"></a>
     <nav class="hwp-nav" aria-label="Main">${links}<a class="hwp-btn hwp-btn--secondary" href="${esc(newsletterHref)}" style="padding:0 14px;min-height:40px">Newsletter</a></nav>
     <button class="hwp-nav__toggle" aria-expanded="false" aria-controls="${id}" data-hwp="nav-toggle">${icon('menu')}<span>Menu</span></button>
   </div>
@@ -39,9 +39,9 @@ export function inPageNav(items, label = 'On this page') {
 }
 export function footer({ columns = [] } = {}) {
   return `<footer class="hwp-footer"><div class="hwp-container"><div class="hwp-footer__grid">
-  <div><img src="${ASSETS}logo/hwp-lockup-inline-reverse.svg" alt="How We Play" width="180" height="28"><p class="hwp-small">Helping your team take the next step.</p></div>
+  <div><img src="${ASSETS}logo/hwp-lockup-inline-reverse.svg" alt="How We Play Football" width="236" height="44"><p class="hwp-small">Helping your team take the next step.</p></div>
   ${columns.map(c => `<div><p class="hwp-label">${esc(c.title)}</p><ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px">${c.links.map(l => `<li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`).join('')}</ul></div>`).join('')}
-  </div><small>How We Play is an independent project. It is not affiliated with or endorsed by The FA or England Football. Official rules link to their source with the date we checked them.</small></div></footer>`;
+  </div><small>How We Play Football is an independent project. It is not affiliated with or endorsed by The FA or England Football. Official rules link to their source with the date we checked them.</small></div></footer>`;
 }
 
 /* ---------- Editorial ---------- */
@@ -143,7 +143,7 @@ export function newsletterForm({ action = '#', formats = ['3v3', '5v5', '7v7', '
   <div><h2 class="hwp-heading-m" id="${id}-h">Get the next guide by email</h2><p class="hwp-small" style="margin:6px 0 0">[Placeholder copy, needs approval] One email when a new guide is ready.</p></div>
   <div class="hwp-field"><label for="${id}-e">Email address</label><input class="hwp-input" id="${id}-e" name="email" type="email" autocomplete="email" aria-describedby="${id}-ee" required><span class="hwp-error" id="${id}-ee"></span></div>
   <div class="hwp-field"><label for="${id}-f">Which format does your team play now? <span class="hwp-hint">(optional)</span></label><select class="hwp-select" id="${id}-f" name="format"><option value="">Choose a format</option>${formats.map(f => `<option>${esc(f)}</option>`).join('')}</select></div>
-  <div class="hwp-field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="consent" required style="width:22px;height:22px;margin:0;flex:none" aria-describedby="${id}-ce"><span>Yes, email me about new How We Play guides. I can unsubscribe at any time.</span></label><span class="hwp-error" id="${id}-ce"></span></div>
+  <div class="hwp-field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="consent" required style="width:22px;height:22px;margin:0;flex:none" aria-describedby="${id}-ce"><span>Yes, email me about new How We Play Football guides. I can unsubscribe at any time.</span></label><span class="hwp-error" id="${id}-ce"></span></div>
   <div>${button({ label: 'Sign up', type: 'submit', variant: 'primary', attrs: 'style="background:var(--hwp-surface-pitch);color:var(--hwp-text-on-pitch)"' })}</div>
   <div data-hwp="nl-status" aria-live="polite"></div>
 </form>`;

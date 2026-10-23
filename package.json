@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "How We Play website (howweplayfootball.com). Astro static site built on the How We Play design system.",
+  "description": "How We Play Football website (howweplayfootball.com). Astro static site built on the How We Play Football design system.",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -17,7 +17,7 @@
     "build:public": "HWP_TARGET=public npm run build",
     "build:preview": "HWP_TARGET=preview npm run build",
     "build:both": "bash scripts/build-all.sh",
-    "test": "node design-system/tests/run.mjs && node scripts/test-gate.mjs && node scripts/test-motion.mjs && node scripts/validate-content.mjs && node scripts/test-seo.mjs && node scripts/test-newsletter.mjs && node scripts/test-7v7.mjs",
+    "test": "node design-system/tests/run.mjs && node scripts/test-gate.mjs && node scripts/test-motion.mjs && node scripts/validate-content.mjs && node scripts/test-seo.mjs && node scripts/test-newsletter.mjs && node scripts/test-7v7.mjs && node scripts/test-brand.mjs",
     "tokens": "node design-system/tokens/build.mjs",
     "og": "python3 scripts/og/make_og.py",
     "preview": "astro preview",

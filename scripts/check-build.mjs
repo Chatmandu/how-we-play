@@ -141,7 +141,8 @@ for (const file of pages) {
   // downloading the image retains a small source attribution.
   const diagramCount = (html.match(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*data-view="/g) || []).length;
   const watermarkCount = (html.match(/data-hwp-watermark="howweplayfootball\.com"/g) || []).length;
-  if (diagramCount && watermarkCount < diagramCount) fail(route, 'one or more pitch SVGs lost embedded How We Play branding');
+  if (diagramCount && watermarkCount < diagramCount) fail(route, 'one or more pitch SVGs lost the embedded howweplayfootball.com credit');
+  if (/howweplay\.com|>\.COM<|>HOW WE PLAY<\/text>/i.test(html)) fail(route, 'old or shortened web address in a diagram credit (must be howweplayfootball.com)');
   if (target === 'public' && route === '/') {
     if (!html.includes('Featured formation') || !html.includes('The 3-1-3-1')) fail(route, 'homepage must feature 3-1-3-1');
     if (!html.includes('Follow How We Play')) fail(route, 'homepage missing dedicated social discovery section');

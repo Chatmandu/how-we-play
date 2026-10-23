@@ -33,13 +33,13 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const draftReviews = reviewerNotes && !full ? f.review : [];
 const prev = rules[i - 1], next = rules[i + 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations', href: '/formations/7v7/' }, { label: f.name, href: base }, { label: r.title }];
-const title = full ? `${r.title} | ${f.name} 7v7 tactics | How We Play` : `${r.title} (${f.name} draft) | How We Play`;
+const title = full ? `${r.title} | ${f.name} 7v7 tactics | How We Play Football` : `${r.title} (${f.name} draft) | How We Play Football`;
 const description = full ? `${r.summary} ${r.cue} Explore the ${f.name} principle with interactive diagrams and practical coaching cues.` : `${r.tag} Private draft lesson, not reviewed.`;
 const jsonLd = lessonStructuredData(model.site, f, r);
 const source = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.`
   : f.register.content.status === 'reviewed'
-    ? `How We Play illustration based on reviewed guidance. Pictures show ideas, not fixed moves.`
+    ? `How We Play Football illustration based on reviewed guidance. Pictures show ideas, not fixed moves.`
     : `How We Play draft, ${r.src}. Illustrations await qualified coaching review.`;
 const pagerNext = next ? { href: `${base}${next.id}/`, over: `Next · Principle ${next.n}`, title: next.title } : (full ? { href: `${base}positions/${f.roles[0].id}/`, over: 'Next · Chapter 3', title: f.roles[0].title } : { href: base, over: 'Back to', title: `${f.name} guide` });
 const pagerPrev = prev ? { href: `${base}${prev.id}/`, over: `Principle ${prev.n}`, title: prev.title } : { href: base, over: `Back to ${issueLabel(f)}`, title: `The ${f.name}` };
