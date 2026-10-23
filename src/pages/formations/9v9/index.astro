@@ -1,5 +1,5 @@
 ---
-/* The 9v9 collection: each formation is an issue. Published issues get their team sheet; issues still in
+/* The 9v9 collection: each formation is a complete guide. Published issues get their team sheet; issues still in
  * preparation are named with their number and status only (linked in preview builds for the reviewer). */
 import Base from '../../../layouts/Base.astro';
 import Gated from '../../../components/Gated.astro';
@@ -8,7 +8,7 @@ import Scoreboard from '../../../components/Scoreboard.astro';
 import Facts from '../../../components/Facts.astro';
 import model from '../../../lib/content.mjs';
 import { longDate, checklist } from '../../../lib/ui.mjs';
-import { issueLabel, pad2 } from '../../../lib/editorial.mjs';
+import { issueLabel } from '../../../lib/editorial.mjs';
 import { collectionStructuredData } from '../../../lib/seo.mjs';
 
 const issues = model.formations.filter(f => f.format === '9v9' && f.issue).sort((a, b) => a.issue.number - b.issue.number);
@@ -35,7 +35,7 @@ const jsonLd = collectionStructuredData(model.site, published);
     <div class="page-head__text">
       <p class="ed-kicker">Format · U12 and U13</p>
       <h1>9v9 formations</h1>
-      <p class="ed-stand">Each 9v9 formation is a complete issue: a starting shape, four playing principles, a job for every position and how the team plays together. There's no single correct formation; each one is a starting point that adapts to your players.</p>
+      <p class="ed-stand">Each 9v9 formation is a complete guide: a starting shape, four playing principles, a job for every position and how the team plays together. There's no single correct formation; each one is a starting point that adapts to your players.</p>
     </div>
     <div class="page-head__aside">
       <dl class="glance" aria-label="9v9 at a glance">{glance.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
@@ -47,31 +47,31 @@ const jsonLd = collectionStructuredData(model.site, published);
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
       <div class="ed-grid"><div class="ed-sh"><p class="ed-label">9v9 · {issueLabel(f)} · Published</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Four principles · {f.roles.length} positions</span></div></div>
       <TeamSheet f={f} third="rules" />
-      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Open {issueLabel(f)}: the {f.name} →</a></p></div>
+      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Explore the {f.name} guide →</a></p></div>
     </section>
   ))}
   {published.length === 0 && (
-    <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 issue is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="#moving-up">what changes at nine a side</a> is below.</p></div>
+    <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 guide is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="#moving-up">what changes at nine a side</a> is below.</p></div>
   )}
 
-  <section class="ed-section" aria-labelledby="h-next">
+  {preparing.length > 0 && <section class="ed-section" aria-labelledby="h-next">
     <div class="ed-grid split">
       <div class="shelf">
         <p class="ed-kicker">In preparation</p>
-        <h2 class="ed-h2" id="h-next" style="margin-top:12px">Coming issues</h2>
-        <p class="ed-lede">We publish an issue only after its coaching review is recorded, so these aren't available yet.</p>
+        <h2 class="ed-h2" id="h-next" style="margin-top:12px">Coming guides</h2>
+        <p class="ed-lede">We publish a formation guide only after its coaching review is recorded, so these aren't available yet.</p>
         <p class="ed-small" style="color:var(--hwp-text-secondary)">{ex.fact}. Ours are one way among several.</p>
       </div>
       <div class="shelf__side">
-        <ol class="issue-list" aria-label="9v9 issues in preparation">
+        <ol class="issue-list" aria-label="9v9 formation guides in preparation">
           {preparing.map(f => {
-            const inner = <><b>{pad2(f.issue.number)}</b><span><strong>The {f.name}</strong><em>{f.register.content.exploratory ? 'Exploratory · in preparation' : 'In preparation'}</em></span></>;
+            const inner = <><b>{f.format}</b><span><strong>The {f.name}</strong><em>{f.register.content.exploratory ? 'Exploratory · in preparation' : 'In preparation'}</em></span></>;
             return <li>{preview && f.gate.allowed ? <a href={`/formations/9v9/${f.slug}/`}>{inner}</a> : <div>{inner}</div>}</li>;
           })}
         </ol>
       </div>
     </div>
-  </section>
+  </section>}
 
   <div class="ed-section" id="moving-up">
     <Scoreboard ids={[...byGroup('game'), ...byGroup('rules'), ...byGroup('competition')]} kicker="Moving up from 7v7" title="What changes at nine a side" id="score" from="7v7" to="9v9">
@@ -86,7 +86,7 @@ const jsonLd = collectionStructuredData(model.site, published);
       <Facts ids={['subs', 'playing-time', 'positions', 'smaller-formats']} />
     </div>
     <div class="split__side">
-      <p class="ed-small">The formation issues above are one way to start at nine a side. {ex.fact}.</p>
+      <p class="ed-small">The formation guides above are one way to start at nine a side. {ex.fact}.</p>
     </div>
   </section>
 
