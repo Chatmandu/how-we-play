@@ -10,9 +10,9 @@
   "scripts": {
     "sync": "node scripts/sync-assets.mjs",
     "validate": "node scripts/validate-content.mjs",
-    "predev": "npm run sync",
+    "predev": "npm run sync && node scripts/og/generate.mjs",
     "dev": "HWP_TARGET=local astro dev",
-    "prebuild": "npm run sync && npm run validate",
+    "prebuild": "npm run sync && npm run validate && node scripts/og/generate.mjs",
     "build": "astro build && node scripts/check-build.mjs dist",
     "build:public": "HWP_TARGET=public npm run build",
     "build:preview": "HWP_TARGET=preview npm run build",
@@ -25,10 +25,12 @@
     "deploy": "wrangler deploy",
     "deploy:preview": "wrangler versions upload",
     "review": "node scripts/review.mjs status",
-    "review:register": "node scripts/review.mjs register"
+    "review:register": "node scripts/review.mjs register",
+    "og:pages": "node scripts/og/generate.mjs"
   },
   "dependencies": {
-    "astro": "7.3.8"
+    "astro": "7.3.8",
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "wrangler": "^4.151.2"
