@@ -49,6 +49,7 @@ const jsonLd = siteIdentity(site);
           {f.issue.chapters.map(c => <li><b>Chapter {c.n}</b><strong>{c.title}</strong><span>{c.preview}</span></li>)}
         </ol>
         <div class="issue-feature__cta"><a class="ed-btn" href={url(f)}>Explore the {f.name} playbook →</a><div class="ed-chips" set:html={statusChips(f.register)} /></div>
+        {f.format === '9v9' && f.slug === '3-1-3-1' && <p class="ed-small">Prefer a printed copy? <a href={`${url(f)}#playbook`}>Download the free A4 guide or compact booklet</a>.</p>}
       </div>
     </section>
   )}

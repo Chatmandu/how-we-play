@@ -128,8 +128,21 @@ const contents = full ? [
         <section class="ed-section chapter ed-grid" id="playbook" aria-labelledby="pb-h">
           <div class="chapter__head"><p class="chapter__n">The playbook</p><h2 class="chapter__t" id="pb-h">Printable {f.name} playbook</h2></div>
           <div class="chapter__side ed-download">
-            <p class="ed-lede">A printable edition of this formation guide to share with players and parents, built from the same content as these pages. Free, no email, no payment. It isn't released yet.</p>
-            <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+            {f.slug === '3-1-3-1' ? (
+              <>
+                <p class="ed-lede">Take the formation guide to training or matchday. Both downloads are free, with no email or payment required.</p>
+                <div class="ed-download__links" aria-label="Choose a printable guide">
+                  <a class="ed-btn" href="/downloads/How-We-Play-Football-3-1-3-1-A4.pdf" download>Download A4 guide (PDF) <span aria-hidden="true">↓</span></a>
+                  <a class="ed-btn" href="/downloads/How-We-Play-Football-3-1-3-1-A5.pdf" download>Download compact booklet (PDF) <span aria-hidden="true">↓</span></a>
+                </div>
+                <p class="ed-small">A4: 24-page guide (2.9 MB). Compact booklet: 20 pages arranged as ten two-page spreads (1.9 MB). The compact file uses US Letter landscape sheets, not individual A5 pages.</p>
+              </>
+            ) : (
+              <>
+                <p class="ed-lede">A printable edition of this formation guide to share with players and parents, built from the same content as these pages. Free, no email, no payment. It isn't released yet.</p>
+                <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+              </>
+            )}
             <p class="ed-small" style="color:var(--hwp-text-secondary)">More features for this formation, such as restarts and matchday guidance, will be added only once they've been written and reviewed.</p>
           </div>
         </section>

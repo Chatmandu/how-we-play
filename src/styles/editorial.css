@@ -425,6 +425,9 @@
 
 /* Download note on the guide */
 .ed-download { display: grid; gap: 10px; justify-items: start; }
+.ed-download__links { display: flex; flex-wrap: wrap; gap: 12px; }
+.ed-download__links .ed-btn { max-width: 100%; text-align: left; line-height: 1.25; padding-block: 12px; }
+.ed-download__links .ed-btn span { margin-left: auto; }
 
 @media print {
   .mast__nav, .mast__menu, .lf__steps, .lf__tools details, .foot__nav, .foot__social { display: none !important; }
