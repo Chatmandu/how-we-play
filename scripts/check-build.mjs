@@ -19,6 +19,7 @@ import { join, relative, dirname } from 'node:path';
 import { loadModel, ROOT } from './load-content.mjs';
 import { resolveTarget } from '../src/lib/model.mjs';
 import { sitemapLastmod, issueFeedXml, escapeXml } from '../src/lib/seo.mjs';
+import { socialImageForRoute, DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-images.mjs';
 
 const target = resolveTarget(process.env);
 const dist = join(ROOT, process.argv[2] || 'dist');
@@ -176,9 +177,11 @@ for (const file of pages) {
 // Generated files
 const site = model.site.url;
 if (target === 'public') {
-  writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.sort().map(r => {
+  writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${indexable.sort().map(r => {
     const modified = sitemapLastmod(r, model);
-    return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}</url>`;
+    const preview = socialImageForRoute(r, model).image;
+    const imageTag = preview !== DEFAULT_SOCIAL_IMAGE ? `<image:image><image:loc>${escapeXml(site + preview)}</image:loc></image:image>` : '';
+    return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}${imageTag}</url>`;
   }).join('\n')}\n</urlset>\n`);
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
   writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
