@@ -144,3 +144,40 @@ Create a simple baseline now and annotate major content releases in analytics. A
 4. Broken-link, metadata and sitemap tests run for every PR and production build.
 5. Review which pages Google actually indexes and improve their usefulness before publishing more pages.
 6. There is **no guarantee** that any crawler, AI service or search engine will index, cite or rank How We Play. Our standard is to publish the clearest, most accurate resource we can make.
+
+## 23 October 2026 · Branded images, formations and AI/search QA
+
+This implementation retains the existing stable formation URLs, coaching sign-off and Mailchimp integration while improving the content users and crawlers actually see.
+
+### Public-facing editorial information
+
+- The homepage explicitly features the reviewed **9v9 3-1-3-1** guide, independently of publication recency. Other published formations follow as complete guides.
+- Formations are now presented as **formation guides** rather than confusing, repeated "Issue 01" and "Issue 02" labels across formats; internal issue ordering is preserved for editorial workflows.
+- Sitewide and homepage links use the verified Instagram, TikTok and YouTube URLs from `content/site.json`. Organization structured data already references these through `sameAs`.
+- **Mailchimp remains the email platform.** Newsletter actions, double opt-in and privacy information were not replaced with Substack.
+
+### Images and attribution
+
+- The SVG tactical renderer contains a compact How We Play vector mark and brand attribution **inside each actual tactical image**. This discourages casual unattributed reuse and survives screenshots and exports, but **is not copy protection**; it can be removed by someone deliberately editing the image.
+- Source logo's three-node geometry is used, and approved coaching diagrams are not modified.
+- `scripts/og/generate.mjs` derives **60 real 1200 × 630 PNG page previews** from the *approved public model* via the existing pitch renderer, using the brand palette. There are unique images for each published formation, principle, position, format hub, homepage and About page. No draft image is generated.
+- `src/layouts/Base.astro` serves route-specific `og:image`, size, alt, Twitter image, canonical, description and large-image-preview instructions.
+- Public `Article` and `WebPage` structured data references the matching route-specific `ImageObject`; `CollectionPage` and homepage `WebSite` also link to their corresponding images.
+- `sitemap.xml` includes `image:image` entries for indexable routes with a unique, relevant preview. These URLs are generated from the same approved routing model, not maintained by hand.
+- The generic OG image remains as a fallback for non-coaching pages such as Privacy and the 404. A fallback image is valid when there is no editorially specific visual. The Google requirement is **not** that every page must have a different image; relevance helps when an image genuinely adds value.
+
+### Automated assurance
+
+`scripts/test-seo.mjs` checks for unique publication-gated imagery and matching schema image URLs. `scripts/check-build.mjs` verifies actual PNG files and dimensions, matching Twitter metadata, branded tactical figures and social links, and refuses coaching pages using the generic OG image. Both preview and public builds are checked.
+
+### What remains to verify beyond the repository
+
+1. Google Search Console: domain ownership, sitemap submission, index coverage, real impressions/clicks, any selected-canonical conflicts and genuine AI referral signals where available.
+2. Bing Webmaster Tools: verification, sitemap, crawl and indexing details. Consider IndexNow or Cloudflare Crawler Hints only if supported and verified.
+3. Independent production HTTP verification of `robots.txt`, `sitemap.xml`, image URLs, canonical redirects, HTTP response headers and real screenshots on mobile.
+4. PageSpeed Insights/Core Web Vitals: prioritise any real reported LCP, CLS or INP issues. 60 PNG images add build output size; test on mobile, even if they are only loaded on social preview requests.
+5. `VideoObject` structured data for the *existing* 3-1-3-1 YouTube explainer could become useful, but do **not** invent the video's upload date or thumbnail; verify these from the real YouTube video first.
+6. Image-specific discovery: if needed, create a dedicated diagram-only or format-specific 16:9 and 1:1 image variant in addition to the current 1200 × 630 share cards. A text-forward social sharing preview is not necessarily the best image for Google Images. Do not add dimensions/claims until actual assets exist.
+7. Google and AI discovery **cannot be guaranteed** by markup. The public site has readable HTML, source links, authored/reviewed explanations, valid metadata and no AI-only material, which are the main controllable foundations.
+
+Google guidance: [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features), [Images best practices](https://developers.google.com/search/docs/appearance/google-images), [Image sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps). 
