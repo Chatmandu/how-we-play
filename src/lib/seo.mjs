@@ -27,6 +27,7 @@ export function siteIdentity(site) {
       name,
       url,
       description: site.description,
+      image: fullUrl(site, '/og/pages/home.png'),
       inLanguage: 'en-GB',
       publisher: { '@id': orgId(site) }
     },
@@ -150,6 +151,7 @@ export function collectionStructuredData(site, issues, format = '9v9') {
     name: `${format} football formations`,
     description: `Free formation guides for ${format} grassroots football, including playing principles and player responsibilities.`,
     inLanguage: 'en-GB',
+    image: { '@type': 'ImageObject', url: fullUrl(site, `/og/formats/${format}.png`), width: 1200, height: 630 },
     isPartOf: { '@id': homeId(site) },
     mainEntity: {
       '@type': 'ItemList',
