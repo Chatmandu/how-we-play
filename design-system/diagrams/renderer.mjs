@@ -143,6 +143,23 @@ export function renderPitch(d, opts = {}) {
   if (opts.labels !== false) (d.labels || []).forEach(l => out.push(lbl(l.x, l.y, l.t, S.label, '')));
   if (opts.pos) (d.pos || []).forEach(l => out.push(`<text x="${l.x}" y="${l.y}" font-size="${S.posLabel}" text-anchor="middle" ${A('hwp-pos', `fill="${c.label}"`)} font-family="var(--hwp-font-family-display, 'Big Shoulders Display', sans-serif)" font-weight="700" letter-spacing=".3">${esc(l.t)}</text>`));
   if (opts.notes !== false) (d.notes || []).forEach(n => out.push(lbl(n.x, n.y, String(n.t).toUpperCase(), S.note, 'hwp-lbl--note', n.a || 'start')));
+  // Baked into the actual SVG, not a CSS overlay that disappears in screenshots,
+  // exports, printed diagrams or motion-rendered frames. The mark is traced from
+  // the original hwp-mark-small.svg shape. Keep it below the tactical field.
+  if (opts.brand !== false) {
+    const y = crop[1] - 8;
+    out.push(`<g aria-hidden="true" data-hwp-watermark="howweplayfootball.com">
+      <rect x="2" y="${f2(y)}" width="57" height="7.1" rx="1" fill="#0E1A24" fill-opacity=".90"/>
+      <g transform="translate(5 ${f2(y + 0.4)}) scale(.155)" fill="none">
+        <g stroke="#F2EDE2" stroke-width="4.4" stroke-linecap="round"><path d="M20 8L7 29M20 8L33 29M7 29H33"/></g>
+        <circle cx="20" cy="8" r="7.4" fill="#F2EDE2"/>
+        <circle cx="7" cy="29" r="7.4" fill="#F2EDE2"/>
+        <circle cx="33" cy="29" r="7.4" fill="#F2EDE2"/>
+      </g>
+      <text x="13.5" y="${f2(y + 4.75)}" font-size="4.3" font-family="var(--hwp-font-family-display, 'Big Shoulders Display', sans-serif)" font-weight="900" letter-spacing=".1" fill="#F2EDE2">HOW WE PLAY</text>
+      <text x="37.5" y="${f2(y + 4.6)}" font-size="2.2" font-family="var(--hwp-font-family-sans, 'Schibsted Grotesk', sans-serif)" font-weight="700" fill="#F2EDE2">.COM</text>
+    </g>`);
+  }
   out.push('</svg>');
   return out.join('');
 }
