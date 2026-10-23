@@ -800,6 +800,11 @@
 .foot__nav { align-items: center; }
 .foot__cookie { background: none; border: 0; padding: 0; color: var(--hwp-color-paper); font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; min-height: 32px; }
 .foot__support { color: var(--hwp-color-space-yellow) !important; font-weight: 700; }
+/* Homepage's own social discovery links, alongside the site-wide footer links. */
+.home-social__links { display: grid; gap: 0; align-self: center; border-top: 1px solid var(--hwp-color-ink); }
+.home-social__links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 4px; border-bottom: 1px solid var(--hwp-color-rule); color: var(--hwp-color-ink); font: 800 clamp(20px, 3vw, 28px)/1 var(--hwp-font-family-display); text-transform: uppercase; text-decoration: none; }
+.home-social__links a:hover, .home-social__links a:focus-visible { color: var(--hwp-color-pitch-blue); text-decoration: underline; text-underline-offset: 4px; }
+
 .support { padding-top: var(--ed-s5); }
 .support__in { grid-column: 3 / span 7; border-top: 4px solid var(--hwp-color-ink); padding-top: 14px; display: grid; gap: 10px; }
 .support__h { margin: 0; font: 900 clamp(30px, 3.2vw, 42px)/.9 var(--ed-display); text-transform: uppercase; }
