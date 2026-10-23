@@ -56,6 +56,7 @@ const contents = full ? [
         <p class="ed-kicker">9v9 · {label} · Formation guide</p>
         <h1>The {f.name}</h1>
         <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
+        <p class="ed-small usa-issue-link">US youth soccer: 9v9 is generally U11–U12. <a href="/coaching-in-the-usa/">Find your age group →</a></p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
         <Byline f={f} />
