@@ -5,9 +5,15 @@ const k = model.site.support;
 ---
 <aside class="support ed-grid" aria-labelledby="support-h">
   <div class="support__in">
-    <h2 class="support__h" id="support-h">Found this useful?</h2>
-    <p>How We Play Football is an independent project sharing free football coaching guides and practical ideas from the grassroots touchline.</p>
-    <p>If something we've created has helped you or your team, you can buy me a coffee to support the next guide. No pressure. The standard resources are free for everyone.</p>
-    <p><a class="ed-go" href={k.kofi} rel="noopener" target="_blank" data-support="issue">Buy me a coffee<span class="hwp-sr-only"> on Ko-fi (opens in a new tab)</span> →</a></p>
+    <div class="support__copy">
+      <p class="support__eyebrow">Keep grassroots football free</p>
+      <h2 class="support__h" id="support-h">Found this useful?</h2>
+      <p>How We Play Football is an independent project sharing free football coaching guides and practical ideas from the grassroots touchline.</p>
+      <p>If something we've created has helped you or your team, you can buy me a coffee to support the next guide.</p>
+    </div>
+    <div class="support__action">
+      <a class="support__button" href={k.kofi} rel="noopener noreferrer" target="_blank" data-support="issue">Buy me a coffee <span aria-hidden="true">↗</span><span class="hwp-sr-only"> on Ko-fi (opens in a new tab)</span></a>
+      <p>No pressure. The standard resources are free for everyone.</p>
+    </div>
   </div>
 </aside>
