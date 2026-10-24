@@ -6,6 +6,7 @@ import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
 import Byline from '../../../../components/Byline.astro';
 import Support from '../../../../components/Support.astro';
+import IssueVideo from '../../../../components/IssueVideo.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
@@ -27,6 +28,7 @@ const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, 
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
 const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
+const explainer = f.slug === '2-3-1' && full ? { youtubeId: 's_ENKf0Sb1E', label: '7v7 · 2-3-1 · Full video explainer' } : null;
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
@@ -39,6 +41,7 @@ const description = full
   : `${f.sourceLabel} of a ${f.notation} guide for 7v7. Private preview, not reviewed.`;
 const jsonLd = issueStructuredData(model.site, f);
 const contents = full ? [
+  ...(explainer ? [{ href: '#watch', n: 'Watch', t: 'The full formation explainer' }] : []),
   ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })), 
   ...(f.issue.features && f.issue.features.length ? [{ href: '#features', n: 'Features', t: 'More from this issue' }] : []),
   { href: '#playbook', n: 'Playbook', t: 'The printable edition' }
@@ -66,6 +69,7 @@ const contents = full ? [
 
     {full ? (
       <>
+        {explainer && <IssueVideo youtubeId={explainer.youtubeId} formation={f.name} shape={f.shape} format="7v7" principles={f.rules.map(r => r.title)} label={explainer.label} />}
         <section class="ed-section chapter ed-grid" id="shape" aria-labelledby="c1-h">
           <div class="chapter__head"><p class="chapter__n">Chapter 1</p><h2 class="chapter__t" id="c1-h">{chap('shape').title}</h2><p class="ed-small">{chap('shape').dek}</p></div>
           <figure class="sheet__pitch on-pitch chapter__fig">
