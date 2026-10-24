@@ -9,11 +9,13 @@ interface Props {
   formation: string;
   shape: any;
   label?: string;
+  format?: string;
+  principles?: string[];
 }
-const { youtubeId, formation, shape, label = '9v9 · Formation video' } = Astro.props;
+const { youtubeId, formation, shape, format = '9v9', principles = ['Middle first', 'One goes, one stays', 'Far side in', 'Show them wide, then go'], label = `${format} · Formation video` } = Astro.props;
 if (!/^[a-zA-Z0-9_-]{11}$/.test(youtubeId)) throw new Error('IssueVideo: invalid YouTube ID');
 
-const videoTitle = `How to play the ${formation} formation in 9v9 football`;
+const videoTitle = `How to play the ${formation} formation in ${format} football`;
 const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
 const posterSvg = renderPitch(
   { ...shape, title: `${formation} starting shape`, altSummary: shape.altSummary || shape.alt },
@@ -31,7 +33,7 @@ const posterSvg = renderPitch(
     <button class="issue-video__launch" type="button" data-youtube-play aria-label={`Play video: ${videoTitle}. This will load an embedded YouTube player.`}>
       <span class="issue-video__poster" aria-hidden="true">
         <span class="issue-video__poster-copy">
-          <span class="issue-video__poster-eyebrow">9V9 · HOW WE PLAY FOOTBALL</span>
+          <span class="issue-video__poster-eyebrow">{format.toUpperCase()} · HOW WE PLAY FOOTBALL</span>
           <span class="issue-video__poster-number">{formation}</span>
           <span class="issue-video__poster-explained">EXPLAINED</span>
           <span class="issue-video__poster-footer">FOUR SIMPLE PLAYING PRINCIPLES</span>
@@ -44,7 +46,7 @@ const posterSvg = renderPitch(
   </div>
 
   <div class="issue-video__below">
-    <p>In this video: <a href="#principles">Middle first · One goes, one stays · Far side in · Show them wide, then go</a>.</p>
+    <p>In this video: <a href="#principles">{principles.join(' · ')}</a>.</p>
     <p class="issue-video__note">The video player loads only when you press Play. Playing connects you to YouTube. <a href={watchUrl} rel="noopener noreferrer" target="_blank">Watch directly on YouTube <span class="hwp-sr-only">(opens in a new tab)</span> ↗</a> · <a href="/privacy/#video">Video privacy</a></p>
   </div>
 </section>
