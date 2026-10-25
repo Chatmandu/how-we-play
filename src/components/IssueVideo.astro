@@ -1,0 +1,256 @@
+---
+/* An editorial, click-to-play explainer. Nothing is fetched from YouTube until
+ * someone selects Play; the initial poster uses the formation's approved SVG.
+ * Reusable for later complete issues with separate video IDs. */
+import { renderPitch } from '../lib/ui.mjs';
+
+interface Props {
+  youtubeId: string;
+  formation: string;
+  shape: any;
+  label?: string;
+  format?: string;
+  principles?: string[];
+}
+const { youtubeId, formation, shape, format = '9v9', principles = ['Middle first', 'One goes, one stays', 'Far side in', 'Show them wide, then go'], label = `${format} · Formation video` } = Astro.props;
+if (!/^[a-zA-Z0-9_-]{11}$/.test(youtubeId)) throw new Error('IssueVideo: invalid YouTube ID');
+
+const videoTitle = `How to play the ${formation} formation in ${format} football`;
+const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
+const posterSvg = renderPitch(
+  { ...shape, title: `${formation} starting shape`, altSummary: shape.altSummary || shape.alt },
+  { theme: 'blue', title: `${formation} starting shape`, desc: shape.altSummary || shape.caption }
+);
+---
+<section class="issue-video ed-grid" id="watch" aria-labelledby="issue-video-heading">
+  <div class="issue-video__heading">
+    <p class="ed-kicker">{label}</p>
+    <h2 id="issue-video-heading">Watch the {formation} explained.</h2>
+    <p class="issue-video__lead">A full animated introduction to the starting shape, player responsibilities and our four playing principles. Watch first, then explore the tactics and positions in the guide below.</p>
+  </div>
+
+  <div class="issue-video__frame" data-youtube-embed data-youtube-id={youtubeId} data-youtube-title={videoTitle}>
+    <button class="issue-video__launch" type="button" data-youtube-play aria-label={`Play video: ${videoTitle}. This will load an embedded YouTube player.`}>
+      <span class="issue-video__poster" aria-hidden="true">
+        <span class="issue-video__poster-copy">
+          <span class="issue-video__poster-eyebrow">{format.toUpperCase()} · HOW WE PLAY FOOTBALL</span>
+          <span class="issue-video__poster-number">{formation}</span>
+          <span class="issue-video__poster-explained">EXPLAINED</span>
+          <span class="issue-video__poster-footer">FOUR SIMPLE PLAYING PRINCIPLES</span>
+        </span>
+        <span class="issue-video__poster-pitch" set:html={posterSvg}/>
+      </span>
+      <span class="issue-video__play-icon" aria-hidden="true"><span></span></span>
+      <span class="issue-video__play-label">Play the full explainer</span>
+    </button>
+  </div>
+
+  <div class="issue-video__below">
+    <p>In this video: <a href="#principles">{principles.join(' · ')}</a>.</p>
+    <p class="issue-video__note">The video player loads only when you press Play. Playing connects you to YouTube. <a href={watchUrl} rel="noopener noreferrer" target="_blank">Watch directly on YouTube <span class="hwp-sr-only">(opens in a new tab)</span> ↗</a> · <a href="/privacy/#video">Video privacy</a></p>
+  </div>
+</section>
+
+<style>
+  .issue-video {
+    border-top: 5px solid var(--hwp-color-ink);
+    border-bottom: 1px solid var(--hwp-color-rule);
+    padding-block: clamp(28px, 5vw, 62px) clamp(30px, 5vw, 60px);
+    row-gap: 24px;
+  }
+  .issue-video__heading, .issue-video__below {
+    grid-column: 2 / -2;
+    min-width: 0;
+    width: 100%;
+    max-width: 1040px;
+    justify-self: center;
+  }
+  .issue-video__heading h2 {
+    font: 900 clamp(42px, 7vw, 80px)/.94 var(--hwp-font-family-display);
+    text-transform: uppercase;
+    margin: 8px 0 14px;
+  }
+  .issue-video__lead {
+    font: 400 clamp(16px, 1.5vw, 19px)/1.55 var(--hwp-font-family-sans);
+    max-width: 63ch;
+    margin: 0;
+  }
+  .issue-video__frame {
+    grid-column: 2 / -2;
+    justify-self: center;
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    aspect-ratio: 16 / 9;
+    background: var(--hwp-color-ink);
+    overflow: hidden;
+  }
+  .issue-video__frame :global(iframe) {
+    border: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .issue-video__launch {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--hwp-color-paper);
+    color: var(--hwp-color-ink);
+    cursor: pointer;
+    text-align: left;
+  }
+  .issue-video__launch:focus-visible {
+    outline: 4px solid var(--hwp-color-space-yellow);
+    outline-offset: -6px;
+    z-index: 2;
+  }
+  .issue-video__poster {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .issue-video__poster-copy {
+    background: var(--hwp-color-paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(16px, 3.7vw, 48px);
+    min-width: 0;
+    z-index: 1;
+  }
+  .issue-video__poster-eyebrow {
+    font: 800 clamp(10px, 1.25vw, 15px)/1 var(--hwp-font-family-display);
+    letter-spacing: .15em;
+    white-space: nowrap;
+  }
+  .issue-video__poster-number {
+    font: 900 clamp(66px, 12vw, 150px)/.82 var(--hwp-font-family-display);
+    letter-spacing: -.02em;
+    margin-top: clamp(16px, 3vw, 40px);
+    white-space: nowrap;
+  }
+  .issue-video__poster-explained {
+    font: 900 clamp(36px, 7.2vw, 90px)/.92 var(--hwp-font-family-display);
+    margin-top: 9px;
+  }
+  .issue-video__poster-footer {
+    font: 800 clamp(11px, 1.5vw, 19px)/1 var(--hwp-font-family-display);
+    letter-spacing: .07em;
+    margin-top: auto;
+  }
+  .issue-video__poster-pitch {
+    background: var(--hwp-color-pitch-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    overflow: hidden;
+    padding: 4% 10%;
+  }
+  .issue-video__poster-pitch :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+  .issue-video__play-icon {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: clamp(48px, 8vw, 92px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--hwp-color-space-yellow);
+    border: 3px solid var(--hwp-color-ink);
+    transition: transform .2s ease, background .2s ease;
+    box-shadow: 0 4px 20px #0e1a2466;
+  }
+  .issue-video__play-icon > span {
+    width: 0; height: 0;
+    border-top: clamp(9px, 1.5vw, 18px) solid transparent;
+    border-bottom: clamp(9px, 1.5vw, 18px) solid transparent;
+    border-left: clamp(15px, 2.3vw, 28px) solid var(--hwp-color-ink);
+    margin-left: 5px;
+  }
+  .issue-video__launch:hover .issue-video__play-icon {
+    transform: translate(-50%, -50%) scale(1.09);
+    background: #fff;
+  }
+  .issue-video__play-label {
+    position: absolute;
+    z-index: 2;
+    bottom: clamp(7px, 2vw, 24px);
+    right: clamp(9px, 2vw, 24px);
+    font: 800 clamp(11px, 1.5vw, 17px)/1 var(--hwp-font-family-display);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    background: var(--hwp-color-ink);
+    color: var(--hwp-color-paper);
+    padding: 11px 13px;
+  }
+  .issue-video__below {
+    display: grid;
+    gap: 8px;
+    font: 400 15px/1.55 var(--hwp-font-family-sans);
+  }
+  .issue-video__below p { margin: 0; }
+  .issue-video__note { color: var(--hwp-text-secondary); }
+  .issue-video__below a { text-underline-offset: 3px; }
+  @media (max-width: 899px) {
+    .issue-video__heading, .issue-video__frame, .issue-video__below { grid-column: 1 / -1; }
+    .issue-video__poster-number { font-size: clamp(46px, 10vw, 88px); }
+    .issue-video__poster-explained { font-size: clamp(26px, 6vw, 56px); }
+    .issue-video__poster-eyebrow { font-size: clamp(8px, 1.4vw, 12px); }
+    .issue-video__poster-footer { font-size: clamp(9px, 1.2vw, 14px); }
+  }
+  @media (max-width: 500px) {
+    .issue-video__poster-copy { padding: 12px; }
+    .issue-video__poster-number { font-size: clamp(38px, 11vw, 55px); margin-top: 13px; }
+    .issue-video__poster-explained { font-size: clamp(23px, 6.3vw, 33px); margin-top: 4px; }
+    .issue-video__poster-eyebrow { font-size: 8px; letter-spacing: .07em; }
+    .issue-video__poster-footer { font-size: 8px; letter-spacing: .01em; }
+    .issue-video__play-label { font-size: 9px; padding: 8px; right: 8px; bottom: 8px; }
+    .issue-video__poster-pitch { padding: 4%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .issue-video__play-icon { transition: none; }
+  }
+  @media print {
+    .issue-video__launch { position: relative; min-height: 200px; }
+    .issue-video__play-icon { display: none; }
+  }
+</style>
+
+<script>
+  // No player, thumbnails or cookies are requested from YouTube before activation.
+  document.querySelectorAll<HTMLElement>('[data-youtube-embed]').forEach(root => {
+    const trigger = root.querySelector<HTMLButtonElement>('[data-youtube-play]');
+    if (!trigger) return;
+    trigger.addEventListener('click', () => {
+      const id = root.dataset.youtubeId || '';
+      if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) return;
+      const frame = document.createElement('iframe');
+      frame.title = root.dataset.youtubeTitle || 'How We Play Football coaching video';
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('allowfullscreen', '');
+      root.replaceChildren(frame);
+      frame.focus();
+    });
+  });
+</script>
