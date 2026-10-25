@@ -6,6 +6,7 @@ import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
 import Byline from '../../../../components/Byline.astro';
 import Support from '../../../../components/Support.astro';
+import IssueVideo from '../../../../components/IssueVideo.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
@@ -17,6 +18,8 @@ export function getStaticPaths() {
 const f = model.formation(Astro.props.slug);
 const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
 const base = `/formations/7v7/${f.slug}/`;
+const printGuideBase = `/downloads/How-We-Play-Football-7v7-${f.slug}`;
+const printGuideAvailable = ['2-3-1', '3-2-1'].includes(f.slug);
 const full = Array.isArray(f.roles) && f.issue && f.issue.chapters;
 const reviewerNotes = model.target !== 'public';
 const chap = id => full ? f.issue.chapters.find(c => c.id === id) : null;
@@ -27,6 +30,7 @@ const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, 
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
 const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
+const explainer = f.slug === '2-3-1' && full ? { youtubeId: 's_ENKf0Sb1E', label: '7v7 · 2-3-1 · Full video explainer' } : null;
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
@@ -39,6 +43,7 @@ const description = full
   : `${f.sourceLabel} of a ${f.notation} guide for 7v7. Private preview, not reviewed.`;
 const jsonLd = issueStructuredData(model.site, f);
 const contents = full ? [
+  ...(explainer ? [{ href: '#watch', n: 'Watch', t: 'The full formation explainer' }] : []),
   ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })), 
   ...(f.issue.features && f.issue.features.length ? [{ href: '#features', n: 'Features', t: 'More from this issue' }] : []),
   { href: '#playbook', n: 'Playbook', t: 'The printable edition' }
@@ -51,6 +56,7 @@ const contents = full ? [
         <p class="ed-kicker">7v7 · {label} · Formation guide</p>
         <h1>The {f.name}</h1>
         <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
+        <p class="ed-small usa-issue-link">US youth soccer: 7v7 is generally U9–U10. <a href="/coaching-in-the-usa/">Find your age group →</a></p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
         <Byline f={f} />
@@ -65,6 +71,7 @@ const contents = full ? [
 
     {full ? (
       <>
+        {explainer && <IssueVideo youtubeId={explainer.youtubeId} formation={f.name} shape={f.shape} format="7v7" principles={f.rules.map(r => r.title)} label={explainer.label} />}
         <section class="ed-section chapter ed-grid" id="shape" aria-labelledby="c1-h">
           <div class="chapter__head"><p class="chapter__n">Chapter 1</p><h2 class="chapter__t" id="c1-h">{chap('shape').title}</h2><p class="ed-small">{chap('shape').dek}</p></div>
           <figure class="sheet__pitch on-pitch chapter__fig">
@@ -122,8 +129,19 @@ const contents = full ? [
         <section class="ed-section chapter ed-grid" id="playbook" aria-labelledby="pb-h">
           <div class="chapter__head"><p class="chapter__n">The playbook</p><h2 class="chapter__t" id="pb-h">Printable {f.name} playbook</h2></div>
           <div class="chapter__side ed-download">
-            <p class="ed-lede">A printable edition of this formation guide to share with players and parents, built from the same content as these pages. Free, no email, no payment. It isn't released yet.</p>
-            <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+            {printGuideAvailable ? (
+              <>
+                <p class="ed-lede">Download the full formation guide for free, to use at training or share with players and parents. No email or payment required.</p>
+                <div class="ed-download__links" aria-label="Choose a printable guide">
+                  <a class="ed-btn" href={`${printGuideBase}-A4-Coach-Guide.pdf`} download>Download A4 coach's guide (PDF) <span aria-hidden="true">↓</span></a>
+                  <a class="ed-btn" href={`${printGuideBase}-A5-Pitchside-Booklet.pdf`} download>Download A5 pitchside booklet (PDF) <span aria-hidden="true">↓</span></a>
+                  <a class="ed-btn" href={`${printGuideBase}-A5-Booklet-A4-Print-Sheets.pdf`} download>Print your own A5 booklet (PDF) <span aria-hidden="true">↓</span></a>
+                </div>
+                <p class="ed-small">The A4 guide is for reading or home printing. The A5 booklet is in reading order for phones and tablets. To make a folded A5 booklet at home, download the print sheets and print double-sided on A4 landscape paper, flipping on the short edge at 100% size, then fold and staple.</p>
+              </>
+            ) : (
+              <p class="ed-lede">The printable guide isn't released yet.</p>
+            )}
             <p class="ed-small" style="color:var(--hwp-text-secondary)">More features for this formation, such as restarts and matchday guidance, will be added only once they've been written and reviewed.</p>
           </div>
         </section>

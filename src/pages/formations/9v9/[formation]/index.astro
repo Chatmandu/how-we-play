@@ -18,6 +18,8 @@ export function getStaticPaths() {
 const f = model.formation(Astro.props.slug);
 const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
 const base = `/formations/9v9/${f.slug}/`;
+const printGuideBase = `/downloads/How-We-Play-Football-9v9-${f.slug}`;
+const printGuideAvailable = ['3-3-2', '2-2-3-1'].includes(f.slug);
 const full = Array.isArray(f.roles) && f.issue && f.issue.chapters;
 const reviewerNotes = model.target !== 'public';
 const chap = id => full ? f.issue.chapters.find(c => c.id === id) : null;
@@ -56,6 +58,7 @@ const contents = full ? [
         <p class="ed-kicker">9v9 · {label} · Formation guide</p>
         <h1>The {f.name}</h1>
         <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
+        <p class="ed-small usa-issue-link">US youth soccer: 9v9 is generally U11–U12. <a href="/coaching-in-the-usa/">Find your age group →</a></p>
         <div class="ed-chips" set:html={statusChips(f.register)} />
         {exploratory && <Fragment set:html={exploratoryStrip()} />}
         <Byline f={f} />
@@ -137,11 +140,18 @@ const contents = full ? [
                 </div>
                 <p class="ed-small">A4: 24-page guide (2.9 MB). Compact booklet: 20 pages arranged as ten two-page spreads (1.9 MB). The compact file uses US Letter landscape sheets, not individual A5 pages.</p>
               </>
-            ) : (
+            ) : printGuideAvailable ? (
               <>
-                <p class="ed-lede">A printable edition of this formation guide to share with players and parents, built from the same content as these pages. Free, no email, no payment. It isn't released yet.</p>
-                <Fragment set:html={button({ label: 'PDF not yet released', variant: 'secondary', iconName: 'download', attrs: 'aria-disabled="true" disabled' })} />
+                <p class="ed-lede">Download the full formation guide for free, to use at training or share with players and parents. No email or payment required.</p>
+                <div class="ed-download__links" aria-label="Choose a printable guide">
+                  <a class="ed-btn" href={`${printGuideBase}-A4-Coach-Guide.pdf`} download>Download A4 coach's guide (PDF) <span aria-hidden="true">↓</span></a>
+                  <a class="ed-btn" href={`${printGuideBase}-A5-Pitchside-Booklet.pdf`} download>Download A5 pitchside booklet (PDF) <span aria-hidden="true">↓</span></a>
+                  <a class="ed-btn" href={`${printGuideBase}-A5-Booklet-A4-Print-Sheets.pdf`} download>Print your own A5 booklet (PDF) <span aria-hidden="true">↓</span></a>
+                </div>
+                <p class="ed-small">The A4 guide is for reading or home printing. The A5 booklet is in reading order for phones and tablets. To make a folded A5 booklet at home, download the print sheets and print double-sided on A4 landscape paper, flipping on the short edge at 100% size, then fold and staple.</p>
               </>
+            ) : (
+              <p class="ed-lede">The printable guide isn't released yet.</p>
             )}
             <p class="ed-small" style="color:var(--hwp-text-secondary)">More features for this formation, such as restarts and matchday guidance, will be added only once they've been written and reviewed.</p>
           </div>
