@@ -1,0 +1,19 @@
+---
+/* Authorship and review line for guides, lessons and positions. The review sentence appears only when the
+ * register holds a review of this formation's current content version AND the reviewer's profile may be
+ * shown in this build. Otherwise the line says plainly that the guide is awaiting review. */
+import model from '../lib/content.mjs';
+import { longDate } from '../lib/ui.mjs';
+import { reviewRecord, REVIEWER, reviewerVisible } from '../lib/editorial.mjs';
+interface Props { f: any; }
+const { f } = Astro.props;
+const site = model.site;
+const rec = reviewRecord(f.register);
+const named = rec && rec.by === REVIEWER.name && reviewerVisible(model);
+---
+<p class="byline-block">
+  <span>Written by <a href="/about/">{site.author.name}</a>, {site.author.role.charAt(0).toLowerCase() + site.author.role.slice(1)}.</span>
+  {rec
+    ? <span>Coaching reviewed by {named ? <a href={REVIEWER.href}>{rec.by}</a> : rec.by} on {longDate(rec.on)}.</span>
+    : <span class="byline-block__await">Awaiting coaching review. Not yet published.</span>}
+</p>

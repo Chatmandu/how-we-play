@@ -1,0 +1,9 @@
+---
+interface Link { href: string; over: string; title: string }
+interface Props { prev?: Link; next?: Link; label: string }
+const { prev, next, label } = Astro.props;
+---
+<nav class="pager" aria-label={label}>
+  {prev ? <a href={prev.href}><small>← {prev.over}</small><b>{prev.title}</b></a> : <span></span>}
+  {next ? <a href={next.href}><small>{next.over} →</small><b>{next.title}</b></a> : <span></span>}
+</nav>

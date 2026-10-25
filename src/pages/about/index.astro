@@ -1,0 +1,164 @@
+---
+/* About: an editorial feature in Niall Walsh's own words (copy supplied 20 October 2026, lightly edited for
+ * rhythm only). The reviewer profile is a separate register item that stays
+ * out of public builds until each is confirmed. Coaching review, authorship and official-rule checks are
+ * described as three separate things, because they are. */
+import Base from '../../layouts/Base.astro';
+import Gated from '../../components/Gated.astro';
+import model from '../../lib/content.mjs';
+import { longDate } from '../../lib/ui.mjs';
+import { REVIEWER, reviewerVisible } from '../../lib/editorial.mjs';
+
+const site = model.site;
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
+const showReviewer = reviewerVisible(model);
+const f = model.formation('3-1-3-1');
+const chip = (k, t) => `<span class="hwp-chip hwp-chip--${k}">${t}</span>`;
+const checkedOn = longDate(model.fact('pitch').checkedOn);
+const labels = [
+  [chip('verified', `Official rule verified · ${checkedOn}`), 'An official competition rule, checked against England Football, with the date and a link to the source. Rechecked each season.'],
+  [chip('reviewed', '✓ Coaching reviewed · date'), 'Our coaching reviewer has reviewed and approved this specific guidance. His name, the date and the version he saw are recorded.'],
+  [chip('review', 'Coaching review required'), 'Written and waiting for review. Not published.'],
+  [chip('draft', 'Draft'), 'Work in progress. Not published.']
+];
+const person = { '@type': 'Person', '@id': site.url + '/about/#niall-walsh', name: site.author.name, jobTitle: site.author.role, url: site.url + '/about/', worksFor: { '@type': 'Organization', name: site.name, url: site.url + '/' } };
+const reviewerPerson = { '@type': 'Person', '@id': site.url + '/about/#david-wilson', name: REVIEWER.name, jobTitle: 'Coaching reviewer, How We Play Football', hasCredential: [{ '@type': 'EducationalOccupationalCredential', name: 'UEFA B Licence' }, { '@type': 'EducationalOccupationalCredential', name: 'PGCE' }, { '@type': 'EducationalOccupationalCredential', name: 'BA (Hons)' }], url: site.url + REVIEWER.href };
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About How We Play Football', url: site.url + '/about/', inLanguage: 'en-GB', mainEntity: person,
+    about: { '@type': 'Organization', name: site.name, url: site.url + '/', founder: { '@id': person['@id'] }, sameAs: Object.values(site.social).map(s => s.url) } },
+  ...(showReviewer && model.target === 'public' ? [{ '@context': 'https://schema.org', ...reviewerPerson }] : [])
+];
+---
+<Base title="About | Grassroots football coaching guides | How We Play Football" description="Meet the grassroots coach behind How We Play Football, our coaching reviewer, and why we create free formation guides, tactical diagrams and practical football coaching advice." ids={['about']} nav="about" crumbs={crumbs} jsonLd={jsonLd} ogType="profile" editorial meta={{ type: 'about', group: 'About' }}>
+  <article class="about" aria-labelledby="about-h">
+    <header class="about-open ed-grid">
+      <div class="about-open__text">
+        <p class="ed-kicker">About How We Play Football · Niall Walsh</p>
+        <h1 id="about-h">I volunteered for a few months. Seven years later, I'm still coaching.</h1>
+        <p class="ed-stand">How We Play Football grew out of seven seasons of coaching notes. This is why it exists, and how we decide what's ready to publish.</p>
+        <p class="byline">By <strong>{site.author.name}</strong>, {site.author.role.charAt(0).toLowerCase() + site.author.role.slice(1)}</p>
+      </div>
+      <figure class="about-plate" aria-label="Seven years on the touchline">
+        {/* Photo slot: replace this plate with an approved photograph of Niall (see docs/DEPLOYMENT-CHECKLIST.md). */}
+        <span class="about-plate__n" aria-hidden="true">7</span>
+        <figcaption><span class="about-plate__big">years on the touchline</span><span>{site.author.name}, founder</span></figcaption>
+      </figure>
+    </header>
+
+    <div class="ed-grid about-body">
+      <div class="story">
+        <p class="story__lead">Like a lot of grassroots football coaches, I didn't exactly plan on becoming one.</p>
+        <p>I volunteered to help out with a youth football team, thinking I'd do it for a few months. Seven years later, I'm still here.</p>
+        <p>And what a seven years it's been.</p>
+        <p>I've experienced pretty much everything grassroots football can throw at you. We've lost 10–0, won leagues and cups, and watched players earn trials at Liverpool, Everton, Manchester City and Manchester United.</p>
+        <p>I've seen the excitement when a player gets an opportunity with a professional club, the disappointment when things don't work out, and the pride when someone makes it through.</p>
+        <p>I've also seen what happens when those players move on for good. You're delighted for them, obviously, but there's still that moment on the touchline when you wonder where on earth your goals are going to come from next season.</p>
+        <p class="story__punch">That's grassroots football.</p>
+
+        <h2 class="story__h">Why I started How We Play Football</h2>
+        <p>Over the years, I've completed coaching courses, watched countless matches, spoken to other coaches and made plenty of mistakes along the way.</p>
+        {showReviewer ? (
+          <p>I was fortunate during my early years of coaching to have <a href="#reviewer">David Wilson</a> as a sounding board. Whenever I had questions about formations, players or how to approach a situation, David was someone I could turn to. He's now our coaching reviewer.</p>
+        ) : (
+          <p>I was fortunate during my early years of coaching to have an experienced coach as a sounding board. Whenever I had questions about formations, players or how to approach a situation, I had someone I could turn to for advice.</p>
+        )}
+        <p>But one thing I always found difficult was moving the team into a new playing format.</p>
+        <p>Whether it's 5v5 to 7v7 or 7v7 to 9v9, it's not simply a case of adding a couple more players and making the pitch bigger. Suddenly there are different positions, new relationships between players, more space to defend and new decisions to make.</p>
+        <p>And you've got to explain all of that to a group of children who, understandably, just want to play football.</p>
+        <p>I wanted something simple I could share with the team. Something that explained where we started, what each player was responsible for and how we could work together.</p>
+        <p>So I started putting down what I'd picked up over the years. Simple diagrams. Short instructions. A few principles everyone could remember.</p>
+
+        {/* DRAFT from Niall's brief of 20 Oct 2026: replace with his own revised copy when supplied. */}
+        <h2 class="story__h">Notes on my phone</h2>
+        <p>Most seasons started the same way. I'd jot down a basic playbook in the Notes app on my phone.</p>
+        <p>How we wanted to play. What each position was responsible for. The principles I wanted everyone to understand.</p>
+        <p>Those notes never stayed the same for long. They changed through the season as players developed, joined, left or moved positions.</p>
+        <p>The value was never in a fixed set of instructions. It was in having some early foundations, and a shared understanding we could all build on.</p>
+        <p>How We Play Football is my attempt to pull those seven years of notes together into something other grassroots coaches can use. The formations and principles here are starting points. They should adapt to your players, the same way ours did.</p>
+      </div>
+      <aside class="story__aside" aria-label="From the story">
+        <p class="pull">“You're delighted for them, obviously. But where on earth are your goals going to come from next season?”</p>
+      </aside>
+    </div>
+
+    <div class="ed-grid about-body">
+      <div class="story">
+        <h2 class="story__h">Simple pictures. Simple decisions. Play together.</h2>
+        <p>How We Play Football is about sharing what I've learnt and making grassroots football a little easier for other coaches.</p>
+        <p>We're developing visual formation guides, playing principles and practical explanations for different formats of youth football. Not just where players stand, but why they move, how they support each other and what happens when the team wins or loses possession.</p>
+        <p>There isn't one perfect formation, and I certainly don't pretend to have all the answers.</p>
+        <p>I also won't pretend to have experience of everything. The newer 3v3 format arrived after my teams had already moved through those early age groups, so that particular part of grassroots football passed me by. My experience comes from coaching the formats I've actually worked with, learning from other coaches and trying to make the game easier for young players to understand.</p>
+        <p>What I do know is that players respond to clear explanations, and volunteer coaches don't always have hours to spend preparing tactical presentations.</p>
+        <p>If something we've made helps another coach explain an idea to their team, or helps a young player understand a decision on the pitch, then it's doing its job.</p>
+      </div>
+    </div>
+
+    <Gated ids={[REVIEWER.profileId]}>
+      <section class="ed-section reviewer" id="reviewer" aria-labelledby="rev-h">
+        <div class="ed-grid">
+          <div class="reviewer__story story">
+            <p class="ed-kicker">Meet our coaching reviewer</p>
+            <h2 class="story__h" id="rev-h" style="margin-top:10px">David Wilson</h2>
+            <p class="reviewer__creds">UEFA B Licensed Coach · Football development and education</p>
+            <p>David Wilson brings experience across grassroots football, youth development and elite football environments to his role as coaching reviewer for How We Play Football.</p>
+            <p>A UEFA B Licence holder with a PGCE and BA (Hons), David combines practical coaching experience with a background in education and player development.</p>
+            <p>For six years, he worked as a grassroots football secretary and lead coach, supporting more than 500 boys and girls aged 4–16. His responsibilities included developing young players, supporting coaches, managing football programmes and helping create inclusive environments where children of different abilities could enjoy and develop through football.</p>
+            <p>David currently works for Liverpool Football Club in an elite football environment and volunteers with the Liverpool Schools Football Association, continuing his involvement in football development across Merseyside.</p>
+            <p>His understanding of the game is also shaped by his own playing experience. David spent his early years in a Category 1 academy environment, experienced football at League One level during his late teens and has played in both the United States and Spain. These experiences have exposed him to different coaching philosophies, playing styles and approaches to developing young footballers.</p>
+            <h3 class="story__h story__h--sm">David's role at How We Play Football</h3>
+            <p>As coaching reviewer, David brings an additional perspective to the formation guides, tactical explanations and player responsibilities developed for How We Play Football.</p>
+            <p>His role is to challenge the thinking, check that the advice is appropriate for grassroots football and help make sure our resources are clear, practical and useful to coaches working with young players.</p>
+            <p>The aim isn't to suggest there's only one correct way to play football. It's to provide well-explained approaches that coaches can understand, adapt and use with their own teams.</p>
+          </div>
+          <aside class="reviewer__card" aria-labelledby="rev-name">
+            {/* Photo slot: add an approved portrait of David here when one is supplied. No generated images. */}
+            <p class="ed-kicker">Coaching reviewer</p>
+            <h3 id="rev-name">David Wilson</h3>
+            <dl class="glance" aria-label="Qualifications">
+              <div><dt>Coaching</dt><dd>UEFA B Licence</dd></div>
+              <div><dt>Education</dt><dd>PGCE, BA (Hons)</dd></div>
+              <div><dt>Grassroots</dt><dd>Six years as secretary and lead coach</dd></div>
+            </dl>
+            <p class="ed-small">A guide carries David's name only once he has reviewed and approved that version of it. His employment with Liverpool Football Club doesn't mean the club endorses How We Play Football, which is independent.</p>
+          </aside>
+        </div>
+      </section>
+    </Gated>
+
+    <section class="ed-section ed-section--rule" id="standards" aria-labelledby="std-h">
+      <div class="ed-grid">
+        <div class="ed-sh"><h2 class="ed-label" id="std-h">How we produce our guides</h2><span class="ed-label" style="color:var(--hwp-text-secondary)">Three separate checks</span></div>
+        <ol class="tracks">
+          <li><b>1</b><h3>Written by a coach</h3><p>{site.author.name} writes every guide from seven years of coaching notes and experience. That's practical advice, and it's labelled as his.</p></li>
+          <li><b>2</b><h3>Coaching review</h3><p>{showReviewer ? <>Our coaching reviewer, <a href={REVIEWER.href}>{REVIEWER.name}</a>, checks each guide</> : 'An experienced coaching reviewer checks each guide'} before it's published. We record the guide, the version reviewed, the date, the decision and any changes asked for. If the coaching content changes materially, it goes back for review.</p></li>
+          <li><b>3</b><h3>Official rules</h3><p>Competition rules, like pitch sizes and offside, are checked against England Football and shown with the date we checked them. A rule being official doesn't make a tactic right, and a reviewed tactic doesn't make a rule official.</p></li>
+        </ol>
+        <div class="std-split">
+          <dl class="legend" data-hwp-legend aria-label="What the labels mean">{labels.map(([c, t]) => <div><dt set:html={c} /><dd>{t}</dd></div>)}</dl>
+          <div>
+            <h3 class="ed-label" style="margin-bottom:10px">Our rules for ourselves</h3>
+            <ul class="devlist rules-self">
+              <li>Coaching guidance is published only after it has been reviewed.</li>
+              <li>Official rules link to their source with the date we checked them.</li>
+              <li>Tactical illustrations only: no photos of children, no player names.</li>
+              <li>No invented qualifications, reviews, testimonials or results.</li>
+              <li>Every guide is free to read and share. No sign-up, no payment.</li>
+            </ul>
+            <p class="ed-small" style="margin-top:14px;color:var(--hwp-text-secondary)">{site.independence}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section continue" aria-labelledby="cont-h">
+      <div class="ed-grid">
+        <p class="continue__tag"><span>Helping your team take the next step.</span> That's what How We Play Football is here for.</p>
+        <nav class="continue__links" aria-labelledby="cont-h">
+          <h2 class="ed-label" id="cont-h">Carry on reading</h2>
+          <a href="/formations/9v9/#moving-up"><b>Moving from 7v7 to 9v9</b><span>What changes, rule by rule</span></a>
+          <a href="/formations/9v9/"><b>9v9 formations</b><span>Our first formation collection</span></a>
+        </nav>
+      </div>
+    </section>
+  </article>
+</Base>

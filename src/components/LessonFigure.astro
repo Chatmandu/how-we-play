@@ -1,0 +1,54 @@
+---
+/* Stepped lesson figure. Every frame is rendered server-side (readable without JavaScript, indexed,
+ * printable). lesson-figure.mjs then shows one frame at a time, wires the step buttons (click, arrow
+ * keys, Home/End) and plays each frame's movements from the source arrows. Nothing is animated that
+ * isn't in the reviewed diagram data. The step labels and captions come from the frames themselves. */
+import { renderPitch, renderKey, usedSymbols, clone, esc } from '../lib/ui.mjs';
+interface Props { frames: any[]; figLabel: string; context: string; source?: string; id: string; exploratory?: boolean; deriveTransitions?: boolean; skipDerivedOn?: string[]; }
+const { frames: raw, figLabel, context, source, id, exploratory = false, deriveTransitions = false, skipDerivedOn = [] } = Astro.props;
+const frames = clone(raw);
+const verdictOf = (f: any) => f.stage ? ['stage', `Stage ${f.stage}`] : f.verdict === 'wrong' ? ['wrong', '✕ Wrong'] : f.verdict === 'right' ? ['right', '✓ Right'] : null;
+const stepTitle = (f: any, i: number) => String(f.tab || `Step ${i + 1}`).replace(/^\d+\s*·\s*/, '');
+const svgs = frames.map((f: any) => renderPitch(f, { theme: 'blue', title: f.caption, desc: f.altSummary || f.alt || f.caption }));
+const symbols = [...new Set(frames.flatMap((f: any) => usedSymbols(f)))];
+const keyHtml = symbols.length ? renderKey(symbols, { theme: 'blue' }) : '';
+const data = JSON.stringify(frames).replace(/</g, '\\u003c');
+---
+<div class="lf" data-lesson-figure data-motion-transitions={deriveTransitions ? true : undefined} data-motion-skip={skipDerivedOn.join(" ")} id={id} style={`--lf-n:${frames.length}`}>
+  <figure class={`lf__fig on-pitch${exploratory ? ' hwp-exploratory-frame' : ''}`} aria-label={`${figLabel}: diagram`}>
+    <div class="lf__head"><span>{figLabel}</span><span>{context}</span></div>
+    {frames.map((f: any, i: number) => {
+      const v = verdictOf(f);
+      return (
+        <div class="lf__panel" id={`${id}-p${i}`} data-panel={i}>
+          <div class="lf__stage" data-stage set:html={svgs[i]} />
+          <p class="lf__cap">{v && <span class="lf__verdict" data-v={v[0]}>{v[1]}</span>}<span class="lf__cap-text">{f.caption}</span></p>
+        </div>
+      );
+    })}
+    <div class="lf__tools">
+      {source && <span>{source}</span>}
+      <span class="lf__tools-act"><button type="button" class="lf__replay" data-replay hidden>↻ Replay movement</button><button type="button" data-enlarge hidden aria-haspopup="dialog">Enlarge</button>{keyHtml && <details><summary>Key</summary><div class="lf__key" set:html={keyHtml} /></details>}</span>
+    </div>
+  </figure>
+  <div class="lf__side">
+    {frames.length > 1 && (
+      <>
+        <ol class="lf__steps" data-steps hidden aria-label={`${figLabel}: steps`}>
+          {frames.map((f: any, i: number) => {
+            const v = verdictOf(f);
+            return <li><button type="button" class="lf__step" data-step={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`${id}-p${i}`}><i aria-hidden="true">{i + 1}</i><b>{stepTitle(f, i)}</b><span>{f.caption}</span></button></li>;
+          })}
+        </ol>
+        <p class="lf__hint" data-hint hidden>Choose a step to play it. Arrow keys move between steps.</p>
+      </>
+    )}
+    <p class="hwp-sr-only" aria-live="polite" data-live></p>
+    <div class="lf__after"><slot /></div>
+  </div>
+  <script type="application/json" data-frames set:html={data} />
+</div>
+<script>
+  import { initLessonFigures } from '../scripts/lesson-figure.mjs';
+  initLessonFigures(document);
+</script>

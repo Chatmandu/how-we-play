@@ -1,0 +1,94 @@
+---
+/* Lesson: one rule as a feature spread. Folio number and headline, the stepped live diagram with the
+ * touchline cue beside it, then what to look for, the positions that use the rule and the next rule. */
+import Base from '../../../../../layouts/Base.astro';
+import LessonFigure from '../../../../../components/LessonFigure.astro';
+import EdGuideNav from '../../../../../components/EdGuideNav.astro';
+import Byline from '../../../../../components/Byline.astro';
+import model from '../../../../../lib/content.mjs';
+import { statusChips, reviewNote, exploratoryStrip } from '../../../../../lib/ui.mjs';
+import { pad2, word, issueLabel } from '../../../../../lib/editorial.mjs';
+import { lessonStructuredData } from '../../../../../lib/seo.mjs';
+
+export function getStaticPaths() {
+  return model.formations.filter(f => f.format === '7v7' && f.gate.allowed).flatMap(f =>
+    (f.rules || []).filter(r => r.diagram).map(r => ({ params: { formation: f.slug, lesson: r.id }, props: { slug: f.slug, ruleId: r.id } })));
+}
+const f = model.formation(Astro.props.slug);
+const rules = f.rules.filter(r => r.diagram);
+const i = rules.findIndex(r => r.id === Astro.props.ruleId);
+const r = rules[i];
+const set = f.diagrams[r.diagram];
+// The new issues use approved before/after positions to animate existing snapshots.
+// Issue 01 retains its fully hand-authored movement sequences.
+const deriveTransitions = f.slug === "3-3-2" || f.slug === "2-2-3-1";
+const skipDerivedOn = f.slug === "3-3-2" && r.diagram === "ball-side-wide" ? ["choose"] : [];
+const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
+const full = Array.isArray(f.roles);
+const total = full ? f.rules.length : (f.ruleTable || []).length;
+const base = `/formations/7v7/${f.slug}/`;
+const users = full ? f.roles.filter(x => (x.rules || []).includes(r.id)) : [];
+const reviewerNotes = model.target !== 'public';
+const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x => x.id === id)).filter(Boolean) : [];
+const draftReviews = reviewerNotes && !full ? f.review : [];
+const prev = rules[i - 1], next = rules[i + 1];
+const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations', href: '/formations/7v7/' }, { label: f.name, href: base }, { label: r.title }];
+const title = full ? `${r.title} | ${f.name} 7v7 tactics | How We Play Football` : `${r.title} (${f.name} draft) | How We Play Football`;
+const description = full ? `${r.summary} ${r.cue} Explore the ${f.name} principle with interactive diagrams and practical coaching cues.` : `${r.tag} Private draft lesson, not reviewed.`;
+const jsonLd = lessonStructuredData(model.site, f, r);
+const source = f.shape.sourcePage
+  ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.`
+  : f.register.content.status === 'reviewed'
+    ? `How We Play Football illustration based on reviewed guidance. Pictures show ideas, not fixed moves.`
+    : `How We Play draft, ${r.src}. Illustrations await qualified coaching review.`;
+const pagerNext = next ? { href: `${base}${next.id}/`, over: `Next · Principle ${next.n}`, title: next.title } : (full ? { href: `${base}positions/${f.roles[0].id}/`, over: 'Next · Chapter 3', title: f.roles[0].title } : { href: base, over: 'Back to', title: `${f.name} guide` });
+const pagerPrev = prev ? { href: `${base}${prev.id}/`, over: `Principle ${prev.n}`, title: prev.title } : { href: base, over: `Back to ${issueLabel(f)}`, title: `The ${f.name}` };
+---
+<Base title={title} description={description} ids={['7v7-hub', f.registerId]} nav="7v7" crumbs={crumbs} jsonLd={jsonLd} editorial meta={{ type: 'lesson', format: f.format, issue: f.issue && f.issue.number, formation: f.slug, group: 'Lessons' }}>
+  <EdGuideNav f={f} current={r.id} />
+
+  <article aria-labelledby="lesson-h">
+    <div class="feature ed-grid" style="padding-top:var(--ed-s4)">
+      <div class="feature__rail" aria-hidden="true"><span class="feature__num">{pad2(r.n)}</span><p>Principle {word(r.n)} of {word(total)}<br>{issueLabel(f)} · {f.name}</p></div>
+      <header class="feature__head" data-num={pad2(r.n)}>
+        <p class="ed-kicker feature__kicker">7v7 · {issueLabel(f)} · Chapter 2 · Principle {word(r.n)} of {word(total)}</p>
+        <h1 class="feature__title" id="lesson-h">{r.title}</h1>
+        <p class="ed-stand">{r.tag}{r.summary && ` ${r.summary}`}</p>
+      </header>
+      <div class="feature__body">
+        {exploratory && <Fragment set:html={exploratoryStrip()} />}
+        <LessonFigure id="lesson-fig" frames={set.frames} figLabel={`Fig. ${r.n} · ${r.title}`} context={`7v7 · ${f.name}`} source={source} exploratory={exploratory} deriveTransitions={deriveTransitions} skipDerivedOn={skipDerivedOn}>
+          <div class="ed-cue"><p>Say it on the touchline</p><blockquote>{r.cue}</blockquote>{r.extra && <p class="ed-small">{r.extra}</p>}</div>
+          <div class="ed-chips" set:html={statusChips(f.register)} />
+          <Byline f={f} />
+        </LessonFigure>
+      </div>
+    </div>
+
+    <section class="ed-section ed-grid split" aria-label="More on this rule">
+      <div class="split__main">
+        {r.look && (
+          <>
+            <h2 class="ed-label" id="look-h" style="margin-bottom:10px">What to look for</h2>
+            <ol class="looks" aria-labelledby="look-h">{r.look.map(l => <li>{l}</li>)}</ol>
+          </>
+        )}
+        {reviews.map(rv => <div data-hwp-reviewer-only style="margin-top:16px" set:html={reviewNote('Needs coach review:', rv.qs[0])} />)}
+        {draftReviews.map(rv => <div data-hwp-reviewer-only style="margin-top:16px" set:html={reviewNote(`${rv.title}:`, rv.qs.join(' '))} />)}
+      </div>
+      {users.length > 0 && (
+        <div class="split__side sheet__col">
+          <h2 class="ed-label" id="users-h" style="margin-bottom:4px">Positions that use this rule</h2>
+          <ol class="roster" aria-labelledby="users-h">{users.map(u => <li><a href={`${base}positions/${u.id}/`}><span class="nums">{u.nums.join(' · ')}</span><span><strong>{u.title}</strong><span>{u.head}</span></span><span class="arr" aria-hidden="true">→</span></a></li>)}</ol>
+        </div>
+      )}
+    </section>
+
+    <nav class="ed-section ed-grid" aria-label="Other rules">
+      <div class="ed-pager">
+        <a href={pagerPrev.href}><small>{pagerPrev.over}</small><b>{pagerPrev.title}</b></a>
+        <a href={pagerNext.href}><small>{pagerNext.over}</small><b>{pagerNext.title}</b></a>
+      </div>
+    </nav>
+  </article>
+</Base>
