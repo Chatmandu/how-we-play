@@ -1,0 +1,1427 @@
+{
+  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "id": "7v7-2-1-2-1",
+  "format": "7v7",
+  "pitch": "7v7",
+  "name": "2-1-2-1",
+  "notation": "1-2-1-2-1",
+  "slug": "2-1-2-1",
+  "order": 13,
+  "registerId": "7v7-2-1-2-1",
+  "summary": "Two defenders, a link player, two attacking midfielders and a forward.",
+  "sourceLabel": "Research-based coaching draft for qualified review",
+  "structure": [
+    [
+      "Notation",
+      "1-2-1-2-1 including goalkeeper · 2-1-2-1 outfield"
+    ],
+    [
+      "Goalkeeper",
+      "1"
+    ],
+    [
+      "Outfield players",
+      "6"
+    ]
+  ],
+  "gives": [
+    "a defined link between defence and attack",
+    "passing angles around the ball",
+    "two attacking midfielders able to receive and drive forward",
+    "a central player learning when to support and protect"
+  ],
+  "spineText": "Goalkeeper, central link player and striker, with the two defenders supporting.",
+  "shapeCue": "A later-stage 7v7 option, not a test children must pass. Rotate every position.",
+  "status": {
+    "content": "review-required",
+    "exploratory": false,
+    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+  },
+  "shape": {
+    "id": "shape",
+    "pitch": "7v7",
+    "crop": [
+      -6,
+      155
+    ],
+    "title": "Starting shape: 1-2-1-2-1",
+    "caption": "Two defenders, a link player, two attacking midfielders and a forward.",
+    "altSummary": "7v7 starting picture with goalkeeper and 2-1-2-1 outfield shape. Players attack towards the top. Roles are examples to try rather than fixed positions.",
+    "players": [
+      {
+        "t": "us",
+        "l": "2",
+        "x": 73,
+        "y": 112,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 27,
+        "y": 112,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "6",
+        "x": 50,
+        "y": 88,
+        "id": "us-6"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 79,
+        "y": 66,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 38,
+        "id": "us-9"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 21,
+        "y": 66,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 135,
+        "id": "us-GK"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "link-the-lines",
+      "n": 1,
+      "title": "Link the lines",
+      "tag": "Help the defenders find the attack.",
+      "summary": "The central link player moves to show a safe forward angle.",
+      "cue": "Can six see the ball?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "link-the-lines",
+      "thumb": 1,
+      "seo": "7v7 2-1-2-1: link the lines in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "Six gives defenders a diagonal choice rather than hiding behind an opponent.",
+        "The central link player moves to show a safe forward angle.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "passing-diamonds",
+      "n": 2,
+      "title": "Make passing diamonds",
+      "tag": "Give the ball carrier options at different angles.",
+      "summary": "Move into spaces where a teammate can find you.",
+      "cue": "Can we show two angles?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "passing-diamonds",
+      "thumb": 1,
+      "seo": "7v7 2-1-2-1: make passing diamonds in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The attacking midfielders separate so the link player has two options.",
+        "Move into spaces where a teammate can find you.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "support-the-striker",
+      "n": 3,
+      "title": "Support the striker",
+      "tag": "Avoid leaving the forward alone.",
+      "summary": "An attacking midfielder gives a nearby option when the striker receives.",
+      "cue": "Who is close enough to help?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "support-the-striker",
+      "thumb": 1,
+      "seo": "7v7 2-1-2-1: support the striker in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "One attacking midfielder joins the forward’s passing picture.",
+        "An attacking midfielder gives a nearby option when the striker receives.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "protect-the-middle",
+      "n": 4,
+      "title": "Protect the middle",
+      "tag": "The link player protects space when we lose possession.",
+      "summary": "Slow the first pass forward and recover as a team.",
+      "cue": "Who protects our centre?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "protect-the-middle",
+      "thumb": 1,
+      "seo": "7v7 2-1-2-1: protect the middle in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "Six stays between the opposing ball and our defenders, while the wider players recover.",
+        "Slow the first pass forward and recover as a team.",
+        "Ask the players what else they might try."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "Help us start",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Look for the two defenders as short options.",
+        "Wait for a clear choice rather than forcing a pass.",
+        "Help the team organise when defending."
+      ],
+      "cue": "What choices can I see?",
+      "rules": [
+        "link-the-lines"
+      ]
+    },
+    {
+      "id": "defender-pair",
+      "nums": [
+        "3",
+        "2"
+      ],
+      "short": "3 · 2",
+      "title": "Defender pair",
+      "head": "Offer angles and cover",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-defender-pair",
+      "points": [
+        "Support the goalkeeper from different positions.",
+        "Look for the link player when it is safe.",
+        "Defend together, never both chasing."
+      ],
+      "cue": "Where is our cover?",
+      "rules": [
+        "link-the-lines",
+        "protect-the-middle"
+      ]
+    },
+    {
+      "id": "link-midfielder",
+      "nums": [
+        "6"
+      ],
+      "short": "6",
+      "title": "Link midfielder",
+      "head": "See both halves",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-link-midfielder",
+      "points": [
+        "Scan before receiving.",
+        "Offer a pass at an angle to the defenders.",
+        "Protect space in front of the defence when possession changes."
+      ],
+      "cue": "What is around me?",
+      "rules": [
+        "link-the-lines",
+        "passing-diamonds",
+        "protect-the-middle"
+      ]
+    },
+    {
+      "id": "attacking-midfielders",
+      "nums": [
+        "11",
+        "7"
+      ],
+      "short": "11 · 7",
+      "title": "Attacking midfielders",
+      "head": "Find forward space",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-attacking-midfielders",
+      "points": [
+        "Move apart to give width and forward options.",
+        "Decide when to dribble and when to find the striker.",
+        "Recover to help the team when the ball is lost."
+      ],
+      "cue": "Can I drive or pass?",
+      "rules": [
+        "passing-diamonds",
+        "support-the-striker",
+        "protect-the-middle"
+      ]
+    },
+    {
+      "id": "striker",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Striker",
+      "head": "Make room for others",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-striker",
+      "points": [
+        "Offer a forward option and support runs.",
+        "Sometimes move out of a teammate’s dribbling space.",
+        "Help the first line of pressure when defending."
+      ],
+      "cue": "Who needs room?",
+      "rules": [
+        "support-the-striker"
+      ]
+    }
+  ],
+  "diagrams": {
+    "link-the-lines": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            40,
+            122
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Link the lines: starting situation. Help the defenders find the attack.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario. Help the defenders find the attack. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 112,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            40,
+            122
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "Six gives defenders a diagonal choice rather than hiding behind an opponent.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario: Six gives defenders a diagonal choice rather than hiding behind an opponent.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 50,
+              "y": 112,
+              "id": "us-6"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                112
+              ],
+              "to": [
+                50,
+                88
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "passing-diamonds": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            62,
+            93
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Make passing diamonds: starting situation. Give the ball carrier options at different angles.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario. Give the ball carrier options at different angles. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 58,
+              "y": 80,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 42,
+              "y": 80,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            62,
+            93
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The attacking midfielders separate so the link player has two options.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario: The attacking midfielders separate so the link player has two options.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 58,
+              "y": 80,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 42,
+              "y": 80,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                58,
+                80
+              ],
+              "to": [
+                79,
+                66
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                42,
+                80
+              ],
+              "to": [
+                21,
+                66
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "support-the-striker": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            62,
+            42
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Support the striker: starting situation. Avoid leaving the forward alone.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario. Avoid leaving the forward alone. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 78,
+              "y": 82,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 22,
+              "y": 82,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            62,
+            42
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "One attacking midfielder joins the forward’s passing picture.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario: One attacking midfielder joins the forward’s passing picture.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 78,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 36,
+              "y": 55,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 78,
+              "y": 82,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 22,
+              "y": 82,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                78,
+                82
+              ],
+              "to": [
+                78,
+                69
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                22,
+                82
+              ],
+              "to": [
+                36,
+                55
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "protect-the-middle": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            51,
+            67
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Protect the middle: starting situation. The link player protects space when we lose possession.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario. The link player protects space when we lose possession. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 55,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 48,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 48,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            51,
+            67
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "Six stays between the opposing ball and our defenders, while the wider players recover.",
+          "altSummary": "Provisional 7v7 2-1-2-1 coaching scenario: Six stays between the opposing ball and our defenders, while the wider players recover.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 95,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 73,
+              "y": 82,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 27,
+              "y": 82,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 50,
+              "y": 55,
+              "id": "us-6"
+            },
+            {
+              "l": "7",
+              "x": 82,
+              "y": 48,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 18,
+              "y": 48,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                50,
+                55
+              ],
+              "to": [
+                50,
+                95
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                82,
+                48
+              ],
+              "to": [
+                73,
+                82
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                18,
+                48
+              ],
+              "to": [
+                27,
+                82
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Goalkeeper: Help us start.",
+          "altSummary": "In the 7v7 2-1-2-1, goalkeeper are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-defender-pair": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Defender pair: Offer angles and cover.",
+          "altSummary": "In the 7v7 2-1-2-1, defender pair are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-link-midfielder": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Link midfielder: See both halves.",
+          "altSummary": "In the 7v7 2-1-2-1, link midfielder are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-attacking-midfielders": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Attacking midfielders: Find forward space.",
+          "altSummary": "In the 7v7 2-1-2-1, attacking midfielders are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-striker": {
+      "frames": [
+        {
+          "pitch": "7v7",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Striker: Make room for others.",
+          "altSummary": "In the 7v7 2-1-2-1, striker are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 73,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 27,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 50,
+              "y": 88,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 79,
+              "y": 66,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 21,
+              "y": 66,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 135,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "age",
+      "title": "Is this suitable for this team and stage?",
+      "why": "Soccer Coach Weekly suggests the shape is demanding and may be most suitable later in 7v7.",
+      "qs": [
+        "Soccer Coach Weekly suggests the shape is demanding and may be most suitable later in 7v7.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "width",
+      "title": "How do we prevent a narrow shape?",
+      "why": "Check whether wide players can create width without becoming isolated.",
+      "qs": [
+        "Check whether wide players can create width without becoming isolated.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "workload",
+      "title": "Do the cues overburden the central player?",
+      "why": "Ensure they invite scanning and choice, not an adult-style holding role.",
+      "qs": [
+        "Ensure they invite scanning and choice, not an adult-style holding role.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    }
+  ],
+  "issue": {
+    "number": 3,
+    "intro": "The 2-1-2-1 adds a clear link between the back pair and the players ahead. It gives teams further along their 7v7 journey a chance to explore passing diamonds, scanning and recovery.",
+    "summary": "The 7v7 2-1-2-1: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "A later-stage 7v7 option, not a test children must pass. Rotate every position.",
+        "preview": "Where players begin and how they help each other."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Four playing principles",
+        "dek": "Four choices to notice and practise in games.",
+        "rules": [
+          "link-the-lines",
+          "passing-diamonds",
+          "support-the-striker",
+          "protect-the-middle"
+        ],
+        "preview": "Private draft tactical examples for coaching review."
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "A starting responsibility, with the freedom to learn another.",
+        "roles": [
+          "goalkeeper",
+          "defender-pair",
+          "link-midfielder",
+          "attacking-midfielders",
+          "striker"
+        ],
+        "preview": "The goalkeeper and each outfield role."
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How the team supports one another in possession and after the ball is lost.",
+        "groups": [
+          {
+            "title": "With the ball",
+            "items": [
+              {
+                "rule": "link-the-lines"
+              },
+              {
+                "rule": "passing-diamonds"
+              }
+            ]
+          },
+          {
+            "title": "Without the ball",
+            "items": [
+              {
+                "rule": "support-the-striker"
+              },
+              {
+                "rule": "protect-the-middle"
+              }
+            ]
+          }
+        ],
+        "preview": "How small decisions connect across the team."
+      }
+    ],
+    "features": []
+  }
+}

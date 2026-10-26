@@ -1,28 +1,57 @@
 ---
-/* Format collections that have no published issue yet (5v5). Honest placeholders: in development,
- * noindex, out of the sitemap, with a way back to what is published. 9v9 has its own page. */
+/* 5v5 collection. Public stays a truthful holding page until a formation is reviewed. */
 import Base from '../../../layouts/Base.astro';
 import model from '../../../lib/content.mjs';
 import { issueLabel } from '../../../lib/editorial.mjs';
+import { statusChips } from '../../../lib/ui.mjs';
 
 export function getStaticPaths() {
-  return model.site.formats.filter(x => ['5v5'].includes(x.id) && x.availability !== 'live').map(x => ({ params: { format: x.id }, props: { fm: x } }));
+  return model.site.formats.filter(x => x.id === '5v5').map(x => ({ params: { format: x.id }, props: { fm: x } }));
 }
 const { fm } = Astro.props;
-const first = model.formations.find(f => f.register.content.status === 'reviewed' && f.gate.allowed);
-const crumbs = [{ label: 'Home', href: '/' }, { label: `${fm.id} formations` }];
+const forms = model.formations.filter(f => f.format === '5v5' && f.issue).sort((a,b) => a.issue.number - b.issue.number);
+const visible = forms.filter(f => f.gate.allowed);
+const published = visible.filter(f => f.register.content.status === 'reviewed');
+const preview = model.target !== 'public';
+const firstElsewhere = model.formations.find(f => f.gate.allowed && f.register.content.status === 'reviewed' && f.format !== '5v5');
+const crumbs = [{ label: 'Home', href: '/' }, { label: '5v5 formations' }];
+const title = published.length ? '5v5 football formations for grassroots coaches | How We Play Football' : '5v5 football formations: in development | How We Play Football';
+const desc = published.length ? 'Free 5v5 football formations with a goalkeeper, starting shapes, playing principles and positions for volunteer grassroots coaches.' : 'Our 5v5 football formation guides are in development and awaiting independent coaching review.';
 ---
-<Base title={`${fm.id} football formations: in development | How We Play Football`} description={`How We Play Football's ${fm.id} collection for ${fm.ages} is in development. Nothing is published yet; see our published guides instead.`} ids={[fm.id]} nav={fm.id} crumbs={crumbs} noindex editorial>
-  <div class="page-head ed-grid">
+<Base title={title} description={desc} ids={['5v5-hub']} nav="5v5" crumbs={crumbs} noindex={!published.length} editorial meta={{ type: 'format', format: '5v5', group: 'Formats' }}>
+  <header class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Format · {fm.ages.replace('–', ' and ')}</p>
-      <h1>{fm.id}</h1>
-      <p class="ed-stand">Our {fm.id} collection is in development. There's nothing published here yet, and we won't put guides up until they've been written and reviewed.</p>
+      <h1>5v5 formations</h1>
+      <p class="ed-stand">Four outfield players and a goalkeeper. Learn to help the player with the ball, work in pairs and find space. These are starting shapes, not positions children must stay in.</p>
     </div>
     <div class="page-head__aside">
-      <p class="ed-label">Published now</p>
-      {first && <a class="ed-btn" href={`/formations/9v9/${first.slug}/`}>9v9 · {issueLabel(first)} · The {first.name} →</a>}
-      <p class="ed-small"><a href="/formations/9v9/#moving-up">Moving from 7v7 to 9v9</a> · <a href="/about/">About How We Play Football</a></p>
+      <p class="ed-label">Our approach</p>
+      <p>Move, support and make decisions. Let every player try different parts of the pitch.</p>
+      <p class="ed-small">These guides describe England's goalkeeper-inclusive 5v5. In the US, the youngest small-sided formats may not include a keeper.</p>
     </div>
-  </div>
+  </header>
+
+  {visible.length ? (
+    <section class="ed-section ed-grid" aria-labelledby="5v5-issues-h">
+      <div class="chapter__head"><p class="ed-kicker">The formation library</p><h2 class="ed-h2" id="5v5-issues-h">Two shapes to explore</h2><p class="ed-small">Pick a shape that gives your players the next helpful challenge. You can change it as they learn.</p></div>
+      <div class="chapter__side"><ol class="issue-list">{visible.map(f => <li>
+        <a href={`/formations/5v5/${f.slug}/`}>
+          <b>{issueLabel(f)}</b><span><strong>The {f.name}</strong><em>{f.summary}</em></span>
+        </a>
+        {preview && <div class="ed-chips" set:html={statusChips(f.register)} />}
+      </li>)}</ol></div>
+      {preview && <p class="ed-small" style="grid-column:1/-1">Private preview: diagrams, coaching principles and player responsibilities still require David Wilson's review.</p>}
+    </section>
+  ) : (
+    <section class="ed-section ed-grid" aria-labelledby="5v5-coming-h">
+      <div class="chapter__head"><p class="ed-kicker">In development</p><h2 class="ed-h2" id="5v5-coming-h">The first playbooks are being reviewed</h2></div>
+      <div class="chapter__side"><p>We're preparing guides for the 1-2-1 diamond and 2-2 box. They won't appear as published coaching guidance until the diagrams and advice have been reviewed.</p>{firstElsewhere && <a class="ed-btn" href={`/formations/${firstElsewhere.format}/${firstElsewhere.slug}/`}>Explore a published {firstElsewhere.format} guide →</a>}</div>
+    </section>
+  )}
+
+  <section class="ed-section ed-grid split" aria-labelledby="5v5-more-h">
+    <div class="split__main"><p class="ed-kicker">Moving up</p><h2 class="ed-h2" id="5v5-more-h">What comes next?</h2><p>In 7v7, teams add two outfield players. The ideas of support, width and working together remain useful.</p></div>
+    <div class="split__side"><a class="ed-btn" href="/formations/7v7/">Explore 7v7 formations →</a></div>
+  </section>
 </Base>

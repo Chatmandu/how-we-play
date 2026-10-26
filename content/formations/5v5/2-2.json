@@ -1,0 +1,1091 @@
+{
+  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "id": "5v5-2-2",
+  "format": "5v5",
+  "pitch": "5v5",
+  "name": "2-2",
+  "notation": "1-2-2",
+  "slug": "2-2",
+  "order": 2,
+  "registerId": "5v5-2-2",
+  "summary": "Two behind, two ahead. Learning partnerships without dividing the team.",
+  "sourceLabel": "Research-based coaching draft for qualified review",
+  "structure": [
+    [
+      "Notation",
+      "1-2-2 including goalkeeper · 2-2 outfield"
+    ],
+    [
+      "Goalkeeper",
+      "1"
+    ],
+    [
+      "Outfield players",
+      "4"
+    ]
+  ],
+  "gives": [
+    "a defender partnership",
+    "two forward options",
+    "simple opportunities for short combinations",
+    "clear pressing and covering decisions"
+  ],
+  "spineText": "Goalkeeper and the centre between the two pairs.",
+  "shapeCue": "The box is only a starting picture. Partners can swap jobs and every player has permission to find space.",
+  "status": {
+    "content": "review-required",
+    "exploratory": false,
+    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+  },
+  "shape": {
+    "id": "shape",
+    "pitch": "5v5",
+    "crop": [
+      -6,
+      142
+    ],
+    "title": "Starting shape: 1-2-2",
+    "caption": "Two behind, two ahead. Learning partnerships without dividing the team.",
+    "altSummary": "5v5 starting picture with goalkeeper and 2-2 outfield shape. Players attack towards the top. Roles are examples to try rather than fixed positions.",
+    "players": [
+      {
+        "t": "us",
+        "l": "2",
+        "x": 72,
+        "y": 101,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 28,
+        "y": 101,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 71,
+        "y": 54,
+        "id": "us-9"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 29,
+        "y": 54,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 121,
+        "id": "us-GK"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "play-in-pairs",
+      "n": 1,
+      "title": "Play in pairs",
+      "tag": "Partners help each other on and off the ball.",
+      "summary": "Stay close enough to combine but not so close you crowd one another.",
+      "cue": "Where is my partner?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "play-in-pairs",
+      "thumb": 1,
+      "seo": "5v5 2-2: play in pairs in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The front pair find staggered passing options.",
+        "Stay close enough to combine but not so close you crowd one another.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "one-presses-one-covers",
+      "n": 2,
+      "title": "One presses, one covers",
+      "tag": "Two defenders should not both chase.",
+      "summary": "One can meet the ball; the other protects the space towards goal.",
+      "cue": "If one goes, where is the other?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "one-presses-one-covers",
+      "thumb": 1,
+      "seo": "5v5 2-2: one presses, one covers in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The right defender stays nearer the centre when the left defender steps towards danger.",
+        "One can meet the ball; the other protects the space towards goal.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "one-comes-one-goes",
+      "n": 3,
+      "title": "One comes, one goes",
+      "tag": "Give a short option and a forward option.",
+      "summary": "If one attacker comes towards the ball, the other can move away.",
+      "cue": "Who comes? Who goes?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "one-comes-one-goes",
+      "thumb": 1,
+      "seo": "5v5 2-2: one comes, one goes in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "One forward checks towards the defender while the other stays available ahead.",
+        "If one attacker comes towards the ball, the other can move away.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "close-the-gap",
+      "n": 4,
+      "title": "Close the gap",
+      "tag": "Do not split into two disconnected lines.",
+      "summary": "When the ball moves, the back pair and front pair travel with it.",
+      "cue": "Are we too far apart?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "close-the-gap",
+      "thumb": 1,
+      "seo": "5v5 2-2: close the gap in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The pair behind moves closer to the front pair to offer support.",
+        "When the ball moves, the back pair and front pair travel with it.",
+        "Ask the players what else they might try."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "See both defenders",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Offer calm choices to start attacks.",
+        "Move with the ball to keep an angle.",
+        "Help the team stay connected."
+      ],
+      "cue": "Where are my two options?",
+      "rules": [
+        "close-the-gap"
+      ]
+    },
+    {
+      "id": "defensive-pair",
+      "nums": [
+        "3",
+        "2"
+      ],
+      "short": "3 · 2",
+      "title": "Defensive pair",
+      "head": "Support and protect",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-defensive-pair",
+      "points": [
+        "When one defender goes towards danger, the other covers.",
+        "Look ahead for a passing option rather than only clearing the ball.",
+        "Move up with the team when it is safe."
+      ],
+      "cue": "Where is my partner?",
+      "rules": [
+        "one-presses-one-covers",
+        "close-the-gap"
+      ]
+    },
+    {
+      "id": "forward-pair",
+      "nums": [
+        "11",
+        "9"
+      ],
+      "short": "11 · 9",
+      "title": "Forward pair",
+      "head": "Offer two different options",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-forward-pair",
+      "points": [
+        "One can come towards the ball while the other threatens space.",
+        "Help teammates behind rather than waiting up front.",
+        "React together when possession changes."
+      ],
+      "cue": "Can we help each other?",
+      "rules": [
+        "one-comes-one-goes",
+        "play-in-pairs"
+      ]
+    }
+  ],
+  "diagrams": {
+    "play-in-pairs": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            39,
+            105
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Play in pairs: starting situation. Partners help each other on and off the ball.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario. Partners help each other on and off the ball. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 56,
+              "y": 55,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 44,
+              "y": 55,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            39,
+            105
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The front pair find staggered passing options.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario: The front pair find staggered passing options.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 72,
+              "y": 47,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 63,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 56,
+              "y": 55,
+              "id": "us-9"
+            },
+            {
+              "l": "11",
+              "x": 44,
+              "y": 55,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                56,
+                55
+              ],
+              "to": [
+                72,
+                47
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                44,
+                55
+              ],
+              "to": [
+                29,
+                63
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "one-presses-one-covers": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            17,
+            72
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "One presses, one covers: starting situation. Two defenders should not both chase.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario. Two defenders should not both chase. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 41,
+              "y": 78,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 24,
+              "y": 79,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 54,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 54,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            17,
+            72
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The right defender stays nearer the centre when the left defender steps towards danger.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario: The right defender stays nearer the centre when the left defender steps towards danger.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 64,
+              "y": 102,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 24,
+              "y": 79,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 54,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 54,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 41,
+              "y": 78,
+              "id": "us-2"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                41,
+                78
+              ],
+              "to": [
+                64,
+                102
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "one-comes-one-goes": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            39,
+            101
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "One comes, one goes: starting situation. Give a short option and a forward option.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario. Give a short option and a forward option. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 65,
+              "y": 44,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 33,
+              "y": 44,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            39,
+            101
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "One forward checks towards the defender while the other stays available ahead.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario: One forward checks towards the defender while the other stays available ahead.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 67,
+              "y": 42,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 36,
+              "y": 77,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "9",
+              "x": 65,
+              "y": 44,
+              "id": "us-9"
+            },
+            {
+              "l": "11",
+              "x": 33,
+              "y": 44,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                65,
+                44
+              ],
+              "to": [
+                67,
+                42
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                33,
+                44
+              ],
+              "to": [
+                36,
+                77
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "close-the-gap": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            44,
+            69
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Close the gap: starting situation. Do not split into two disconnected lines.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario. Do not split into two disconnected lines. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 42,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 42,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            44,
+            69
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The pair behind moves closer to the front pair to offer support.",
+          "altSummary": "Provisional 5v5 2-2 coaching scenario: The pair behind moves closer to the front pair to offer support.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 94,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 94,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 60,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 60,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 72,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "l": "3",
+              "x": 28,
+              "y": 112,
+              "id": "us-3"
+            },
+            {
+              "l": "9",
+              "x": 71,
+              "y": 42,
+              "id": "us-9"
+            },
+            {
+              "l": "11",
+              "x": 29,
+              "y": 42,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                72,
+                112
+              ],
+              "to": [
+                72,
+                94
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                28,
+                112
+              ],
+              "to": [
+                28,
+                94
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                71,
+                42
+              ],
+              "to": [
+                71,
+                60
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                29,
+                42
+              ],
+              "to": [
+                29,
+                60
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Goalkeeper: See both defenders.",
+          "altSummary": "In the 5v5 2-2, goalkeeper are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 54,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 54,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-defensive-pair": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Defensive pair: Support and protect.",
+          "altSummary": "In the 5v5 2-2, defensive pair are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 54,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 54,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-forward-pair": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Forward pair: Offer two different options.",
+          "altSummary": "In the 5v5 2-2, forward pair are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 72,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 28,
+              "y": 101,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 71,
+              "y": 54,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 29,
+              "y": 54,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "pressing",
+      "title": "Are the box defensive cues appropriate for young players?",
+      "why": "Check that pressure and cover are framed as choices rather than fixed instructions.",
+      "qs": [
+        "Check that pressure and cover are framed as choices rather than fixed instructions.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "rotation",
+      "title": "How should players rotate their roles?",
+      "why": "Agree simple matchday reminders that support experimentation.",
+      "qs": [
+        "Agree simple matchday reminders that support experimentation.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    }
+  ],
+  "issue": {
+    "number": 2,
+    "intro": "The box gives four outfield players two natural partnerships. The challenge is keeping the players connected when attacking and defending, rather than staying in two separate lines.",
+    "summary": "The 5v5 2-2: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "The box is only a starting picture. Partners can swap jobs and every player has permission to find space.",
+        "preview": "Where players begin and how they help each other."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Four playing principles",
+        "dek": "Four choices to notice and practise in games.",
+        "rules": [
+          "play-in-pairs",
+          "one-presses-one-covers",
+          "one-comes-one-goes",
+          "close-the-gap"
+        ],
+        "preview": "Private draft tactical examples for coaching review."
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "A starting responsibility, with the freedom to learn another.",
+        "roles": [
+          "goalkeeper",
+          "defensive-pair",
+          "forward-pair"
+        ],
+        "preview": "The goalkeeper and each outfield role."
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How the team supports one another in possession and after the ball is lost.",
+        "groups": [
+          {
+            "title": "With the ball",
+            "items": [
+              {
+                "rule": "play-in-pairs"
+              },
+              {
+                "rule": "one-presses-one-covers"
+              }
+            ]
+          },
+          {
+            "title": "Without the ball",
+            "items": [
+              {
+                "rule": "one-comes-one-goes"
+              },
+              {
+                "rule": "close-the-gap"
+              }
+            ]
+          }
+        ],
+        "preview": "How small decisions connect across the team."
+      }
+    ],
+    "features": []
+  }
+}

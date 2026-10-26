@@ -169,6 +169,17 @@
     "hasBody": false
   },
   {
+    "id": "5v5-hub",
+    "kind": "editorial",
+    "title": "5v5 formation hub",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Approved How We Play Football magazine template"
+    }
+  },
+  {
     "id": "7v7",
     "kind": "editorial",
     "title": "7v7 resources",
@@ -433,5 +444,33 @@
       "confirmedOn": "2026-10-20",
       "evidence": "Written instruction from Niall Walsh, 20 October 2026 14:10: 'David's bio is approved too'. David's own written approval to be filed."
     }
+  },
+  {
+    "id": "5v5-1-2-1",
+    "kind": "coaching",
+    "title": "5v5 1-2-1 diamond · Draft issue 01",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "review-required", "exploratory": false, "source": "England Football Learning 5v5 guidance and How We Play editorial research, 26 October 2026", "reviewedBy": null, "reviewedOn": null, "reviewer": "David Wilson, coaching sign-off required for this version" }
+  },
+  {
+    "id": "5v5-2-2",
+    "kind": "coaching",
+    "title": "5v5 2-2 box · Draft issue 02",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "review-required", "exploratory": false, "source": "England Football Learning 5v5 guidance and How We Play editorial research, 26 October 2026", "reviewedBy": null, "reviewedOn": null, "reviewer": "David Wilson, coaching sign-off required for this version" }
+  },
+  {
+    "id": "7v7-2-1-2-1",
+    "kind": "coaching",
+    "title": "7v7 2-1-2-1 · Draft issue 03",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "review-required", "exploratory": false, "source": "Soccer Coach Weekly and Football St George 7v7 formation guidance, 26 October 2026", "reviewedBy": null, "reviewedOn": null, "reviewer": "David Wilson, coaching sign-off required for this version" }
+  },
+  {
+    "id": "9v9-3-2-3",
+    "kind": "coaching",
+    "title": "9v9 3-2-3 · Draft issue 04",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "review-required", "exploratory": false, "source": "U.S. Soccer 9v9 formation guidance and How We Play editorial research, 26 October 2026", "reviewedBy": null, "reviewedOn": null, "reviewer": "David Wilson, coaching sign-off required for this version" }
   }
 ]

@@ -1,0 +1,1724 @@
+{
+  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "id": "9v9-3-2-3",
+  "format": "9v9",
+  "pitch": "9v9",
+  "name": "3-2-3",
+  "notation": "1-3-2-3",
+  "slug": "3-2-3",
+  "order": 24,
+  "registerId": "9v9-3-2-3",
+  "summary": "Three defenders, two central midfielders and three forwards working with width.",
+  "sourceLabel": "Research-based coaching draft for qualified review",
+  "structure": [
+    [
+      "Notation",
+      "1-3-2-3 including goalkeeper · 3-2-3 outfield"
+    ],
+    [
+      "Goalkeeper",
+      "1"
+    ],
+    [
+      "Outfield players",
+      "8"
+    ]
+  ],
+  "gives": [
+    "three forwards who can stretch the pitch",
+    "two midfielders offering different supporting angles",
+    "three defenders able to build and protect",
+    "a route towards understanding a front three in 11v11"
+  ],
+  "spineText": "Goalkeeper, central defender, midfield pair and central forward.",
+  "shapeCue": "This is one developmental starting shape, not a fixed 9v9 prescription. Give players chances to swap roles.",
+  "status": {
+    "content": "review-required",
+    "exploratory": false,
+    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+  },
+  "shape": {
+    "id": "shape",
+    "pitch": "9v9",
+    "crop": [
+      -6,
+      155
+    ],
+    "title": "Starting shape: 1-3-2-3",
+    "caption": "Three defenders, two central midfielders and three forwards working with width.",
+    "altSummary": "9v9 starting picture with goalkeeper and 3-2-3 outfield shape. Players attack towards the top. Roles are examples to try rather than fixed positions.",
+    "players": [
+      {
+        "t": "us",
+        "l": "2",
+        "x": 80,
+        "y": 113,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "3",
+        "x": 20,
+        "y": 113,
+        "id": "us-3"
+      },
+      {
+        "t": "us",
+        "l": "4",
+        "x": 50,
+        "y": 113,
+        "id": "us-4"
+      },
+      {
+        "t": "us",
+        "l": "6",
+        "x": 38,
+        "y": 83,
+        "id": "us-6"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 82,
+        "y": 47,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "8",
+        "x": 62,
+        "y": 78,
+        "id": "us-8"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 32,
+        "id": "us-9"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 18,
+        "y": 47,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 137,
+        "id": "us-GK"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "use-front-three",
+      "n": 1,
+      "title": "Use the front three",
+      "tag": "Stretch the pitch and provide options ahead.",
+      "summary": "Two wide forwards make space for the central forward and midfielders.",
+      "cue": "Are we wide enough to play?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "use-front-three",
+      "thumb": 1,
+      "seo": "9v9 3-2-3: use the front three in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The two outside forwards start wider, opening space between them.",
+        "Two wide forwards make space for the central forward and midfielders.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "stagger-the-two",
+      "n": 2,
+      "title": "Stagger the two",
+      "tag": "Give passing choices at different heights.",
+      "summary": "One midfielder can support deeper while the other receives further forward.",
+      "cue": "Who is behind? Who is ahead?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "stagger-the-two",
+      "thumb": 1,
+      "seo": "9v9 3-2-3: stagger the two in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "Six and eight form different passing lines rather than standing flat.",
+        "One midfielder can support deeper while the other receives further forward.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "one-goes-one-stays",
+      "n": 3,
+      "title": "One goes, one stays",
+      "tag": "Outside defenders support without exposing both sides.",
+      "summary": "One outside defender can advance while teammates protect the space behind.",
+      "cue": "If I go, who covers?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "one-goes-one-stays",
+      "thumb": 1,
+      "seo": "9v9 3-2-3: one goes, one stays in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The left outside defender moves forward; the right holds and the central defender stays connected.",
+        "One outside defender can advance while teammates protect the space behind.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "press-with-cover",
+      "n": 4,
+      "title": "Press with cover",
+      "tag": "The front line presses with support behind it.",
+      "summary": "Forwards recognise a chance to press while the two midfielders guard space behind.",
+      "cue": "Who protects behind our press?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "press-with-cover",
+      "thumb": 1,
+      "seo": "9v9 3-2-3: press with cover in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The midfield pair recover to protect passing lanes behind the front three.",
+        "Forwards recognise a chance to press while the two midfielders guard space behind.",
+        "Ask the players what else they might try."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "Help us build",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Offer calm distribution choices.",
+        "Support the back three when we have possession.",
+        "Communicate when the team needs to recover."
+      ],
+      "cue": "What is safe?",
+      "rules": [
+        "stagger-the-two"
+      ]
+    },
+    {
+      "id": "central-defender",
+      "nums": [
+        "4"
+      ],
+      "short": "4",
+      "title": "Central defender",
+      "head": "Connect the back three",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-central-defender",
+      "points": [
+        "Offer a central passing option.",
+        "Help outside defenders when they advance.",
+        "Protect the route through the middle."
+      ],
+      "cue": "What is happening either side?",
+      "rules": [
+        "one-goes-one-stays",
+        "press-with-cover"
+      ]
+    },
+    {
+      "id": "outside-defenders",
+      "nums": [
+        "3",
+        "2"
+      ],
+      "short": "3 · 2",
+      "title": "Outside defenders",
+      "head": "Provide width and recover",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-outside-defenders",
+      "points": [
+        "Give the keeper passing angles.",
+        "Choose when one can support an attack.",
+        "Recover and protect the space if a teammate advances."
+      ],
+      "cue": "Which one of us goes?",
+      "rules": [
+        "one-goes-one-stays"
+      ]
+    },
+    {
+      "id": "midfield-pair",
+      "nums": [
+        "6",
+        "8"
+      ],
+      "short": "6 · 8",
+      "title": "Midfield pair",
+      "head": "Work on different lines",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-midfield-pair",
+      "points": [
+        "Stagger to avoid standing flat.",
+        "Give short and forward passing options.",
+        "When the ball is lost, help defend central space."
+      ],
+      "cue": "Who supports? Who protects?",
+      "rules": [
+        "stagger-the-two",
+        "press-with-cover"
+      ]
+    },
+    {
+      "id": "wide-forwards",
+      "nums": [
+        "11",
+        "7"
+      ],
+      "short": "11 · 7",
+      "title": "Wide forwards",
+      "head": "Stretch and support",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-wide-forwards",
+      "points": [
+        "Offer width when the team has the ball.",
+        "Move in when another teammate uses the outside lane.",
+        "Help the central forward press and recover."
+      ],
+      "cue": "Am I giving space or taking it?",
+      "rules": [
+        "use-front-three",
+        "press-with-cover"
+      ]
+    },
+    {
+      "id": "central-forward",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Central forward",
+      "head": "Offer height and a link",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-central-forward",
+      "points": [
+        "Provide a forward option.",
+        "Make room for wide forwards to attack.",
+        "Help press with the other two forwards."
+      ],
+      "cue": "Can I move a defender?",
+      "rules": [
+        "use-front-three",
+        "press-with-cover"
+      ]
+    }
+  ],
+  "diagrams": {
+    "use-front-three": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            50,
+            85
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Use the front three: starting situation. Stretch the pitch and provide options ahead.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario. Stretch the pitch and provide options ahead. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 60,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 40,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            50,
+            85
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The two outside forwards start wider, opening space between them.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario: The two outside forwards start wider, opening space between them.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 83,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 17,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 60,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 40,
+              "y": 47,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                60,
+                47
+              ],
+              "to": [
+                83,
+                47
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                40,
+                47
+              ],
+              "to": [
+                17,
+                47
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "stagger-the-two": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            63,
+            119
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Stagger the two: starting situation. Give passing choices at different heights.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario. Give passing choices at different heights. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 39,
+              "y": 82,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 61,
+              "y": 82,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            63,
+            119
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "Six and eight form different passing lines rather than standing flat.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario: Six and eight form different passing lines rather than standing flat.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 40,
+              "y": 93,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 61,
+              "y": 71,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 39,
+              "y": 82,
+              "id": "us-6"
+            },
+            {
+              "l": "8",
+              "x": 61,
+              "y": 82,
+              "id": "us-8"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                39,
+                82
+              ],
+              "to": [
+                40,
+                93
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                61,
+                82
+              ],
+              "to": [
+                61,
+                71
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "one-goes-one-stays": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            22,
+            99
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "One goes, one stays: starting situation. Outside defenders support without exposing both sides.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario. Outside defenders support without exposing both sides. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 79,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 79,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            22,
+            99
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The left outside defender moves forward; the right holds and the central defender stays connected.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario: The left outside defender moves forward; the right holds and the central defender stays connected.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 112,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 93,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 80,
+              "y": 79,
+              "id": "us-2"
+            },
+            {
+              "l": "3",
+              "x": 20,
+              "y": 79,
+              "id": "us-3"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                79
+              ],
+              "to": [
+                80,
+                112
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                79
+              ],
+              "to": [
+                20,
+                93
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "press-with-cover": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            50,
+            46
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Press with cover: starting situation. The front line presses with support behind it.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario. The front line presses with support behind it. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 52,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 52,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "ball": [
+            50,
+            46
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The midfield pair recover to protect passing lanes behind the front three.",
+          "altSummary": "Provisional 9v9 3-2-3 coaching scenario: The midfield pair recover to protect passing lanes behind the front three.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 86,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 80,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "6",
+              "x": 38,
+              "y": 52,
+              "id": "us-6"
+            },
+            {
+              "l": "8",
+              "x": 62,
+              "y": 52,
+              "id": "us-8"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                38,
+                52
+              ],
+              "to": [
+                38,
+                86
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                62,
+                52
+              ],
+              "to": [
+                62,
+                80
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Goalkeeper: Help us build.",
+          "altSummary": "In the 9v9 3-2-3, goalkeeper are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-central-defender": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Central defender: Connect the back three.",
+          "altSummary": "In the 9v9 3-2-3, central defender are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-outside-defenders": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Outside defenders: Provide width and recover.",
+          "altSummary": "In the 9v9 3-2-3, outside defenders are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-midfield-pair": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Midfield pair: Work on different lines.",
+          "altSummary": "In the 9v9 3-2-3, midfield pair are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-wide-forwards": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Wide forwards: Stretch and support.",
+          "altSummary": "In the 9v9 3-2-3, wide forwards are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-central-forward": {
+      "frames": [
+        {
+          "pitch": "9v9",
+          "crop": [
+            -6,
+            155
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Central forward: Offer height and a link.",
+          "altSummary": "In the 9v9 3-2-3, central forward are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 80,
+              "y": 113,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "3",
+              "x": 20,
+              "y": 113,
+              "id": "us-3"
+            },
+            {
+              "t": "us",
+              "l": "4",
+              "x": 50,
+              "y": 113,
+              "id": "us-4"
+            },
+            {
+              "t": "us",
+              "l": "6",
+              "x": 38,
+              "y": 83,
+              "id": "us-6"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 82,
+              "y": 47,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "8",
+              "x": 62,
+              "y": 78,
+              "id": "us-8"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 32,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 18,
+              "y": 47,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 137,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "numbers",
+      "title": "Does the midfield pair have enough cover?",
+      "why": "Test situations where an opposing midfield has three players.",
+      "qs": [
+        "Test situations where an opposing midfield has three players.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "forward-defence",
+      "title": "Are the wide forwards’ recovery jobs realistic?",
+      "why": "Review rotations and distances on a 9v9 pitch.",
+      "qs": [
+        "Review rotations and distances on a 9v9 pitch.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "stagger",
+      "title": "How should the two midfielders interpret different lines?",
+      "why": "Preserve freedom and role rotation, not permanent defensive and attacking labels.",
+      "qs": [
+        "Preserve freedom and role rotation, not permanent defensive and attacking labels.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    }
+  ],
+  "issue": {
+    "number": 4,
+    "intro": "The 3-2-3 puts three options across the front and two partners in midfield. It helps players recognise when to create width, when to stagger their positions and how the team stays connected when pressing.",
+    "summary": "The 9v9 3-2-3: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "This is one developmental starting shape, not a fixed 9v9 prescription. Give players chances to swap roles.",
+        "preview": "Where players begin and how they help each other."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Four playing principles",
+        "dek": "Four choices to notice and practise in games.",
+        "rules": [
+          "use-front-three",
+          "stagger-the-two",
+          "one-goes-one-stays",
+          "press-with-cover"
+        ],
+        "preview": "Private draft tactical examples for coaching review."
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "A starting responsibility, with the freedom to learn another.",
+        "roles": [
+          "goalkeeper",
+          "central-defender",
+          "outside-defenders",
+          "midfield-pair",
+          "wide-forwards",
+          "central-forward"
+        ],
+        "preview": "The goalkeeper and each outfield role."
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How the team supports one another in possession and after the ball is lost.",
+        "groups": [
+          {
+            "title": "With the ball",
+            "items": [
+              {
+                "rule": "use-front-three"
+              },
+              {
+                "rule": "stagger-the-two"
+              }
+            ]
+          },
+          {
+            "title": "Without the ball",
+            "items": [
+              {
+                "rule": "one-goes-one-stays"
+              },
+              {
+                "rule": "press-with-cover"
+              }
+            ]
+          }
+        ],
+        "preview": "How small decisions connect across the team."
+      }
+    ],
+    "features": []
+  }
+}
