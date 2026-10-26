@@ -830,8 +830,8 @@
 .usa-compare__table caption { text-align: left; font: 700 14px/1.4 var(--ed-sans); margin-bottom: 12px; }
 .usa-compare__table th, .usa-compare__table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid var(--hwp-color-rule); }
 .usa-compare__table thead th { border-bottom: 3px solid var(--hwp-color-ink); }
-.usa-story__cta { display: grid; gap: 14px; align-content: start; }
-.usa-story__cta .ed-btn { justify-content: space-between; }
+.usa-story__cta, .usa-rec__cta { display: grid; gap: 14px; align-content: start; }
+.usa-story__cta .ed-btn, .usa-rec__cta .ed-btn { justify-content: space-between; }
 .usa-sources > div { grid-column: 2 / span 10; border-top: 1px solid var(--hwp-color-rule); padding-top: 18px; display: grid; gap: 12px; }
 @media (max-width: 1023px) { .usa-head__note { grid-column: 1 / -1; margin: 24px 0; } .usa-pathway__heading, .usa-pathway__grid, .usa-sources > div { grid-column: 1 / -1; } .usa-pathway__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .usa-pathway__grid { grid-template-columns: 1fr; } .usa-pathway__card { min-height: 0; } }
