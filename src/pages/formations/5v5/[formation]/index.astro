@@ -25,7 +25,7 @@ const reviewerNotes = model.target !== 'public';
 const chap = id => full ? f.issue.chapters.find(c => c.id === id) : null;
 const rule = id => f.rules.find(r => r.id === id);
 const role = id => f.roles.find(r => r.id === id);
-const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: d.altSummary || d.caption }); };
+const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: String(d.altSummary || d.caption).replace(/^Provisional\s+/i, '') }); };
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
@@ -44,7 +44,7 @@ const description = full
 const jsonLd = issueStructuredData(model.site, f);
 const contents = full ? [
   ...(explainer ? [{ href: '#watch', n: 'Watch', t: 'The full formation explainer' }] : []),
-  ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })), 
+  ...f.issue.chapters.map(c => ({ href: `#${c.id}`, n: `Chapter ${c.n}`, t: c.title })),
   ...(f.issue.features && f.issue.features.length ? [{ href: '#features', n: 'Features', t: 'More from this issue' }] : []),
   { href: '#playbook', n: 'Playbook', t: 'The printable edition' }
 ] : [];

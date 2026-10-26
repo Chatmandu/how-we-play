@@ -1,5 +1,5 @@
 {
-  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "$comment": "David Wilson's review of this exact coaching version was confirmed by Niall Walsh on 26 October 2026, for PR #20. See the versioned record in content/register.json and the research notes in docs/NEW-PLAYBOOKS-REVIEW.md.",
   "id": "9v9-3-2-3",
   "format": "9v9",
   "pitch": "9v9",
@@ -9,7 +9,7 @@
   "order": 24,
   "registerId": "9v9-3-2-3",
   "summary": "Three defenders, two central midfielders and three forwards working with width.",
-  "sourceLabel": "Research-based coaching draft for qualified review",
+  "sourceLabel": "How We Play Football coaching guidance, reviewed by David Wilson",
   "structure": [
     [
       "Notation",
@@ -33,9 +33,11 @@
   "spineText": "Goalkeeper, central defender, midfield pair and central forward.",
   "shapeCue": "This is one developmental starting shape, not a fixed 9v9 prescription. Give players chances to swap roles.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
-    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+    "source": "How We Play Football coaching research, 26 October 2026; David Wilson approval confirmed by the site owner",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-26"
   },
   "shape": {
     "id": "shape",
@@ -1648,9 +1650,10 @@
     }
   ],
   "issue": {
+    "published": "2026-10-26",
     "number": 4,
     "intro": "The 3-2-3 puts three options across the front and two partners in midfield. It helps players recognise when to create width, when to stagger their positions and how the team stays connected when pressing.",
-    "summary": "The 9v9 3-2-3: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "summary": "The 9v9 3-2-3: starting shape, four playing principles, player roles and how the team plays together.",
     "chapters": [
       {
         "id": "shape",
@@ -1670,7 +1673,7 @@
           "one-goes-one-stays",
           "press-with-cover"
         ],
-        "preview": "Private draft tactical examples for coaching review."
+        "preview": "Four illustrated playing principles with practical decisions to try."
       },
       {
         "id": "jobs",

@@ -1,5 +1,5 @@
 {
-  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "$comment": "David Wilson's review of this exact coaching version was confirmed by Niall Walsh on 26 October 2026, for PR #20. See the versioned record in content/register.json and the research notes in docs/NEW-PLAYBOOKS-REVIEW.md.",
   "id": "5v5-1-2-1",
   "format": "5v5",
   "pitch": "5v5",
@@ -9,7 +9,7 @@
   "order": 1,
   "registerId": "5v5-1-2-1",
   "summary": "One behind, two across the middle, one ahead. A simple diamond to learn support and space.",
-  "sourceLabel": "Research-based coaching draft for qualified review",
+  "sourceLabel": "How We Play Football coaching guidance, reviewed by David Wilson",
   "structure": [
     [
       "Notation",
@@ -33,9 +33,11 @@
   "spineText": "Goalkeeper, defender and forward; the two wider players provide angles.",
   "shapeCue": "A starting diamond, not a set of fixed spots. Every player gets to attack and defend.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
-    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+    "source": "How We Play Football coaching research, 26 October 2026; David Wilson approval confirmed by the site owner",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-26"
   },
   "shape": {
     "id": "shape",
@@ -1055,9 +1057,10 @@
     }
   ],
   "issue": {
+    "published": "2026-10-26",
     "number": 1,
     "intro": "Four outfield players and a goalkeeper. The diamond is a starting picture that helps children find a passing option, spread out and learn to recover together. Let everyone try different roles.",
-    "summary": "The 5v5 1-2-1: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "summary": "The 5v5 1-2-1: starting shape, four playing principles, player roles and how the team plays together.",
     "chapters": [
       {
         "id": "shape",
@@ -1077,7 +1080,7 @@
           "one-goes-one-covers",
           "recover-together"
         ],
-        "preview": "Private draft tactical examples for coaching review."
+        "preview": "Four illustrated playing principles with practical decisions to try."
       },
       {
         "id": "jobs",

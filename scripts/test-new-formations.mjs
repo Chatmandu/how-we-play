@@ -1,23 +1,39 @@
 #!/usr/bin/env node
-/* Guards the four new formation drafts: complete guides in preview, absent from public
- * until David Wilson has reviewed the exact tactical content version. */
+/* Guards four newly approved formation guides: exact versioned coaching approval,
+ * complete public guides and previews, plus automatic withdrawal if content changes. */
 import assert from 'node:assert/strict';
 import { loadModel, loadRaw } from './load-content.mjs';
 import { buildModel, contentVersion } from '../src/lib/model.mjs';
 import { motionPaths, validate } from '../design-system/diagrams/renderer.mjs';
+import { publishedIssues } from '../src/lib/editorial.mjs';
 
-const ids = ['5v5-1-2-1', '5v5-2-2', '7v7-2-1-2-1', '9v9-3-2-3'];
+const versions = {
+  '5v5-1-2-1': 'cv-0564e1bb',
+  '5v5-2-2': 'cv-b002302f',
+  '7v7-2-1-2-1': 'cv-d2c2ecf7',
+  '9v9-3-2-3': 'cv-0cb51dd6'
+};
 const preview = loadModel('preview');
 const publicModel = loadModel('public');
 
-for (const id of ids) {
+for (const [id, approvedVersion] of Object.entries(versions)) {
   const f = preview.formations.find(x => x.id === id);
   assert.ok(f, id + ' must be loaded');
-  assert.equal(f.status.content, 'review-required');
-  assert.equal(f.register.content.status, 'review-required');
-  assert.equal(f.register.content.reviewedBy, null);
-  assert.equal(f.gate.allowed, true, id + ' must appear in private preview');
-  assert.equal(publicModel.formations.find(x => x.id === id).gate.allowed, false, id + ' must not publish without review');
+  assert.equal(f.status.content, 'reviewed');
+  assert.equal(f.register.content.status, 'reviewed');
+  assert.equal(f.status.reviewedBy, 'David Wilson');
+  assert.equal(f.register.content.reviewedBy, 'David Wilson');
+  assert.equal(f.register.content.reviewedOn, '2026-10-26');
+  assert.equal(f.register.content.reviewedVersion, approvedVersion);
+  assert.equal(contentVersion(f), approvedVersion, id + ' must match the reviewed content');
+  assert.equal(f.register.content.reviewLog.at(-1)?.version, approvedVersion);
+  assert.equal(f.register.content.reviewLog.at(-1)?.decision, 'approved');
+  assert.equal(f.issue.published, '2026-10-26');
+  assert.equal(f.gate.allowed, true, id + ' must remain previewable');
+  assert.equal(f.gate.noindex, true, id + ' preview must not be indexable');
+  assert.equal(f.gate.watermark, false, id + ' approved content must not carry a draft watermark');
+  assert.equal(publicModel.formations.find(x => x.id === id).gate.allowed, true, id + ' may publish only with this sign-off');
+  assert.equal(publishedIssues(publicModel).some(x => x.id === id), true, id + ' must be a complete published issue');
   assert.equal(f.rules.length, 4);
   assert.equal(f.issue.chapters.length, 4);
   assert.ok(f.roles.length >= 3);
@@ -37,22 +53,14 @@ for (const id of ids) {
     }
   }
   for (const role of f.roles) assert.ok(f.diagrams[role.diagram]?.frames.length);
-  console.log('PASS  ' + id + ': full private playbook, four animated principles, roles and no public leak');
+  console.log('PASS  ' + id + ': approved ' + approvedVersion + ', four animated principles, roles and public issue');
 }
 
-// Simulating review is a model test only. It must never alter the real register.
+// Simulate a post-review wording change in memory only. No real content is altered.
+// An approval must never carry over to a different coaching content version.
 const mock = loadRaw();
 const f = mock.formations.find(x => x.id === '5v5-1-2-1');
-const reg = mock.register.find(x => x.id === f.registerId);
-reg.content.status = 'reviewed';
-reg.content.reviewedBy = 'David Wilson';
-reg.content.reviewedOn = '2026-10-26';
-reg.content.reviewedVersion = contentVersion(f);
-f.status.content = 'reviewed';
-f.status.reviewedBy = 'David Wilson';
-f.status.reviewedOn = '2026-10-26';
-f.issue.published = '2026-10-26';
 assert.equal(buildModel(mock, 'public').formation('1-2-1').gate.allowed, true);
 f.rules[0].cue += ' '; // Any content change invalidates that review.
 assert.equal(buildModel(mock, 'public').formation('1-2-1').gate.allowed, false);
-console.log('PASS  coaching approval is locked to an exact content version');
+console.log('PASS  any unreviewed subsequent content change closes the public gate');

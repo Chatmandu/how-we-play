@@ -1,5 +1,5 @@
 {
-  "$comment": "Unreviewed coaching draft written for private preview, 26 October 2026. Do not publish until David Wilson approves this exact content version. References and assumptions: docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "$comment": "David Wilson's review of this exact coaching version was confirmed by Niall Walsh on 26 October 2026, for PR #20. See the versioned record in content/register.json and the research notes in docs/NEW-PLAYBOOKS-REVIEW.md.",
   "id": "5v5-2-2",
   "format": "5v5",
   "pitch": "5v5",
@@ -9,7 +9,7 @@
   "order": 2,
   "registerId": "5v5-2-2",
   "summary": "Two behind, two ahead. Learning partnerships without dividing the team.",
-  "sourceLabel": "Research-based coaching draft for qualified review",
+  "sourceLabel": "How We Play Football coaching guidance, reviewed by David Wilson",
   "structure": [
     [
       "Notation",
@@ -33,9 +33,11 @@
   "spineText": "Goalkeeper and the centre between the two pairs.",
   "shapeCue": "The box is only a starting picture. Partners can swap jobs and every player has permission to find space.",
   "status": {
-    "content": "review-required",
+    "content": "reviewed",
     "exploratory": false,
-    "source": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending"
+    "source": "How We Play Football coaching research, 26 October 2026; David Wilson approval confirmed by the site owner",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-26"
   },
   "shape": {
     "id": "shape",
@@ -1018,9 +1020,10 @@
     }
   ],
   "issue": {
+    "published": "2026-10-26",
     "number": 2,
     "intro": "The box gives four outfield players two natural partnerships. The challenge is keeping the players connected when attacking and defending, rather than staying in two separate lines.",
-    "summary": "The 5v5 2-2: starting shape, four proposed playing principles, player roles and how the team plays together.",
+    "summary": "The 5v5 2-2: starting shape, four playing principles, player roles and how the team plays together.",
     "chapters": [
       {
         "id": "shape",
@@ -1040,7 +1043,7 @@
           "one-comes-one-goes",
           "close-the-gap"
         ],
-        "preview": "Private draft tactical examples for coaching review."
+        "preview": "Four illustrated playing principles with practical decisions to try."
       },
       {
         "id": "jobs",
