@@ -19,6 +19,8 @@ interface Crumb { label: string; href?: string }
 interface Props {
   title: string;            // full <title> (SEO title)
   description: string;      // meta description
+  lang?: string;            // page language; the publication defaults to UK English
+  ogLocale?: string;        // social-sharing locale where a page is region-specific
   ids?: string[];           // register ids this page depends on
   crumbs?: Crumb[];         // breadcrumbs, last item is the current page
   nav?: string;             // main navigation item to mark current
@@ -29,7 +31,7 @@ interface Props {
   editorial?: boolean;
   meta?: { type?: string; format?: string; issue?: number; formation?: string; group?: string };  // analytics page metadata (no personal data)      // editorial pages own their grid; others sit in the standard container
 }
-const { title, description, ids = [], crumbs = [], nav, activeFormat, ogType = 'article', jsonLd = [], noindex = false, editorial = false, meta = {} } = Astro.props;
+const { title, description, lang = 'en-GB', ogLocale, ids = [], crumbs = [], nav, activeFormat, ogType = 'article', jsonLd = [], noindex = false, editorial = false, meta = {} } = Astro.props;
 
 const access = model.access(ids);
 if (!access.allowed) {
@@ -38,6 +40,7 @@ if (!access.allowed) {
   throw new Error(`Publishing gate: ${Astro.url.pathname} is blocked for ${model.target}: ${access.reasons.join('; ')}`);
 }
 const site = model.site;
+const pageOgLocale = ogLocale || site.locale;
 const isPublic = model.target === 'public';
 const robots = noindex || access.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
 const canonical = new URL(Astro.url.pathname, site.url).href;
@@ -69,7 +72,7 @@ const ld = [...crumbLd, ...jsonLd];
 const pageItems = ids.join(' ');
 ---
 <!doctype html>
-<html lang="en-GB">
+<html lang={lang}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,7 +93,7 @@ const pageItems = ids.join(' ');
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content={ogImageAlt}>
-  <meta property="og:locale" content={site.locale}>
+  <meta property="og:locale" content={pageOgLocale}>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={title}>
   <meta name="twitter:description" content={description}>

@@ -8,6 +8,24 @@
 
 How We Play is the publication. Each complete formation is an **issue**. Individual tactical principles and position lessons are chapters inside an issue. We will not create thin standalone pages to chase keywords or put unreviewed coaching advice into search results.
 
+## US youth and recreational soccer discovery (26 October 2026)
+
+The publication stays **How We Play Football** and keeps UK English on its core coaching pages. The existing `/coaching-in-the-usa/` page is the entry point for American coaches. It now has US English language and social-sharing locale metadata, a title naming 7v7 and 9v9 soccer, and an explanation of recreational soccer (often called **rec soccer**). The section is relevant to volunteer and parent coaches, but the site does not imply that all American grassroots soccer is recreational; competitive or travel teams may also use the formation guides.
+
+Our 7v7 and 9v9 formation pages keep their British titles and coaching terminology. Their introductory US notes link back to the American age-group explanation while identifying the formation as a soccer starting shape. Avoid duplicating all UK pages solely to replace 'football' with 'soccer'. Do not add `hreflang` pairs unless distinct, substantial UK and US versions of the same page actually exist.
+
+Initial US keyword research themes to test, **not verified search-volume forecasts**:
+
+| Search intent | Candidate American searches | Primary page |
+|---|---|---|
+| Format formations | `7v7 soccer formations`, `9v9 soccer formations` | US guide, linked format hubs |
+| Specific formations | `2-3-1 soccer formation`, `3-1-3-1 soccer formation` | Corresponding published issue |
+| Age groups | `U10 soccer formations`, `U12 soccer formations` | US guide with US age-group context |
+| Volunteer coaching | `rec soccer formations`, `recreational soccer coaching tips` | Rec soccer section on US guide |
+| Player roles | `9v9 soccer positions`, `youth soccer positions explained` | Published position lessons and their parent issue |
+
+Measure **US-filtered Search Console** impressions, clicks, queries and landing pages before creating more country-specific resources. The 25 October export showed seven US impressions and no US clicks, far too few for ranking or keyword-volume conclusions. See [US Club Soccer's definition of recreation and community programmes](https://usclubsoccer.org/programs/leagues/recreation-community/) for the correct audience distinction, and [Google's guidance on regional page versions](https://developers.google.com/search/docs/specialty/international/localized-versions) before introducing `hreflang`.
+
 Priority order:
 
 1. Make it easy for crawlers, AI search and coaches to **find** complete issues.

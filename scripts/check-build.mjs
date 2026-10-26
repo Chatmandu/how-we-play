@@ -71,6 +71,17 @@ for (const file of pages) {
   if (!/<title>[^<]+<\/title>/.test(html)) fail(route, 'missing <title>');
   if (!/<meta name="description" content="[^"]{20,}"/.test(html)) fail(route, 'missing meta description');
   if (!/<link rel="canonical" href="https:\/\/howweplayfootball\.com\//.test(html)) fail(route, 'missing canonical URL');
+  if (target === 'public' && route === '/coaching-in-the-usa/') {
+    if (!/<html lang="en-US">/.test(html) || !/<meta property="og:locale" content="en_US">/.test(html)) {
+      fail(route, 'US guide must have US English HTML and social locale metadata');
+    }
+    if (!/<title>[^<]*7v7 &amp; 9v9[^<]*<\/title>/.test(html) || !/name="description" content="[^"]*rec soccer/.test(html)) {
+      fail(route, 'US guide must use 7v7, 9v9 and rec soccer discovery terms');
+    }
+    if (!html.includes('Coaching rec soccer? Start here.') || !html.includes('Recreational soccer') || !html.includes('href="/formations/7v7/2-3-1/"') || !html.includes('href="/formations/9v9/3-1-3-1/"')) {
+      fail(route, 'US guide is missing useful rec soccer explanations or formation links');
+    }
+  }
   // Every page has a real, crawlable sharing image. Guide pages must have
   // their own source-derived PNG, not the generic fallback image.
   const og = (html.match(/<meta property="og:image" content="([^"]+)"/) || [])[1] || '';
