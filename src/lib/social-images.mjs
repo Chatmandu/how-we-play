@@ -7,18 +7,20 @@ export const DEFAULT_SOCIAL_IMAGE = '/og/default.png';
 
 export function socialImageSpecs(model) {
   const issues = publishedIssues(model);
+  const has5v5 = issues.some(f => f.format === '5v5');
   const specs = [
-    { route: '/', image: '/og/pages/home.png', title: 'FREE FOOTBALL COACHING GUIDES', eyebrow: 'HOW WE PLAY FOOTBALL', deck: 'Simple pictures. Simple decisions. Play together.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape },
+    { route: '/', image: '/og/pages/home.png', title: has5v5 ? '5V5, 7V7 & 9V9 FOOTBALL GUIDES' : 'FREE FOOTBALL COACHING GUIDES', eyebrow: 'HOW WE PLAY FOOTBALL', deck: 'Free illustrated formations. Four principles. A job for every player.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape },
     { route: '/about/', image: '/og/pages/about.png', title: 'SEVEN YEARS ON THE TOUCHLINE', eyebrow: 'ABOUT HOW WE PLAY FOOTBALL', deck: 'From grassroots coaching experience to free formation playbooks.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape }
   ];
   for (const format of ['5v5', '7v7', '9v9']) {
-    const first = issues.find(f => f.format === format);
+    const inFormat = issues.filter(f => f.format === format);
+    const first = inFormat[0];
     specs.push({
       route: `/formations/${format}/`,
       image: `/og/formats/${format}.png`,
       title: `${format.toUpperCase()} FORMATION GUIDES`,
       eyebrow: 'HOW WE PLAY FOOTBALL · GRASSROOTS COACHING',
-      deck: first ? 'Complete, free playing principles and illustrated positional guides.' : 'New formation guides in development.',
+      deck: first ? `${inFormat.length} free illustrated guides: ${inFormat.map(f => f.name).join(', ')}. Four principles and player roles.` : 'New formation guides in development.',
       frame: first?.shape
     });
   }

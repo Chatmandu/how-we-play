@@ -20,10 +20,12 @@ import { loadModel, ROOT } from './load-content.mjs';
 import { resolveTarget } from '../src/lib/model.mjs';
 import { sitemapLastmod, issueFeedXml, escapeXml } from '../src/lib/seo.mjs';
 import { socialImageForRoute, DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-images.mjs';
+import { publishedIssues } from '../src/lib/editorial.mjs';
 
 const target = resolveTarget(process.env);
 const dist = join(ROOT, process.argv[2] || 'dist');
 const model = loadModel(target);
+const published = publishedIssues(model);
 const errors = [], notes = [];
 const fail = (page, msg) => errors.push(`${page}: ${msg}`);
 
@@ -106,6 +108,22 @@ for (const file of pages) {
     catch { fail(route, 'malformed JSON-LD block'); return null; }
   }).filter(Boolean);
   const pageType = (html.match(/data-hwp-type="([^"]+)"/) || [])[1] || '';
+  const formatMatch = target === 'public' && route.match(/^\/formations\/(5v5|7v7|9v9)\/$/);
+  if (formatMatch) {
+    const format = formatMatch[1];
+    const live = published.filter(f => f.format === format);
+    if (live.length) {
+      const sheets = (html.match(/class="sheet ed-grid"[^>]*data-sheet/g) || []).length;
+      if (sheets !== live.length) fail(route, `expected ${live.length} illustrated formation sheets, found ${sheets}`);
+      for (const f of live) {
+        if (!html.includes(`href="/formations/${format}/${f.slug}/"`)) fail(route, `missing guide link for ${f.name}`);
+        if (!(html.match(/<meta name="description" content="([^"]+)"/) || [])[1]?.includes(f.name)) fail(route, `description does not name the ${f.name} guide`);
+      }
+      if (!og.endsWith(`/og/formats/${format}.png`)) fail(route, 'format hub must have its own social preview');
+      const collection = ld.find(x => x['@type'] === 'CollectionPage');
+      if (!collection || collection.mainEntity?.itemListElement?.length !== live.length) fail(route, 'format hub missing complete CollectionPage / ItemList schema');
+    }
+  }
   if (target === 'public' && ['formation_issue', 'lesson', 'position'].includes(pageType)) {
     const article = ld.find(o => o['@type'] === 'Article');
     const webpage = ld.find(o => o['@type'] === 'WebPage');
@@ -157,6 +175,7 @@ for (const file of pages) {
   if (target === 'public' && route === '/') {
     if (!html.includes('Featured formation') || !html.includes('The 3-1-3-1')) fail(route, 'homepage must feature 3-1-3-1');
     if (!html.includes('Follow How We Play')) fail(route, 'homepage missing dedicated social discovery section');
+    if (published.some(f => f.format === '5v5') && !/<title>[^<]*5v5, 7v7 &amp; 9v9/.test(html)) fail(route, 'homepage title must mention all three available formats');
   }
   if (target === 'public') {
     for (const profile of Object.values(model.site.social || {})) {

@@ -16,6 +16,9 @@ const preparing = issues.filter(f => !published.includes(f));
 const preview = model.target !== 'public';
 const fact = id => model.fact(id);
 const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations' }];
+const publishedNames = published.map(f => f.name).join(', ');
+const title = published.length ? '7v7 Football Formations & Coaching Guides | How We Play Football' : '7v7 football formations: in development | How We Play Football';
+const description = published.length ? `Free illustrated 7v7 football and youth soccer guides: ${publishedNames} formations, playing principles and player roles for grassroots coaches.` : 'Our 7v7 formation guides are being researched and reviewed. Explore the format and our published football coaching guides.';
 const glance = [
   ['Age groups', 'U10 and U11'],
   ['Players', '7, including a goalkeeper'],
@@ -27,8 +30,8 @@ const glance = [
 const jsonLd = published.length ? collectionStructuredData(model.site, published, '7v7') : [];
 ---
 <Base
-  title={published.length ? '7v7 football formations for U10 and U11 | How We Play Football' : '7v7 football formations: in development | How We Play Football'}
-  description={published.length ? 'Free, illustrated 7v7 formation guides for U10 and U11 grassroots football, with principles and a job for each position.' : 'Our 7v7 formation guides are being researched and reviewed. Explore the format and our published football coaching guides.'}
+  title={title}
+  description={description}
   ids={['7v7']}
   nav="7v7"
   crumbs={crumbs}
