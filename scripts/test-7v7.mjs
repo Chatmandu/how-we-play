@@ -70,7 +70,7 @@ assert.equal(article.isPartOf.url, pub.site.url + '/formations/7v7/');
 assert.equal(article.articleSection, '7v7 formation guides');
 assert.equal(article.datePublished, '2026-10-22');
 assert.equal(sitemapLastmod(issuePath(f), pub), '2026-10-22');
-assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-10-22');
+assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-10-26');
 assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(f)), 'Approved issue must appear in public RSS');
 
 console.log(`PASS  Approved 7v7 Issue 01: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, signed-off ${contentVersion(f)} and public`);
@@ -98,7 +98,7 @@ assert.equal(pre.formation('3-2-1').gate.allowed, true);
 assert.equal(pre.formation('3-2-1').gate.noindex, true);
 assert.equal(pre.formation('3-2-1').gate.watermark, false);
 assert.ok(publishedIssues(pub).some(x => x.registerId === draft.registerId));
-assert.equal(publishedIssues(pub).filter(x => x.format === '7v7').length, 2);
+assert.equal(publishedIssues(pub).filter(x => x.format === '7v7').length, 3);
 assert.equal(draft.shape.pitch, '7v7');
 assert.deepEqual(draft.shape.players.map(p => p.l).sort(), ['2','3','5','7','9','11','GK'].sort());
 assert.equal(new Set(draft.shape.players.map(p => p.id)).size, 7);

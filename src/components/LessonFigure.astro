@@ -9,7 +9,10 @@ const { frames: raw, figLabel, context, source, id, exploratory = false, deriveT
 const frames = clone(raw);
 const verdictOf = (f: any) => f.stage ? ['stage', `Stage ${f.stage}`] : f.verdict === 'wrong' ? ['wrong', '✕ Wrong'] : f.verdict === 'right' ? ['right', '✓ Right'] : null;
 const stepTitle = (f: any, i: number) => String(f.tab || `Step ${i + 1}`).replace(/^\d+\s*·\s*/, '');
-const svgs = frames.map((f: any) => renderPitch(f, { theme: 'blue', title: f.caption, desc: f.altSummary || f.alt || f.caption }));
+// Remove the old drafting-status prefix from accessible SVG descriptions. The
+// reviewed coaching source remains unchanged and version-locked in the register.
+const accessibleDesc = (f: any) => String(f.altSummary || f.alt || f.caption).replace(/^Provisional\s+/i, '');
+const svgs = frames.map((f: any) => renderPitch(f, { theme: 'blue', title: f.caption, desc: accessibleDesc(f) }));
 const symbols = [...new Set(frames.flatMap((f: any) => usedSymbols(f)))];
 const keyHtml = symbols.length ? renderKey(symbols, { theme: 'blue' }) : '';
 const data = JSON.stringify(frames).replace(/</g, '\\u003c');

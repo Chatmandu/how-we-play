@@ -182,7 +182,7 @@ export function sitemapLastmod(route, model) {
     const rule = issue.rules?.find(x => x.id + '/' === rest);
     return rule ? lastEdit(issue, rule) : null;
   }
-  if (['/formations/9v9/', '/formations/7v7/'].includes(route)) {
+  if (['/formations/5v5/', '/formations/7v7/', '/formations/9v9/'].includes(route)) {
     const format = route.split('/')[2];
     const dates = publishedIssues(model).filter(f => f.format === format).map(f => lastEdit(f)).filter(Boolean);
     return dates.length ? dates.sort().at(-1) : null;

@@ -21,7 +21,7 @@ const r = rules[i];
 const set = f.diagrams[r.diagram];
 // The new issues use approved before/after positions to animate existing snapshots.
 // Issue 01 retains its fully hand-authored movement sequences.
-const deriveTransitions = f.slug === "3-3-2" || f.slug === "2-2-3-1";
+const deriveTransitions = ['3-3-2', '2-2-3-1', '3-2-3'].includes(f.slug);
 const skipDerivedOn = f.slug === "3-3-2" && r.diagram === "ball-side-wide" ? ["choose"] : [];
 const exploratory = !!f.register.content.exploratory && !f.register.content.publicApproval;
 const full = Array.isArray(f.roles);

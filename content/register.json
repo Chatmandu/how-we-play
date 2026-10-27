@@ -169,6 +169,17 @@
     "hasBody": false
   },
   {
+    "id": "5v5-hub",
+    "kind": "editorial",
+    "title": "5v5 formation hub",
+    "design": {
+      "status": "approved",
+      "approvedBy": "Niall Walsh",
+      "approvedOn": "2026-10-19",
+      "version": "Approved How We Play Football magazine template"
+    }
+  },
+  {
     "id": "7v7",
     "kind": "editorial",
     "title": "7v7 resources",
@@ -433,5 +444,33 @@
       "confirmedOn": "2026-10-20",
       "evidence": "Written instruction from Niall Walsh, 20 October 2026 14:10: 'David's bio is approved too'. David's own written approval to be filed."
     }
+  },
+  {
+    "id": "5v5-1-2-1",
+    "kind": "coaching",
+    "title": "5v5 1-2-1 diamond · Formation guide 01",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "reviewed", "exploratory": false, "source": "England Football Learning 5v5 guidance and How We Play editorial research, 26 October 2026", "reviewedBy": "David Wilson", "reviewedOn": "2026-10-26", "reviewedVersion": "cv-0564e1bb", "reviewer": "David Wilson (approval confirmed by site owner)", "reviewDateBasis": "Date on which the site owner confirmed David Wilson's approval of the exact content in PR #20; David's direct approval record was not independently supplied.", "reviewLog": [{ "version": "cv-0564e1bb", "reviewer": "David Wilson", "date": "2026-10-26", "decision": "approved", "limitations": "No additional limitations reported. Tactical diagrams remain schematic examples rather than compulsory movements.", "evidence": "Niall Walsh confirmed in the project conversation on 26 October 2026 that David Wilson approved all four exact versions in GitHub PR #20. Underlying reviewer approval should be retained with project records." }] }
+  },
+  {
+    "id": "5v5-2-2",
+    "kind": "coaching",
+    "title": "5v5 2-2 box · Formation guide 02",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "reviewed", "exploratory": false, "source": "England Football Learning 5v5 guidance and How We Play editorial research, 26 October 2026", "reviewedBy": "David Wilson", "reviewedOn": "2026-10-26", "reviewedVersion": "cv-b002302f", "reviewer": "David Wilson (approval confirmed by site owner)", "reviewDateBasis": "Date on which the site owner confirmed David Wilson's approval of the exact content in PR #20; David's direct approval record was not independently supplied.", "reviewLog": [{ "version": "cv-b002302f", "reviewer": "David Wilson", "date": "2026-10-26", "decision": "approved", "limitations": "No additional limitations reported. Tactical diagrams remain schematic examples rather than compulsory movements.", "evidence": "Niall Walsh confirmed in the project conversation on 26 October 2026 that David Wilson approved all four exact versions in GitHub PR #20. Underlying reviewer approval should be retained with project records." }] }
+  },
+  {
+    "id": "7v7-2-1-2-1",
+    "kind": "coaching",
+    "title": "7v7 2-1-2-1 · Formation guide 03",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "reviewed", "exploratory": false, "source": "Soccer Coach Weekly and Football St George 7v7 formation guidance, 26 October 2026", "reviewedBy": "David Wilson", "reviewedOn": "2026-10-26", "reviewedVersion": "cv-d2c2ecf7", "reviewer": "David Wilson (approval confirmed by site owner)", "reviewDateBasis": "Date on which the site owner confirmed David Wilson's approval of the exact content in PR #20; David's direct approval record was not independently supplied.", "reviewLog": [{ "version": "cv-d2c2ecf7", "reviewer": "David Wilson", "date": "2026-10-26", "decision": "approved", "limitations": "No additional limitations reported. Tactical diagrams remain schematic examples rather than compulsory movements.", "evidence": "Niall Walsh confirmed in the project conversation on 26 October 2026 that David Wilson approved all four exact versions in GitHub PR #20. Underlying reviewer approval should be retained with project records." }] }
+  },
+  {
+    "id": "9v9-3-2-3",
+    "kind": "coaching",
+    "title": "9v9 3-2-3 · Formation guide 04",
+    "design": { "status": "approved", "approvedBy": "Niall Walsh", "approvedOn": "2026-10-19", "version": "Existing approved How We Play Football design system" },
+    "content": { "status": "reviewed", "exploratory": false, "source": "U.S. Soccer 9v9 formation guidance and How We Play editorial research, 26 October 2026", "reviewedBy": "David Wilson", "reviewedOn": "2026-10-26", "reviewedVersion": "cv-0cb51dd6", "reviewer": "David Wilson (approval confirmed by site owner)", "reviewDateBasis": "Date on which the site owner confirmed David Wilson's approval of the exact content in PR #20; David's direct approval record was not independently supplied.", "reviewLog": [{ "version": "cv-0cb51dd6", "reviewer": "David Wilson", "date": "2026-10-26", "decision": "approved", "limitations": "No additional limitations reported. Tactical diagrams remain schematic examples rather than compulsory movements.", "evidence": "Niall Walsh confirmed in the project conversation on 26 October 2026 that David Wilson approved all four exact versions in GitHub PR #20. Underlying reviewer approval should be retained with project records." }] }
   }
 ]

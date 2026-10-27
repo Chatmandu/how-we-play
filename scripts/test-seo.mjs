@@ -79,7 +79,7 @@ test('Individual principles and positions point to their parent issue', () => {
 });
 
 test('Each format collection exposes only published issues in that format', () => {
-  for (const format of ['9v9', '7v7']) {
+  for (const format of ['5v5', '7v7', '9v9']) {
     const inFormat = issues.filter(f => f.format === format);
     const collection = collectionStructuredData(site, inFormat, format)[0];
     assert.equal(collection['@type'], 'CollectionPage');
@@ -99,7 +99,7 @@ test('Sitemap publication dates are stable and never fabricated from build time'
   }
   assert.equal(sitemapLastmod('/', model), null);
   assert.equal(sitemapLastmod('/about/', model), null);
-  assert.equal(sitemapLastmod('/formations/5v5/', model), null);
+  assert.equal(sitemapLastmod('/formations/5v5/', model), '2026-10-26');
   assert.equal(sitemapLastmod('/privacy/', model), site.privacy.lastUpdated);
 });
 

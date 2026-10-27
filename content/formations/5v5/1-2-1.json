@@ -1,0 +1,1132 @@
+{
+  "$comment": "David Wilson's review of this exact coaching version was confirmed by Niall Walsh on 26 October 2026, for PR #20. See the versioned record in content/register.json and the research notes in docs/NEW-PLAYBOOKS-REVIEW.md.",
+  "id": "5v5-1-2-1",
+  "format": "5v5",
+  "pitch": "5v5",
+  "name": "1-2-1",
+  "notation": "1-1-2-1",
+  "slug": "1-2-1",
+  "order": 1,
+  "registerId": "5v5-1-2-1",
+  "summary": "One behind, two across the middle, one ahead. A simple diamond to learn support and space.",
+  "sourceLabel": "How We Play Football coaching guidance, reviewed by David Wilson",
+  "structure": [
+    [
+      "Notation",
+      "1-1-2-1 including goalkeeper · 1-2-1 outfield"
+    ],
+    [
+      "Goalkeeper",
+      "1"
+    ],
+    [
+      "Outfield players",
+      "4"
+    ]
+  ],
+  "gives": [
+    "a teammate behind and ahead of the ball",
+    "two wider passing options",
+    "simple chances to combine in twos",
+    "a starting point for supporting and recovering"
+  ],
+  "spineText": "Goalkeeper, defender and forward; the two wider players provide angles.",
+  "shapeCue": "A starting diamond, not a set of fixed spots. Every player gets to attack and defend.",
+  "status": {
+    "content": "reviewed",
+    "exploratory": false,
+    "source": "How We Play Football coaching research, 26 October 2026; David Wilson approval confirmed by the site owner",
+    "reviewedBy": "David Wilson",
+    "reviewedOn": "2026-10-26"
+  },
+  "shape": {
+    "id": "shape",
+    "pitch": "5v5",
+    "crop": [
+      -6,
+      142
+    ],
+    "title": "Starting shape: 1-1-2-1",
+    "caption": "One behind, two across the middle, one ahead. A simple diamond to learn support and space.",
+    "altSummary": "5v5 starting picture with goalkeeper and 1-2-1 outfield shape. Players attack towards the top. Roles are examples to try rather than fixed positions.",
+    "players": [
+      {
+        "t": "us",
+        "l": "2",
+        "x": 50,
+        "y": 101,
+        "id": "us-2"
+      },
+      {
+        "t": "us",
+        "l": "7",
+        "x": 23,
+        "y": 72,
+        "id": "us-7"
+      },
+      {
+        "t": "us",
+        "l": "9",
+        "x": 50,
+        "y": 38,
+        "id": "us-9"
+      },
+      {
+        "t": "us",
+        "l": "11",
+        "x": 77,
+        "y": 72,
+        "id": "us-11"
+      },
+      {
+        "t": "us",
+        "l": "GK",
+        "x": 50,
+        "y": 121,
+        "id": "us-GK"
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "give-an-angle",
+      "n": 1,
+      "title": "Give an angle",
+      "tag": "Help the player on the ball find a pass.",
+      "summary": "Move to a clear space where your teammate can see you.",
+      "cue": "Can you see me?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "give-an-angle",
+      "thumb": 1,
+      "seo": "5v5 1-2-1: give an angle in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The two wide players offer different passing angles.",
+        "Move to a clear space where your teammate can see you.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "show-them-wide",
+      "n": 2,
+      "title": "Show them wide",
+      "tag": "Make room by moving away from the crowd.",
+      "summary": "Use the full width and leave room to dribble.",
+      "cue": "Can we make the pitch bigger?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "show-them-wide",
+      "thumb": 1,
+      "seo": "5v5 1-2-1: show them wide in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The wide pair separate rather than follow the ball.",
+        "Use the full width and leave room to dribble.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "one-goes-one-covers",
+      "n": 3,
+      "title": "One goes, one covers",
+      "tag": "Do not all chase the same opponent.",
+      "summary": "The nearest player can meet the ball while the defender protects the centre.",
+      "cue": "Who goes? Who protects?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "one-goes-one-covers",
+      "thumb": 1,
+      "seo": "5v5 1-2-1: one goes, one covers in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "The defender holds a central covering position while the nearest wide player presses.",
+        "The nearest player can meet the ball while the defender protects the centre.",
+        "Ask the players what else they might try."
+      ]
+    },
+    {
+      "id": "recover-together",
+      "n": 4,
+      "title": "Recover together",
+      "tag": "Help our team when the ball changes hands.",
+      "summary": "The nearest player slows the attack and teammates get back to help.",
+      "cue": "Where can I help?",
+      "extra": "Try the picture in a game. Players can choose a different solution when the situation changes.",
+      "diagram": "recover-together",
+      "thumb": 1,
+      "seo": "5v5 1-2-1: recover together in youth football",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "look": [
+        "Both wide players recover into positions where they can support the defender.",
+        "The nearest player slows the attack and teammates get back to help.",
+        "Ask the players what else they might try."
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "goalkeeper",
+      "nums": [
+        "GK"
+      ],
+      "short": "GK",
+      "title": "Goalkeeper",
+      "head": "Start us playing",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-goalkeeper",
+      "points": [
+        "Choose a safe pass and be ready to help again.",
+        "Look up before releasing the ball.",
+        "Speak positively to teammates."
+      ],
+      "cue": "Who can I see?",
+      "rules": [
+        "give-an-angle"
+      ]
+    },
+    {
+      "id": "defender",
+      "nums": [
+        "2"
+      ],
+      "short": "2",
+      "title": "Defender",
+      "head": "Protect and connect",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-defender",
+      "points": [
+        "Offer the goalkeeper a passing option.",
+        "Look for one of the wider teammates.",
+        "Protect the route to our goal when the ball is lost."
+      ],
+      "cue": "Can I help without chasing?",
+      "rules": [
+        "give-an-angle",
+        "recover-together"
+      ]
+    },
+    {
+      "id": "wide-players",
+      "nums": [
+        "7",
+        "11"
+      ],
+      "short": "7 · 11",
+      "title": "Wide players",
+      "head": "Find room on either side",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-wide-players",
+      "points": [
+        "Move apart enough to show passing angles.",
+        "Sometimes dribble, sometimes pass, sometimes recover.",
+        "Help the defender if the opposition attack."
+      ],
+      "cue": "Where is the space?",
+      "rules": [
+        "give-an-angle",
+        "show-them-wide",
+        "recover-together"
+      ]
+    },
+    {
+      "id": "forward",
+      "nums": [
+        "9"
+      ],
+      "short": "9",
+      "title": "Forward",
+      "head": "Give us somewhere ahead",
+      "src": "Provisional How We Play Football coaching research, 26 October 2026; David Wilson review pending",
+      "diagram": "role-forward",
+      "points": [
+        "Offer a forward pass without standing still.",
+        "Try moving towards the ball or into space.",
+        "Help slow the opposition when we lose it."
+      ],
+      "cue": "Do we need a short pass or a run?",
+      "rules": [
+        "show-them-wide",
+        "one-goes-one-covers"
+      ]
+    }
+  ],
+  "diagrams": {
+    "give-an-angle": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            62,
+            103
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Give an angle: starting situation. Help the player on the ball find a pass.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario. Help the player on the ball find a pass. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 43,
+              "y": 78,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 59,
+              "y": 78,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            62,
+            103
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The two wide players offer different passing angles.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario: The two wide players offer different passing angles.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 23,
+              "y": 71,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 71,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 43,
+              "y": 78,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 59,
+              "y": 78,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                43,
+                78
+              ],
+              "to": [
+                23,
+                71
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                59,
+                78
+              ],
+              "to": [
+                77,
+                71
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "show-them-wide": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            50,
+            77
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Show them wide: starting situation. Make room by moving away from the crowd.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario. Make room by moving away from the crowd. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 41,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 59,
+              "y": 69,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            50,
+            77
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The wide pair separate rather than follow the ball.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario: The wide pair separate rather than follow the ball.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 20,
+              "y": 71,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 80,
+              "y": 71,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 41,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 59,
+              "y": 69,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                41,
+                69
+              ],
+              "to": [
+                20,
+                71
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                59,
+                69
+              ],
+              "to": [
+                80,
+                71
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "one-goes-one-covers": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            18,
+            63
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "One goes, one covers: starting situation. Do not all chase the same opponent.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario. Do not all chase the same opponent. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 36,
+              "y": 82,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 25,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            18,
+            63
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "The defender holds a central covering position while the nearest wide player presses.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario: The defender holds a central covering position while the nearest wide player presses.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 25,
+              "y": 69,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "2",
+              "x": 36,
+              "y": 82,
+              "id": "us-2"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                36,
+                82
+              ],
+              "to": [
+                50,
+                101
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "recover-together": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            50,
+            58
+          ],
+          "key": "problem",
+          "tab": "Before",
+          "verdict": "wrong",
+          "caption": "Recover together: starting situation. Help our team when the ball changes hands.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario. Help our team when the ball changes hands. Team shape shown before the adjustment.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 20,
+              "y": 52,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 80,
+              "y": 52,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        },
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "ball": [
+            50,
+            58
+          ],
+          "key": "choice",
+          "tab": "Better option",
+          "caption": "Both wide players recover into positions where they can support the defender.",
+          "altSummary": "Provisional 5v5 1-2-1 coaching scenario: Both wide players recover into positions where they can support the defender.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 27,
+              "y": 89,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 73,
+              "y": 89,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ],
+          "ghosts": [
+            {
+              "l": "7",
+              "x": 20,
+              "y": 52,
+              "id": "us-7"
+            },
+            {
+              "l": "11",
+              "x": 80,
+              "y": 52,
+              "id": "us-11"
+            }
+          ],
+          "arrows": [
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                20,
+                52
+              ],
+              "to": [
+                27,
+                89
+              ]
+            },
+            {
+              "k": "run",
+              "t": "us",
+              "f": [
+                80,
+                52
+              ],
+              "to": [
+                73,
+                89
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "role-goalkeeper": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Goalkeeper: Start us playing.",
+          "altSummary": "In the 5v5 1-2-1, goalkeeper are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 23,
+              "y": 72,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-defender": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Defender: Protect and connect.",
+          "altSummary": "In the 5v5 1-2-1, defender are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 23,
+              "y": 72,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-wide-players": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Wide players: Find room on either side.",
+          "altSummary": "In the 5v5 1-2-1, wide players are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 23,
+              "y": 72,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    },
+    "role-forward": {
+      "frames": [
+        {
+          "pitch": "5v5",
+          "crop": [
+            -6,
+            142
+          ],
+          "key": "position",
+          "tab": "Starting shape",
+          "caption": "Forward: Give us somewhere ahead.",
+          "altSummary": "In the 5v5 1-2-1, forward are shown in the starting picture. Positions are flexible and all players should try more than one role.",
+          "players": [
+            {
+              "t": "us",
+              "l": "2",
+              "x": 50,
+              "y": 101,
+              "id": "us-2"
+            },
+            {
+              "t": "us",
+              "l": "7",
+              "x": 23,
+              "y": 72,
+              "id": "us-7"
+            },
+            {
+              "t": "us",
+              "l": "9",
+              "x": 50,
+              "y": 38,
+              "id": "us-9"
+            },
+            {
+              "t": "us",
+              "l": "11",
+              "x": 77,
+              "y": 72,
+              "id": "us-11"
+            },
+            {
+              "t": "us",
+              "l": "GK",
+              "x": 50,
+              "y": 121,
+              "id": "us-GK"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "review": [
+    {
+      "id": "balance",
+      "title": "Is the single defender being left alone?",
+      "why": "Check the recovery movements and decide how to keep the format fun for beginners.",
+      "qs": [
+        "Check the recovery movements and decide how to keep the format fun for beginners.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    },
+    {
+      "id": "terminology",
+      "title": "Are the player-facing cues age-appropriate?",
+      "why": "Check whether the four principles are too many for a new U8 side.",
+      "qs": [
+        "Check whether the four principles are too many for a new U8 side.",
+        "Do the diagram positions, movement and cues accurately describe a safe, age-appropriate learning task?"
+      ]
+    }
+  ],
+  "issue": {
+    "published": "2026-10-26",
+    "number": 1,
+    "intro": "Four outfield players and a goalkeeper. The diamond is a starting picture that helps children find a passing option, spread out and learn to recover together. Let everyone try different roles.",
+    "summary": "The 5v5 1-2-1: starting shape, four playing principles, player roles and how the team plays together.",
+    "chapters": [
+      {
+        "id": "shape",
+        "n": 1,
+        "title": "Starting shape",
+        "dek": "A starting diamond, not a set of fixed spots. Every player gets to attack and defend.",
+        "preview": "Where players begin and how they help each other."
+      },
+      {
+        "id": "principles",
+        "n": 2,
+        "title": "Four playing principles",
+        "dek": "Four choices to notice and practise in games.",
+        "rules": [
+          "give-an-angle",
+          "show-them-wide",
+          "one-goes-one-covers",
+          "recover-together"
+        ],
+        "preview": "Four illustrated playing principles with practical decisions to try."
+      },
+      {
+        "id": "jobs",
+        "n": 3,
+        "title": "A job for every player",
+        "dek": "A starting responsibility, with the freedom to learn another.",
+        "roles": [
+          "goalkeeper",
+          "defender",
+          "wide-players",
+          "forward"
+        ],
+        "preview": "The goalkeeper and each outfield role."
+      },
+      {
+        "id": "together",
+        "n": 4,
+        "title": "Playing together",
+        "dek": "How the team supports one another in possession and after the ball is lost.",
+        "groups": [
+          {
+            "title": "With the ball",
+            "items": [
+              {
+                "rule": "give-an-angle"
+              },
+              {
+                "rule": "show-them-wide"
+              }
+            ]
+          },
+          {
+            "title": "Without the ball",
+            "items": [
+              {
+                "rule": "one-goes-one-covers"
+              },
+              {
+                "rule": "recover-together"
+              }
+            ]
+          }
+        ],
+        "preview": "How small decisions connect across the team."
+      }
+    ],
+    "features": []
+  }
+}

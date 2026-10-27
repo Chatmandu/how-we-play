@@ -25,7 +25,7 @@ const reviewerNotes = model.target !== 'public';
 const chap = id => full ? f.issue.chapters.find(c => c.id === id) : null;
 const rule = id => f.rules.find(r => r.id === id);
 const role = id => f.roles.find(r => r.id === id);
-const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: d.altSummary || d.caption }); };
+const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: String(d.altSummary || d.caption).replace(/^Provisional\s+/i, '') }); };
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
 const label = issueLabel(f);
@@ -53,7 +53,7 @@ const contents = full ? [
   <Gated ids={[f.registerId]}>
     <header class="issue-cover ed-grid">
       <div class="issue-cover__text">
-        <p class="ed-kicker">7v7 · {label} · Formation guide</p>
+        <p class="ed-kicker">7v7 · Formation guide</p>
         <h1>The {f.name}</h1>
         <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
         <p class="ed-small usa-issue-link">Coaching 7v7 soccer in the USA? The {f.name} is one starting shape for teams, generally U9–U10. <a href="/coaching-in-the-usa/">Check US age groups and formats →</a></p>
@@ -81,7 +81,7 @@ const contents = full ? [
           <div class="chapter__side">
             <h3 class="ed-label">This shape gives us</h3>
             <ul class="gives">{f.gives.map(g => <li>{g}</li>)}</ul>
-            <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {f.spineText}.</p>
+            <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {String(f.spineText).trim().replace(/[.!?]+$/, '')}.</p>
             <dl class="glance" style="margin-top:20px" aria-label="Notation">{f.structure.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
           </div>
         </section>
