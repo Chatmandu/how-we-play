@@ -22,10 +22,11 @@ const formats = ['5v5', '7v7', '9v9'].map(id => {
 const jsonLd = siteIdentity(site);
 const has5v5 = issues.some(x => x.format === '5v5');
 const homeDescription = has5v5
-  ? 'Free 5v5, 7v7 and 9v9 football formation guides with diagrams, playing principles and positional advice for grassroots coaches.'
+  ? 'Free illustrated 5v5, 7v7 and 9v9 football and youth soccer formation guides. Simple diagrams, four playing principles and player roles for grassroots coaches.'
   : 'Free 7v7 and 9v9 football formation guides with diagrams, playing principles and positional advice for grassroots coaches. 5v5 resources coming soon.';
+const homeTitle = has5v5 ? '5v5, 7v7 & 9v9 Football Formation Guides | How We Play Football' : 'Free grassroots football coaching guides | How We Play Football';
 ---
-<Base title="Free grassroots football coaching guides | How We Play Football" description={homeDescription} ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
+<Base title={homeTitle} description={homeDescription} ids={['home']} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'home', group: 'Home' }}>
   <section class="intro ed-grid" aria-labelledby="cover-h">
     <div class="intro__text">
       <p class="ed-kicker">A grassroots football coaching publication</p>

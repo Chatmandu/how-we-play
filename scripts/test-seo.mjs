@@ -132,6 +132,15 @@ test('Generated social image map is complete, unique and excludes unpublished co
   for (const f of model.formations.filter(f => !f.gate.allowed)) {
     assert.ok(!specs.some(s => s.route.startsWith(issuePath(f))), 'Never expose draft previews');
   }
+  for (const format of ['5v5', '7v7', '9v9']) {
+    const guideNames = issues.filter(f => f.format === format).map(f => f.name);
+    const spec = specs.find(s => s.route === `/formations/${format}/`);
+    assert.ok(spec, `Missing ${format} social preview`);
+    assert.equal(spec.image, `/og/formats/${format}.png`);
+    assert.equal(Boolean(spec.frame), guideNames.length > 0, `Social preview must only use a published formation: ${format}`);
+    for (const name of guideNames) assert.ok(spec.deck.includes(name), `${format} social preview missing ${name}`);
+  }
+  if (issues.some(f => f.format === '5v5')) assert.ok(specs.find(s => s.route === '/').title.includes('5V5'), 'Home preview should promote available 5v5 guides');
 });
 
 test('XML values are escaped, not injected', () => {
