@@ -2,7 +2,6 @@
 /* 5v5 collection. Public stays a truthful holding page until a formation is reviewed. */
 import Base from '../../../layouts/Base.astro';
 import model from '../../../lib/content.mjs';
-import { issueLabel } from '../../../lib/editorial.mjs';
 import { statusChips } from '../../../lib/ui.mjs';
 
 export function getStaticPaths() {
@@ -34,10 +33,10 @@ const desc = published.length ? 'Free 5v5 football formations with a goalkeeper,
 
   {visible.length ? (
     <section class="ed-section ed-grid" aria-labelledby="5v5-issues-h">
-      <div class="chapter__head"><p class="ed-kicker">The formation library</p><h2 class="ed-h2" id="5v5-issues-h">Two shapes to explore</h2><p class="ed-small">Pick a shape that gives your players the next helpful challenge. You can change it as they learn.</p></div>
-      <div class="chapter__side"><ol class="issue-list">{visible.map(f => <li>
+      <div class="chapter__head"><p class="chapter__n">The formation library</p><h2 class="ed-h2" id="5v5-issues-h">Two shapes to explore</h2><p class="ed-small">Pick a shape that gives your players the next helpful challenge. You can change it as they learn.</p></div>
+      <div class="chapter__side"><ol class="issue-list issue-list--5v5">{visible.map(f => <li>
         <a href={`/formations/5v5/${f.slug}/`}>
-          <b>{issueLabel(f)}</b><span><strong>The {f.name}</strong><em>{f.summary}</em></span>
+          <b>{f.format}</b><span><strong>The {f.name}</strong><em>{f.summary}</em></span>
         </a>
         {preview && <div class="ed-chips" set:html={statusChips(f.register)} />}
       </li>)}</ol></div>

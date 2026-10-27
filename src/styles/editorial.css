@@ -666,6 +666,9 @@
 .issue-list b { font: 900 40px/.9 var(--ed-display); color: var(--hwp-text-secondary); }
 .issue-list strong { display: block; font: 900 26px/1 var(--ed-display); text-transform: uppercase; }
 .issue-list em { display: block; font: 400 14px/1.4 var(--ed-sans); font-style: normal; color: var(--hwp-text-secondary); margin-top: 4px; }
+/* On the 5v5 collection, review chips sit below the linked card, not in the
+ * compact 64px format folio reserved for a short label such as "5v5". */
+.issue-list--5v5 li > .ed-chips { display: block; padding: 0 0 16px 76px; border-top: 0; }
 
 /* Issue landing page */
 .issue-cover { padding-top: 32px; align-items: start; }

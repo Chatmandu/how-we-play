@@ -25,7 +25,9 @@ The first deployed preview of PR #20 revealed incorrect **chapter-four principle
 | 7v7 2-1-2-1 | Link the lines; Make passing diamonds; Support the striker | Protect the middle |
 | 9v9 3-2-3 | Use the front three; Stagger the two; One goes, one stays | Press with cover |
 
-The approved **tactical content fingerprints remain identical**: chapter titles and chapter-four grouping are editorial navigation outside `contentVersion()`. For transparency, ask David Wilson to confirm the three corrected groupings before merging PR #20. The 5v5 1-2-1 grouping was already correct. Also corrected in page templates: repeated "Formation guide", doubled sentence-final punctuation, an outdated 5v5 development label and a stale private-preview review notice. The printable and video release placeholders are intentionally unchanged.
+The approved **tactical content fingerprints remain identical**: chapter titles and chapter-four grouping are editorial navigation outside `contentVersion()`. Niall Walsh confirmed on 27 October 2026 that David Wilson was happy with the corrected groupings. This confirmation is publisher-attested; retain David's direct response with the project record. The 5v5 1-2-1 grouping was already correct. Also corrected in page templates: repeated "Formation guide", doubled sentence-final punctuation, an outdated 5v5 development label and a stale private-preview review notice. The printable and video release placeholders are intentionally unchanged.
+
+After David's confirmation, a further visual inspection of the deployed preview identified a 5v5 collection-card overlap. The collection now uses short "5v5" folios, gives review chips their own full-width row and places the formation-library description beside its heading rather than in a narrow column. This changes layout only, not reviewed coaching content.
 
 ## Research and editorial basis
 
