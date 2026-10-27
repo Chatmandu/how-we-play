@@ -1070,7 +1070,7 @@
                 "rule": "play-in-pairs"
               },
               {
-                "rule": "one-presses-one-covers"
+                "rule": "one-comes-one-goes"
               }
             ]
           },
@@ -1078,7 +1078,7 @@
             "title": "Without the ball",
             "items": [
               {
-                "rule": "one-comes-one-goes"
+                "rule": "one-presses-one-covers"
               },
               {
                 "rule": "close-the-gap"

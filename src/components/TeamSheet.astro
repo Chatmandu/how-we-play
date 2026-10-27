@@ -68,7 +68,7 @@ const sheetId = `sheet-${f.format}-${f.slug}`;
       <>
         <h3>This shape gives us</h3>
         <ul class="gives">{(f.gives || []).map((g: string) => <li>{g}</li>)}</ul>
-        {f.spineText && <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {f.spineText}.</p>}
+        {f.spineText && <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {String(f.spineText).trim().replace(/[.!?]+$/, '')}.</p>}
       </>
     )}
   </div>

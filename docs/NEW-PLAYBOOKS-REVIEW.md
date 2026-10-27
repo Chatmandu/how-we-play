@@ -15,6 +15,18 @@ Niall Walsh confirmed in the project conversation that David Wilson has approved
 
 The review has been recorded in `content/register.json` and the matching formation status fields. Any change to a formation's tactics, diagram data or role guidance invalidates its review fingerprint and blocks publication. This approval update is a follow-up change to the **draft** PR, not an instruction to merge or publish immediately; final mobile, link and visual QA remains the release owner's decision.
 
+## Editorial QA follow-up, 27 October 2026
+
+The first deployed preview of PR #20 revealed incorrect **chapter-four principle grouping** in three guides. We have corrected the headings/links only, keeping every principle's teaching point, role description, cue and animated tactical frame unchanged:
+
+| Formation | In possession: "With the ball" | Defending: "Without the ball" |
+|---|---|---|
+| 5v5 2-2 | Play in pairs; One comes, one goes | One presses, one covers; Close the gap |
+| 7v7 2-1-2-1 | Link the lines; Make passing diamonds; Support the striker | Protect the middle |
+| 9v9 3-2-3 | Use the front three; Stagger the two; One goes, one stays | Press with cover |
+
+The approved **tactical content fingerprints remain identical**: chapter titles and chapter-four grouping are editorial navigation outside `contentVersion()`. For transparency, ask David Wilson to confirm the three corrected groupings before merging PR #20. The 5v5 1-2-1 grouping was already correct. Also corrected in page templates: repeated "Formation guide", doubled sentence-final punctuation, an outdated 5v5 development label and a stale private-preview review notice. The printable and video release placeholders are intentionally unchanged.
+
 ## Research and editorial basis
 
 | Formation | Research base | What the draft explores | Main thing to test |

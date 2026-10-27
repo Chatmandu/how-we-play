@@ -13,8 +13,29 @@ const versions = {
   '7v7-2-1-2-1': 'cv-d2c2ecf7',
   '9v9-3-2-3': 'cv-0cb51dd6'
 };
+// The editorial chapter groups are outside the tactical fingerprint. Guard their
+// meaning separately so an attacking rule cannot be presented as defensive advice.
+const chapterFour = {
+  '5v5-1-2-1': {
+    'With the ball': ['give-an-angle', 'show-them-wide'],
+    'Without the ball': ['one-goes-one-covers', 'recover-together']
+  },
+  '5v5-2-2': {
+    'With the ball': ['play-in-pairs', 'one-comes-one-goes'],
+    'Without the ball': ['one-presses-one-covers', 'close-the-gap']
+  },
+  '7v7-2-1-2-1': {
+    'With the ball': ['link-the-lines', 'passing-diamonds', 'support-the-striker'],
+    'Without the ball': ['protect-the-middle']
+  },
+  '9v9-3-2-3': {
+    'With the ball': ['use-front-three', 'stagger-the-two', 'one-goes-one-stays'],
+    'Without the ball': ['press-with-cover']
+  }
+};
 const preview = loadModel('preview');
 const publicModel = loadModel('public');
+assert.equal(publicModel.site.formats.find(x => x.id === '5v5')?.availability, 'live');
 
 for (const [id, approvedVersion] of Object.entries(versions)) {
   const f = preview.formations.find(x => x.id === id);
@@ -39,6 +60,7 @@ for (const [id, approvedVersion] of Object.entries(versions)) {
   assert.ok(f.roles.length >= 3);
   assert.equal(f.issue.chapters.find(x => x.id === 'principles').rules.length, 4);
   assert.equal(f.issue.chapters.find(x => x.id === 'jobs').roles.length, f.roles.length);
+  assert.deepEqual(Object.fromEntries(f.issue.chapters.find(x => x.id === 'together').groups.map(g => [g.title, g.items.map(i => i.rule)])), chapterFour[id], id + ': correct possession/defending groupings');
   assert.equal(f.shape.players.length, Number(f.format[0]));
   assert.equal(validate(f.shape, {pitch:f.pitch}).filter(x => x.level === 'error').length, 0);
   for (const rule of f.rules) {

@@ -53,7 +53,7 @@ const contents = full ? [
   <Gated ids={[f.registerId]}>
     <header class="issue-cover ed-grid">
       <div class="issue-cover__text">
-        <p class="ed-kicker">5v5 · {label} · Formation guide</p>
+        <p class="ed-kicker">5v5 · Formation guide</p>
         <h1>The {f.name}</h1>
         <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
         <p class="ed-small usa-issue-link">This is a goalkeeper-inclusive 5v5 starting shape used in English youth football. US youth game formats may differ. <a href="/coaching-in-the-usa/">Read our US coaching notes →</a></p>
@@ -81,7 +81,7 @@ const contents = full ? [
           <div class="chapter__side">
             <h3 class="ed-label">This shape gives us</h3>
             <ul class="gives">{f.gives.map(g => <li>{g}</li>)}</ul>
-            <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {f.spineText}.</p>
+            <p class="ed-small sheet__note"><strong>Our spine</strong> runs through the middle: {String(f.spineText).trim().replace(/[.!?]+$/, '')}.</p>
             <dl class="glance" style="margin-top:20px" aria-label="Notation">{f.structure.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
           </div>
         </section>

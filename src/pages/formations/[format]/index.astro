@@ -41,7 +41,7 @@ const desc = published.length ? 'Free 5v5 football formations with a goalkeeper,
         </a>
         {preview && <div class="ed-chips" set:html={statusChips(f.register)} />}
       </li>)}</ol></div>
-      {preview && <p class="ed-small" style="grid-column:1/-1">Private preview: diagrams, coaching principles and player responsibilities still require David Wilson's review.</p>}
+      {preview && visible.some(f => f.register.content.status !== 'reviewed') && <p class="ed-small" style="grid-column:1/-1">Private preview: some formation guides are still awaiting coaching review.</p>}
     </section>
   ) : (
     <section class="ed-section ed-grid" aria-labelledby="5v5-coming-h">

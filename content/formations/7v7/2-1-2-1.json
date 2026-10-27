@@ -1407,15 +1407,15 @@
               },
               {
                 "rule": "passing-diamonds"
+              },
+              {
+                "rule": "support-the-striker"
               }
             ]
           },
           {
             "title": "Without the ball",
             "items": [
-              {
-                "rule": "support-the-striker"
-              },
               {
                 "rule": "protect-the-middle"
               }

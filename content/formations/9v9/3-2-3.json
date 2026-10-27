@@ -1704,15 +1704,15 @@
               },
               {
                 "rule": "stagger-the-two"
+              },
+              {
+                "rule": "one-goes-one-stays"
               }
             ]
           },
           {
             "title": "Without the ball",
             "items": [
-              {
-                "rule": "one-goes-one-stays"
-              },
               {
                 "rule": "press-with-cover"
               }
