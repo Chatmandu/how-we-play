@@ -30,9 +30,14 @@ The published issue remains the canonical editorial page. The video supports the
 
 ## Updating / extending
 
-The reusable `src/components/IssueVideo.astro` takes a video ID, formation name and reviewed starting-shape diagram. The first video ID is currently configured in `src/pages/formations/9v9/[formation]/index.astro` for `f.slug === '3-1-3-1'` only.
+The reusable `src/components/IssueVideo.astro` takes a video ID, formation name, reviewed starting-shape diagram and formation-specific principle names. The video IDs are configured explicitly in `src/pages/formations/9v9/[formation]/index.astro`:
 
-When more full-length explainers are released, create an explicit, editorially approved video entry per formation. Do not automatically embed any social Reel, and do not use unverified video links or mutate tactical content to display a video.
+- 9v9 3-1-3-1: `KEKPal0Upd4` (the original Issue 01 explainer).
+- 9v9 3-2-3: `tWzAKTaX2sI` (the new video supplied by Niall Walsh on 28 October 2026).
+
+The 3-2-3 film uses the same click-to-play 16:9 player and its own reviewed shape poster. It appears on `/formations/9v9/3-2-3/#watch`, before Chapter 1, with an entry in the guide contents. This editorial addition does not modify coaching tactics, diagrams, approval fingerprints or the publication gate.
+
+When more full-length explainers are released, create an explicit, publisher-supplied video entry per formation. Do not automatically embed any social Reel, and do not mutate tactical content to display a video.
 
 ## QA
 
