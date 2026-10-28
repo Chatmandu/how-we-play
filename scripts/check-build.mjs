@@ -267,7 +267,11 @@ if (target === 'public') {
     const modified = sitemapLastmod(r, model);
     const preview = socialImageForRoute(r, model).image;
     const imageTag = preview !== DEFAULT_SOCIAL_IMAGE ? `<image:image><image:loc>${escapeXml(site + preview)}</image:loc></image:image>` : '';
-    return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}${imageTag}</url>`;
+    const formation = published.find(f => r === `/formations/${f.format}/${f.slug}/`);
+    const shape = formation && `/diagrams/formations/${formation.format}-${formation.slug}-starting-shape.webp`;
+    if (shape && (!existsSync(join(dist, shape.slice(1))) || !existsSync(join(dist, shape.replace(/\.webp$/, '.svg').slice(1))))) fail(r, 'published formation missing generated diagram images');
+    const shapeTag = shape ? `<image:image><image:loc>${escapeXml(site + shape)}</image:loc></image:image>` : '';
+    return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}${imageTag}${shapeTag}</url>`;
   }).join('\n')}\n</urlset>\n`);
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
   writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);

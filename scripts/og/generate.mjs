@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /* Branded, accessible search/social image previews generated from reviewed
  * formation data at build-time. Never requires an external image service. */
-import { readFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { ROOT, loadModel } from '../load-content.mjs';
 import { socialImageSpecs } from '../../src/lib/social-images.mjs';
+import { publishedIssues } from '../../src/lib/editorial.mjs';
 import { renderPitch, themeFromTokens } from '../../design-system/diagrams/renderer.mjs';
 import { resolve } from '../../design-system/tokens/build-lib.mjs';
 
@@ -62,8 +63,10 @@ const out = join(ROOT, 'public/og/pages');
 const formatOut = join(ROOT, 'public/og/formats');
 const formationOut = join(ROOT, 'public/og/formations');
 const coachingOut = join(ROOT, 'public/og/coaching');
-for (const dir of [out,formatOut,formationOut,coachingOut]) rmSync(dir, { recursive: true, force: true });
-const specs = socialImageSpecs(loadModel('public'));
+const diagramsOut = join(ROOT, 'public/diagrams/formations');
+for (const dir of [out,formatOut,formationOut,coachingOut,diagramsOut]) rmSync(dir, { recursive: true, force: true });
+const publicModel = loadModel('public');
+const specs = socialImageSpecs(publicModel);
 for (const spec of specs) {
   if (!spec.image.startsWith('/og/') || !spec.image.endsWith('.png')) throw new Error('Invalid image route ' + spec.image);
   const file = join(ROOT, 'public', spec.image.slice(1));
@@ -71,3 +74,23 @@ for (const spec of specs) {
   await sharp(Buffer.from(preview(spec))).png({compressionLevel: 9}).toFile(file);
 }
 console.log('Generated ' + specs.length + ' branded, page-specific 1200×630 PNG previews from public coaching and formation guides');
+
+// The reviewed starting shapes also need addressable image files for Google Images,
+// image sitemaps and coaches who want to download a clear diagram. Both formats
+// come from the exact same approved drawing used inside the formation guide.
+let shapes = 0;
+for (const f of publishedIssues(publicModel)) {
+  if (!f.issue?.chapters || !f.shape) continue;
+  const name = `${f.format}-${f.slug}-starting-shape`;
+  const file = join(diagramsOut, name);
+  const svg = renderPitch(f.shape, {
+    theme: 'blue', mode: 'inline', colors,
+    title: `${f.name} starting formation for ${f.format} football and youth soccer`,
+    desc: f.shape.altSummary || f.shape.title || `${f.format} ${f.name} starting shape`
+  });
+  mkdirSync(diagramsOut, { recursive: true });
+  writeFileSync(file + '.svg', svg, 'utf8');
+  await sharp(Buffer.from(svg)).webp({ quality: 88, effort: 6 }).toFile(file + '.webp');
+  shapes++;
+}
+console.log('Generated ' + shapes + ' reviewed starting shapes as branded SVG + WebP images');

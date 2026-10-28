@@ -1,0 +1,25 @@
+---
+/* A concise entry point to existing, independently reviewed guides only.
+ * The benefits are taken from each guide's approved source, not newly authored tactics. */
+const { format, issues = [] } = Astro.props;
+---
+{issues.length > 1 && (
+  <section class="ed-section ed-grid formation-chooser" aria-labelledby="formation-chooser-heading">
+    <div class="formation-chooser__intro">
+      <p class="ed-kicker">Finding your shape</p>
+      <h2 class="ed-h2" id="formation-chooser-heading">Which {format} formation should I use?</h2>
+      <p class="ed-small">There's no single best formation for every team. These are starting points, not fixed positions. Compare what each reviewed shape offers and choose one to explore with your players.</p>
+    </div>
+    <ul class="formation-chooser__options">
+      {issues.map(f => (
+        <li>
+          <a href={`/formations/${f.format}/${f.slug}/`}>
+            <span class="formation-chooser__notation">{f.name}</span>
+            <span class="formation-chooser__benefit">{f.gives.slice(0, 2).join(' · ')}</span>
+            <span class="formation-chooser__go">Read the guide →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

@@ -9,6 +9,7 @@ import model from '../../../../../lib/content.mjs';
 import { statusChips, reviewNote, exploratoryStrip } from '../../../../../lib/ui.mjs';
 import { pad2, word, issueLabel } from '../../../../../lib/editorial.mjs';
 import { lessonStructuredData } from '../../../../../lib/seo.mjs';
+import { lessonSearchTitle, lessonSearchDescription } from '../../../../../lib/search-copy.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.format === '9v9' && f.gate.allowed).flatMap(f =>
@@ -33,8 +34,8 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const draftReviews = reviewerNotes && !full ? f.review : [];
 const prev = rules[i - 1], next = rules[i + 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: f.name, href: base }, { label: r.title }];
-const title = full ? `${r.title} | ${f.name} 9v9 tactics | How We Play Football` : `${r.title} (${f.name} draft) | How We Play Football`;
-const description = full ? `${r.summary} ${r.cue} Explore the ${f.name} principle with interactive diagrams and practical coaching cues.` : `${r.tag} Private draft lesson, not reviewed.`;
+const title = full ? lessonSearchTitle(f, r) : `${r.title} (${f.name} draft) | How We Play Football`;
+const description = full ? lessonSearchDescription(f, r) : `${r.tag} Private draft lesson, not reviewed.`;
 const jsonLd = lessonStructuredData(model.site, f, r);
 const source = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${r.src}. Pictures show ideas, not fixed moves.`

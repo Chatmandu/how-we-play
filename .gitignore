@@ -6,6 +6,7 @@ public/hwp/
 public/og/pages/
 public/og/formats/
 public/og/formations/
+public/diagrams/formations/
 .DS_Store
 *.log
 dist-public/

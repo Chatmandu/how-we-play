@@ -2,6 +2,7 @@
 /* 5v5 magazine collection. Only reviewed, published playbooks appear publicly. */
 import Base from '../../../layouts/Base.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
+import FormationChooser from '../../../components/FormationChooser.astro';
 import model from '../../../lib/content.mjs';
 import { issueLabel } from '../../../lib/editorial.mjs';
 import { collectionStructuredData } from '../../../lib/seo.mjs';
@@ -40,6 +41,8 @@ const glance = [
       <p class="ed-small">These guides describe England's goalkeeper-inclusive 5v5. Always check your own competition's rules.</p>
     </div>
   </header>
+
+  <FormationChooser format="5v5" issues={published} />
 
   {published.map(f => (
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>

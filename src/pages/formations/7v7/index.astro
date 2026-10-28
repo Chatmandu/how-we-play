@@ -4,6 +4,7 @@
  * landing stays an honest placeholder until the first approved issue. */
 import Base from '../../../layouts/Base.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
+import FormationChooser from '../../../components/FormationChooser.astro';
 import model from '../../../lib/content.mjs';
 import { issueLabel } from '../../../lib/editorial.mjs';
 import { collectionStructuredData } from '../../../lib/seo.mjs';
@@ -53,6 +54,8 @@ const jsonLd = published.length ? collectionStructuredData(model.site, published
       <p class="ed-small">These format rules are from <a href="https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-7v7-games" target="_blank" rel="noopener noreferrer">England Football Learning</a> for the 2026/27 season. Always check your competition's current rules.</p>
     </div>
   </header>
+
+  <FormationChooser format="7v7" issues={published} />
 
   {published.map(f => (
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
