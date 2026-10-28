@@ -1149,3 +1149,44 @@
   .together__links strong { grid-column: 1; }
   .together__arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
 }
+
+/* Search-visible formation picture and comparison entry on each format hub. */
+.sheet__pitch img.formation-shape__image { display: block; width: 100%; height: auto; }
+.sheet__pitch figcaption a[download] { display: inline-block; color: var(--hwp-text-on-pitch); text-underline-offset: 3px; margin-top: 8px; }
+
+.feature__title-context {
+  display: block;
+  margin-top: 12px;
+  font: 700 clamp(18px, 2.3vw, 27px)/1.15 var(--ed-sans);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--hwp-text-secondary);
+}
+
+/* Short, decision-led formation comparison. Understated enough to sit before full team sheets. */
+.formation-chooser { padding-top: 48px; padding-bottom: 48px; background: var(--hwp-surface-page); border-top: 1px solid var(--hwp-color-ink); }
+.formation-chooser__intro { grid-column: 1 / span 5; }
+.formation-chooser__intro .ed-h2 { margin: 12px 0 20px; font-size: clamp(38px, 4.2vw, 56px); }
+.formation-chooser__intro .ed-small { max-width: 48ch; }
+.formation-chooser__options { grid-column: 7 / -1; list-style: none; padding: 0; margin: 0; border-top: 3px solid var(--hwp-color-ink); }
+.formation-chooser__options li { border-bottom: 1px solid var(--hwp-color-rule); }
+.formation-chooser__options a {
+  display: grid; grid-template-columns: minmax(86px, 120px) minmax(0, 1fr) auto;
+  gap: 16px; align-items: baseline; padding: 17px 0;
+  text-decoration: none; color: var(--hwp-text-primary);
+}
+.formation-chooser__notation { font: 900 clamp(26px, 2.6vw, 36px)/1 var(--ed-display); }
+.formation-chooser__benefit { font: 400 14px/1.4 var(--ed-sans); color: var(--hwp-text-secondary); }
+.formation-chooser__go { font: 700 13px/1.3 var(--ed-sans); color: var(--hwp-color-pitch-blue); white-space: nowrap; }
+.formation-chooser__options a:hover .formation-chooser__notation { color: var(--hwp-color-pitch-blue); }
+@media (max-width: 1023px) {
+  .formation-chooser__intro { grid-column: 1 / -1; }
+  .formation-chooser__options { grid-column: 1 / -1; margin-top: 28px; }
+}
+@media (max-width: 599px) {
+  .formation-chooser { padding-top: 34px; padding-bottom: 34px; }
+  .formation-chooser__options a { grid-template-columns: 1fr auto; gap: 8px 12px; }
+  .formation-chooser__notation { grid-column: 1; }
+  .formation-chooser__benefit { grid-column: 1 / -1; grid-row: 2; }
+  .formation-chooser__go { grid-column: 2; grid-row: 1; }
+}

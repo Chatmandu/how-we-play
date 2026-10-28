@@ -4,6 +4,7 @@
 import Base from '../../../layouts/Base.astro';
 import Gated from '../../../components/Gated.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
+import FormationChooser from '../../../components/FormationChooser.astro';
 import Scoreboard from '../../../components/Scoreboard.astro';
 import Facts from '../../../components/Facts.astro';
 import model from '../../../lib/content.mjs';
@@ -46,6 +47,8 @@ const description = published.length ? `Free illustrated 9v9 football and youth 
       <span class="hwp-chip hwp-chip--verified">Official rule verified · {longDate(fact('pitch').checkedOn)}</span>
     </div>
   </div>
+
+  <FormationChooser format="9v9" issues={published} />
 
   {published.map(f => (
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>

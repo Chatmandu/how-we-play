@@ -12,6 +12,7 @@ import model from '../../../../lib/content.mjs';
 import { renderPitch, reviewNote, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
 import { issueStructuredData } from '../../../../lib/seo.mjs';
+import { formationSearchTitle, formationSearchDescription } from '../../../../lib/search-copy.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.format === '9v9' && f.gate.allowed).map(f => ({ params: { formation: f.slug }, props: { slug: f.slug } }));
@@ -29,6 +30,8 @@ const role = id => f.roles.find(r => r.id === id);
 const thumb = r => { const d = f.diagrams[r.diagram].frames[r.thumb || 0]; return renderPitch(d, { theme: 'blue', numbers: false, labels: false, title: d.caption, desc: String(d.altSummary || d.caption).replace(/^Provisional\s+/i, '') }); };
 const shape = { ...f.shape, title: f.shape.title || `${f.name} starting shape`, altSummary: f.shape.altSummary || f.shape.alt };
 const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: shape.altSummary });
+// Public guides expose the same approved starting picture as a crawlable image file.
+const shapeImage = model.target === 'public' && full ? `/diagrams/formations/${f.format}-${f.slug}-starting-shape.svg` : null;
 const label = issueLabel(f);
 const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
 // Film releases are editorial additions and do not change reviewed coaching data.
@@ -44,9 +47,9 @@ const shapeAttribution = f.shape.sourcePage
     ? 'Illustrated by How We Play Football from reviewed coaching guidance.'
     : 'Provisional illustration for coaching review; not published coaching advice.';
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations', href: '/formations/9v9/' }, { label: `${label}: ${f.name}` }];
-const title = `${f.name} formation guide for 9v9 | How We Play Football`;
+const title = full ? formationSearchTitle(f) : `${f.name} draft formation guide for 9v9 | How We Play Football`;
 const description = full
-  ? `The ${f.notation} for 9v9 football: starting shape, four playing principles with diagrams, a job for every position and how the team plays together. Free guide.`
+  ? formationSearchDescription(f)
   : `${f.sourceLabel} of a ${f.notation} guide for 9v9. Private preview, not reviewed.`;
 const jsonLd = issueStructuredData(model.site, f);
 const contents = full ? [
@@ -68,8 +71,10 @@ const contents = full ? [
         <section class="ed-section chapter ed-grid" id="shape" aria-labelledby="c1-h">
           <div class="chapter__head"><p class="chapter__n">Chapter 1</p><h2 class="chapter__t" id="c1-h">{chap('shape').title}</h2><p class="ed-small">{chap('shape').dek}</p></div>
           <figure class="sheet__pitch on-pitch chapter__fig">
-            <Fragment set:html={shapeSvg} />
-            <figcaption>{f.shapeCue} {shapeAttribution}</figcaption>
+            {shapeImage
+              ? <img class="formation-shape__image" src={shapeImage.replace(/\.svg$/, '.webp')} alt={`${f.format} ${f.name} formation starting shape. ${shape.altSummary}`} loading="lazy" decoding="async" />
+              : <Fragment set:html={shapeSvg} />}
+            <figcaption>{f.shapeCue} {shapeAttribution} {shapeImage && <a href={shapeImage} download>Download the starting-shape diagram (SVG) →</a>}</figcaption>
           </figure>
           <div class="chapter__side">
             <h3 class="ed-label">This shape gives us</h3>

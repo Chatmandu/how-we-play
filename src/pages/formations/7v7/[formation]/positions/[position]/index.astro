@@ -10,6 +10,7 @@ import model from '../../../../../../lib/content.mjs';
 import { statusChips, reviewNote, exploratoryStrip } from '../../../../../../lib/ui.mjs';
 import { word, issueLabel, chapterOf } from '../../../../../../lib/editorial.mjs';
 import { positionStructuredData } from '../../../../../../lib/seo.mjs';
+import { positionSearchTitle, positionSearchDescription } from '../../../../../../lib/search-copy.mjs';
 
 export function getStaticPaths() {
   return model.formations.filter(f => f.format === '7v7' && f.gate.allowed && Array.isArray(f.roles)).flatMap(f =>
@@ -27,8 +28,8 @@ const reviews = reviewerNotes ? (r.reviewRefs || []).map(id => f.review.find(x =
 const prev = f.roles[i - 1], next = f.roles[i + 1];
 const last = f.rules[f.rules.length - 1];
 const crumbs = [{ label: 'Home', href: '/' }, { label: '7v7 formations', href: '/formations/7v7/' }, { label: f.name, href: base }, { label: r.title }];
-const title = `${r.title}: ${f.name} 7v7 roles | How We Play Football`;
-const description = `${r.head} What the ${r.title.toLowerCase()} does in a 7v7 ${f.notation}, with diagrams and one question for players to ask themselves.`;
+const title = positionSearchTitle(f, r);
+const description = positionSearchDescription(f, r);
 const folio = r.nums.join('·');
 const roleSource = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${r.src}. Shirt numbers describe the starting picture.`
@@ -49,7 +50,7 @@ const pNext = next ? { href: `${base}positions/${next.id}/`, over: 'Next positio
       <div class="feature__rail" aria-hidden="true"><span class="feature__num">{folio}</span><p>{where}<br>{issueLabel(f)} · {f.name}</p></div>
       <header class="feature__head" data-num={folio}>
         <p class="ed-kicker feature__kicker">7v7 · {issueLabel(f)} · {where}</p>
-        <h1 class="feature__title" id="pos-h">{r.title}</h1>
+        <h1 class="feature__title" id="pos-h">{r.title}<span class="feature__title-context">in the {f.name} {f.format} formation</span></h1>
         <p class="ed-stand">{r.head}</p>
       </header>
       <div class="feature__body">
