@@ -52,11 +52,13 @@ const ogImageAlt = visual.alt;
  * A format still in development keeps its link, which leads to an honest, noindex placeholder with a way back. */
 const formatNav = ['5v5', '7v7', '9v9'].map(id => { const fm = site.formats.find(x => x.id === id); return { id, label: id, href: `/formations/${id}/`, soon: fm && fm.availability !== 'live' }; });
 const navItems = [
+  { id: 'coaching', label: 'Coaching Guides', href: '/coaching/' },
   { id: 'about', label: 'About', href: '/about/' },
   ...(site.newsletter?.action ? [{ id: 'notes', label: 'The Coaching Notes', href: '/#coaching-notes-signup' }] : [])
 ];
 const footLinks = [
   ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
+  { label: 'Coaching guides', href: '/coaching/' },
   { label: 'About and standards', href: '/about/' }, { label: 'Privacy and cookies', href: '/privacy/' }
 ];
 const socialLinks = [

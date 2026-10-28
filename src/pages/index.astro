@@ -6,6 +6,7 @@ import model from '../lib/content.mjs';
 import { renderPitch, statusChips, longDate } from '../lib/ui.mjs';
 import { word, publishedIssues } from '../lib/editorial.mjs';
 import { siteIdentity } from '../lib/seo.mjs';
+import { firstCoachingArticle as coachingArticle, cornerDiagrams } from '../lib/coaching.mjs';
 
 const site = model.site;
 const issues = publishedIssues(model);
@@ -80,6 +81,22 @@ const homeTitle = has5v5 ? '5v5, 7v7 & 9v9 Football Formation Guides | How We Pl
       </ol>
     </section>
   )}
+
+  <section class="ed-section coach-feature coach-feature--home ed-grid" aria-labelledby="home-coaching-h">
+    <div class="ed-sh"><h2 class="ed-label" id="home-coaching-h">New · Coaching guides</h2><a class="ed-go" href="/coaching/">All coaching guides →</a></div>
+    <figure class="coach-feature__pitch on-pitch">
+      <div class="coach-plate__bar"><span>Beyond the formation</span><span>Set pieces · 9v9</span></div>
+      <div class="coach-feature__stage" set:html={renderPitch(cornerDiagrams.setup9v9, { theme: 'blue', title: cornerDiagrams.setup9v9.title, desc: cornerDiagrams.setup9v9.altSummary })} />
+      <figcaption>A simple attacking-corner setup, with roles that young players can understand.</figcaption>
+    </figure>
+    <div class="coach-feature__copy">
+      <p class="ed-kicker">From the touchline · Practical coaching</p>
+      <h3>{coachingArticle.title}</h3>
+      <p class="ed-lede">{coachingArticle.summary}</p>
+      <p class="coach-feature__meta">{coachingArticle.formats.join(' and ')} · {coachingArticle.minutes} min read</p>
+      <a class="ed-btn" href={coachingArticle.href}>Explore the corner guide →</a>
+    </div>
+  </section>
 
   <section class="ed-section ed-grid split home-social" aria-labelledby="follow-how-we-play-h">
     <div class="split__main">

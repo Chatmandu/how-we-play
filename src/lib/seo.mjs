@@ -7,6 +7,7 @@
  */
 import { publishedIssues, reviewRecord } from './editorial.mjs';
 import { socialImageForRoute } from './social-images.mjs';
+import { coachingArticles } from './coaching.mjs';
 
 const base = site => site.url.replace(/\/$/, '');
 const fullUrl = (site, path) => base(site) + path;
@@ -171,6 +172,10 @@ const asDate = x => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && Nu
 const lastEdit = (f, section) => asDate(section?.updated || f.issue?.updated || f.issue?.published);
 export function sitemapLastmod(route, model) {
   if (route === '/privacy/') return asDate(model.site.privacy?.lastUpdated);
+  const coachingArticle = coachingArticles.find(a => a.href === route);
+  if (coachingArticle) return asDate(coachingArticle.published);
+  if (route === '/coaching/') return coachingArticles.map(a => asDate(a.published)).filter(Boolean).sort().at(-1) || null;
+
   const issue = model.formations.find(f => f.gate.allowed && f.issue && route.startsWith(issuePath(f)));
   if (issue) {
     const rest = route.slice(issuePath(issue).length);
