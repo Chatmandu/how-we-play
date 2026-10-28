@@ -42,8 +42,8 @@ const hp = action ? (() => { try { const u = new URL(action); return `b_${u.sear
           <button class="cn__btn" type="submit">{buttonText}</button>
         </div>
         {hp && <div class="cn__hp" aria-hidden="true"><input type="text" name={hp} tabindex="-1" value=""></div>}
-        <p class="cn__help" id={`${prefix}-help`>Free to subscribe. Unsubscribe whenever you like.{nl.doubleOptIn ? " We'll email you to confirm first." : ''} By signing up you agree to receive The Coaching Notes; see our <a href="/privacy/#newsletter">privacy notice</a>.</p>
-        <p class="cn__status" id={`${prefix}-status` role="status" aria-live="polite">{!action && preview ? 'Preview only: no Mailchimp form is connected yet, so nothing is sent.' : ''}</p>
+        <p class="cn__help" id={`${prefix}-help`}>Free to subscribe. Unsubscribe whenever you like.{nl.doubleOptIn ? " We'll email you to confirm first." : ''} By signing up you agree to receive The Coaching Notes; see our <a href="/privacy/#newsletter">privacy notice</a>.</p>
+        <p class="cn__status" id={`${prefix}-status`} role="status" aria-live="polite">{!action && preview ? 'Preview only: no Mailchimp form is connected yet, so nothing is sent.' : ''}</p>
         <p class="cn__captcha" data-cn-captcha-wrap hidden><a class="cn__verify" data-cn-captcha-link href="#" target="_blank" rel="noopener noreferrer">Complete security check with Mailchimp ↗</a></p>
       </form>
     </div>
