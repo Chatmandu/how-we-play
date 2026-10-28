@@ -140,11 +140,16 @@ for (const file of pages) {
       if (og.endsWith('/og/default.png')) fail(route, 'published coaching guide is using the generic image');
     }
   }
-  // The only public video explainer belongs to Issue 01; it should be a
-  // first-party poster until a visitor explicitly chooses to load YouTube.
-  if (route === '/formations/9v9/3-1-3-1/') {
-    if (!html.includes('id="watch"') || !html.includes('data-youtube-id="KEKPal0Upd4"')) {
-      fail(route, 'missing original full-length YouTube explainer');
+  // Every published explainer needs its matching first-party poster.
+  // The YouTube player must remain opt-in on all formation pages.
+  const publishedExplainers = {
+    '/formations/9v9/3-1-3-1/': 'KEKPal0Upd4',
+    '/formations/9v9/3-2-3/': 'tWzAKTaX2sI'
+  };
+  if (Object.hasOwn(publishedExplainers, route)) {
+    const expectedId = publishedExplainers[route];
+    if (!html.includes('id="watch"') || !html.includes(`data-youtube-id="${expectedId}"`)) {
+      fail(route, `missing matching full-length YouTube explainer (${expectedId})`);
     }
     if (!html.includes('data-youtube-play') || !html.includes('href="/privacy/#video"')) {
       fail(route, 'video must be opt-in and link to its privacy explanation');
