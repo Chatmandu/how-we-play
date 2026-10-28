@@ -75,6 +75,9 @@ for (const file of pages) {
     }
     if (html.includes('id="shape"')) {
       if (!html.includes('issue-cover__actions')) fail(route, 'full guide is missing cover actions');
+      if (!html.includes('together--quick') || !html.includes('together__links')) {
+        fail(route, 'playing together must use the concise linked pitchside reference');
+      }
       if (html.includes('id="watch"')) {
         if (!html.includes('href="#watch"') || !html.includes('Watch the full explainer')) {
           fail(route, 'guide with a film is missing its watch CTA');
