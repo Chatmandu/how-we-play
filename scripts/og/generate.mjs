@@ -90,7 +90,12 @@ for (const f of publishedIssues(publicModel)) {
   });
   mkdirSync(diagramsOut, { recursive: true });
   writeFileSync(file + '.svg', svg, 'utf8');
-  await sharp(Buffer.from(svg)).webp({ quality: 88, effort: 6 }).toFile(file + '.webp');
+  // The SVG uses a compact 108-unit coordinate system. Rasterise at print-friendly
+  // density rather than Sharp's default 108-pixel interpretation of the viewBox.
+  const raster = sharp(Buffer.from(svg), { density: 600 });
+  const { width } = await raster.metadata();
+  if (width < 800) throw new Error('Formation image too small for the web: ' + name + ' (' + width + 'px)');
+  await raster.webp({ quality: 88, effort: 6 }).toFile(file + '.webp');
   shapes++;
 }
 console.log('Generated ' + shapes + ' reviewed starting shapes as branded SVG + WebP images');
