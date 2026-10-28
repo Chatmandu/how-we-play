@@ -102,14 +102,15 @@ const contents = full ? [
 
         <section class="ed-section chapter ed-grid" id="together" aria-labelledby="c4-h">
           <div class="chapter__head"><p class="chapter__n">Chapter 4</p><h2 class="chapter__t" id="c4-h">{chap('together').title}</h2><p class="ed-small">{chap('together').dek}</p></div>
-          <div class="together">
+          <div class="together together--quick">
+            <p class="together__intro">A quick reminder for the touchline. Choose a principle or partnership to explore the full coaching detail.</p>
             {chap('together').groups.map(g => (
-              <div>
+              <div class="together__group">
                 <h3 class="ed-label">{g.title}</h3>
-                <ol class="rulelist">{g.items.map(it => it.rule
-                  ? (r => <li><a href={`${base}${r.id}/`}><b>Principle {r.n}</b><strong>{r.title}</strong><i>{r.summary}</i></a></li>)(rule(it.rule))
-                  : (r => <li><a href={`${base}positions/${r.id}/`}><b>Partnership · {r.nums.join(' and ')}</b><strong>{r.title}</strong><i>{r.head}</i></a></li>)(role(it.role)))}
-                </ol>
+                <ul class="together__links">{g.items.map(it => it.rule
+                  ? (r => <li><a href={`${base}${r.id}/`}><span class="together__type">Principle {r.n}</span><strong>{r.title}</strong><span class="together__arrow" aria-hidden="true">→</span></a></li>)(rule(it.rule))
+                  : (r => <li><a href={`${base}positions/${r.id}/`}><span class="together__type">Partnership · {r.nums.join(' and ')}</span><strong>{r.title}</strong><span class="together__arrow" aria-hidden="true">→</span></a></li>)(role(it.role)))}
+                </ul>
               </div>
             ))}
           </div>
