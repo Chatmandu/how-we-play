@@ -67,6 +67,26 @@ for (const file of pages) {
   for (const m of html.matchAll(/href="#([^"]+)"/g)) {
     if (!html.includes(`id="${m[1]}"`)) fail(route, `in-page link #${m[1]} has no target`);
   }
+  // All full formation guides share one benefit-led cover, with working and
+  // context-aware entry links. Draft-only shells keep their metadata but no CTA.
+  if (/^\/formations\/(5v5|7v7|9v9)\/[^/]+\/$/.test(route)) {
+    if (!html.includes('issue-cover--refined') || !html.includes('issue-cover__promise') || !html.includes('issue-cover__meta')) {
+      fail(route, 'formation guide is missing its refreshed editorial cover');
+    }
+    if (html.includes('id="shape"')) {
+      if (!html.includes('issue-cover__actions')) fail(route, 'full guide is missing cover actions');
+      if (html.includes('id="watch"')) {
+        if (!html.includes('href="#watch"') || !html.includes('Watch the full explainer')) {
+          fail(route, 'guide with a film is missing its watch CTA');
+        }
+      } else if (!html.includes('Explore the starting shape') || html.includes('Watch the full explainer')) {
+        fail(route, 'guide without a film must lead into its starting shape');
+      }
+      if (!html.includes('href="#principles"') && !html.includes('href="#shape"')) {
+        fail(route, 'formation guide is missing its secondary reading action');
+      }
+    }
+  }
   // Metadata
   const h1s = (html.match(/<h1[\s>]/g) || []).length;
   if (h1s !== 1) fail(route, `expected one <h1>, found ${h1s}`);

@@ -4,12 +4,12 @@
  * (only when written and reviewed) and the playbook. Draft formations (preview builds only) use the same shell. */
 import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
-import Byline from '../../../../components/Byline.astro';
+import FormationCover from '../../../../components/FormationCover.astro';
 import Support from '../../../../components/Support.astro';
 import CoachingNotes from '../../../../components/CoachingNotes.astro';
 import IssueVideo from '../../../../components/IssueVideo.astro';
 import model from '../../../../lib/content.mjs';
-import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
+import { renderPitch, reviewNote, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
 import { issueStructuredData } from '../../../../lib/seo.mjs';
 
@@ -52,23 +52,9 @@ const contents = full ? [
 ---
 <Base title={title} description={description} ids={['7v7-hub', f.registerId]} nav="7v7" crumbs={crumbs} jsonLd={jsonLd} editorial meta={{ type: 'formation_issue', format: f.format, issue: f.issue && f.issue.number, formation: f.slug, group: 'Formation issues' }}>
   <Gated ids={[f.registerId]}>
-    <header class="issue-cover ed-grid">
-      <div class="issue-cover__text">
-        <p class="ed-kicker">7v7 · Formation guide</p>
-        <h1>The {f.name}</h1>
-        <p class="ed-stand">{full ? f.issue.intro : f.idea}</p>
-        <p class="ed-small usa-issue-link">Coaching 7v7 soccer in the USA? The {f.name} is one starting shape for teams, generally U9–U10. <a href="/coaching-in-the-usa/">Check US age groups and formats →</a></p>
-        <div class="ed-chips" set:html={statusChips(f.register)} />
-        {exploratory && <Fragment set:html={exploratoryStrip()} />}
-        <Byline f={f} />
-      </div>
-      {contents.length > 0 && (
-        <nav class="issue-toc" aria-labelledby="toc-h">
-          <h2 id="toc-h">In this guide</h2>
-          <ol>{contents.map(c => <li><a href={c.href}><b>{c.n}</b><span>{c.t}</span></a></li>)}</ol>
-        </nav>
-      )}
-    </header>
+    <FormationCover f={f} contents={contents} full={full} exploratory={exploratory} explainer={explainer}>
+      <p slot="usa" class="ed-small usa-issue-link">Coaching 7v7 soccer in the USA? The {f.name} is one starting shape for teams, generally U9–U10. <a href="/coaching-in-the-usa/">Check US age groups and formats →</a></p>
+    </FormationCover>
 
     {full ? (
       <>
