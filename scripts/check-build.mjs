@@ -190,6 +190,19 @@ for (const file of pages) {
       fail(route, 'formation page must not share the default placeholder image');
     }
   }
+  // The newsletter should be visible where readers find useful coaching content.
+  // Multiple forms on a page must retain unique accessible IDs and placement tracking.
+  if (target === 'public') {
+    if (!html.includes('data-cn-location="footer"')) fail(route, 'missing footer newsletter');
+    if (route === '/' && (!html.includes('id="coaching-notes-signup"') || !html.includes('data-cn-location="home"') || !html.includes('href="/#coaching-notes-signup"'))) {
+      fail(route, 'homepage newsletter or its navigation link is missing');
+    }
+    if (pageType === 'formation_issue' && (!html.includes('id="coaching-notes-guide"') || !html.includes('data-cn-location="guide"'))) {
+      fail(route, 'formation guide is missing its inline newsletter');
+    }
+    const signupIds = [...html.matchAll(/id="(cn-(?:home|guide|footer)-(?:email|help|status|h))"/g)].map(x => x[1]);
+    if (signupIds.length !== new Set(signupIds).size) fail(route, 'duplicate newsletter element ID');
+  }
   // Target rules
   if (target === 'public') {
     const scan = html.replace(/<dl[^>]*data-hwp-legend[\s\S]*?<\/dl>/g, ''); // the About page's label key is allowed to show every chip
