@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { loadModel } from './load-content.mjs';
 import { publishedIssues } from '../src/lib/editorial.mjs';
 import { socialImageSpecs, socialImageForRoute } from '../src/lib/social-images.mjs';
+import { coachingArticles } from '../src/lib/coaching.mjs';
 import {
   siteIdentity, issueStructuredData, lessonStructuredData,
   positionStructuredData, collectionStructuredData, sitemapLastmod,
@@ -123,7 +124,11 @@ test('Generated social image map is complete, unique and excludes unpublished co
   const specs = socialImageSpecs(model);
   assert.equal(new Set(specs.map(s => s.route)).size, specs.length);
   assert.equal(new Set(specs.map(s => s.image)).size, specs.length);
-  assert.equal(specs.length, 5 + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
+  assert.equal(specs.length, 5 + 1 + coachingArticles.length + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
+  assert.equal(socialImageForRoute('/coaching/', model).image, '/og/pages/coaching.png');
+  for (const article of coachingArticles) {
+    assert.equal(socialImageForRoute(article.href, model).image, `/og/coaching/${article.slug}.png`);
+  }
   for (const spec of specs) assert.ok(spec.image.startsWith('/og/') && spec.image.endsWith('.png'), 'Branded PNG: ' + spec.image);
   for (const f of issues) {
     assert.equal(socialImageForRoute(issuePath(f), model).image.includes(f.slug), true);
