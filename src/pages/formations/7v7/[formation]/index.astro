@@ -6,6 +6,7 @@ import Base from '../../../../layouts/Base.astro';
 import Gated from '../../../../components/Gated.astro';
 import Byline from '../../../../components/Byline.astro';
 import Support from '../../../../components/Support.astro';
+import CoachingNotes from '../../../../components/CoachingNotes.astro';
 import IssueVideo from '../../../../components/IssueVideo.astro';
 import model from '../../../../lib/content.mjs';
 import { statusChips, renderPitch, reviewNote, exploratoryStrip, button } from '../../../../lib/ui.mjs';
@@ -97,6 +98,8 @@ const contents = full ? [
             ))}
           </ol>
         </section>
+
+        <CoachingNotes placement="guide" />
 
         <section class="ed-section chapter ed-grid" id="jobs" aria-labelledby="c3-h">
           <div class="chapter__head"><p class="chapter__n">Chapter 3</p><h2 class="chapter__t" id="c3-h">{chap('jobs').title}</h2><p class="ed-small">{chap('jobs').dek}</p></div>

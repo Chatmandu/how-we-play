@@ -619,6 +619,7 @@
 .mast__fmt .mast__soon { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .mast__fmt[aria-current="page"] { color: var(--hwp-color-pitch-blue); }
 .mast__more { display: inline-flex; gap: 22px; padding-left: 22px; border-left: 1px solid var(--hwp-color-rule); }
+.mast__more a[href="/#coaching-notes-signup"] { color: var(--hwp-color-pitch-blue); font-weight: 800; }
 @media (max-width: 1023px) { .mast__formats { margin-right: 16px; } .mast__more { gap: 14px; padding-left: 14px; } }
 @media (max-width: 599px) {
   .js-mast .mast__nav.is-open { display: grid; }
@@ -798,6 +799,14 @@
 .cn__verify { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; border: 2px solid var(--hwp-color-space-yellow); background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); font: 700 15px/1.25 var(--ed-sans); text-decoration: none; }
 .cn__verify:hover { background: var(--hwp-color-paper); border-color: var(--hwp-color-paper); }
 .cn__hp { position: absolute; left: -5000px; }
+/* Prominent homepage signup; compact invitation inside the formation guides. */
+.cn--home { border-top: 5px solid var(--hwp-color-space-yellow); margin-top: var(--ed-s6); }
+.cn--home .cn__in { padding-top: clamp(36px, 5vw, 62px); padding-bottom: clamp(36px, 5vw, 62px); }
+.cn--home .cn__h { font-size: clamp(42px, 5.8vw, 72px); }
+.cn--guide { background: var(--hwp-color-pitch-blue); border-top: 3px solid var(--hwp-color-space-yellow); margin: var(--ed-s4) 0; }
+.cn--guide .cn__in { align-items: center; padding-top: 28px; padding-bottom: 28px; }
+.cn--guide .cn__h { font-size: clamp(32px, 4vw, 50px); }
+.cn--guide .cn__dek { font-size: 16px; }
 @media (max-width: 899px) { .cn__in { grid-template-columns: 1fr; row-gap: 20px; padding-top: 28px; padding-bottom: 28px; } .cn__dek { font-size: 15px; } }
 @media (max-width: 399px) { .cn__row { flex-direction: column; } .cn__input { border-right: 2px solid var(--hwp-color-paper); } }
 .foot__nav { align-items: center; }
