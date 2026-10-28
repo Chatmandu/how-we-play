@@ -124,7 +124,7 @@ for (const file of pages) {
       if (!collection || collection.mainEntity?.itemListElement?.length !== live.length) fail(route, 'format hub missing complete CollectionPage / ItemList schema');
     }
   }
-  if (target === 'public' && ['formation_issue', 'lesson', 'position'].includes(pageType)) {
+  if (target === 'public' && ['formation_issue', 'lesson', 'position', 'coaching_article'].includes(pageType)) {
     const article = ld.find(o => o['@type'] === 'Article');
     const webpage = ld.find(o => o['@type'] === 'WebPage');
     if (!article || !webpage) fail(route, 'missing Article / WebPage schema for published coaching guide');
@@ -190,6 +190,20 @@ for (const file of pages) {
       fail(route, 'formation page must not share the default placeholder image');
     }
   }
+  // Coaching articles are a separate editorial collection, using the same pitch
+  // renderer, source-based social images and accessible newsletter flow.
+  if (target === 'public' && route === '/coaching/') {
+    if (!html.includes('Coaching guides') || !html.includes('href="/coaching/attacking-corners/"')) fail(route, 'coaching hub missing its first published guide');
+    if (!ld.find(x => x['@type'] === 'CollectionPage')) fail(route, 'coaching hub missing CollectionPage schema');
+    if (og.endsWith('/og/default.png')) fail(route, 'coaching hub using generic sharing image');
+  }
+  if (target === 'public' && route === '/coaching/attacking-corners/') {
+    for (const marker of ['id="setup"', 'id="choices"', 'id="seven-a-side"', 'id="training"', 'data-cn-location="article"', '2026–27', 'href="/formations/7v7/2-3-1/"']) {
+      if (!html.includes(marker)) fail(route, 'coaching article missing ' + marker);
+    }
+    const diagrams = (html.match(/<svg[^>]*class="hwp-pitch[^"]*"/g) || []).length;
+    if (diagrams < 4) fail(route, 'corner guide needs its four illustrated examples');
+  }
   // The newsletter should be visible where readers find useful coaching content.
   // Multiple forms on a page must retain unique accessible IDs and placement tracking.
   if (target === 'public') {
@@ -200,7 +214,7 @@ for (const file of pages) {
     if (pageType === 'formation_issue' && (!html.includes('id="coaching-notes-guide"') || !html.includes('data-cn-location="guide"'))) {
       fail(route, 'formation guide is missing its inline newsletter');
     }
-    const signupIds = [...html.matchAll(/id="(cn-(?:home|guide|footer)-(?:email|help|status|h))"/g)].map(x => x[1]);
+    const signupIds = [...html.matchAll(/id="(cn-(?:home|guide|article|footer)-(?:email|help|status|h))"/g)].map(x => x[1]);
     if (signupIds.length !== new Set(signupIds).size) fail(route, 'duplicate newsletter element ID');
   }
   // Target rules

@@ -2,6 +2,7 @@
  * Paths are always deterministic; previews never expose draft illustrations.
  * This is also the single source of truth for OG tags and Article image JSON-LD. */
 import { publishedIssues } from './editorial.mjs';
+import { coachingArticles, cornerDiagrams } from './coaching.mjs';
 
 export const DEFAULT_SOCIAL_IMAGE = '/og/default.png';
 
@@ -12,6 +13,19 @@ export function socialImageSpecs(model) {
     { route: '/', image: '/og/pages/home.png', title: has5v5 ? '5V5, 7V7 & 9V9 FOOTBALL GUIDES' : 'FREE FOOTBALL COACHING GUIDES', eyebrow: 'HOW WE PLAY FOOTBALL', deck: 'Free illustrated formations. Four principles. A job for every player.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape },
     { route: '/about/', image: '/og/pages/about.png', title: 'SEVEN YEARS ON THE TOUCHLINE', eyebrow: 'ABOUT HOW WE PLAY FOOTBALL', deck: 'From grassroots coaching experience to free formation playbooks.', frame: issues.find(f => f.format === '9v9' && f.slug === '3-1-3-1')?.shape }
   ];
+  specs.push({
+    route: '/coaching/', image: '/og/pages/coaching.png',
+    title: 'COACHING GUIDES', eyebrow: 'HOW WE PLAY FOOTBALL · FROM THE TOUCHLINE',
+    deck: 'Practical set pieces, restarts and decisions for grassroots coaches.',
+    frame: cornerDiagrams.setup9v9
+  });
+  for (const a of coachingArticles) {
+    specs.push({
+      route: a.href, image: `/og/coaching/${a.slug}.png`,
+      title: a.shortTitle, eyebrow: `${a.formats.join(' & ')} · ${a.category}`,
+      deck: a.summary, frame: cornerDiagrams.setup9v9
+    });
+  }
   for (const format of ['5v5', '7v7', '9v9']) {
     const inFormat = issues.filter(f => f.format === format);
     const first = inFormat[0];

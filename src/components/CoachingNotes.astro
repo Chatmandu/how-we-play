@@ -5,18 +5,22 @@
  * posts to Mailchimp in a new tab. No Mailchimp script loads until someone submits. Until an action URL is
  * configured, public builds show no form (preview builds show the design, marked as not connected). */
 import model from '../lib/content.mjs';
-interface Props { placement?: 'footer' | 'home' | 'guide'; }
+interface Props { placement?: 'footer' | 'home' | 'guide' | 'article'; }
 const { placement = 'footer' } = Astro.props;
 const prefix = `cn-${placement}`;
-const sectionId = placement === 'footer' ? 'the-coaching-notes' : placement === 'home' ? 'coaching-notes-signup' : 'coaching-notes-guide';
+const sectionId = placement === 'footer' ? 'the-coaching-notes' : placement === 'home' ? 'coaching-notes-signup' : placement === 'article' ? 'coaching-notes-article' : 'coaching-notes-guide';
 const headline = placement === 'home'
   ? 'Make your next session a little easier.'
-  : placement === 'guide'
+  : placement === 'article'
+    ? 'A little more help for next week.'
+    : placement === 'guide'
     ? 'Enjoying this guide? Get the next one.'
     : 'A little help from the touchline.';
 const dek = placement === 'home'
   ? 'Free formation guides, simple coaching ideas and practical resources, delivered to your inbox when there is something worth sharing.'
-  : placement === 'guide'
+  : placement === 'article'
+    ? 'Practical coaching ideas, new formation guides and helpful resources from the touchline. Free and occasional.'
+    : placement === 'guide'
     ? 'New formation guides and practical coaching ideas, straight to your inbox. Free and occasional.'
     : 'New formation guides, coaching ideas and practical resources from How We Play Football. Straight to your inbox, occasionally. No unnecessary emails.';
 const buttonText = placement === 'footer' ? 'Sign up' : 'Count me in';

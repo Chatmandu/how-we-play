@@ -1,0 +1,86 @@
+---
+/* Coaching guides collection. Each published guide has a practical diagram, a clear format
+ * and a way back to the formation playbooks. Empty future themes are labels, not dead links. */
+import Base from '../../layouts/Base.astro';
+import model from '../../lib/content.mjs';
+import { renderPitch, longDate } from '../../lib/ui.mjs';
+import { coachingTopics, coachingArticles, firstCoachingArticle, cornerDiagrams } from '../../lib/coaching.mjs';
+
+const site = model.site;
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Coaching guides' }];
+const page = site.url + '/coaching/';
+const jsonLd = [{
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': page,
+  url: page,
+  name: 'Coaching guides | How We Play Football',
+  description: 'Practical football coaching guides for grassroots teams, with clear diagrams, simple decisions and training ideas.',
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': site.url + '/#website' },
+  mainEntity: { '@type': 'ItemList', itemListElement: coachingArticles.map((a, i) => ({
+    '@type': 'ListItem', position: i + 1, name: a.title, url: site.url + a.href
+  })) }
+}];
+const featuredPitch = renderPitch(cornerDiagrams.setup9v9, { theme: 'blue', title: cornerDiagrams.setup9v9.title, desc: cornerDiagrams.setup9v9.altSummary });
+---
+<Base title="Practical Football Coaching Guides | How We Play Football" description="Simple, illustrated grassroots football coaching guides. Learn attacking corners, set-piece setups and how to help young players make decisions." ids={[]} nav="coaching" crumbs={crumbs} ogType="website" jsonLd={jsonLd} editorial meta={{ type: 'coaching_hub', group: 'Coaching guides' }}>
+  <header class="coach-hero ed-grid">
+    <div class="coach-hero__main">
+      <p class="ed-kicker">Beyond the formation · From the touchline</p>
+      <h1>Coaching guides</h1>
+      <p class="ed-stand">Practical answers to the questions that come up every week.</p>
+      <p class="ed-lede">Set pieces, restarts, decisions and training ideas, explained with simple diagrams. Nothing complicated to memorise. Just ideas you can try with your team.</p>
+    </div>
+    <aside class="coach-hero__aside" aria-label="Our approach">
+      <p class="ed-label">How we coach</p>
+      <strong>Simple pictures.<br />Simple decisions.<br />Play together.</strong>
+      <p>Every setup is a starting point. Adapt it to the players you have, give them choices, and let them learn.</p>
+    </aside>
+  </header>
+
+  <section class="ed-section coach-feature ed-grid" aria-labelledby="coach-feature-title">
+    <div class="ed-sh"><h2 class="ed-label" id="coach-feature-title">Latest coaching guide</h2><span class="ed-label">Set pieces & restarts · 9v9 + 7v7</span></div>
+    <figure class="coach-feature__pitch on-pitch">
+      <div class="coach-plate__bar"><span>How We Play · Coaching guides</span><span>Example · 9v9</span></div>
+      <div class="coach-feature__stage" set:html={featuredPitch} />
+      <figcaption>One corner, clear jobs and room for players to make decisions.</figcaption>
+    </figure>
+    <div class="coach-feature__copy">
+      <p class="ed-kicker">01 · {firstCoachingArticle.category}</p>
+      <h3>{firstCoachingArticle.title}</h3>
+      <p class="ed-stand">{firstCoachingArticle.summary}</p>
+      <p class="coach-feature__meta">{firstCoachingArticle.formats.join(' and ')} · {firstCoachingArticle.minutes} min read · <time datetime={firstCoachingArticle.published}>{longDate(firstCoachingArticle.published)}</time></p>
+      <a class="ed-btn" href={firstCoachingArticle.href}>Read the illustrated guide <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="ed-section ed-grid coach-topics" aria-labelledby="coach-topics-title">
+    <div class="ed-sh"><h2 class="ed-label" id="coach-topics-title">Browse the coaching topics</h2></div>
+    <div class="coach-topics__grid">
+      {coachingTopics.map((topic, i) => {
+        const count = coachingArticles.filter(a => a.topic === topic.id).length;
+        return <div class:list={['coach-topic', count && 'coach-topic--live']} id={topic.id}>
+          <span class="coach-topic__number">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{topic.title}</h3>
+          <p>{topic.description}</p>
+          <span class="coach-topic__status">{count ? `${count} guide published` : 'More guides coming'}</span>
+          {count > 0 && <a href={firstCoachingArticle.href}>Explore the guide <span aria-hidden="true">→</span></a>}
+        </div>;
+      })}
+    </div>
+  </section>
+
+  <section class="ed-section ed-grid coach-next" aria-labelledby="coach-next-title">
+    <div class="coach-next__copy">
+      <p class="ed-kicker">Start with the big picture</p>
+      <h2 class="ed-h2" id="coach-next-title">Find your team shape</h2>
+      <p>Coaching guides answer one matchday question. Formation playbooks show how those decisions fit together across the whole pitch.</p>
+    </div>
+    <nav class="coach-next__links" aria-label="Formation guides">
+      <a href="/formations/5v5/">5v5 formation guides <span aria-hidden="true">→</span></a>
+      <a href="/formations/7v7/">7v7 formation guides <span aria-hidden="true">→</span></a>
+      <a href="/formations/9v9/">9v9 formation guides <span aria-hidden="true">→</span></a>
+    </nav>
+  </section>
+</Base>

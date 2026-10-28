@@ -1,0 +1,193 @@
+---
+/* First practical Coaching Guide. An illustrative option, not a mandated routine:
+ * the diagrams and copy explicitly distinguish 9v9 from 7v7 in 2026–27. */
+import Base from '../../../layouts/Base.astro';
+import CoachingNotes from '../../../components/CoachingNotes.astro';
+import model from '../../../lib/content.mjs';
+import { renderPitch, longDate } from '../../../lib/ui.mjs';
+import { firstCoachingArticle as article, cornerDiagrams } from '../../../lib/coaching.mjs';
+
+const site = model.site;
+const page = site.url + article.href;
+const image = site.url + '/og/coaching/attacking-corners.png';
+const articleId = page + '#article';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': articleId,
+    url: page,
+    mainEntityOfPage: { '@id': page },
+    headline: article.title,
+    description: article.description,
+    datePublished: article.published,
+    image: [{ '@type': 'ImageObject', url: image, width: 1200, height: 630, caption: article.title }],
+    author: { '@type': 'Person', '@id': site.url + '/about/#niall-walsh', name: site.author.name, url: site.url + site.author.url },
+    publisher: { '@type': 'Organization', '@id': site.url + '/#publisher', name: site.name, url: site.url + '/' },
+    isAccessibleForFree: true,
+    inLanguage: 'en-GB',
+    articleSection: article.category,
+    about: [{ '@type': 'Thing', name: '9v9 grassroots football corner kicks' }, { '@type': 'Thing', name: '7v7 football attacking corners' }],
+    isPartOf: { '@id': site.url + '/coaching/', '@type': 'CollectionPage', name: 'Coaching guides' }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': page,
+    url: page,
+    name: article.title,
+    inLanguage: 'en-GB',
+    isPartOf: { '@id': site.url + '/#website' },
+    mainEntity: { '@id': articleId },
+    primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 }
+  }
+];
+const diagram = id => renderPitch(cornerDiagrams[id], { theme: 'blue', title: cornerDiagrams[id].title, desc: cornerDiagrams[id].altSummary });
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Coaching guides', href: '/coaching/' }, { label: article.shortTitle }];
+---
+<Base title="How to Set Up for Attacking Corners in 9v9 & 7v7 | How We Play Football" description={article.description} ids={[]} nav="coaching" crumbs={crumbs} ogType="article" jsonLd={jsonLd} editorial meta={{ type: 'coaching_article', format: '9v9', group: 'Coaching guides' }}>
+  <article class="coach-article">
+    <header class="coach-article__cover ed-grid">
+      <div class="coach-article__intro">
+        <p class="ed-kicker">Coaching guide 01 · {article.category}</p>
+        <h1>{article.title}</h1>
+        <p class="ed-stand">A corner doesn't need a complicated routine. Give players a few clear jobs, a couple of options and the freedom to choose.</p>
+        <div class="coach-article__byline">
+          <span>By <a href="/about/">{site.author.name}</a> · Grassroots coach</span>
+          <span><time datetime={article.published}>{longDate(article.published)}</time> · {article.minutes} min read</span>
+          <span>9v9 (U12–U13) · Adapted for 7v7 (U10–U11)</span>
+        </div>
+      </div>
+      <nav class="coach-article__contents" aria-label="On this page">
+        <p class="ed-label">In this guide</p>
+        <ol>
+          <li><a href="#jobs">Four jobs to remember</a></li>
+          <li><a href="#setup">The 9v9 setup</a></li>
+          <li><a href="#choices">Two simple options</a></li>
+          <li><a href="#seven-a-side">How it changes for 7v7</a></li>
+          <li><a href="#training">Try it at training</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <section class="coach-article__section ed-grid" id="jobs" aria-labelledby="jobs-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Start with the principle</p>
+        <h2 class="ed-h2" id="jobs-title">Four jobs. One purpose.</h2>
+        <p class="ed-lede">Help players make the next decision together. The exact positions can change with your players, the opponents and the space.</p>
+      </div>
+      <ol class="coach-jobs">
+        <li><b>01</b><div><h3>Offer short</h3><p>Give the taker a nearby pass if the direct delivery isn't on.</p></div></li>
+        <li><b>02</b><div><h3>Attack the space</h3><p>Players arrive at different spaces near goal, rather than standing in one crowd.</p></div></li>
+        <li><b>03</b><div><h3>Be ready for the second ball</h3><p>One player stays where a clearance or loose pass might arrive.</p></div></li>
+        <li><b>04</b><div><h3>Protect against the counter</h3><p>Keep enough cover behind the attack if the other team wins possession.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="setup" aria-labelledby="setup-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">The starting picture · 9v9</p>
+        <h2 class="ed-h2" id="setup-title">Give everyone a job</h2>
+        <p class="ed-lede">In this example, eight outfield players have roles around the corner. Our goalkeeper stays back, outside the diagram.</p>
+      </div>
+      <figure class="coach-article__diagram coach-article__diagram--wide on-pitch">
+        <div class="coach-plate__bar"><span>9v9 · Attacking corner</span><span>We attack ↑</span></div>
+        <div class="coach-article__pitch" set:html={diagram('setup9v9')} />
+        <figcaption>One taker · one short option · three attacking spaces · one at the edge · two providing cover. Blue is our team; outlined players are illustrative opponents. The pitch is schematic.</figcaption>
+      </figure>
+      <div class="coach-article__notes">
+        <p><strong>Keep it flexible.</strong> The three attackers near goal can swap jobs. Rotate who takes corners and who offers short. The aim is to recognise space, not remember a script.</p>
+        <p>Before the corner, the taker should see two realistic choices. If opponents protect the front, look short. If the front is open, use it.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="choices" aria-labelledby="choices-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Let the players choose</p>
+        <h2 class="ed-h2" id="choices-title">Two simple options</h2>
+        <p class="ed-lede">Use the same starting shape. Change the decision based on what the other team leaves open.</p>
+      </div>
+      <div class="coach-options">
+        <div class="coach-option">
+          <figure class="coach-article__diagram on-pitch">
+            <div class="coach-plate__bar"><span>Option A</span><span>Low ball to the front</span></div>
+            <div class="coach-article__pitch" set:html={diagram('front9v9')} />
+            <figcaption>The front player moves into space as the taker sends a firm, low ball. Pass and run arrows show an example, not a fixed pattern.</figcaption>
+          </figure>
+          <div class="coach-option__copy">
+            <span class="coach-option__n">01</span>
+            <h3>Find the front space</h3>
+            <p>Look for room near the front of goal. The front player arrives as the ball travels. Others can finish a loose ball or support at the far side.</p>
+            <p class="coach-cue">Coach's cue: “Arrive, don't wait.”</p>
+          </div>
+        </div>
+        <div class="coach-option">
+          <figure class="coach-article__diagram on-pitch">
+            <div class="coach-plate__bar"><span>Option B</span><span>Short corner</span></div>
+            <div class="coach-article__pitch" set:html={diagram('short9v9')} />
+            <figcaption>The short option receives and moves towards a better angle. The taker can support again. Keep the cover behind the ball.</figcaption>
+          </figure>
+          <div class="coach-option__copy">
+            <span class="coach-option__n">02</span>
+            <h3>Pass short, then look up</h3>
+            <p>When the box is crowded, find the nearby teammate. They can play back, combine, or pass into an available space. There is no need to force a cross.</p>
+            <p class="coach-cue">Coach's cue: “Can we make a better angle?”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="seven-a-side" aria-labelledby="seven-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Make it smaller · 7v7</p>
+        <h2 class="ed-h2" id="seven-title">Same idea, fewer jobs</h2>
+        <p class="ed-lede">At seven a side, keep it simple: the taker, a short option, two players near goal, one ready for a loose ball and one covering. The goalkeeper stays behind play.</p>
+      </div>
+      <figure class="coach-article__diagram coach-article__diagram--wide on-pitch">
+        <div class="coach-plate__bar"><span>7v7 · Attacking corner</span><span>We attack ↑</span></div>
+        <div class="coach-article__pitch" set:html={diagram('setup7v7')} />
+        <figcaption>Six outfield roles plus the goalkeeper outside the crop. The short pass is a useful first option. This is an illustrative pitch, not a scale drawing.</figcaption>
+      </figure>
+      <aside class="coach-rules">
+        <h3>Important for U10–U11 in England</h3>
+        <p>In the 2026–27 season, deliberate heading is not allowed in affiliated grassroots matches at these ages. Build your corner ideas around passes, movement and finishing with the feet — not heading a high delivery. Check the current rules for your competition before matchday.</p>
+        <p><a href="https://www.englandfootball.com/participate/learn/brain-health/heading-in-football" target="_blank" rel="noopener noreferrer">Read England Football's heading guidance <span aria-hidden="true">↗</span></a></p>
+      </aside>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="training" aria-labelledby="training-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Try this at training</p>
+        <h2 class="ed-h2" id="training-title">Ten minutes. Two decisions.</h2>
+        <p class="ed-lede">Don't spend half your session rehearsing a routine. Give the players a picture and let them solve it.</p>
+      </div>
+      <ol class="coach-practice">
+        <li><span>02 min</span><div><h3>Walk through the jobs</h3><p>Show the short player, the spaces near goal and the cover. Ask players what each job helps the team do.</p></div></li>
+        <li><span>04 min</span><div><h3>Find the front space</h3><p>Try a low delivery with players arriving into space. Rotate the taker and the runners.</p></div></li>
+        <li><span>04 min</span><div><h3>Add the choice</h3><p>Add a defender who can block the front or the short pass. Let the taker choose; reward the decision, not just a goal.</p></div></li>
+      </ol>
+      <div class="coach-takeaway">
+        <p class="ed-kicker">The one thing to remember</p>
+        <strong>Give players options, not instructions for every step.</strong>
+        <p>When they recognise the space and work together, the corner has done its job — whether or not they score.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" aria-labelledby="connected-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Keep building</p>
+        <h2 class="ed-h2" id="connected-title">See how the team plays</h2>
+        <p class="ed-lede">These corner ideas work alongside the wider team shape. Explore our free formation guides for movement, player roles and playing principles.</p>
+      </div>
+      <nav class="coach-related" aria-label="Related coaching guides">
+        <a href="/formations/9v9/3-2-3/"><span>9v9 formation</span><strong>The 3-2-3 guide</strong><span aria-hidden="true">→</span></a>
+        <a href="/formations/9v9/3-1-3-1/"><span>9v9 formation</span><strong>The 3-1-3-1 guide</strong><span aria-hidden="true">→</span></a>
+        <a href="/formations/7v7/2-3-1/"><span>7v7 formation</span><strong>The 2-3-1 guide</strong><span aria-hidden="true">→</span></a>
+      </nav>
+      <div class="coach-source">
+        <p><strong>Coaching note:</strong> These are examples to adapt, not instructions from The FA. We encourage players to rotate jobs and make their own decisions. For the current rules and age-group formats, see <a href="https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-9v9-games" rel="noopener noreferrer" target="_blank">England Football's 9v9 guidance</a> and <a href="https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-7v7-games" rel="noopener noreferrer" target="_blank">7v7 guidance</a>.</p>
+      </div>
+    </section>
+  </article>
+  <CoachingNotes placement="article" />
+</Base>

@@ -61,7 +61,8 @@ function preview(spec) {
 const out = join(ROOT, 'public/og/pages');
 const formatOut = join(ROOT, 'public/og/formats');
 const formationOut = join(ROOT, 'public/og/formations');
-for (const dir of [out,formatOut,formationOut]) rmSync(dir, { recursive: true, force: true });
+const coachingOut = join(ROOT, 'public/og/coaching');
+for (const dir of [out,formatOut,formationOut,coachingOut]) rmSync(dir, { recursive: true, force: true });
 const specs = socialImageSpecs(loadModel('public'));
 for (const spec of specs) {
   if (!spec.image.startsWith('/og/') || !spec.image.endsWith('.png')) throw new Error('Invalid image route ' + spec.image);
@@ -69,4 +70,4 @@ for (const spec of specs) {
   mkdirSync(dirname(file), { recursive: true });
   await sharp(Buffer.from(preview(spec))).png({compressionLevel: 9}).toFile(file);
 }
-console.log('Generated ' + specs.length + ' branded, page-specific 1200×630 PNG previews from public formation guides');
+console.log('Generated ' + specs.length + ' branded, page-specific 1200×630 PNG previews from public coaching and formation guides');
