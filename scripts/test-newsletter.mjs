@@ -44,4 +44,16 @@ assert.match(component, /mailchimpCaptchaUrl\(form\.action, r\.params\)/);
 assert.match(component, /data-cn-captcha-link/);
 assert.match(component, /Complete security check with Mailchimp/);
 assert.match(component, /captchaWrap\.hidden = false/);
+const homepage = readFileSync(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+const layout = readFileSync(new URL('../src/layouts/Base.astro', import.meta.url), 'utf8');
+assert.ok(component.includes("querySelectorAll<HTMLFormElement>('form[data-cn]')"), 'each signup form must be wired independently');
+assert.ok(component.includes('data-cn-location={placement}'), 'forms identify their location for analytics');
+assert.ok(component.includes('id={`${prefix}-email`}'), 'email labels must use unique per-placement IDs');
+assert.ok(homepage.includes('<CoachingNotes placement="home" />'), 'homepage has its own signup');
+assert.ok(layout.includes('/#coaching-notes-signup'), 'navigation links to the homepage signup');
+for (const format of ['5v5', '7v7', '9v9']) {
+  const guide = readFileSync(new URL(`../src/pages/formations/${format}/[formation]/index.astro`, import.meta.url), 'utf8');
+  assert.ok(guide.includes('<CoachingNotes placement="guide" />'), `${format} guide has an inline invitation`);
+}
+console.log('PASS  newsletter forms on home, formation guides and footer use independent IDs and tracking');
 console.log('PASS  Mailchimp captcha completion URL, trusted destination and visible link');
