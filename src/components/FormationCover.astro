@@ -1,0 +1,42 @@
+---
+/* Shared editorial cover for reviewed formation issues and preview-only drafts. */
+import Byline from './Byline.astro';
+import { statusChips, exploratoryStrip } from '../lib/ui.mjs';
+import { formationCoverLine } from '../lib/formation-cover.mjs';
+
+const { f, contents = [], full = false, exploratory = false, explainer = null } = Astro.props;
+const primary = explainer
+  ? { href: '#watch', label: 'Watch the full explainer' }
+  : { href: '#shape', label: 'Explore the starting shape' };
+const secondary = explainer
+  ? { href: '#shape', label: 'Start reading' }
+  : { href: '#principles', label: 'See the four principles' };
+---
+<header class="issue-cover issue-cover--refined ed-grid">
+  <div class="issue-cover__text">
+    <p class="ed-kicker">{f.format} · Formation guide</p>
+    <h1>The {f.name}</h1>
+    <p class="issue-cover__promise">{full ? formationCoverLine(f) : f.idea}</p>
+    {full && <p class="issue-cover__deck">An illustrated guide to the starting shape, four playing principles and a role for every player.</p>}
+    {full && (
+      <div class="issue-cover__actions">
+        <a class="ed-btn" href={primary.href}>{primary.label}<span aria-hidden="true">↗</span></a>
+        <a class="issue-cover__secondary" href={secondary.href}>{secondary.label} <span aria-hidden="true">→</span></a>
+      </div>
+    )}
+  </div>
+  {contents.length > 0 && (
+    <nav class="issue-toc" aria-labelledby="toc-h">
+      <h2 id="toc-h">In this guide</h2>
+      <ol>{contents.map(c => <li><a href={c.href}><b>{c.n}</b><span>{c.t}</span></a></li>)}</ol>
+    </nav>
+  )}
+  <div class="issue-cover__meta">
+    <div class="issue-cover__cred">
+      <div class="ed-chips" set:html={statusChips(f.register)} />
+      <Byline f={f} />
+    </div>
+    <div class="issue-cover__region"><slot name="usa" /></div>
+    {exploratory && <div class="issue-cover__exploratory"><Fragment set:html={exploratoryStrip()} /></div>}
+  </div>
+</header>
