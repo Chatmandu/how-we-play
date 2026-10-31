@@ -184,9 +184,10 @@ for (const file of pages) {
   if (route === '/privacy/' && !html.includes('id="video"')) {
     fail(route, 'privacy notice must explain optional YouTube embeds');
   }
-  if (['/formations/9v9/3-3-2/', '/formations/9v9/2-2-3-1/'].includes(route) && html.includes('data-youtube-embed')) {
+  if (route === '/formations/9v9/2-2-3-1/' && html.includes('data-youtube-embed')) {
     fail(route, 'video must not appear on issues without a published film');
   }
+  if (target === 'public' && route === '/formations/9v9/3-3-2/' && !html.includes('data-youtube-id="CazFYOmIWqQ"')) fail(route, 'published 3-3-2 explainer is missing or has the wrong video ID');
   const noindex = /<meta name="robots" content="noindex/.test(html);
   // Diagrams
   for (const m of html.matchAll(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*role="(?:img|group)"[^>]*>([\s\S]*?)<\/svg>/g)) {
