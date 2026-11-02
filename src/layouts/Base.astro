@@ -54,12 +54,13 @@ const formatNav = ['5v5', '7v7', '9v9'].map(id => { const fm = site.formats.find
 const navItems = [
   { id: 'coaching', label: 'Coaching Guides', href: '/coaching/' },
   { id: 'about', label: 'About', href: '/about/' },
+  { id: 'contact', label: 'Contact', href: '/contact/' },
   ...(site.newsletter?.action ? [{ id: 'notes', label: 'The Coaching Notes', href: '/#coaching-notes-signup' }] : [])
 ];
 const footLinks = [
   ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
   { label: 'Coaching guides', href: '/coaching/' },
-  { label: 'About and standards', href: '/about/' }, { label: 'Privacy and cookies', href: '/privacy/' }
+  { label: 'About and standards', href: '/about/' }, { label: 'Contact us', href: '/contact/' }, { label: 'Privacy and cookies', href: '/privacy/' }
 ];
 const socialLinks = [
   { key: 'instagram', label: 'Instagram' },

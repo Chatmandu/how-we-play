@@ -1,0 +1,172 @@
+---
+/* Contact messages use the existing Resend Worker and Turnstile setup.
+ * A mailto link remains when JS or the sending service is unavailable. */
+import model from '../lib/content.mjs';
+const email = model.site.privacy?.contactEmail || 'hello@howweplayfootball.com';
+---
+<div class="contact-form" data-contact-widget>
+  <div data-contact-fallback class="contact-form__fallback">
+    <p>Prefer email? You can always write to us directly.</p>
+    <a class="ed-btn" href={'mailto:' + email}>Email us <span aria-hidden="true">↗</span></a>
+  </div>
+  <form class="contact-form__form" data-contact-form hidden aria-label="Send How We Play Football a message">
+    <p class="contact-form__eyebrow">STRAIGHT TO OUR INBOX</p>
+    <h2 class="contact-form__title">SEND US A NOTE.</h2>
+    <div class="contact-form__pair">
+      <div class="contact-form__field">
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" placeholder="Your name">
+      </div>
+      <div class="contact-form__field">
+        <label for="contact-email">Email address</label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" placeholder="you@example.com">
+      </div>
+    </div>
+    <div class="contact-form__field">
+      <label for="contact-topic">What's this about?</label>
+      <select id="contact-topic" name="topic" required>
+        <option value="">Choose a topic</option>
+        <option value="question">A question about a guide</option>
+        <option value="suggestion">An idea or suggestion</option>
+        <option value="problem">Something isn't working</option>
+        <option value="partnership">Working together</option>
+        <option value="other">Something else</option>
+      </select>
+    </div>
+    <div class="contact-form__field">
+      <label for="contact-message">Your message</label>
+      <textarea id="contact-message" name="message" required minlength="10" maxlength="3000" rows="6" placeholder="Tell us a little about it…"></textarea>
+      <span class="contact-form__hint">Please don't include children's personal details or other sensitive information.</span>
+    </div>
+    <div class="contact-form__trap" aria-hidden="true"><label for="contact-website">Leave this empty</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+    <div class="contact-form__challenge" data-contact-challenge aria-label="Security check"></div>
+    <button class="ed-btn contact-form__button" type="submit">SEND MESSAGE <span aria-hidden="true">→</span></button>
+    <p class="contact-form__privacy">We'll use your details only to reply to this message, never to subscribe you to marketing. <a href="/privacy/#contact">Read our privacy notice</a>.</p>
+    <p class="contact-form__status" data-contact-status role="status" aria-live="polite"></p>
+  </form>
+  <div class="contact-form__sent" data-contact-sent hidden role="status" tabindex="-1">
+    <p class="contact-form__eyebrow">MESSAGE SENT</p>
+    <h2 class="contact-form__title">THANKS FOR GETTING IN TOUCH.</h2>
+    <p>Your message is on its way. We're a small project, but we'll read it and get back to you when we can.</p>
+    <a href="/formations/9v9/" class="contact-form__back">Explore the formation guides <span aria-hidden="true">→</span></a>
+  </div>
+</div>
+<script>
+  import { track } from '../scripts/analytics.mjs';
+  interface TurnstileApi {
+    render: (element: HTMLElement, options: Record<string, unknown>) => string;
+    reset: (id?: string) => void;
+  }
+  interface TurnstileWindow extends Window { turnstile?: TurnstileApi; }
+  const widget = document.querySelector<HTMLElement>('[data-contact-widget]');
+  if (widget) {
+    const fallback = widget.querySelector<HTMLElement>('[data-contact-fallback]')!;
+    const form = widget.querySelector<HTMLFormElement>('[data-contact-form]')!;
+    const sent = widget.querySelector<HTMLElement>('[data-contact-sent]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[type=submit]')!;
+    const status = form.querySelector<HTMLElement>('[data-contact-status]')!;
+    const challengeElement = form.querySelector<HTMLElement>('[data-contact-challenge]')!;
+    const say = (message: string, kind = '') => { status.textContent = message; status.dataset.kind = kind; };
+    let token = '';
+    let turnstile: TurnstileApi;
+    let challengeId = '';
+
+    const loadWidget = () => new Promise<TurnstileApi>((resolve, reject) => {
+      const existing = (window as TurnstileWindow).turnstile;
+      if (existing) { resolve(existing); return; }
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = () => {
+        const api = (window as TurnstileWindow).turnstile;
+        if (api) resolve(api);
+        else reject(new Error('Security widget unavailable'));
+      };
+      script.onerror = () => reject(new Error('Security widget unavailable'));
+      document.head.appendChild(script);
+    });
+
+    (async () => {
+      try {
+        const response = await fetch('/api/contact/status', { cache: 'no-store' });
+        if (!response.ok) return;
+        const config = await response.json();
+        if (!config.ready || typeof config.siteKey !== 'string') return;
+        turnstile = await loadWidget();
+        challengeId = turnstile.render(challengeElement, {
+          sitekey: config.siteKey,
+          callback: (value: string) => { token = value; },
+          'expired-callback': () => { token = ''; },
+          'error-callback': () => { token = ''; say('The security check could not load. Please refresh and try again.', 'error'); }
+        });
+        fallback.hidden = true;
+        form.hidden = false;
+      } catch {
+        // The mailto fallback stays visible if the service is not ready.
+      }
+    })();
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const topic = String(data.get('topic') || '');
+      const message = String(data.get('message') || '').trim();
+      const website = String(data.get('website') || '');
+      if (name.length < 2 || name.length > 100 || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/.test(email) || !topic || message.length < 10 || message.length > 3000) {
+        say('Please check your name, email, topic and message.', 'error');
+        return;
+      }
+      if (!token) { say('Please complete the security check first.', 'error'); return; }
+      submit.disabled = true;
+      say('Sending your message…');
+      track('contact_submit', { form_location: 'contact_page', topic });
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, topic, message, website, turnstileToken: token })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.error || 'Please try again.');
+        form.hidden = true;
+        sent.hidden = false;
+        sent.focus();
+        track('contact_sent', { form_location: 'contact_page', topic });
+      } catch (error) {
+        say(error instanceof Error ? error.message : 'We could not send your message. Please try again.', 'error');
+        track('contact_error', { form_location: 'contact_page' });
+        submit.disabled = false;
+      } finally {
+        token = '';
+        turnstile.reset(challengeId);
+      }
+    });
+  }
+</script>
+<style>
+  .contact-form [hidden] { display: none !important; }
+  .contact-form__form, .contact-form__sent { display: grid; gap: 19px; padding: clamp(22px, 3.5vw, 42px); background: #fff; border-top: 7px solid var(--hwp-color-space-yellow); color: var(--hwp-color-ink); box-shadow: 8px 8px 0 var(--hwp-color-ink); }
+  .contact-form__eyebrow { margin: 0; color: var(--hwp-color-pitch-blue); font: 800 12px/1 var(--ed-sans); letter-spacing: .12em; }
+  .contact-form__title { margin: -5px 0 10px; font: 900 clamp(42px, 4.5vw, 66px)/.88 var(--ed-display); text-transform: uppercase; }
+  .contact-form__pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .contact-form__field { display: grid; gap: 7px; }
+  .contact-form__field label { font: 700 14px/1.25 var(--ed-sans); }
+  .contact-form__field input, .contact-form__field select, .contact-form__field textarea { display: block; width: 100%; box-sizing: border-box; min-height: 50px; padding: 12px 13px; border: 1px solid #8f9ca7; border-radius: 0; background: #fff; color: var(--hwp-color-ink); font: 400 15px/1.45 var(--ed-sans); }
+  .contact-form__field textarea { resize: vertical; min-height: 160px; }
+  .contact-form__field :is(input, select, textarea):focus-visible { outline: 3px solid var(--hwp-color-pitch-blue); outline-offset: 2px; }
+  .contact-form__hint { font: 400 12px/1.5 var(--ed-sans); color: var(--hwp-text-secondary); }
+  .contact-form__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .contact-form__button { width: 100%; justify-content: space-between; border: 0; background: var(--hwp-color-ink); font: 900 22px/1 var(--ed-display); cursor: pointer; }
+  .contact-form__button:hover { background: var(--hwp-color-pitch-blue); }
+  .contact-form__button:disabled { opacity: .65; cursor: wait; }
+  .contact-form__privacy { margin: 0; font: 400 12px/1.5 var(--ed-sans); color: var(--hwp-text-secondary); }
+  .contact-form__status { margin: 0; font: 700 14px/1.4 var(--ed-sans); }
+  .contact-form__status[data-kind="error"] { color: #a32120; }
+  .contact-form__fallback { padding: 28px; background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
+  .contact-form__fallback p { margin: 0 0 20px; }
+  .contact-form__fallback .ed-btn { background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); }
+  .contact-form__sent p:not(.contact-form__eyebrow) { margin: 0; font: 400 16px/1.5 var(--ed-sans); }
+  .contact-form__back { font: 800 20px/1.2 var(--ed-display); text-transform: uppercase; color: var(--hwp-color-pitch-blue); }
+  @media(max-width:650px) { .contact-form__pair { grid-template-columns: 1fr; } .contact-form__form { box-shadow: 5px 5px 0 var(--hwp-color-ink); } }
+</style>

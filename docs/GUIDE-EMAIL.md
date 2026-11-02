@@ -33,3 +33,15 @@ This is an optional, one-time setup for the five existing A4 coaching PDFs. The 
 - Turnstile helps block scripted abuse. Monitor Resend usage and enable Cloudflare rate limiting rules for /api/guide-email if volumes grow; consider a server-side limit if higher usage warrants it.
 - Resend's standard free account has sending limits; check the current allowance before promotion.
 - The public PDF URLs are deliberately unchanged.
+
+
+## Contact form
+
+The Contact page at /contact/ uses the same Resend sender and Turnstile credentials.
+
+- POST /api/contact validates name, email, selected topic and message length, checks a hidden honeypot, and validates a **single-use** Turnstile token server-side.
+- A one-off notification is sent to \`hello@howweplayfootball.com\` by default, or \`CONTACT_TO_EMAIL\` if you set that runtime variable in the Worker. The visitor's email becomes \`reply_to\` so replying from the inbox goes to them.
+- A malicious sender can't change the destination address. Submitted HTML is escaped before composing the email.
+- No contact submission is added to Mailchimp, and no personal details are sent to GA4.
+- The page falls back to a normal mailto link if the service is unavailable.
+- **Before announcing the form:** submit a genuine test message and confirm it arrives at the \`hello@\` inbox. A verified sending domain is not proof that the recipient mailbox exists.

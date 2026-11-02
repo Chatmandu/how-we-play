@@ -135,9 +135,118 @@ export async function handleGuideApi(request, env, fetcher = fetch) {
   return json({ ok: true });
 }
 
+
+const CONTACT_TOPICS = Object.freeze({
+  question: 'A question about a guide',
+  suggestion: 'An idea or suggestion',
+  problem: 'Something is not working',
+  partnership: 'Working together',
+  other: 'Something else'
+});
+
+const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+})[char]);
+
+/** Independent, one-off contact message. Never enrols the sender in Mailchimp. */
+export async function handleContactApi(request, env, fetcher = fetch) {
+  const url = new URL(request.url);
+  if (url.pathname === '/api/contact/status' && request.method === 'GET') {
+    return json({ ready: ready(env), siteKey: ready(env) ? env.TURNSTILE_SITE_KEY : null });
+  }
+  if (url.pathname !== '/api/contact' || request.method !== 'POST') return json({ error: 'Not found' }, 404);
+  if (!ready(env)) return json({ error: 'The contact form is temporarily unavailable.' }, 503);
+  const origin = request.headers.get('Origin');
+  if (!origin || origin !== url.origin) return json({ error: 'Invalid origin.' }, 403);
+  if (!(request.headers.get('Content-Type') || '').startsWith('application/json')) {
+    return json({ error: 'Please send JSON.' }, 415);
+  }
+  const raw = await request.text();
+  if (raw.length > 8192) return json({ error: 'Message too long.' }, 413);
+  let body;
+  try { body = JSON.parse(raw); } catch { return json({ error: 'Invalid request.' }, 400); }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'Invalid request.' }, 400);
+  const name = typeof body.name === 'string' ? body.name.trim() : '';
+  const email = typeof body.email === 'string' ? body.email.trim() : '';
+  const topic = Object.hasOwn(CONTACT_TOPICS, body.topic) ? CONTACT_TOPICS[body.topic] : null;
+  const message = typeof body.message === 'string' ? body.message.trim() : '';
+  if (name.length < 2 || name.length > 100 || /[\r\n\x00-\x1f]/.test(name) ||
+      !isEmail(email) || !topic || message.length < 10 || message.length > 3000) {
+    return json({ error: 'Please check your name, email, topic and message.' }, 400);
+  }
+  // Hidden honeypot: appear to succeed but never send.
+  if (typeof body.website === 'string' && body.website.trim()) return json({ ok: true });
+  if (typeof body.turnstileToken !== 'string' || body.turnstileToken.length < 10 ||
+      body.turnstileToken.length > 2048) {
+    return json({ error: 'Please complete the security check.' }, 400);
+  }
+
+  let challenge;
+  try {
+    const form = new FormData();
+    form.set('secret', env.TURNSTILE_SECRET_KEY);
+    form.set('response', body.turnstileToken);
+    const ip = request.headers.get('CF-Connecting-IP');
+    if (ip) form.set('remoteip', ip);
+    const response = await fetcher('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST', body: form
+    });
+    challenge = response.ok ? await response.json() : null;
+  } catch {
+    return json({ error: 'The security check is unavailable. Please try again.' }, 502);
+  }
+  if (!challenge?.success || challenge.hostname !== url.hostname) {
+    return json({ error: 'Please complete the security check and try again.' }, 403);
+  }
+
+  try {
+    const sent = await fetcher('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + env.RESEND_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: 'How We Play Football <guides@howweplayfootball.com>',
+        to: [env.CONTACT_TO_EMAIL || 'hello@howweplayfootball.com'],
+        reply_to: email,
+        subject: 'Website contact: ' + topic,
+        text: [
+          'New message from How We Play Football',
+          '',
+          'From: ' + name,
+          'Reply to: ' + email,
+          'Topic: ' + topic,
+          '',
+          message,
+          '',
+          'Sent via the site contact form. Do not add the sender to a marketing list.'
+        ].join('\n'),
+        html: [
+          '<div style="font:16px/1.5 Arial,sans-serif;max-width:640px">',
+          '<h1>New website message</h1>',
+          '<p><b>From:</b> ', escapeHtml(name), '</p>',
+          '<p><b>Reply to:</b> ', escapeHtml(email), '</p>',
+          '<p><b>Topic:</b> ', escapeHtml(topic), '</p>',
+          '<div style="white-space:pre-wrap;border-top:1px solid #ddd;padding-top:20px">',
+          escapeHtml(message), '</div>',
+          '<p style="font-size:12px;color:#555">Reply directly to this email to respond. This is not a newsletter signup.</p>',
+          '</div>'
+        ].join('')
+      })
+    });
+    if (!sent.ok) return json({ error: "We couldn't send the message. Please try again later." }, 502);
+  } catch {
+    return json({ error: "We couldn't send the message. Please try again later." }, 502);
+  }
+  return json({ ok: true });
+}
+
 export default {
   fetch(request, env) {
-    if (new URL(request.url).pathname.startsWith('/api/')) return handleGuideApi(request, env);
+    const path = new URL(request.url).pathname;
+    if (path === '/api/contact' || path === '/api/contact/status') return handleContactApi(request, env);
+    if (path.startsWith('/api/')) return handleGuideApi(request, env);
     return env.ASSETS.fetch(request);
   }
 };

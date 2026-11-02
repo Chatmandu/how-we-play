@@ -16,15 +16,20 @@ const id = 'guide-email-' + guideId;
     <a class="ed-btn" href={pdfUrl} download data-playbook={guideId}>{buttonLabel} <span aria-hidden="true">↓</span></a>
   </div>
   <form data-guide-form class="guide-email__form" hidden aria-label="Request the A4 coaching guide by email">
-    <label class="guide-email__label" for={id + '-address'}>Where should we send your A4 guide?</label>
-    <input class="guide-email__input" id={id + '-address'} name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" aria-describedby={id + '-privacy ' + id + '-status'}>
+    <p class="guide-email__eyebrow">FREE A4 COACHING GUIDE</p>
+    <h3 class="guide-email__heading">TAKE THE PLAYBOOK WITH YOU.</h3>
+    <p class="guide-email__intro">The printable guide, delivered straight to your inbox. Ready for your next session.</p>
+    <label class="guide-email__label" for={id + '-address'}>Your email address</label>
+    <div class="guide-email__email-row">
+      <input class="guide-email__input" id={id + '-address'} name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" aria-describedby={id + '-privacy ' + id + '-status'}>
+    </div>
     <label class="guide-email__choice" for={id + '-marketing'}>
       <input id={id + '-marketing'} name="marketing" type="checkbox">
-      <span><strong>Yes, send me The Coaching Notes too.</strong> Occasional formation guides and practical coaching ideas. Optional, and you can unsubscribe whenever you like.</span>
+      <span><strong>Keep me in the loop.</strong> Send me The Coaching Notes: new guides and useful coaching ideas, occasionally. Completely optional.</span>
     </label>
     <div class="guide-email__challenge" data-guide-challenge aria-label="Security check"></div>
-    <button class="ed-btn guide-email__button" type="submit">Email me the A4 guide <span aria-hidden="true">→</span></button>
-    <p class="ed-small guide-email__privacy" id={id + '-privacy'}>The guide email is yours whether or not you tick the newsletter box. We'll only use your address to send the guide unless you choose to sign up. <a href="/privacy/#downloads">How we use your email</a>.</p>
+    <button class="ed-btn guide-email__button" type="submit">SEND MY A4 GUIDE <span aria-hidden="true">→</span></button>
+    <p class="ed-small guide-email__privacy" id={id + '-privacy'}>Just the guide unless you tick the box. No automatic marketing signup. <a href="/privacy/#downloads">How we use your email</a>.</p>
     <p class="guide-email__status" id={id + '-status'} role="status" aria-live="polite"></p>
     <p class="guide-email__verification" data-guide-verification hidden><a target="_blank" rel="noopener noreferrer" data-guide-verification-link>Complete Mailchimp's security check ↗</a></p>
   </form>
@@ -181,21 +186,37 @@ const id = 'guide-email-' + guideId;
   });
 </script>
 <style>
+  .guide-email { width: 100%; }
   .guide-email [hidden] { display: none !important; }
-  .guide-email__form { display: grid; gap: 14px; max-width: 540px; padding: 24px; border: 1px solid var(--hwp-line, #d1d7dc); background: var(--hwp-paper, #fff); }
-  .guide-email__label { font-weight: 750; font-size: 1.05rem; }
-  .guide-email__input { box-sizing: border-box; width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #8f9ba4; border-radius: 0; font: inherit; color: #10283f; background: #fff; }
-  .guide-email__input:focus-visible { outline: 3px solid #ed654d; outline-offset: 2px; }
-  .guide-email__choice { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; line-height: 1.45; }
-  .guide-email__choice input { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 3px; accent-color: #142f46; }
-  .guide-email__choice span { font-size: .92rem; }
-  .guide-email__choice strong { display: block; }
-  .guide-email__button { justify-self: start; }
+  .guide-email__form {
+    display: grid; gap: 13px; width: 100%; box-sizing: border-box; max-width: 620px;
+    padding: clamp(22px, 3vw, 36px); border: 0; border-top: 6px solid var(--hwp-color-space-yellow);
+    background: var(--hwp-color-ink); color: var(--hwp-color-paper);
+  }
+  .guide-email__eyebrow { margin: 0; color: var(--hwp-color-space-yellow); font: 800 12px/1.2 var(--ed-sans); letter-spacing: .14em; }
+  .guide-email__heading { margin: 0; max-width: 12ch; font: 900 clamp(34px, 3.5vw, 50px)/.91 var(--ed-display); text-transform: uppercase; }
+  .guide-email__intro { margin: -3px 0 10px; color: var(--hwp-color-paper); opacity: .86; font: 400 15px/1.48 var(--ed-sans); }
+  .guide-email__label { font: 700 14px/1.2 var(--ed-sans); }
+  .guide-email__email-row { display: grid; }
+  .guide-email__input { box-sizing: border-box; width: 100%; min-height: 54px; padding: 13px 14px; border: 1px solid #8295a4; border-radius: 0; font: 400 16px/1.4 var(--ed-sans); color: #10283f; background: #fff; }
+  .guide-email__input:focus-visible { outline: 3px solid var(--hwp-color-space-yellow); outline-offset: 3px; }
+  .guide-email__choice { display: flex; align-items: flex-start; gap: 13px; cursor: pointer; line-height: 1.4; padding: 5px 0; }
+  .guide-email__choice input { flex: 0 0 19px; width: 19px; height: 19px; margin-top: 2px; accent-color: var(--hwp-color-space-yellow); }
+  .guide-email__choice span { font: 400 13px/1.45 var(--ed-sans); color: var(--hwp-color-paper); opacity: .88; }
+  .guide-email__choice strong { display: block; font-size: 15px; opacity: 1; }
+  .guide-email__challenge { padding: 3px 0; }
+  .guide-email__button { justify-self: stretch; justify-content: space-between; border: 0; min-height: 58px; margin-top: 2px; background: var(--hwp-color-space-yellow); color: var(--hwp-color-ink); font: 900 20px/1 var(--ed-display); text-transform: uppercase; cursor: pointer; }
+  .guide-email__button span { font: 400 24px/1 var(--ed-sans); }
+  .guide-email__button:hover { background: var(--hwp-color-paper); color: var(--hwp-color-ink); }
   .guide-email__button:disabled { cursor: wait; opacity: .65; }
-  .guide-email__privacy { margin: 0; }
-  .guide-email__status { margin: 0; font-size: .92rem; font-weight: 650; }
-  .guide-email__status[data-kind="error"] { color: #a32120; }
-  .guide-email__status[data-kind="ok"] { color: #286045; }
+  .guide-email__privacy { margin: 0; font: 400 12px/1.55 var(--ed-sans); opacity: .78; color: var(--hwp-color-paper); }
+  .guide-email__privacy a, .guide-email__verification a { color: var(--hwp-color-space-yellow); text-underline-offset: 3px; }
+  .guide-email__status { margin: 0; font: 700 14px/1.4 var(--ed-sans); color: var(--hwp-color-paper); }
+  .guide-email__status[data-kind="error"] { color: #ffb6a8; }
+  .guide-email__status[data-kind="ok"] { color: var(--hwp-color-space-yellow); }
   .guide-email__verification { margin: 0; }
-  @media (max-width: 600px) { .guide-email__form { padding: 16px; } }
+  @media (max-width: 599px) {
+    .guide-email__form { padding: 22px 18px; }
+    .guide-email__heading { font-size: 37px; }
+  }
 </style>
