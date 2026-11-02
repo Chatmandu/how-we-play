@@ -126,13 +126,11 @@ const contents = full ? [
           <div class="chapter__side ed-download">
             {printGuideAvailable ? (
               <>
-                <p class="ed-lede">Download the full formation guide for free, to use at training or share with players and parents. No email or payment required.</p>
-                <div class="ed-download__links" aria-label="Choose a printable guide">
+                <p class="ed-lede">Download the full A4 formation guide to use at training or share with players and parents.</p>
+                <div class="ed-download__links" aria-label="Download the printable guide">
                   <a class="ed-btn" href={`${printGuideBase}-A4-Coach-Guide.pdf`} download>Download A4 coach's guide (PDF) <span aria-hidden="true">↓</span></a>
-                  <a class="ed-btn" href={`${printGuideBase}-A5-Pitchside-Booklet.pdf`} download>Download A5 pitchside booklet (PDF) <span aria-hidden="true">↓</span></a>
-                  <a class="ed-btn" href={`${printGuideBase}-A5-Booklet-A4-Print-Sheets.pdf`} download>Print your own A5 booklet (PDF) <span aria-hidden="true">↓</span></a>
                 </div>
-                <p class="ed-small">The A4 guide is for reading or home printing. The A5 booklet is in reading order for phones and tablets. To make a folded A5 booklet at home, download the print sheets and print double-sided on A4 landscape paper, flipping on the short edge at 100% size, then fold and staple.</p>
+                <p class="ed-small">The A4 guide is suitable for reading on-screen or printing at home.</p>
               </>
             ) : (
               <p class="ed-lede">The printable guide isn't released yet.</p>
