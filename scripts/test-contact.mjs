@@ -34,7 +34,11 @@ response = await handleContactApi(request(), env, fetcher);
 assert.equal(response.status, 200);
 assert.equal(sent.length, 1);
 const first = sent[0];
-assert.deepEqual(first.to, ['hello@howweplayfootball.com']);
+assert.deepEqual(first.to, ['nbwalsh@gmail.com']);
+// The production destination may also be overridden without a code release.
+response = await handleContactApi(request(), { ...env, CONTACT_TO_EMAIL: 'another-inbox@example.org' }, fetcher);
+assert.equal(response.status, 200);
+assert.deepEqual(sent.at(-1).to, ['another-inbox@example.org']);
 assert.equal(first.reply_to, 'alex@example.org');
 assert.equal(first.from, 'How We Play Football <guides@howweplayfootball.com>');
 assert.match(first.text, /corner routines/);

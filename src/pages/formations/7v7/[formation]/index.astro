@@ -36,7 +36,12 @@ const shapeSvg = renderPitch(shape, { theme: 'blue', title: shape.title, desc: s
 const shapeImage = model.target === 'public' && full ? `/diagrams/formations/${f.format}-${f.slug}-starting-shape.svg` : null;
 const label = issueLabel(f);
 const otherIssues = publishedIssues(model).filter(other => other.format === f.format && other.slug !== f.slug);
-const explainer = f.slug === '2-3-1' && full ? { youtubeId: 's_ENKf0Sb1E', label: '7v7 · 2-3-1 · Full video explainer' } : null;
+// Film releases use the existing click-to-load YouTube player.
+const explainers = {
+  '2-3-1': { youtubeId: 's_ENKf0Sb1E', label: '7v7 · 2-3-1 · Full video explainer' },
+  '2-1-2-1': { youtubeId: 'T25DkHCSDHI', label: '7v7 · 2-1-2-1 · Full video explainer' }
+};
+const explainer = full ? explainers[f.slug] ?? null : null;
 const shapeAttribution = f.shape.sourcePage
   ? `Redrawn from the source playbook, ${f.shape.sourcePage}.`
   : f.register.content.status === 'reviewed'
