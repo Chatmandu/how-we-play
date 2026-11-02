@@ -9,12 +9,12 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: 'Privacy and cookies' }];
 const preview = model.target !== 'public';
 const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
 ---
-<Base title="Privacy and cookies | How We Play Football" description="Read how How We Play Football handles optional analytics, YouTube videos, newsletter subscriptions and your privacy choices." ids={['about']} crumbs={crumbs} editorial>
+<Base title="Privacy and cookies | How We Play Football" description="Read how How We Play Football handles optional analytics, YouTube videos, newsletter subscriptions, one-off guide emails and your privacy choices." ids={['about']} crumbs={crumbs} editorial>
   <div class="page-head ed-grid">
     <div class="page-head__text">
       <p class="ed-kicker">Privacy and cookies</p>
       <h1 class="privacy-h1">Your data, kept to a minimum</h1>
-      <p class="ed-stand">How We Play Football is free to read without giving us anything. This page explains optional analytics, YouTube videos, the newsletter and how you can control what you share.</p>
+      <p class="ed-stand">How We Play Football is free to read without giving us anything. This page explains optional analytics, YouTube videos, A4 guide emails, the newsletter and how you can control what you share.</p>
       <p class="byline">Last updated {longDate(p.lastUpdated)}</p>
     </div>
   </div>
@@ -35,6 +35,11 @@ const missing = (what: string) => preview ? `[${what}: to be supplied]` : null;
       <p>Some formation guides include an optional video explainer. Before you select Play, we show a poster generated from our own tactical diagrams; the YouTube player is not loaded, and visiting the page does not itself connect you to YouTube for that video.</p>
       <p>If you choose to play a video, an embedded player is loaded from <code>youtube-nocookie.com</code> (YouTube's privacy-enhanced domain). YouTube/Google may then receive information such as your IP address, browser and video playback activity, and may use cookies or similar technology. This is separate from the site's optional Google Analytics settings.</p>
       <p>You can read the guide without watching the video, or open the video directly on YouTube. See <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a> for YouTube data processing.</p>
+
+      <h2 class="story__h" id="downloads">A4 guides sent by email</h2>
+      <p>If you ask us to email an A4 guide, we collect the email address you enter to send a one-off message with the PDF link. We use Resend as our email delivery provider. Resend processes the address and delivery information to send that email; see <a href="https://resend.com/legal/privacy-policy" rel="noopener" target="_blank">Resend's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a>. We don't keep a separate download mailing list.</p>
+      <p>To protect the form from misuse, it also uses Cloudflare Turnstile to check that requests come from real people. Cloudflare processes technical information for that security check. See <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener" target="_blank">Cloudflare's privacy policy<span class="hwp-sr-only"> (opens in a new tab)</span></a>.</p>
+      <p>Receiving the guide doesn't require you to join the newsletter. The separate <strong>Yes, send me The Coaching Notes too</strong> box is unticked by default. If you choose it, we pass your address to Mailchimp for its separate subscription confirmation. If you leave it unticked, we don't use the address for marketing.</p>
 
       <h2 class="story__h" id="newsletter">The Coaching Notes newsletter</h2>
       <p>If you sign up, we collect your email address only, to send you The Coaching Notes: new formation issues, occasional coaching ideas and practical resources. It isn't daily or weekly; we only send something when there's something worth sending.</p>

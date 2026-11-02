@@ -1,0 +1,201 @@
+---
+/* Progressive enhancement: direct A4 link remains available until the secure email service
+ * is configured. The optional newsletter choice is never preselected. */
+import model from '../lib/content.mjs';
+interface Props {
+  guideId: string;
+  pdfUrl: string;
+  buttonLabel?: string;
+}
+const { guideId, pdfUrl, buttonLabel = 'Download A4 guide (PDF)' } = Astro.props;
+const action = String(model.site.newsletter?.action || '').replace(/&amp;/g, '&');
+const id = 'guide-email-' + guideId;
+---
+<div class="guide-email" data-guide-email data-guide-id={guideId} data-marketing-action={action}>
+  <div data-guide-direct class="ed-download__links" aria-label="Download the printable guide">
+    <a class="ed-btn" href={pdfUrl} download data-playbook={guideId}>{buttonLabel} <span aria-hidden="true">↓</span></a>
+  </div>
+  <form data-guide-form class="guide-email__form" hidden aria-label="Request the A4 coaching guide by email">
+    <label class="guide-email__label" for={id + '-address'}>Where should we send your A4 guide?</label>
+    <input class="guide-email__input" id={id + '-address'} name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" aria-describedby={id + '-privacy ' + id + '-status'}>
+    <label class="guide-email__choice" for={id + '-marketing'}>
+      <input id={id + '-marketing'} name="marketing" type="checkbox">
+      <span><strong>Yes, send me The Coaching Notes too.</strong> Occasional formation guides and practical coaching ideas. Optional, and you can unsubscribe whenever you like.</span>
+    </label>
+    <div class="guide-email__challenge" data-guide-challenge aria-label="Security check"></div>
+    <button class="ed-btn guide-email__button" type="submit">Email me the A4 guide <span aria-hidden="true">→</span></button>
+    <p class="ed-small guide-email__privacy" id={id + '-privacy'}>The guide email is yours whether or not you tick the newsletter box. We'll only use your address to send the guide unless you choose to sign up. <a href="/privacy/#downloads">How we use your email</a>.</p>
+    <p class="guide-email__status" id={id + '-status'} role="status" aria-live="polite"></p>
+    <p class="guide-email__verification" data-guide-verification hidden><a target="_blank" rel="noopener noreferrer" data-guide-verification-link>Complete Mailchimp's security check ↗</a></p>
+  </form>
+</div>
+<script>
+  import { track } from '../scripts/analytics.mjs';
+  import { mailchimpCaptchaUrl } from '../lib/mailchimp-captcha.mjs';
+
+  interface TurnstileApi {
+    render: (element: HTMLElement, options: Record<string, unknown>) => string;
+    reset: (id?: string) => void;
+  }
+  interface TurnstileWindow extends Window { turnstile?: TurnstileApi; }
+  let turnstileScript: Promise<TurnstileApi> | null = null;
+  const loadTurnstile = (): Promise<TurnstileApi> => {
+    if (turnstileScript) return turnstileScript;
+    turnstileScript = new Promise((resolve, reject) => {
+      const existing = (window as TurnstileWindow).turnstile;
+      if (existing) { resolve(existing); return; }
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = () => {
+        const api = (window as TurnstileWindow).turnstile;
+        if (api) resolve(api);
+        else reject(new Error('Turnstile did not load'));
+      };
+      script.onerror = () => reject(new Error('Turnstile could not load'));
+      document.head.appendChild(script);
+    });
+    return turnstileScript;
+  };
+  const validEmail = (email: string) => /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]{2,}$/.test(email) && email.length <= 254;
+
+  type MailchimpResult = { result?: string; msg?: string; params?: Record<string, string | number> };
+  async function subscribeMarketing(action: string, email: string): Promise<'ok' | 'already' | string> {
+    if (!action) return 'not-configured';
+    let url: URL;
+    try {
+      url = new URL(action.replace('/post?', '/post-json?'));
+      if (!url.hostname.endsWith('.list-manage.com') || !url.pathname.endsWith('/subscribe/post-json')) return 'not-configured';
+    } catch { return 'not-configured'; }
+    url.searchParams.set('EMAIL', email);
+    const u = url.searchParams.get('u');
+    const id = url.searchParams.get('id');
+    if (u && id) url.searchParams.set('b_' + u + '_' + id, '');
+    const callback = 'guide_sub_' + Math.random().toString(36).slice(2);
+    url.searchParams.set('c', callback);
+
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      let timeout: ReturnType<typeof setTimeout>;
+      const cleanup = () => {
+        clearTimeout(timeout);
+        script.remove();
+        delete (window as any)[callback];
+      };
+      (window as any)[callback] = (r: MailchimpResult) => {
+        cleanup();
+        if (r?.msg === 'captcha') {
+          const verify = mailchimpCaptchaUrl(action, r.params);
+          resolve(verify || 'error');
+        } else if (r?.result === 'success') resolve('ok');
+        else if (/already subscribed/i.test(r?.msg || '')) resolve('already');
+        else resolve('error');
+      };
+      script.onerror = () => { cleanup(); resolve('error'); };
+      timeout = setTimeout(() => { cleanup(); resolve('error'); }, 12000);
+      script.src = url.toString();
+      document.head.appendChild(script);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-guide-email]').forEach(async widget => {
+    const guideId = widget.dataset.guideId || '';
+    const direct = widget.querySelector<HTMLElement>('[data-guide-direct]')!;
+    const form = widget.querySelector<HTMLFormElement>('[data-guide-form]')!;
+    const emailField = form.querySelector<HTMLInputElement>('[name=email]')!;
+    const optIn = form.querySelector<HTMLInputElement>('[name=marketing]')!;
+    const status = form.querySelector<HTMLElement>('.guide-email__status')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const challengeElement = form.querySelector<HTMLElement>('[data-guide-challenge]')!;
+    const verification = form.querySelector<HTMLElement>('[data-guide-verification]')!;
+    const verificationLink = form.querySelector<HTMLAnchorElement>('[data-guide-verification-link]')!;
+    const say = (message: string, kind: string = '') => { status.textContent = message; status.dataset.kind = kind; };
+    let token = '';
+    let api: TurnstileApi;
+    let widgetId = '';
+
+    try {
+      const response = await fetch('/api/guide-email/status', { cache: 'no-store' });
+      if (!response.ok) return;
+      const config = await response.json();
+      if (!config.ready || typeof config.siteKey !== 'string') return;
+      api = await loadTurnstile();
+      widgetId = api.render(challengeElement, {
+        sitekey: config.siteKey,
+        callback: (value: string) => { token = value; },
+        'expired-callback': () => { token = ''; },
+        'error-callback': () => { token = ''; say('The security check could not load. Please refresh and try again.', 'error'); }
+      });
+      direct.hidden = true;
+      form.hidden = false;
+    } catch {
+      // Keep the working direct download if the email service or security widget is unavailable.
+      return;
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      verification.hidden = true;
+      const email = emailField.value.trim();
+      if (!validEmail(email)) { say('Please enter a valid email address.', 'error'); emailField.focus(); return; }
+      if (!token) { say('Please complete the security check first.', 'error'); return; }
+      button.disabled = true;
+      say('Sending your guide…');
+      track('guide_email_request', { guide_id: guideId, marketing_choice: optIn.checked ? 'opt_in' : 'no_thanks' });
+      try {
+        const response = await fetch('/api/guide-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, guideId, turnstileToken: token })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.error || 'Something went wrong.');
+        track('guide_email_sent', { guide_id: guideId });
+        say("It's on its way. Check your inbox (and junk folder) for your A4 guide.", 'ok');
+        button.disabled = true;
+        if (optIn.checked) {
+          const subscription = await subscribeMarketing(widget.dataset.marketingAction || '', email);
+          if (subscription === 'ok') {
+            say("Your A4 guide is on its way. We've also sent a separate email asking you to confirm The Coaching Notes subscription.", 'ok');
+            track('newsletter_signup', { form_location: 'guide_download', status: 'pending_confirmation' });
+          } else if (subscription === 'already') {
+            say("Your A4 guide is on its way, and you're already subscribed to The Coaching Notes.", 'ok');
+          } else {
+            say("Your A4 guide is on its way, but we couldn't finish the optional newsletter signup. You can try the signup form in the footer.", 'ok');
+            if (subscription.startsWith('https://')) {
+              verificationLink.href = subscription;
+              verification.hidden = false;
+              say("Your A4 guide is on its way. To join The Coaching Notes, please complete Mailchimp's separate security check below.", 'ok');
+            }
+          }
+        }
+      } catch (error) {
+        say(error instanceof Error ? error.message : "We couldn't send the guide. Please try again.", 'error');
+        track('guide_email_error', { guide_id: guideId });
+        button.disabled = false;
+      } finally {
+        token = '';
+        api.reset(widgetId);
+      }
+    });
+  });
+</script>
+<style>
+  .guide-email [hidden] { display: none !important; }
+  .guide-email__form { display: grid; gap: 14px; max-width: 540px; padding: 24px; border: 1px solid var(--hwp-line, #d1d7dc); background: var(--hwp-paper, #fff); }
+  .guide-email__label { font-weight: 750; font-size: 1.05rem; }
+  .guide-email__input { box-sizing: border-box; width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #8f9ba4; border-radius: 0; font: inherit; color: #10283f; background: #fff; }
+  .guide-email__input:focus-visible { outline: 3px solid #ed654d; outline-offset: 2px; }
+  .guide-email__choice { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; line-height: 1.45; }
+  .guide-email__choice input { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 3px; accent-color: #142f46; }
+  .guide-email__choice span { font-size: .92rem; }
+  .guide-email__choice strong { display: block; }
+  .guide-email__button { justify-self: start; }
+  .guide-email__button:disabled { cursor: wait; opacity: .65; }
+  .guide-email__privacy { margin: 0; }
+  .guide-email__status { margin: 0; font-size: .92rem; font-weight: 650; }
+  .guide-email__status[data-kind="error"] { color: #a32120; }
+  .guide-email__status[data-kind="ok"] { color: #286045; }
+  .guide-email__verification { margin: 0; }
+  @media (max-width: 600px) { .guide-email__form { padding: 16px; } }
+</style>
