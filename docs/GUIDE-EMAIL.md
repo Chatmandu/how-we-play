@@ -44,4 +44,4 @@ The Contact page at /contact/ uses the same Resend sender and Turnstile credenti
 - A malicious sender can't change the destination address. Submitted HTML is escaped before composing the email.
 - No contact submission is added to Mailchimp, and no personal details are sent to GA4.
 - The page falls back to a normal mailto link if the service is unavailable.
-- **Before announcing the form:** submit a genuine test message and confirm it arrives at the \`hello@\` inbox. A verified sending domain is not proof that the recipient mailbox exists.
+- **Before announcing the form:** submit a genuine test message and confirm it arrives at \`nbwalsh@gmail.com\`. A verified sending domain is not proof that the recipient mailbox exists.
