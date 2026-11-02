@@ -188,6 +188,10 @@ for (const file of pages) {
     fail(route, 'video must not appear on issues without a published film');
   }
   if (target === 'public' && route === '/formations/9v9/3-3-2/' && !html.includes('data-youtube-id="CazFYOmIWqQ"')) fail(route, 'published 3-3-2 explainer is missing or has the wrong video ID');
+  // Only the A4 coach's guide should appear as a public playbook download.
+  if (target === 'public' && /^\/formations\/(?:5v5|7v7|9v9)\/[^/]+\/$/.test(route) && /href="[^"]*A5[^"]*\.pdf"/i.test(html)) {
+    fail(route, 'A5 booklet download must not be offered on formation pages');
+  }
   const noindex = /<meta name="robots" content="noindex/.test(html);
   // Diagrams
   for (const m of html.matchAll(/<svg[^>]*class="hwp-pitch[^"]*"[^>]*role="(?:img|group)"[^>]*>([\s\S]*?)<\/svg>/g)) {

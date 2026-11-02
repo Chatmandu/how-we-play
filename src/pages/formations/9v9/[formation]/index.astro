@@ -133,22 +133,19 @@ const contents = full ? [
           <div class="chapter__side ed-download">
             {f.slug === '3-1-3-1' ? (
               <>
-                <p class="ed-lede">Take the formation guide to training or matchday. Both downloads are free, with no email or payment required.</p>
-                <div class="ed-download__links" aria-label="Choose a printable guide">
+                <p class="ed-lede">Take the full A4 formation guide to training or matchday. Free to download and easy to print at home.</p>
+                <div class="ed-download__links" aria-label="Download the printable guide">
                   <a class="ed-btn" href="/downloads/How-We-Play-Football-3-1-3-1-A4.pdf" download>Download A4 guide (PDF) <span aria-hidden="true">↓</span></a>
-                  <a class="ed-btn" href="/downloads/How-We-Play-Football-3-1-3-1-A5.pdf" download>Download compact booklet (PDF) <span aria-hidden="true">↓</span></a>
                 </div>
-                <p class="ed-small">A4: 24-page guide (2.9 MB). Compact booklet: 20 pages arranged as ten two-page spreads (1.9 MB). The compact file uses US Letter landscape sheets, not individual A5 pages.</p>
+                <p class="ed-small">A4: 24-page guide (2.9 MB), for reading or home printing.</p>
               </>
             ) : printGuideAvailable ? (
               <>
-                <p class="ed-lede">Download the full formation guide for free, to use at training or share with players and parents. No email or payment required.</p>
-                <div class="ed-download__links" aria-label="Choose a printable guide">
+                <p class="ed-lede">Download the full A4 formation guide to use at training or share with players and parents.</p>
+                <div class="ed-download__links" aria-label="Download the printable guide">
                   <a class="ed-btn" href={`${printGuideBase}-A4-Coach-Guide.pdf`} download>Download A4 coach's guide (PDF) <span aria-hidden="true">↓</span></a>
-                  <a class="ed-btn" href={`${printGuideBase}-A5-Pitchside-Booklet.pdf`} download>Download A5 pitchside booklet (PDF) <span aria-hidden="true">↓</span></a>
-                  <a class="ed-btn" href={`${printGuideBase}-A5-Booklet-A4-Print-Sheets.pdf`} download>Print your own A5 booklet (PDF) <span aria-hidden="true">↓</span></a>
                 </div>
-                <p class="ed-small">The A4 guide is for reading or home printing. The A5 booklet is in reading order for phones and tablets. To make a folded A5 booklet at home, download the print sheets and print double-sided on A4 landscape paper, flipping on the short edge at 100% size, then fold and staple.</p>
+                <p class="ed-small">The A4 guide is suitable for reading on-screen or printing at home.</p>
               </>
             ) : (
               <p class="ed-lede">The printable guide isn't released yet.</p>
