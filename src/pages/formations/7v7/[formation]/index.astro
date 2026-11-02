@@ -9,6 +9,7 @@ import Support from '../../../../components/Support.astro';
 import CoachingNotes from '../../../../components/CoachingNotes.astro';
 import IssueVideo from '../../../../components/IssueVideo.astro';
 import GuideEmail from '../../../../components/GuideEmail.astro';
+import PlaybookTeaser from '../../../../components/PlaybookTeaser.astro';
 import model from '../../../../lib/content.mjs';
 import { renderPitch, reviewNote, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
@@ -124,10 +125,11 @@ const contents = full ? [
 
         <section class="ed-section chapter ed-grid" id="playbook" aria-labelledby="pb-h">
           <div class="chapter__head"><p class="chapter__n">The playbook</p><h2 class="chapter__t" id="pb-h">Printable {f.name} playbook</h2></div>
+          {printGuideAvailable && <PlaybookTeaser name={f.name} format={f.format} shapeImage={shapeImage} />}
           <div class="chapter__side ed-download">
             {printGuideAvailable ? (
               <>
-                <p class="ed-lede">Download the full A4 formation guide to use at training or share with players and parents.</p>
+                <p class="ed-lede">Your full A4 formation guide, ready for training or to share with players and parents.</p>
                 <GuideEmail guideId={'7v7-' + f.slug} pdfUrl={printGuideBase + '-A4-Coach-Guide.pdf'} buttonLabel="Download A4 coach's guide (PDF)" />
                 <p class="ed-small">The A4 guide is suitable for reading on-screen or printing at home.</p>
               </>

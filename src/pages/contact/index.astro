@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactForm from '../../components/ContactForm.astro';
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Contact' }];
+---
+<Base title="Contact How We Play Football | Questions, ideas and feedback" description="Get in touch with How We Play Football. Ask a grassroots coaching question, suggest a new guide, report a problem or explore working together." nav="contact" crumbs={crumbs} editorial>
+  <section class="ed-grid contact-page" aria-labelledby="contact-heading">
+    <div class="contact-page__intro">
+      <p class="ed-kicker">Get in touch</p>
+      <h1 id="contact-heading">LET'S TALK FOOTBALL.</h1>
+      <p class="contact-page__lead">Got a question, spotted something we could improve, or have an idea for a guide? I'd love to hear it.</p>
+      <p>How We Play Football started with one coach's notes. It grows through conversations with people doing the same thing every week: helping young players enjoy and understand the game.</p>
+      <div class="contact-page__topics" aria-label="What to contact us about">
+        <p class="contact-page__topics-label">GOOD REASONS TO DROP US A LINE</p>
+        <ul>
+          <li><span>01</span> Questions about a formation or principle</li>
+          <li><span>02</span> Ideas for another practical guide</li>
+          <li><span>03</span> Feedback, corrections or collaboration</li>
+        </ul>
+      </div>
+      <p class="contact-page__small">It's a small project fitted around coaching, work and family life, so a reply might take a little while. Thanks for bearing with us.</p>
+    </div>
+    <div class="contact-page__form">
+      <ContactForm />
+    </div>
+  </section>
+</Base>
+<style>
+  .contact-page { padding-top: clamp(48px, 7vw, 100px); padding-bottom: clamp(68px, 9vw, 130px); align-items: start; row-gap: 48px; }
+  .contact-page__intro { grid-column: 1 / span 5; }
+  .contact-page__form { grid-column: 7 / -1; min-width: 0; }
+  .contact-page h1 { margin: 15px 0 28px; max-width: 9ch; font: 900 clamp(66px, 8.5vw, 126px)/.79 var(--ed-display); letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance; }
+  .contact-page__intro > p:not(.ed-kicker) { font: 400 16px/1.6 var(--ed-sans); max-width: 55ch; }
+  .contact-page__lead { font-size: clamp(20px, 2.1vw, 26px) !important; line-height: 1.38 !important; font-weight: 600 !important; }
+  .contact-page__topics { margin-top: 38px; padding-top: 13px; border-top: 3px solid var(--hwp-color-ink); }
+  .contact-page__topics-label { margin: 0 0 14px !important; font: 800 12px/1.2 var(--ed-sans) !important; letter-spacing: .12em; color: var(--hwp-color-pitch-blue); }
+  .contact-page__topics ul { list-style: none; margin: 0; padding: 0; }
+  .contact-page__topics li { display: grid; grid-template-columns: 38px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--hwp-color-rule); font: 700 15px/1.45 var(--ed-sans); }
+  .contact-page__topics li span { color: var(--hwp-color-pitch-blue); font: 900 18px/1.2 var(--ed-display); }
+  .contact-page__small { margin-top: 28px; font-size: 14px !important; color: var(--hwp-text-secondary); }
+  @media(max-width:1023px) { .contact-page__intro { grid-column: 1 / span 3; } .contact-page__form { grid-column: 4 / -1; } .contact-page h1 { font-size: clamp(58px, 8vw, 92px); } }
+  @media(max-width:699px) { .contact-page__intro, .contact-page__form { grid-column: 1 / -1; } .contact-page { row-gap: 34px; padding-top: 48px; } .contact-page h1 { font-size: clamp(58px, 15vw, 86px); } .contact-page__topics { margin-top: 25px; } }
+</style>
