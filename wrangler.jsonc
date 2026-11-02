@@ -6,6 +6,9 @@
   "name": "how-we-play",
   "main": "src/worker.mjs",
   "compatibility_date": "2026-10-01",
+  // Preserve production runtime values added in Cloudflare Settings (notably TURNSTILE_SITE_KEY).
+  // Encrypted secrets are already preserved independently by Cloudflare.
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
