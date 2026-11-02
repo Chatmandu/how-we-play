@@ -8,6 +8,7 @@ import FormationCover from '../../../../components/FormationCover.astro';
 import Support from '../../../../components/Support.astro';
 import CoachingNotes from '../../../../components/CoachingNotes.astro';
 import IssueVideo from '../../../../components/IssueVideo.astro';
+import GuideEmail from '../../../../components/GuideEmail.astro';
 import model from '../../../../lib/content.mjs';
 import { renderPitch, reviewNote, button } from '../../../../lib/ui.mjs';
 import { pad2, word, issueLabel, publishedIssues } from '../../../../lib/editorial.mjs';
@@ -134,17 +135,13 @@ const contents = full ? [
             {f.slug === '3-1-3-1' ? (
               <>
                 <p class="ed-lede">Take the full A4 formation guide to training or matchday. Free to download and easy to print at home.</p>
-                <div class="ed-download__links" aria-label="Download the printable guide">
-                  <a class="ed-btn" href="/downloads/How-We-Play-Football-3-1-3-1-A4.pdf" download>Download A4 guide (PDF) <span aria-hidden="true">↓</span></a>
-                </div>
+                <GuideEmail guideId="9v9-3-1-3-1" pdfUrl="/downloads/How-We-Play-Football-3-1-3-1-A4.pdf" />
                 <p class="ed-small">A4: 24-page guide (2.9 MB), for reading or home printing.</p>
               </>
             ) : printGuideAvailable ? (
               <>
                 <p class="ed-lede">Download the full A4 formation guide to use at training or share with players and parents.</p>
-                <div class="ed-download__links" aria-label="Download the printable guide">
-                  <a class="ed-btn" href={`${printGuideBase}-A4-Coach-Guide.pdf`} download>Download A4 coach's guide (PDF) <span aria-hidden="true">↓</span></a>
-                </div>
+                <GuideEmail guideId={'9v9-' + f.slug} pdfUrl={printGuideBase + '-A4-Coach-Guide.pdf'} buttonLabel="Download A4 coach's guide (PDF)" />
                 <p class="ed-small">The A4 guide is suitable for reading on-screen or printing at home.</p>
               </>
             ) : (
