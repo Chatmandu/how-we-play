@@ -208,7 +208,7 @@ export async function handleContactApi(request, env, fetcher = fetch) {
       },
       body: JSON.stringify({
         from: 'How We Play Football <guides@howweplayfootball.com>',
-        to: [env.CONTACT_TO_EMAIL || 'hello@howweplayfootball.com'],
+        to: [env.CONTACT_TO_EMAIL || 'nbwalsh@gmail.com'],
         reply_to: email,
         subject: 'Website contact: ' + topic,
         text: [
