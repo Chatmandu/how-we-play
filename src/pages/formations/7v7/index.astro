@@ -65,6 +65,20 @@ const jsonLd = published.length ? collectionStructuredData(model.site, published
     </section>
   ))}
 
+  {published.length > 0 && (
+    <section class="ed-section ed-grid split" aria-labelledby="7v7-next-steps">
+      <div class="split__main">
+        <p class="ed-kicker">Beyond the starting shape</p>
+        <h2 class="ed-h2" id="7v7-next-steps">What should we work on next?</h2>
+        <p class="ed-small">Once you've chosen a formation, explore a matchday situation or see what changes when your team eventually moves up to nine a side.</p>
+      </div>
+      <div class="split__side">
+        <p class="ed-small"><a href="/coaching/attacking-corners/">How to set up for attacking corners in 7v7</a>, with a simple illustrated example.</p>
+        <p class="ed-small"><a href="/formations/9v9/#moving-up">Moving from 7v7 to 9v9</a>: see the changes to pitch, players and rules in England.</p>
+      </div>
+    </section>
+  )}
+
   {preview && preparing.map(f => (
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}, private research draft`} data-hwp-reviewer-only>
       <div class="ed-grid"><div class="ed-sh"><p class="ed-label">7v7 · {issueLabel(f)} · Private coaching review</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Unreviewed research draft, not for publication</span></div></div>
