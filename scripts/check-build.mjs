@@ -142,6 +142,16 @@ for (const file of pages) {
         if (!html.includes(`href="/formations/${format}/${f.slug}/"`)) fail(route, `missing guide link for ${f.name}`);
         if (!(html.match(/<meta name="description" content="([^"]+)"/) || [])[1]?.includes(f.name)) fail(route, `description does not name the ${f.name} guide`);
       }
+      if (format === '7v7') {
+        if (!html.includes('href="/formations/9v9/#moving-up"') || !html.includes('href="/coaching/attacking-corners/"')) {
+          fail(route, '7v7 hub must link to the next-format explainer and published corners guide');
+        }
+      }
+      if (format === '9v9') {
+        if (!html.includes('href="/formations/7v7/"') || !html.includes('href="/coaching/attacking-corners/"')) {
+          fail(route, '9v9 hub must link to previous-format context and published corners guide');
+        }
+      }
       if (!og.endsWith(`/og/formats/${format}.png`)) fail(route, 'format hub must have its own social preview');
       const collection = ld.find(x => x['@type'] === 'CollectionPage');
       if (!collection || collection.mainEntity?.itemListElement?.length !== live.length) fail(route, 'format hub missing complete CollectionPage / ItemList schema');
