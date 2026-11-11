@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Editorial safeguards for the first coaching article and diagrams. */
+/* Editorial safeguards for published coaching articles and diagrams. */
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,7 @@ import { coachingArticles, coachingTopics, cornerDiagrams } from '../src/lib/coa
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = path => readFileSync(join(root, path), 'utf8');
-assert.equal(coachingArticles.length, 1, 'publish only complete coaching articles');
+assert.equal(coachingArticles.length, 2, 'publish only the two reviewed coaching guides');
 assert.equal(new Set(coachingArticles.map(a => a.slug)).size, coachingArticles.length);
 for (const a of coachingArticles) {
   assert.match(a.published, /^\d{4}-\d{2}-\d{2}$/);
@@ -29,6 +29,17 @@ assert(article.includes('no deliberate heading') || article.includes('deliberate
 assert(article.includes('2026–27'), 'refer to the current season for rules');
 assert(article.includes('englandfootball.com/participate/learn/brain-health/heading-in-football'), 'link to official heading rules');
 assert(article.includes('<CoachingNotes placement="article" />'), 'article needs its newsletter');
+const transition = read('src/pages/coaching/moving-from-7v7-to-9v9-england/index.astro');
+assert(transition.includes('Reviewed by {article.reviewer.name}'), 'only publish with reviewer acknowledgement');
+assert(transition.includes('2026/27') && transition.includes('U10 and U11 play 7v7'), 'state the England FutureFit age pathway');
+assert(transition.includes('2,035 square metres') && transition.includes('3,358 square metres'), 'publish correct pitch areas');
+assert(transition.includes('offside is introduced') && transition.includes('there is no retreat line'), 'explain the two main rule changes');
+assert(transition.includes('7v7-vs-9v9-england.svg'), 'use an original pitch comparison');
+assert(transition.includes('<CoachingNotes placement="article" />'), 'transition article needs newsletter');
+assert(!transition.includes('[DAVID REVIEW') && !transition.includes('[EDITORIAL CHECK'), 'never expose internal review annotations');
+assert(read('public/graphics/coaching/7v7-vs-9v9-england.svg').includes('Shared scale: 7 px = 1 metre'), 'show both pitches at a consistent scale');
+assert(read('src/pages/formations/7v7/index.astro').includes('/coaching/moving-from-7v7-to-9v9-england/'), 'link from 7v7 formation hub');
+assert(read('src/pages/formations/9v9/index.astro').includes('/coaching/moving-from-7v7-to-9v9-england/'), 'link from 9v9 formation hub');
 assert(hub.includes('coachingTopics'), 'hub should be organised by categories');
 assert(read('src/layouts/Base.astro').includes("label: 'Coaching Guides'"), 'main nav link');
 assert(read('src/pages/index.astro').includes('coach-feature--home'), 'homepage discovery');

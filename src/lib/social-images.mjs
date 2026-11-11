@@ -23,7 +23,11 @@ export function socialImageSpecs(model) {
     specs.push({
       route: a.href, image: `/og/coaching/${a.slug}.png`,
       title: a.shortTitle, eyebrow: `${a.formats.join(' & ')} · ${a.category}`,
-      deck: a.summary, frame: cornerDiagrams.setup9v9
+      deck: a.slug === 'moving-from-7v7-to-9v9-england'
+        ? 'A bigger pitch. Offside. No retreat line. The England 2026/27 changes explained for coaches.'
+        : a.summary,
+      visual: a.slug === 'moving-from-7v7-to-9v9-england' ? 'pitch-comparison' : undefined,
+      frame: a.slug === 'moving-from-7v7-to-9v9-england' ? undefined : cornerDiagrams.setup9v9
     });
   }
   for (const format of ['5v5', '7v7', '9v9']) {

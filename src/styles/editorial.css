@@ -964,6 +964,26 @@
 .coach-source { grid-column: 2 / span 10; border-top: 1px solid var(--hwp-color-rule); padding-top: 20px; }
 .coach-source p { max-width: 85ch; margin: 0; font: 400 14px/1.6 var(--ed-sans); color: var(--hwp-text-secondary); }
 .coach-source a { color: var(--hwp-text-primary); text-underline-offset: 3px; }
+.coach-transition__body { grid-column: 2 / span 9; display: grid; gap: 16px; }
+.coach-transition__body p { max-width: 79ch; margin: 0; font: 400 18px/1.6 var(--ed-sans); }
+.coach-transition__body a, .coach-transition__two-up a { color: var(--hwp-color-pitch-blue); text-underline-offset: 3px; }
+.coach-transition__body .coach-transition__source { font-size: 14px; color: var(--hwp-text-secondary); }
+.coach-transition__body .coach-transition__note { border-left: 5px solid var(--hwp-color-pitch-blue); padding: 16px 20px; background: #E9E6DF; font-size: 16px; }
+.coach-transition__comparison { grid-column: 2 / span 10; min-width: 0; max-width: 100%; overflow-x: auto; border-top: 5px solid var(--hwp-color-pitch-blue); }
+.coach-transition__comparison table { width: 100%; min-width: 610px; border-collapse: collapse; font: 500 16px/1.4 var(--ed-sans); }
+.coach-transition__comparison caption { padding: 12px 0; text-align: left; color: var(--hwp-text-secondary); font: 700 13px/1.3 var(--ed-sans); }
+.coach-transition__comparison thead { background: var(--hwp-color-ink); color: var(--hwp-color-paper); }
+.coach-transition__comparison th, .coach-transition__comparison td { padding: 16px 20px; border-bottom: 1px solid var(--hwp-color-rule); text-align: left; vertical-align: top; }
+.coach-transition__comparison tbody tr:nth-child(even) { background: #E9E6DF; }
+.coach-transition__comparison tbody th { width: 34%; font-weight: 800; }
+.coach-transition__figure { grid-column: 2 / span 10; margin: 0; display: grid; gap: 10px; }
+.coach-transition__figure img { display: block; width: 100%; height: auto; }
+.coach-transition__figure figcaption { margin: 0; color: var(--hwp-text-secondary); font: italic 400 14px/1.5 var(--ed-sans); }
+.coach-transition__two-up { grid-column: 2 / span 10; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.coach-transition__two-up > div { border-top: 5px solid var(--hwp-color-pitch-blue); padding-top: 24px; display: grid; align-content: start; gap: 16px; }
+.coach-transition__two-up h3 { margin: 0; font: 900 clamp(29px, 3vw, 43px)/.95 var(--ed-display); text-transform: uppercase; }
+.coach-transition__two-up p { margin: 0; font: 400 17px/1.55 var(--ed-sans); }
+.coach-transition__closing { border-top: 3px solid var(--hwp-color-ink); padding-top: 22px; }
 .coach-article + .cn--article { margin-top: var(--ed-s6); }
 .cn--article { background: var(--hwp-color-pitch-blue); border-top: 3px solid var(--hwp-color-space-yellow); }
 .cn--article .cn__in { padding-block: 30px; align-items: center; }
@@ -974,7 +994,7 @@
   .coach-hero h1 { font-size: clamp(68px, 12vw, 112px); }
   .coach-topics__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .coach-topic { min-height: 225px; }
-  .coach-article__section-heading, .coach-jobs, .coach-options, .coach-article__diagram--wide, .coach-article__notes, .coach-rules, .coach-practice, .coach-takeaway, .coach-related, .coach-source { grid-column: 1 / -1; }
+  .coach-article__section-heading, .coach-jobs, .coach-options, .coach-article__diagram--wide, .coach-article__notes, .coach-rules, .coach-practice, .coach-takeaway, .coach-related, .coach-source, .coach-transition__body, .coach-transition__comparison, .coach-transition__figure, .coach-transition__two-up { grid-column: 1 / -1; }
   .coach-article__notes { grid-template-columns: repeat(2, 1fr); }
   .coach-article__diagram--wide .coach-article__pitch { max-height: 650px; }
   .coach-article__diagram--wide .coach-article__pitch svg { max-height: 650px; }
@@ -987,6 +1007,9 @@
   .coach-article__intro h1 { font-size: clamp(50px, 12.5vw, 74px); }
   .coach-option { grid-template-columns: 1fr; }
   .coach-option__copy { gap: 10px; }
+  .coach-transition__two-up { grid-template-columns: 1fr; }
+  .coach-transition__body p { font-size: 16px; }
+  .coach-transition__comparison th, .coach-transition__comparison td { padding: 12px 14px; }
   .coach-article__section { padding-top: var(--ed-s5); }
   .coach-article__diagram { padding: 12px; }
   .coach-practice li { grid-template-columns: 80px minmax(0, 1fr); }

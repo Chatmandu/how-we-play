@@ -21,6 +21,20 @@ export const coachingArticles = [
     published: '2026-10-28',
     minutes: 6,
     formats: ['9v9', '7v7']
+  },
+  {
+    slug: 'moving-from-7v7-to-9v9-england',
+    href: '/coaching/moving-from-7v7-to-9v9-england/',
+    title: 'Moving from 7v7 to 9v9? Here’s what changes in England.',
+    shortTitle: 'Moving from 7v7 to 9v9',
+    description: 'Moving from 7v7 to 9v9? See England’s 2026/27 age groups, pitch sizes, offside, retreat line, match rules and free 9v9 formation guides.',
+    summary: 'The practical changes when your U11 team moves to 9v9: a 65% bigger pitch, offside, goal kicks without a retreat line and simple ways to help players adapt.',
+    category: 'Moving up a format',
+    topic: 'matchday',
+    published: '2026-11-11',
+    minutes: 6,
+    formats: ['7v7', '9v9'],
+    reviewer: { name: 'David Wilson', qualification: 'UEFA B coach', approved: '2026-11-11' }
   }
 ];
 
