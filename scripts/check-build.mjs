@@ -289,7 +289,7 @@ if (target === 'public') {
     return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}${imageTag}${shapeTag}</url>`;
   }).join('\n')}\n</urlset>\n`);
   writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
-  writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
+  writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/downloads/*\n  X-Robots-Tag: noindex\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 } else {
   writeFileSync(join(dist, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
   writeFileSync(join(dist, '_headers'), `/*\n  X-Robots-Tag: noindex, nofollow\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n`);
