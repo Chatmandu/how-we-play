@@ -915,6 +915,7 @@
 .coach-article__cover { padding-top: var(--ed-s5); padding-bottom: var(--ed-s5); align-items: end; border-bottom: 6px solid var(--hwp-color-ink); }
 .coach-article__intro { grid-column: 1 / span 8; display: grid; gap: 20px; }
 .coach-article__intro h1 { margin: 0; font: 900 clamp(66px, 8vw, 124px)/.82 var(--ed-display); text-transform: uppercase; max-width: 10ch; }
+.coach-transition .coach-article__intro h1 { font-size: clamp(60px, 6.8vw, 100px); line-height: .98; max-width: 14ch; text-wrap: balance; }
 .coach-article__intro .ed-stand { max-width: 57ch; }
 .coach-article__byline { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-top: 20px; border-top: 1px solid var(--hwp-color-rule); font: 600 14px/1.4 var(--ed-sans); }
 .coach-article__byline a { color: inherit; text-underline-offset: 3px; }
@@ -1005,6 +1006,7 @@
   .coach-topics__grid, .coach-jobs, .coach-article__notes, .coach-related { grid-template-columns: 1fr; }
   .coach-topic { min-height: 0; }
   .coach-article__intro h1 { font-size: clamp(50px, 12.5vw, 74px); }
+  .coach-transition .coach-article__intro h1 { font-size: clamp(43px, 10.5vw, 64px); line-height: 1; max-width: 100%; }
   .coach-option { grid-template-columns: 1fr; }
   .coach-option__copy { gap: 10px; }
   .coach-transition__two-up { grid-template-columns: 1fr; }
