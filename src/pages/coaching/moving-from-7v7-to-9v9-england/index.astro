@@ -1,0 +1,201 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CoachingNotes from '../../../components/CoachingNotes.astro';
+import model from '../../../lib/content.mjs';
+import { longDate } from '../../../lib/ui.mjs';
+import { coachingArticles } from '../../../lib/coaching.mjs';
+
+const site = model.site;
+const article = coachingArticles.find(a => a.slug === 'moving-from-7v7-to-9v9-england');
+const page = site.url + article.href;
+const image = site.url + '/og/coaching/moving-from-7v7-to-9v9-england.png';
+const articleId = page + '#article';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': articleId,
+    url: page,
+    mainEntityOfPage: { '@id': page },
+    headline: article.title,
+    description: article.description,
+    datePublished: article.published,
+    image: [{ '@type': 'ImageObject', url: image, width: 1200, height: 630, caption: article.shortTitle }],
+    author: { '@type': 'Person', '@id': site.url + '/about/#niall-walsh', name: site.author.name, url: site.url + site.author.url },
+    reviewedBy: { '@type': 'Person', name: article.reviewer.name, description: article.reviewer.qualification },
+    publisher: { '@type': 'Organization', '@id': site.url + '/#publisher', name: site.name, url: site.url + '/' },
+    isAccessibleForFree: true,
+    inLanguage: 'en-GB',
+    articleSection: article.category,
+    about: [{ '@type': 'Thing', name: 'England youth football 7v7 to 9v9 transition 2026/27' }, { '@type': 'Thing', name: 'Grassroots football 9v9 rules and formations' }],
+    isPartOf: { '@id': site.url + '/coaching/', '@type': 'CollectionPage', name: 'Coaching guides' }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': page,
+    url: page,
+    name: article.title,
+    inLanguage: 'en-GB',
+    isPartOf: { '@id': site.url + '/#website' },
+    mainEntity: { '@id': articleId },
+    primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 }
+  }
+];
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Coaching guides', href: '/coaching/' }, { label: article.shortTitle }];
+const fa7 = 'https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-7v7-games';
+const fa9 = 'https://learn.englandfootball.com/articles-and-resources/coaching/resources/2025/How-to-play-and-manage-9v9-games';
+---
+<Base title="Moving from 7v7 to 9v9 in England: 2026/27 Guide | How We Play Football" description={article.description} ids={[]} nav="coaching" crumbs={crumbs} ogType="article" jsonLd={jsonLd} editorial meta={{ type: 'coaching_article', format: '9v9', group: 'Coaching guides' }}>
+  <article class="coach-article coach-transition">
+    <header class="coach-article__cover ed-grid">
+      <div class="coach-article__intro">
+        <p class="ed-kicker">Coaching guide 02 · England 2026/27</p>
+        <h1>Moving from 7v7 to 9v9? Here's what changes in England.</h1>
+        <p class="ed-stand">Moving from seven-a-side to nine-a-side isn't just a case of adding two players. There's more ground to cover, offside comes into play and the goalkeeper may have less time to decide what to do at a goal kick.</p>
+        <div class="coach-article__byline">
+          <span>By <a href="/about/">{site.author.name}</a> · Grassroots coach</span>
+          <span>Reviewed by {article.reviewer.name} · {article.reviewer.qualification}</span>
+          <span><time datetime={article.published}>{longDate(article.published)}</time> · {article.minutes} min read</span>
+          <span>England · 7v7 U10–U11 to 9v9 U12–U13</span>
+        </div>
+      </div>
+      <nav class="coach-article__contents" aria-label="On this page">
+        <p class="ed-label">In this guide</p>
+        <ol>
+          <li><a href="#age-groups">When teams move up</a></li>
+          <li><a href="#comparison">The changes at a glance</a></li>
+          <li><a href="#pitch">A bigger pitch</a></li>
+          <li><a href="#offside">Offside and goal kicks</a></li>
+          <li><a href="#rules">Other match rules</a></li>
+          <li><a href="#coaching">What to work on first</a></li>
+          <li><a href="#formations">Choosing a formation</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <section class="coach-article__section ed-grid" id="age-groups" aria-labelledby="age-groups-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Start here</p>
+        <h2 class="ed-h2" id="age-groups-title">First, check when your team moves up</h2>
+      </div>
+      <div class="coach-transition__body">
+        <p>For coaches, the move can feel like a lot to introduce at once. For players, it should still feel like football: recognising space, helping each other and making decisions as the game unfolds.</p>
+        <p>The FA's <strong>FutureFit</strong> changes took effect for the 2026/27 season. In England, <strong>U10 and U11 play 7v7</strong>, while <strong>U12 and U13 play 9v9</strong>. Eleven-a-side now starts at U14. These are the <strong>maximum</strong> formats, not a requirement for every training game to use the full number of players.</p>
+        <p>That matters if you coached in previous seasons. An U11 team stays at 7v7 rather than moving up as it would have under the earlier pathway. Before planning the transition, check your league's format and rules.</p>
+        <p class="coach-transition__source">Source: <a href="https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/what-is-a-format-in-football" target="_blank" rel="noopener noreferrer">England Football Learning, game formats in football</a>.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="comparison" aria-labelledby="comparison-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">The practical changes</p>
+        <h2 class="ed-h2" id="comparison-title">7v7 versus 9v9 at a glance</h2>
+        <p class="ed-lede">The FA's current England rules and recommendations for 2026/27.</p>
+      </div>
+      <div class="coach-transition__comparison" role="region" aria-label="7v7 and 9v9 rules comparison" tabindex="0">
+        <table>
+          <caption>England youth football formats: 2026/27 season</caption>
+          <thead><tr><th scope="col">What changes</th><th scope="col">7v7</th><th scope="col">9v9</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Age groups</th><td>U10 and U11</td><td>U12 and U13</td></tr>
+            <tr><th scope="row">Recommended pitch</th><td>55 × 37 metres</td><td>73 × 46 metres</td></tr>
+            <tr><th scope="row">Recommended goal</th><td>12 × 6 feet</td><td>16 × 7 feet</td></tr>
+            <tr><th scope="row">Ball</th><td>Size 3</td><td>Size 4</td></tr>
+            <tr><th scope="row">Maximum match length</th><td>50 minutes</td><td>60 minutes</td></tr>
+            <tr><th scope="row">Offside</th><td>No</td><td>Yes</td></tr>
+            <tr><th scope="row">Retreat line</th><td>Yes</td><td>No</td></tr>
+            <tr><th scope="row">Touchline restart</th><td>U10: pass or dribble in<br />U11: throw-in</td><td>Throw-in</td></tr>
+            <tr><th scope="row">Heading in matches</th><td>Not allowed</td><td>Permitted, subject to age guidance</td></tr>
+            <tr><th scope="row">Substitutions</th><td>Rolling</td><td>Rolling</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="coach-transition__body">
+        <p class="coach-transition__note">Pitch and goal measurements are <strong>recommended sizes</strong>, not the only permitted dimensions. Match lengths are <strong>maximums</strong>. Check your own competition's rules.</p>
+        <p class="coach-transition__source">Sources: England Football's <a href={fa7} target="_blank" rel="noopener noreferrer">7v7 guidance</a> and <a href={fa9} target="_blank" rel="noopener noreferrer">9v9 guidance</a>.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="pitch" aria-labelledby="pitch-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">More space to manage</p>
+        <h2 class="ed-h2" id="pitch-title">The pitch is about 65% bigger</h2>
+        <p class="ed-lede">At the recommended dimensions, a 7v7 pitch covers <strong>2,035 square metres</strong>. A 9v9 pitch covers <strong>3,358 square metres</strong>. That's approximately 65% more playing area.</p>
+      </div>
+      <figure class="coach-transition__figure">
+        <img src="/graphics/coaching/7v7-vs-9v9-england.svg" width="1100" height="760" loading="lazy" alt="To-scale pitch comparison: 7v7 at 55 by 37 metres, 2,035 square metres, beside 9v9 at 73 by 46 metres, 3,358 square metres. The 9v9 pitch has 65% more area." />
+        <figcaption>Both pitch outlines use the same scale. Measurements are the FA's recommended dimensions for England. Pitch markings are illustrative.</figcaption>
+      </figure>
+      <div class="coach-transition__body">
+        <p>The extra room changes the picture for players. Supporting a teammate, recovering after losing the ball and spotting a pass into space can all involve longer distances. What felt close enough in 7v7 may not feel the same in 9v9.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="offside" aria-labelledby="offside-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Two important differences</p>
+        <h2 class="ed-h2" id="offside-title">Offside arrives. The retreat line goes.</h2>
+      </div>
+      <div class="coach-transition__two-up">
+        <div>
+          <h3>Offside arrives</h3>
+          <p>There is <strong>no offside in 7v7</strong> under these England rules. In 9v9, <strong>offside is introduced</strong>.</p>
+          <p>For a young team, that adds a decision when attacking and defending. Children need time to notice the opposition's positions and the moment the ball is played. Talk through short, clear examples before expecting players to recognise every situation in a match.</p>
+        </div>
+        <div>
+          <h3>The retreat line disappears</h3>
+          <p>In 7v7, opponents must respect the <strong>retreat line at goal kicks</strong>. That gives the team restarting play some space. In 9v9, <strong>there is no retreat line</strong>.</p>
+          <p>The goalkeeper and nearby players may therefore face pressure sooner. The familiar restart picture might not be available. No formation removes the need for players to look up and make decisions together.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="rules" aria-labelledby="rules-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">On matchday</p>
+        <h2 class="ed-h2" id="rules-title">A few other rules change</h2>
+      </div>
+      <div class="coach-transition__body">
+        <p>In 7v7, <strong>U10 players may pass or dribble in from the touchline</strong>, while <strong>U11s use throw-ins</strong>. In 9v9, <strong>throw-ins</strong> are used. The 7v7 <strong>powerplay</strong> provision does not continue into 9v9.</p>
+        <p>Heading isn't permitted in U10/U11 7v7 matches. It is permitted in U12/U13 9v9 matches, but <strong>heading remains a low priority in training</strong>. The FA has separate, restrictive <a href="https://www.englandfootball.com/participate/learn/brain-health/heading-in-football" target="_blank" rel="noopener noreferrer">U12 and U13 training guidance</a>. This transition isn't a reason to make heading drills the focus of your sessions.</p>
+        <p><strong>Rolling substitutions remain</strong> in both formats. England Football encourages substantial and fair playing time and opportunities for players to try different positions.</p>
+        <p class="coach-transition__source">Sources: <a href={fa7} target="_blank" rel="noopener noreferrer">FA 7v7 rules</a>, <a href={fa9} target="_blank" rel="noopener noreferrer">FA 9v9 rules</a> and <a href="https://www.thefa.com/news/2024/may/17/new-heading-rules-for-grassroots-football-youth-matches" target="_blank" rel="noopener noreferrer">heading rule changes</a>.</p>
+      </div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="coaching" aria-labelledby="coaching-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Keep it familiar</p>
+        <h2 class="ed-h2" id="coaching-title">What should we work on first?</h2>
+        <p class="ed-lede">You don't need a whole new playbook on day one. Three questions can help players make sense of the changes.</p>
+      </div>
+      <ol class="coach-jobs">
+        <li><b>01</b><div><h3>Where is the space?</h3><p>The larger pitch creates opportunities, but players need time to notice them.</p></div></li>
+        <li><b>02</b><div><h3>Can we help the player on the ball?</h3><p>They might need a closer passing option or someone moving into space.</p></div></li>
+        <li><b>03</b><div><h3>What changes at our goal kicks?</h3><p>Without the retreat line, the team may need to make decisions sooner.</p></div></li>
+      </ol>
+      <div class="coach-transition__body"><p>Introduce offside through short examples, rather than expecting children to learn every detail at once. Ask what the players noticed and give them room to work things out.</p></div>
+    </section>
+
+    <section class="coach-article__section ed-grid" id="formations" aria-labelledby="formations-title">
+      <div class="coach-article__section-heading">
+        <p class="ed-kicker">Find a starting shape</p>
+        <h2 class="ed-h2" id="formations-title">So which 9v9 formation should we use?</h2>
+        <p class="ed-lede">There isn't one answer for every team. Our free illustrated guides explain the roles and principles behind three different shapes.</p>
+      </div>
+      <nav class="coach-related" aria-label="9v9 formation guides">
+        <a href="/formations/9v9/3-1-3-1/"><span>9v9 formation</span><strong>3-1-3-1</strong><span aria-hidden="true">→</span></a>
+        <a href="/formations/9v9/3-3-2/"><span>9v9 formation</span><strong>3-3-2</strong><span aria-hidden="true">→</span></a>
+        <a href="/formations/9v9/3-2-3/"><span>9v9 formation</span><strong>3-2-3</strong><span aria-hidden="true">→</span></a>
+      </nav>
+      <div class="coach-transition__body">
+        <p>The <a href="/formations/9v9/3-1-3-1/">3-1-3-1</a> uses a player screening the defence, with width ahead and a link between midfield and attack. The <a href="/formations/9v9/3-3-2/">3-3-2</a> places three across midfield and two forwards, with decisions about who supports and who stays. The <a href="/formations/9v9/3-2-3/">3-2-3</a> has two midfield players between the defensive and attacking lines.</p>
+        <p>Explore all the options in the <a href="/formations/9v9/">full 9v9 collection</a>. If you're staying at seven-a-side for another season, the <a href="/formations/7v7/">7v7 formation guides</a> remain useful. There's no rush to move children into larger formats before they're ready.</p>
+        <p class="coach-transition__closing"><strong>The takeaway:</strong> More players and space bring new decisions. Give the team clear starting points, check the current rules and let children learn the rest through playing.</p>
+      </div>
+      <div class="coach-source"><p><strong>About this guide:</strong> Written for England's 2026/27 youth pathway and reviewed by {article.reviewer.name}, {article.reviewer.qualification}. Coaching suggestions are adaptable, not official FA instructions. US youth soccer formats and build-out line rules differ. Always follow your league's current rules.</p></div>
+    </section>
+  </article>
+  <CoachingNotes placement="article" />
+</Base>

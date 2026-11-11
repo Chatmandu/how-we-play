@@ -32,7 +32,19 @@ function preview(spec) {
   const deckY = Math.min(483, 220 + titleLines.length * step + 42);
   // A drawing from the reviewed source is baked into the right-hand blue panel.
   // renderPitch itself also bakes the brand mark into screenshots and exports.
-  const diagram = spec.frame
+  const diagram = spec.visual === 'pitch-comparison'
+    ? `<g fill="none" stroke="#D4DDFE" stroke-width="2.7">
+        <rect x="780" y="282" width="148" height="220"/><line x1="780" y1="392" x2="928" y2="392"/><circle cx="854" cy="392" r="17"/>
+        <rect x="956" y="210" width="184" height="292"/><line x1="956" y1="356" x2="1140" y2="356"/><circle cx="1048" cy="356" r="21"/>
+        <rect x="808" y="282" width="92" height="25"/><rect x="808" y="477" width="92" height="25"/>
+        <rect x="991" y="210" width="114" height="34"/><rect x="991" y="468" width="114" height="34"/>
+      </g>
+      <g fill="#FFFFFF" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" text-anchor="middle">
+        <text x="854" y="262" font-size="22">7v7</text><text x="1048" y="190" font-size="22">9v9</text>
+        <text x="854" y="530" font-size="13">55 × 37m</text><text x="1048" y="530" font-size="13">73 × 46m</text>
+        <text x="960" y="574" font-size="16">65% MORE AREA</text>
+      </g>`
+    : spec.frame
     ? renderPitch(spec.frame, { theme: 'blue', mode: 'inline', colors, title: spec.title, desc: spec.frame.altSummary || spec.deck })
       .replace('<svg ', '<svg x="800" y="26" width="358" height="578" ')
     : '<g stroke="#9DAEF5" stroke-width="4" fill="none" opacity=".7"><rect x="815" y="65" width="330" height="490"/><line x1="815" y1="310" x2="1145" y2="310"/><circle cx="980" cy="310" r="43"/></g>';

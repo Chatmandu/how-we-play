@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" role="img" aria-labelledby="graphic-title graphic-description">
+  <title id="graphic-title">England 7v7 and 9v9 pitches at the same scale</title>
+  <desc id="graphic-description">The recommended 7v7 pitch is 55 by 37 metres, an area of 2,035 square metres. The 9v9 pitch is 73 by 46 metres, an area of 3,358 square metres, approximately 65 per cent larger. Both pitch outlines use the same scale.</desc>
+  <rect width="1100" height="760" fill="#0E1A24" />
+  <rect x="24" y="24" width="1052" height="712" fill="#122B64" stroke="#AFC1FF" stroke-width="2" />
+  <g font-family="'DejaVu Sans',Arial,sans-serif" fill="#FFFFFF">
+    <text x="65" y="84" font-size="24" font-weight="700" letter-spacing="2">MOVING FROM 7v7 TO 9v9</text>
+    <text x="65" y="123" font-size="16" fill="#DCE4FF">RECOMMENDED PITCH DIMENSIONS · ENGLAND 2026/27</text>
+  </g>
+  <!-- Shared scale: 7 px = 1 metre. Width represents pitch width; height represents pitch length. -->
+  <g stroke="#F2EDE2" stroke-width="3" fill="none">
+    <rect x="170" y="230" width="259" height="385" rx="1" />
+    <line x1="170" y1="422.5" x2="429" y2="422.5" />
+    <circle cx="299.5" cy="422.5" r="35" />
+    <rect x="220" y="230" width="159" height="48" />
+    <rect x="220" y="567" width="159" height="48" />
+    <rect x="623" y="166" width="322" height="511" rx="1" />
+    <line x1="623" y1="421.5" x2="945" y2="421.5" />
+    <circle cx="784" cy="421.5" r="42" />
+    <rect x="685" y="166" width="198" height="64" />
+    <rect x="685" y="613" width="198" height="64" />
+  </g>
+  <g font-family="'DejaVu Sans',Arial,sans-serif" font-weight="700" text-anchor="middle" fill="#FFFFFF">
+    <text x="299" y="188" font-size="42">7v7</text>
+    <text x="784" y="124" font-size="42">9v9</text>
+    <text x="299" y="657" font-size="23">55 × 37 m</text>
+    <text x="299" y="692" font-size="18" fill="#DCE4FF">2,035 m²</text>
+    <text x="784" y="712" font-size="23">73 × 46 m</text>
+  </g>
+  <g font-family="'DejaVu Sans',Arial,sans-serif" font-weight="700" text-anchor="middle">
+    <rect x="448" y="365" width="157" height="112" rx="8" fill="#F9D853" />
+    <text x="526" y="409" font-size="34" fill="#0E1A24">+65%</text>
+    <text x="526" y="442" font-size="15" fill="#0E1A24">PLAYING AREA</text>
+  </g>
+  <text x="65" y="148" font-family="'DejaVu Sans',Arial,sans-serif" font-size="13" fill="#DCE4FF">PITCH OUTLINES TO SCALE. MARKINGS ILLUSTRATIVE.</text>
+  <text x="1037" y="84" text-anchor="end" font-family="'DejaVu Sans',Arial,sans-serif" font-size="13" font-weight="700" fill="#DCE4FF">HOWWEPLAYFOOTBALL.COM</text>
+</svg>

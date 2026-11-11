@@ -2,7 +2,7 @@
 
 **Prepared:** 11 November 2026
 
-**Status:** Ready for review, **not approved and not published**.
+**Status:** David Wilson approved the article and review credit; Niall Walsh authorised publication on 11 November 2026. This is the archived review brief.
 
 **Review copy:** [Moving from 7v7 to 9v9 in England](moving-from-7v7-to-9v9-england-2026-27.md)
 

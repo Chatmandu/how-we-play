@@ -1,17 +1,17 @@
 # EDITORIAL REVIEW COPY: Moving from 7v7 to 9v9 in England (2026/27)
 
-**Status:** Unpublished. Core facts checked against official FA guidance on 11 November 2026. David Wilson's coaching review and Niall's editorial approval are still required.
+**Status:** Approved for publication by David Wilson and Niall Walsh on 11 November 2026. This is the archived review copy; the public page is maintained separately. Core facts checked against official FA guidance on 11 November 2026.
 
 **Target reader:** England-based volunteer coaches and parents preparing for U12 football.
-**Proposed path:** `/coaching/moving-from-7v7-to-9v9-england/` (do not create until approved).  
+**Published path:** `/coaching/moving-from-7v7-to-9v9-england/`.
 **Suggested title tag:** `Moving from 7v7 to 9v9 in England: 2026/27 Guide`  
 **Suggested meta description:** `Moving from 7v7 to 9v9? See England's 2026/27 age groups, pitch sizes, offside, retreat line, match rules and free 9v9 formation guides.`
 
 **Proposed H1:** `Moving from 7v7 to 9v9? Here's what changes in England.`
 
-**Author:** Niall Walsh (confirm before publication).
+**Author:** Niall Walsh.
 
-**Coaching review:** David Wilson, pending. Do not add his name as reviewer until he approves.
+**Coaching review:** Approved by David Wilson, UEFA B coach, 11 November 2026. Niall confirmed approval and authorised publication.
 **Scope note:** The rules below refer to England's 2026/27 pathway. US build-out line, age group and other competition rules differ.
 **Reviewer's brief:** [David Wilson review sheet](moving-from-7v7-to-9v9-review-sheet.md). Remove editorial checks and this front matter from the published page.
 
@@ -115,9 +115,9 @@ If you're staying at seven-a-side for another season, that's no problem. The [7v
 ### Pre-publication checklist
 
 - [x] Check core format facts against the FA's 2026/27 7v7, 9v9 and heading guidance (11 November 2026).
-- [ ] David Wilson checks coaching implications, language and any proposed training example. Attribute review only after his approval.
-- [ ] Niall checks voice, design and 2026/27 England-only emphasis.
-- [ ] Verify FutureFit, pitch, goal, ball, match duration, offside, retreat, heading and sideline rules again on publication day.
-- [ ] Create a custom comparison diagram with descriptive WebP/alt text, if approved; don't copy FA imagery without permission.
-- [ ] Add breadcrumb, Article schema with truthful publication date, canonical, OG image and links from `/formations/7v7/`, `/formations/9v9/` and relevant transition video.
-- [ ] Preserve a clear US rules distinction.
+- [x] David Wilson checks and approves the article and review credit (confirmed by Niall on 11 November 2026).
+- [x] Niall approves publication and the England-specific editorial approach (11 November 2026).
+- [x] Core FA rules verified on publication day (11 November 2026); league-specific rules remain for readers to check.
+- [x] Create a custom, to-scale comparison graphic with descriptive alt text. Do not copy FA imagery.
+- [x] Add breadcrumb, Article schema with truthful date, canonical, OG image and reciprocal links from `/formations/7v7/` and `/formations/9v9/`.
+- [x] Preserve a clear US rules distinction. The England transition video can be added when its final public URL is confirmed.
