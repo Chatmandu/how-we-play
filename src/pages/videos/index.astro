@@ -1,0 +1,58 @@
+---
+/* The video library lists only explainers already on approved formation guides. */
+import Base from '../../layouts/Base.astro';
+import model from '../../lib/content.mjs';
+import { publishedVideos } from '../../lib/videos.mjs';
+const videos = publishedVideos(model).slice().sort((a, b) => b.uploadDate.localeCompare(a.uploadDate));
+const url = model.site.url + '/videos/';
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Videos' }];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage',
+  '@id': url, url, name: 'Football formation video explainers',
+  description: 'Watch free illustrated coaching explainers for 7v7 and 9v9 football formations.',
+  isPartOf: { '@id': model.site.url + '/#website' },
+  mainEntity: { '@type': 'ItemList', itemListElement: videos.map((v, i) => ({
+    '@type': 'ListItem', position: i + 1, name: v.title, url: model.site.url + v.href
+  })) }
+}];
+---
+<Base title="Football Formation Videos: 7v7 & 9v9 Explained | How We Play Football"
+  description="Watch five free 7v7 and 9v9 football formation explainers for grassroots coaches. Starting shapes, player roles and four playing principles."
+  ids={[]} crumbs={crumbs} nav="videos" jsonLd={jsonLd} ogType="website" editorial
+  meta={{ type: 'video_collection', group: 'Video explainers' }}>
+  <header class="page-head ed-grid">
+    <div class="page-head__text">
+      <p class="ed-kicker">Watch · How We Play Football</p>
+      <h1>Formation videos</h1>
+      <p class="ed-stand">Watch our illustrated explainers for 7v7 and 9v9 football. Each film introduces a starting shape, the players' jobs and four simple principles. Start with a video, then follow the link to the full free formation guide.</p>
+      <p class="ed-small">Videos are hosted by YouTube. Our player only connects to YouTube when you choose to play a film. <a href="/privacy/#video">How video privacy works →</a></p>
+    </div>
+    <div class="page-head__aside">
+      <p class="ed-kicker">Published full-length explainers</p>
+      <p class="ed-lede">{videos.length} videos</p>
+      <p class="ed-small">Looking for the formation guides without a video? <a href="/formations/5v5/">Explore 5v5</a>, <a href="/formations/7v7/">7v7</a> or <a href="/formations/9v9/">9v9</a>.</p>
+    </div>
+  </header>
+
+  <section class="ed-section ed-grid video-library" aria-labelledby="video-library-heading">
+    <div class="video-library__intro">
+      <p class="ed-kicker">All full explainers</p>
+      <h2 class="ed-h2" id="video-library-heading">Choose a video to watch</h2>
+    </div>
+    <ol class="video-library__list">
+      {videos.map(v => (
+        <li class="video-library__item">
+          <a href={v.href} class="video-library__link">
+            <span class="video-library__image"><img src={v.thumbnail} alt={`Branded illustration for the ${v.formation} ${v.format} formation explainer`} width="1200" height="630" loading="lazy" decoding="async" /></span>
+            <span class="video-library__copy">
+              <span class="ed-label">{v.format} · Full video · {Math.floor(v.durationSeconds / 60)} min</span>
+              <strong>{v.formation} formation explained</strong>
+              <span>{v.description}</span>
+              <span class="video-library__action">Watch the full explainer →</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
