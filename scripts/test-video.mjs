@@ -20,6 +20,11 @@ assert.equal(new Set(videos.map(v => v.youtubeId)).size, videos.length);
 assert.equal(new Set(videos.map(v => v.thumbnail)).size, videos.length);
 assert.equal(new Set(videos.map(v => v.title)).size, videos.length);
 assert.equal(publishedVideos(pre).length, videos.length, 'same reviewed films allowed in private noindex preview');
+const guideOnly = videoForFormation(pub, '9v9', '2-2-3-1');
+assert.equal(guideOnly?.youtubeId, 'EXjeIrXdNjA', 'new 2-2-3-1 video embedded on reviewed guide');
+assert.equal(videoForFormation(pre, '9v9', '2-2-3-1')?.youtubeId, 'EXjeIrXdNjA', 'guide-only embed available in preview');
+assert(!videos.some(v => v.youtubeId === 'EXjeIrXdNjA'), 'unverified new upload metadata stays out of sitemap and watch-page library');
+
 
 const expected = {
   KEKPal0Upd4: ['2026-10-22T12:26:06Z', 291],

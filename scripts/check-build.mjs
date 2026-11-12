@@ -21,7 +21,7 @@ import { resolveTarget } from '../src/lib/model.mjs';
 import { sitemapLastmod, issueFeedXml, escapeXml } from '../src/lib/seo.mjs';
 import { socialImageForRoute, DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-images.mjs';
 import { publishedIssues } from '../src/lib/editorial.mjs';
-import { publishedVideos, videoSitemapXml } from '../src/lib/videos.mjs';
+import { publishedVideos, videoForFormation, videoSitemapXml } from '../src/lib/videos.mjs';
 
 const target = resolveTarget(process.env);
 const dist = join(ROOT, process.argv[2] || 'dist');
@@ -227,10 +227,10 @@ for (const file of pages) {
   }
   // Every published explainer needs its matching first-party poster.
   // The YouTube player must remain opt-in on all formation pages.
-  const publishedExplainers = {
-    '/formations/9v9/3-1-3-1/': 'KEKPal0Upd4',
-    '/formations/9v9/3-2-3/': 'tWzAKTaX2sI'
-  };
+  const publishedExplainers = Object.fromEntries(published.flatMap(f => {
+    const v = videoForFormation(model, f.format, f.slug);
+    return v ? [[`/formations/${f.format}/${f.slug}/`, v.youtubeId]] : [];
+  }));
   if (Object.hasOwn(publishedExplainers, route)) {
     const expectedId = publishedExplainers[route];
     if (!html.includes('id="watch"') || !html.includes(`data-youtube-id="${expectedId}"`)) {
@@ -246,7 +246,8 @@ for (const file of pages) {
   if (route === '/privacy/' && !html.includes('id="video"')) {
     fail(route, 'privacy notice must explain optional YouTube embeds');
   }
-  if (route === '/formations/9v9/2-2-3-1/' && html.includes('data-youtube-embed')) {
+  if (target === 'public' && /^\/formations\/(?:5v5|7v7|9v9)\/[^/]+\/$/.test(route) &&
+    html.includes('data-youtube-embed') && !Object.hasOwn(publishedExplainers, route)) {
     fail(route, 'video must not appear on issues without a published film');
   }
   if (target === 'public' && route === '/formations/9v9/3-3-2/' && !html.includes('data-youtube-id="CazFYOmIWqQ"')) fail(route, 'published 3-3-2 explainer is missing or has the wrong video ID');

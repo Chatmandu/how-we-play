@@ -36,6 +36,13 @@ const releases = [
   }
 ];
 
+/* Video available on its reviewed formation guide, but not yet added to the
+ * video library or video sitemap because its exact upload date and final
+ * running time have not been verified. No invented VideoObject metadata. */
+const guideOnlyReleases = [
+  { format: '9v9', formation: '2-2-3-1', youtubeId: 'EXjeIrXdNjA' }
+];
+
 export function publishedVideos(model) {
   const issues = new Map(publishedIssues(model).map(f => [`${f.format}/${f.slug}`, f]));
   return releases.flatMap(v => {
@@ -57,7 +64,13 @@ export function publishedVideos(model) {
 }
 
 export function videoForFormation(model, format, formation) {
-  return publishedVideos(model).find(v => v.format === format && v.formation === formation) || null;
+  const released = publishedVideos(model).find(v => v.format === format && v.formation === formation);
+  if (released) return released;
+
+  // The same editorial gate protects guide-only embeds as full watch pages.
+  const issue = publishedIssues(model).find(f => f.format === format && f.slug === formation);
+  if (!issue) return null;
+  return guideOnlyReleases.find(v => v.format === format && v.formation === formation) || null;
 }
 
 export function videoStructuredData(site, v) {
