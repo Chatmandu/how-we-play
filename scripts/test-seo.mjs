@@ -100,7 +100,9 @@ test('Sitemap publication dates are stable and never fabricated from build time'
   }
   assert.equal(sitemapLastmod('/', model), null);
   assert.equal(sitemapLastmod('/about/', model), null);
-  assert.equal(sitemapLastmod('/formations/5v5/', model), '2026-10-26');
+  assert.equal(sitemapLastmod('/formations/5v5/', model), '2026-11-12');
+  assert.equal(sitemapLastmod('/formations/7v7/', model), '2026-11-12');
+  assert.equal(sitemapLastmod('/formations/9v9/', model), '2026-11-12');
   assert.equal(sitemapLastmod('/privacy/', model), site.privacy.lastUpdated);
 });
 
