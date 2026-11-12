@@ -75,4 +75,20 @@ assert.equal((nineComparison.match(/preview:/g) || []).length, 4, 'one preview s
 assert(nineComparison.includes('An alternative to explore'), '2-2-3-1 needs an explicit alternative label');
 assert(nineComparison.includes('renderPitch('), 'use approved diagram data rather than a replacement image');
 assert(nineHub.includes('/coaching/moving-from-7v7-to-9v9-england/') && nineHub.includes('/coaching/attacking-corners/'), 'preserve the coaching resource links');
+// Public 5v5 discovery: two reviewed guides, no duplicate team sheets and
+// original private preview gate. Preserve the already improved 7v7/9v9 pages.
+const fiveHub = read('src/pages/formations/[format]/index.astro');
+const fiveComparison = read('src/components/FiveV5Comparison.astro');
+assert(fiveHub.includes('<FiveV5Comparison issues={published} />'), '5v5 public hub should compare published issues');
+assert(fiveHub.includes('Compare 1-2-1 & 2-2') && fiveHub.includes('href="#compare-5v5"'), '5v5 hub needs search-led metadata and comparison jump');
+assert(!fiveHub.includes('<FormationChooser') && !fiveHub.includes('published.map(f => ('), 'remove repeated public 5v5 team sheets');
+assert(fiveHub.includes('preview && preparing.filter(f => f.gate.allowed).map(f => (') && fiveHub.includes('<TeamSheet f={f}'), 'retain gated reviewer-only 5v5 team sheets');
+assert(fiveHub.includes('noindex={!published.length}'), 'never index a 5v5 hub without published guides');
+assert(fiveHub.includes('id="five-roles-heading"'), 'describe rotation and shared roles');
+assert(fiveComparison.includes('id="compare-5v5"') && fiveComparison.includes('id="five-previews-title"'), '5v5 comparison and pitch previews need labelled sections');
+for (const slug of ['1-2-1', '2-2']) assert(fiveComparison.includes(`'${slug}': {`), `missing reviewed 5v5 shape ${slug}`);
+assert.equal((fiveComparison.match(/question:/g) || []).length, 2, 'one grounded coaching question per 5v5 formation');
+assert.equal((fiveComparison.match(/preview:/g) || []).length, 2, 'one starting-shape preview per 5v5 formation');
+assert(fiveComparison.includes('renderPitch('), 're-use reviewed 5v5 diagram data');
+assert(sevenHub.includes('href="/formations/5v5/"'), 'link back to 5v5 from the 7v7 introduction');
 console.log('Coaching content, diagrams, age-group guidance and discovery checks passed');

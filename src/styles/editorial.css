@@ -1286,3 +1286,13 @@
   .seven-compare .nine-compare__card { padding: 24px; }
   .seven-compare .nine-compare__card h3 { font-size: clamp(52px, 15vw, 76px); }
 }
+
+/* Five-a-side comparison: match the 7v7/9v9 choice and pitch preview system. */
+.five-hub__jump { justify-self: start; margin-top: 6px; }
+.five-compare { scroll-margin-top: 26px; }
+.five-compare .nine-compare__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.five-compare .nine-compare__card h3 { font-size: clamp(58px, 6vw, 84px); }
+@media (max-width: 699px) {
+  .five-compare .nine-compare__cards { grid-template-columns: 1fr; }
+  .five-compare .nine-compare__card h3 { font-size: clamp(52px, 15vw, 76px); }
+}

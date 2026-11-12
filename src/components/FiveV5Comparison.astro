@@ -1,0 +1,92 @@
+---
+/* Two published, independently reviewed 5v5 starting shapes.
+ * Compare the coaching ideas, then lead readers to the complete guides.
+ * This intentionally shares the 7v7/9v9 hub design and approved pitch renderer.
+ * Do not show unreviewed formations or change their source content. */
+import { renderPitch } from '../lib/ui.mjs';
+
+const { issues = [] } = Astro.props;
+const comparisons = {
+  '1-2-1': {
+    shape: 'One defender · two wide players · one forward',
+    offers: 'A teammate behind and ahead of the ball, plus two wider passing options to help players find space.',
+    question: 'When the nearest player goes towards the ball, who protects the middle?',
+    preview: 'The diamond puts one defender behind two wide players and a forward ahead. Everyone can support the ball and recover together.'
+  },
+  '2-2': {
+    shape: 'Two defenders · two forwards',
+    offers: 'A defender partnership, two forward options and simple chances to combine in pairs.',
+    question: 'Can one forward come towards the ball while the other moves away?',
+    preview: 'The box starts with a defensive pair and a forward pair. Partners can support and cover, while every player is free to find space.'
+  }
+};
+const available = issues.filter(f => Object.hasOwn(comparisons, f.slug));
+const href = f => `/formations/5v5/${f.slug}/`;
+const pitchSvg = f => {
+  const summary = f.shape?.altSummary || f.shape?.alt || `The ${f.name} starting formation on a five-a-side pitch.`;
+  const shape = { ...f.shape, title: f.shape?.title || `The ${f.name} starting shape`, altSummary: summary };
+  return renderPitch(shape, { theme: 'blue', title: shape.title, desc: summary });
+};
+---
+{available.length > 0 && (
+  <>
+    <section class="ed-section ed-grid nine-compare five-compare" id="compare-5v5" aria-labelledby="five-compare-title">
+      <div class="nine-compare__head">
+        <p class="ed-kicker">Finding your shape</p>
+        <h2 class="ed-h2" id="five-compare-title">Compare two 5v5 formations</h2>
+        <p class="ed-lede">Both shapes are starting pictures, not fixed positions. In 5v5, helping young players offer passing options, work with a teammate and recover when the ball is lost matters more than finding a single perfect formation. Explore both guides and let players try different roles.</p>
+      </div>
+      <div class="nine-compare__cards">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-compare__card" aria-labelledby={`five-card-${f.slug}`}>
+              <div class="nine-compare__card-head">
+                <h3 id={`five-card-${f.slug}`}>{f.name}</h3>
+              </div>
+              <p class="nine-compare__shape">{copy.shape}</p>
+              <div class="nine-compare__detail">
+                <p class="nine-compare__label">What it offers</p>
+                <p>{copy.offers}</p>
+              </div>
+              <div class="nine-compare__detail nine-compare__detail--question">
+                <p class="nine-compare__label">Think about</p>
+                <p>{copy.question}</p>
+              </div>
+              <a class="nine-compare__cta" href={href(f)}>Explore the {f.name} guide <span aria-hidden="true">→</span></a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="ed-section ed-grid nine-previews five-previews" aria-labelledby="five-previews-title">
+      <div class="nine-previews__head">
+        <p class="ed-kicker">The starting pictures</p>
+        <h2 class="ed-h2" id="five-previews-title">See the shapes on the pitch</h2>
+        <p class="ed-lede">Start with the picture, then open a full illustrated guide for four playing principles and what each player can try. Neither shape locks children into one position.</p>
+      </div>
+      <div class="nine-previews__list">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-preview" aria-labelledby={`five-preview-${f.slug}`}>
+              <figure class="nine-preview__figure">
+                <div class="nine-preview__pitch">
+                  <Fragment set:html={pitchSvg(f)} />
+                </div>
+                <figcaption>{f.name} five-a-side starting shape. Everyone can try different roles.</figcaption>
+              </figure>
+              <div class="nine-preview__copy">
+                <p class="ed-label">5v5 · Starting shape</p>
+                <h3 id={`five-preview-${f.slug}`}>See the {f.name} shape</h3>
+                <p class="nine-preview__summary">{copy.preview}</p>
+                <a class="nine-preview__cta" href={href(f)}>See positions and principles in the {f.name} guide <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  </>
+)}

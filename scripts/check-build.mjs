@@ -136,7 +136,7 @@ for (const file of pages) {
     const format = formatMatch[1];
     const live = published.filter(f => f.format === format);
     if (live.length) {
-      if (format === '9v9' || format === '7v7') {
+      if (format === '9v9' || format === '7v7' || format === '5v5') {
         // The reviewed format hubs use concise choice cards and approved pitch
         // previews instead of repeating their full formation team sheets.
         const cards = (html.match(/class="nine-compare__card"/g) || []).length;
@@ -151,6 +151,9 @@ for (const file of pages) {
         }
         if (format === '7v7' && (!html.includes('id="seven-next-season"') || !html.includes('href="/formations/7v7/2-1-2-1/"'))) {
           fail(route, '7v7 comparison is missing the second-season coaching signpost');
+        }
+        if (format === '5v5' && (!html.includes('id="five-roles-heading"') || !html.includes('href="/formations/5v5/1-2-1/"') || !html.includes('href="/formations/5v5/2-2/"'))) {
+          fail(route, '5v5 comparison must include the reviewed role-rotation context and both guides');
         }
       } else {
         const sheets = (html.match(/class="sheet ed-grid"[^>]*data-sheet/g) || []).length;
