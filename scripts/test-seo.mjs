@@ -7,6 +7,7 @@ import { loadModel } from './load-content.mjs';
 import { publishedIssues } from '../src/lib/editorial.mjs';
 import { socialImageSpecs, socialImageForRoute } from '../src/lib/social-images.mjs';
 import { coachingArticles } from '../src/lib/coaching.mjs';
+import { publishedVideos } from '../src/lib/videos.mjs';
 import {
   siteIdentity, issueStructuredData, lessonStructuredData,
   positionStructuredData, collectionStructuredData, sitemapLastmod,
@@ -104,6 +105,8 @@ test('Sitemap publication dates are stable and never fabricated from build time'
   assert.equal(sitemapLastmod('/formations/7v7/', model), '2026-11-12');
   assert.equal(sitemapLastmod('/formations/9v9/', model), '2026-11-12');
   assert.equal(sitemapLastmod('/privacy/', model), site.privacy.lastUpdated);
+  assert.equal(sitemapLastmod('/videos/', model), '2026-11-12');
+  for (const v of publishedVideos(model)) assert.equal(sitemapLastmod(v.href, model), '2026-11-12');
 });
 
 test('RSS feed contains only approved full issues and no lessons or private drafts', () => {
@@ -126,8 +129,10 @@ test('Generated social image map is complete, unique and excludes unpublished co
   const specs = socialImageSpecs(model);
   assert.equal(new Set(specs.map(s => s.route)).size, specs.length);
   assert.equal(new Set(specs.map(s => s.image)).size, specs.length);
-  assert.equal(specs.length, 5 + 1 + coachingArticles.length + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
+  assert.equal(specs.length, 5 + 1 + 1 + publishedVideos(model).length + coachingArticles.length + issues.reduce((n, f) => n + 1 + f.rules.length + f.roles.length, 0));
   assert.equal(socialImageForRoute('/coaching/', model).image, '/og/pages/coaching.png');
+  assert.equal(socialImageForRoute('/videos/', model).image, '/og/pages/videos.png');
+  for (const v of publishedVideos(model)) assert.equal(socialImageForRoute(v.href, model).image, v.thumbnail);
   for (const article of coachingArticles) {
     assert.equal(socialImageForRoute(article.href, model).image, `/og/coaching/${article.slug}.png`);
   }
