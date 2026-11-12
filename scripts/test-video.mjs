@@ -12,18 +12,20 @@ const repoFile = file => readFileSync(new URL('../' + file, import.meta.url), 'u
 const pub = loadModel('public');
 const pre = loadModel('preview');
 const videos = publishedVideos(pub);
-const ids = ['KEKPal0Upd4', 's_ENKf0Sb1E', 'tWzAKTaX2sI', 'CazFYOmIWqQ', 'T25DkHCSDHI'];
-assert.equal(videos.length, 5, 'five complete explainers have approved public formation guides');
+const ids = ['KEKPal0Upd4', 's_ENKf0Sb1E', 'tWzAKTaX2sI', 'CazFYOmIWqQ', 'T25DkHCSDHI', 'EXjeIrXdNjA'];
+assert.equal(videos.length, 6, 'six complete explainers have approved public formation guides');
 assert.deepEqual(videos.map(v => v.youtubeId), ids);
 assert.equal(new Set(videos.map(v => v.href)).size, videos.length);
 assert.equal(new Set(videos.map(v => v.youtubeId)).size, videos.length);
 assert.equal(new Set(videos.map(v => v.thumbnail)).size, videos.length);
 assert.equal(new Set(videos.map(v => v.title)).size, videos.length);
 assert.equal(publishedVideos(pre).length, videos.length, 'same reviewed films allowed in private noindex preview');
-const guideOnly = videoForFormation(pub, '9v9', '2-2-3-1');
-assert.equal(guideOnly?.youtubeId, 'EXjeIrXdNjA', 'new 2-2-3-1 video embedded on reviewed guide');
-assert.equal(videoForFormation(pre, '9v9', '2-2-3-1')?.youtubeId, 'EXjeIrXdNjA', 'guide-only embed available in preview');
-assert(!videos.some(v => v.youtubeId === 'EXjeIrXdNjA'), 'unverified new upload metadata stays out of sitemap and watch-page library');
+const newRelease = videoForFormation(pub, '9v9', '2-2-3-1');
+assert.equal(newRelease?.youtubeId, 'EXjeIrXdNjA', 'new 2-2-3-1 video on reviewed guide and in library');
+assert.equal(newRelease?.href, '/videos/9v9-2-2-3-1/', 'new video has a dedicated watch page');
+assert.equal(videoForFormation(pre, '9v9', '2-2-3-1')?.youtubeId, 'EXjeIrXdNjA', 'new video available in preview');
+assert.equal(newRelease?.uploadDate, null, 'unverified upload timestamp is not invented');
+assert.equal(newRelease?.duration, null, 'unverified running time is not invented');
 
 
 const expected = {
@@ -31,7 +33,8 @@ const expected = {
   s_ENKf0Sb1E: ['2026-10-24T10:09:10Z', 311],
   tWzAKTaX2sI: ['2026-10-28T13:16:41Z', 227],
   CazFYOmIWqQ: ['2026-10-31T15:43:08Z', 311],
-  T25DkHCSDHI: ['2026-11-02T11:33:53Z', 219]
+  T25DkHCSDHI: ['2026-11-02T11:33:53Z', 219],
+  EXjeIrXdNjA: [null, null]
 };
 for (const v of videos) {
   assert.equal(v.uploadDate, expected[v.youtubeId][0]);
@@ -49,8 +52,8 @@ for (const v of videos) {
   assert.equal(video['@type'], 'VideoObject');
   assert.equal(video.name, v.title);
   assert.equal(video.description, v.description);
-  assert.equal(video.uploadDate, v.uploadDate);
-  assert.equal(video.duration, v.duration);
+  assert.equal(video.uploadDate, v.uploadDate ?? undefined);
+  assert.equal(video.duration, v.duration ?? undefined);
   assert.equal(video.embedUrl, v.embedUrl);
   assert.equal(video.thumbnailUrl[0], pub.site.url + v.thumbnail);
   assert.equal(video.contentUrl, undefined, 'YouTube file bytes are not ours to declare');
@@ -58,11 +61,12 @@ for (const v of videos) {
   assert.equal(webpage.url, pub.site.url + v.href);
 }
 
+const verified = videos.filter(v => v.uploadDate && v.durationSeconds != null);
 const xml = videoSitemapXml(pub);
 assert(xml.includes('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"'));
-assert.equal((xml.match(/<video:video>/g) || []).length, videos.length);
-assert.equal((xml.match(/<loc>/g) || []).length, videos.length);
-for (const v of videos) {
+assert.equal((xml.match(/<video:video>/g) || []).length, verified.length);
+assert.equal((xml.match(/<loc>/g) || []).length, verified.length);
+for (const v of verified) {
   assert(xml.includes('<loc>' + pub.site.url + v.href + '</loc>'));
   assert(xml.includes('<video:thumbnail_loc>' + pub.site.url + v.thumbnail + '</video:thumbnail_loc>'));
   assert(xml.includes('<video:player_loc>' + v.embedUrl + '</video:player_loc>'));
@@ -70,6 +74,7 @@ for (const v of videos) {
   assert(xml.includes('<video:duration>' + v.durationSeconds + '</video:duration>'));
 }
 assert(!xml.includes('eLIhEpv2QYA'), 'unembedded Shorts not in site watch page sitemap');
+assert(!xml.includes('EXjeIrXdNjA'), 'unverified 2-2-3-1 publication data omitted from video sitemap');
 
 const watch = repoFile('src/pages/videos/[slug]/index.astro');
 const library = repoFile('src/pages/videos/index.astro');
@@ -92,4 +97,4 @@ const changed = raw.formations.find(f => f.format === '9v9' && f.slug === '3-1-3
 changed.rules[0].cue += ' ';
 const gateClosed = buildModel(raw, 'public');
 assert(!publishedVideos(gateClosed).some(v => v.youtubeId === 'KEKPal0Upd4'), 'losing review approval removes a video watch page');
-console.log('PASS  Five reviewed videos: watch pages, upload timestamps, privacy, metadata, sitemap and publication gate');
+console.log('PASS  Six reviewed videos: watch pages, privacy, metadata, verified sitemap and publication gate');
