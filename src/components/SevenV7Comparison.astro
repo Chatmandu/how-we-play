@@ -1,0 +1,98 @@
+---
+/* Seven-a-side comparison using the established 9v9 hub visual system.
+ * The copy below is grounded in the three published, reviewed 7v7 guides.
+ * The comprehensive team sheets, roles and four principles stay in each guide.
+ * Never show preparation-stage issues in the public comparison. */
+import { renderPitch } from '../lib/ui.mjs';
+
+const { issues = [] } = Astro.props;
+const comparisons = {
+  '2-3-1': {
+    shape: 'Two defenders · three midfielders · one striker',
+    offers: 'Two defenders supporting each other, width from the wide midfielders and a central player linking both ends.',
+    question: 'Can our goalkeeper see two passing options, and does the second defender provide cover?',
+    preview: 'Two defenders, three across midfield and a striker ahead. Wide midfielders provide width with the ball and recover inside without it.'
+  },
+  '3-2-1': {
+    shape: 'Three defenders · two midfielders · one striker',
+    offers: 'Three defenders who can create passing angles and provide protection, with two midfielders offering support at different heights.',
+    question: 'When an outside defender goes forward, are the other two ready to protect?',
+    preview: 'Three defenders, two midfielders who can support at different heights and a striker who can come short or stretch play.'
+  },
+  '2-1-2-1': {
+    shape: 'Two defenders · one link midfielder · two attacking midfielders · one striker',
+    offers: 'A central link between defence and attack, passing angles around the ball and nearby support for the striker.',
+    question: 'Can the link midfielder offer a forward pass and still help protect the middle?',
+    preview: 'Two defenders, a central link player, two attacking midfielders and a striker. The link player connects the lines.'
+  }
+};
+const available = issues.filter(f => Object.hasOwn(comparisons, f.slug));
+const href = f => `/formations/7v7/${f.slug}/`;
+const pitchSvg = f => {
+  const summary = f.shape?.altSummary || f.shape?.alt || `The ${f.name} starting formation on a seven-a-side pitch.`;
+  const shape = { ...f.shape, title: f.shape?.title || `The ${f.name} starting shape`, altSummary: summary };
+  return renderPitch(shape, { theme: 'blue', title: shape.title, desc: summary });
+};
+---
+{available.length > 0 && (
+  <>
+    <section class="ed-section ed-grid nine-compare seven-compare" id="compare-7v7" aria-labelledby="seven-compare-title">
+      <div class="nine-compare__head">
+        <p class="ed-kicker">Finding your shape</p>
+        <h2 class="ed-h2" id="seven-compare-title">Compare three 7v7 formations</h2>
+        <p class="ed-lede">Each formation is a starting picture, not a set of fixed positions. Compare how the three shapes offer passing options, support and protection, then choose a guide to explore with your players. None is automatically the best choice for every team.</p>
+      </div>
+      <div class="nine-compare__cards">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-compare__card" aria-labelledby={`seven-card-${f.slug}`}>
+              <div class="nine-compare__card-head">
+                <h3 id={`seven-card-${f.slug}`}>{f.name}</h3>
+              </div>
+              <p class="nine-compare__shape">{copy.shape}</p>
+              <div class="nine-compare__detail">
+                <p class="nine-compare__label">What it offers</p>
+                <p>{copy.offers}</p>
+              </div>
+              <div class="nine-compare__detail nine-compare__detail--question">
+                <p class="nine-compare__label">Think about</p>
+                <p>{copy.question}</p>
+              </div>
+              <a class="nine-compare__cta" href={href(f)}>Explore the {f.name} guide <span aria-hidden="true">→</span></a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="ed-section ed-grid nine-previews seven-previews" aria-labelledby="seven-previews-title">
+      <div class="nine-previews__head">
+        <p class="ed-kicker">The starting pictures</p>
+        <h2 class="ed-h2" id="seven-previews-title">See the shapes on the pitch</h2>
+        <p class="ed-lede">Start with the diagram, then open the full guide for player roles and four simple playing principles. What matters is how the players move and make decisions when the game changes.</p>
+      </div>
+      <div class="nine-previews__list">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-preview" aria-labelledby={`seven-preview-${f.slug}`}>
+              <figure class="nine-preview__figure">
+                <div class="nine-preview__pitch">
+                  <Fragment set:html={pitchSvg(f)} />
+                </div>
+                <figcaption>{f.name} seven-a-side starting shape. The positions are a guide, not fixed instructions.</figcaption>
+              </figure>
+              <div class="nine-preview__copy">
+                <p class="ed-label">7v7 · Starting shape</p>
+                <h3 id={`seven-preview-${f.slug}`}>See the {f.name} shape</h3>
+                <p class="nine-preview__summary">{copy.preview}</p>
+                <a class="nine-preview__cta" href={href(f)}>See positions and principles in the {f.name} guide <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  </>
+)}
