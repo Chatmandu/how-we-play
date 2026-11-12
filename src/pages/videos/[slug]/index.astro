@@ -1,0 +1,74 @@
+---
+/* One video, one watch page. Source claims and release details come from the
+ * approved formation guide and the November 2026 channel inventory. */
+import Base from '../../../layouts/Base.astro';
+import IssueVideo from '../../../components/IssueVideo.astro';
+import model from '../../../lib/content.mjs';
+import { publishedVideos, videoStructuredData } from '../../../lib/videos.mjs';
+import { longDate } from '../../../lib/ui.mjs';
+
+export function getStaticPaths() {
+  return publishedVideos(model).map(v => ({ params: { slug: v.slug }, props: { slug: v.slug } }));
+}
+const videos = publishedVideos(model);
+const v = videos.find(x => x.slug === Astro.props.slug);
+if (!v) throw new Error('Unpublished video watch page: ' + Astro.props.slug);
+const f = v.f;
+const related = videos.filter(x => x.slug !== v.slug).sort((a, b) => b.uploadDate.localeCompare(a.uploadDate)).slice(0, 3);
+const date = v.uploadDate.slice(0, 10);
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Videos', href: '/videos/' },
+  { label: `${v.format} · ${v.formation}` }
+];
+const jsonLd = videoStructuredData(model.site, v);
+const minutes = `${Math.floor(v.durationSeconds / 60)}:${String(v.durationSeconds % 60).padStart(2, '0')}`;
+---
+<Base title={`${v.title} | How We Play Football`} description={v.description}
+  ids={[f.registerId]} nav="videos" crumbs={crumbs} jsonLd={jsonLd} ogType="video.other"
+  editorial meta={{ type: 'video', format: v.format, formation: v.formation, group: 'Video explainers' }}>
+  <article class="watch-page">
+    <header class="watch-page__header ed-grid">
+      <div class="watch-page__lead">
+        <p class="ed-kicker">{v.format} football · Video explainer</p>
+        <h1>{v.title}</h1>
+        <p class="ed-stand">{v.description}</p>
+        <p class="ed-small"><time datetime={v.uploadDate}>{longDate(date)}</time> · {minutes} · Full-length formation explainer</p>
+      </div>
+    </header>
+
+    <IssueVideo youtubeId={v.youtubeId} formation={v.formation} format={v.format}
+      shape={f.shape} principles={f.rules.map(r => r.title)}
+      label={`${v.format} · ${v.formation} · Watch the video`} watchPage={true}
+      principlesHref={v.guideHref + '#principles'} />
+
+    <section class="ed-section ed-grid split watch-page__details" aria-labelledby="watch-guide-heading">
+      <div class="split__main">
+        <p class="ed-kicker">Keep exploring</p>
+        <h2 class="ed-h2" id="watch-guide-heading">From the film to the pitch</h2>
+        <p class="ed-lede">The film is an introduction. Our complete {v.format} {v.formation} guide has the starting shape, four reviewed principles and a job for every position, all illustrated so you can revisit them at training.</p>
+        <a class="ed-btn" href={v.guideHref}>Read the full {v.formation} formation guide →</a>
+      </div>
+      <div class="split__side">
+        <p class="ed-label">Four playing principles</p>
+        <ol class="watch-page__principles">
+          {f.rules.map(r => <li><a href={v.guideHref + r.id + '/'}><strong>{r.title}</strong><span>{r.summary}</span></a></li>)}
+        </ol>
+      </div>
+    </section>
+
+    {related.length > 0 && <section class="ed-section ed-grid split" aria-labelledby="watch-more-heading">
+      <div class="split__main">
+        <p class="ed-kicker">Watch next</p>
+        <h2 class="ed-h2" id="watch-more-heading">More formation explainers</h2>
+        <p class="ed-small">Want a different starting shape? Our other videos introduce formations for 7v7 and 9v9 football.</p>
+      </div>
+      <div class="split__side">
+        <ul class="watch-page__related">
+          {related.map(other => <li><a href={other.href}>{other.format} · {other.formation} formation explained →</a></li>)}
+        </ul>
+        <p><a href="/videos/">See all formation videos →</a></p>
+      </div>
+    </section>}
+  </article>
+</Base>
