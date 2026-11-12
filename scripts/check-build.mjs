@@ -153,7 +153,7 @@ for (const file of pages) {
     const video = ld.find(x => x['@type'] === 'VideoObject');
     const webpage = ld.find(x => x['@type'] === 'WebPage');
     if (!v || !video || !webpage) fail(route, 'missing VideoObject and WebPage structured data');
-    else if (video.uploadDate !== v.uploadDate || video.duration !== v.duration ||
+    else if (video.uploadDate !== (v.uploadDate ?? undefined) || video.duration !== (v.duration ?? undefined) ||
       video.embedUrl !== v.embedUrl || video.name !== v.title ||
       video.thumbnailUrl?.[0] !== model.site.url + v.thumbnail ||
       webpage.mainEntity?.['@id'] !== video['@id']) {

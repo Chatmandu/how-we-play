@@ -3,7 +3,11 @@
 import Base from '../../layouts/Base.astro';
 import model from '../../lib/content.mjs';
 import { publishedVideos } from '../../lib/videos.mjs';
-const videos = publishedVideos(model).slice().sort((a, b) => b.uploadDate.localeCompare(a.uploadDate));
+// Newly released videos with unverified upload metadata appear first, without inventing a date.
+const videos = publishedVideos(model).slice().sort((a, b) =>
+  a.uploadDate && b.uploadDate ? b.uploadDate.localeCompare(a.uploadDate) :
+  a.uploadDate ? 1 : b.uploadDate ? -1 : 0
+);
 const url = model.site.url + '/videos/';
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Videos' }];
 const jsonLd = [{
@@ -17,7 +21,7 @@ const jsonLd = [{
 }];
 ---
 <Base title="Football Formation Videos: 7v7 & 9v9 Explained | How We Play Football"
-  description="Watch five free 7v7 and 9v9 football formation explainers for grassroots coaches. Starting shapes, player roles and four playing principles."
+  description="Watch six free 7v7 and 9v9 football formation explainers for grassroots coaches. Starting shapes, player roles and four playing principles."
   ids={[]} crumbs={crumbs} nav="videos" jsonLd={jsonLd} ogType="website" editorial
   meta={{ type: 'video_collection', group: 'Video explainers' }}>
   <header class="page-head ed-grid">
@@ -45,7 +49,7 @@ const jsonLd = [{
           <a href={v.href} class="video-library__link">
             <span class="video-library__image"><img src={v.thumbnail} alt={`Branded illustration for the ${v.formation} ${v.format} formation explainer`} width="1200" height="630" loading="lazy" decoding="async" /></span>
             <span class="video-library__copy">
-              <span class="ed-label">{v.format} · Full video · {Math.floor(v.durationSeconds / 60)} min</span>
+              <span class="ed-label">{v.format} · Full video{v.durationSeconds != null ? ` · ${Math.floor(v.durationSeconds / 60)} min` : ''}</span>
               <strong>{v.formation} formation explained</strong>
               <span>{v.description}</span>
               <span class="video-library__action">Watch the full explainer →</span>

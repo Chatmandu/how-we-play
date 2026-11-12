@@ -1,10 +1,8 @@
-/* Published, independently reviewed full-length formation explainers.
- * YouTube IDs, original upload timestamps (UTC), titles and durations come from
- * the project's hwp_inventory.csv YouTube channel export captured in Nov 2026.
- *
- * Only these five full-length films are already embedded on published guides.
- * Shorts and unreleased scripts are deliberately excluded from this roll-out.
- * The approved formation model remains the source for descriptions and diagrams.
+/* Published full-length formation explainers, shown only when the related
+ * formation is approved. Existing film metadata comes from the Nov 2026
+ * channel inventory; the 2-2-3-1 upload details are still unverified.
+ * Never invent publication timestamps or running times.
+ * The formation guide remains the editorial source for coaching descriptions.
  */
 import { publishedIssues } from './editorial.mjs';
 
@@ -33,14 +31,12 @@ const releases = [
     format: '7v7', formation: '2-1-2-1', youtubeId: 'T25DkHCSDHI',
     title: '2-1-2-1 Formation Explained | 7v7 Football Tactics for Grassroots Coaches',
     uploadDate: '2026-11-02T11:33:53Z', durationSeconds: 219
+  },
+  {
+    format: '9v9', formation: '2-2-3-1', youtubeId: 'EXjeIrXdNjA',
+    title: '9v9 Formation With Wing-Backs | The 2-2-3-1 Explained',
+    uploadDate: null, durationSeconds: null
   }
-];
-
-/* Video available on its reviewed formation guide, but not yet added to the
- * video library or video sitemap because its exact upload date and final
- * running time have not been verified. No invented VideoObject metadata. */
-const guideOnlyReleases = [
-  { format: '9v9', formation: '2-2-3-1', youtubeId: 'EXjeIrXdNjA' }
 ];
 
 export function publishedVideos(model) {
@@ -58,19 +54,13 @@ export function publishedVideos(model) {
       embedUrl: `https://www.youtube-nocookie.com/embed/${v.youtubeId}`,
       youtubeUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`,
       thumbnail: `/og/videos/${slug}.png`,
-      duration: `PT${Math.floor(v.durationSeconds / 60)}M${v.durationSeconds % 60}S`
+      duration: v.durationSeconds == null ? null : `PT${Math.floor(v.durationSeconds / 60)}M${v.durationSeconds % 60}S`
     }];
   });
 }
 
 export function videoForFormation(model, format, formation) {
-  const released = publishedVideos(model).find(v => v.format === format && v.formation === formation);
-  if (released) return released;
-
-  // The same editorial gate protects guide-only embeds as full watch pages.
-  const issue = publishedIssues(model).find(f => f.format === format && f.slug === formation);
-  if (!issue) return null;
-  return guideOnlyReleases.find(v => v.format === format && v.formation === formation) || null;
+  return publishedVideos(model).find(v => v.format === format && v.formation === formation) || null;
 }
 
 export function videoStructuredData(site, v) {
@@ -85,8 +75,8 @@ export function videoStructuredData(site, v) {
       name: v.title,
       description: v.description,
       thumbnailUrl: [siteBase + v.thumbnail],
-      uploadDate: v.uploadDate,
-      duration: v.duration,
+      ...(v.uploadDate ? { uploadDate: v.uploadDate } : {}),
+      ...(v.duration ? { duration: v.duration } : {}),
       embedUrl: v.embedUrl,
       url: page,
       isAccessibleForFree: true,
@@ -109,7 +99,9 @@ export function videoStructuredData(site, v) {
 export function videoSitemapXml(model) {
   const siteBase = model.site.url.replace(/\/$/, '');
   const escapeXml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
-  const rows = publishedVideos(model).map(v => [
+  // Publication timestamps and durations are required for reliable sitemap entries.
+  // List unverified releases on the site, but omit them from video sitemap XML.
+  const rows = publishedVideos(model).filter(v => v.uploadDate && v.durationSeconds != null).map(v => [
     '  <url>',
     `    <loc>${escapeXml(siteBase + v.href)}</loc>`,
     '    <video:video>',
