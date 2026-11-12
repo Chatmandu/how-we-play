@@ -53,7 +53,20 @@ assert(nineHub.includes('Compare 4 Shapes') && nineHub.includes('Compare four 9v
 assert(nineHub.includes('href="#compare-9v9"'), '9v9 introduction must link to the comparison');
 assert(nineComparison.includes('id="compare-9v9"') && nineComparison.includes('id="nine-previews-title"'), 'both comparison and diagrams need labelled sections');
 assert(!nineHub.includes('<TeamSheet') && !nineHub.includes('<FormationChooser'), 'remove duplicated 9v9 hub team sheets');
-assert(sevenHub.includes('<FormationChooser format="7v7"') && sevenHub.includes('<TeamSheet f={f}'), 'keep the current 7v7 hub intact');
+const sevenComparison = read('src/components/SevenV7Comparison.astro');
+assert(sevenHub.includes('<SevenV7Comparison issues={published} />'), '7v7 published issues should use the comparison layout');
+assert(sevenHub.includes('Compare 3 Shapes') && sevenHub.includes('href="#compare-7v7"'), '7v7 hub needs comparison metadata and jump link');
+assert(!sevenHub.includes('<FormationChooser') && !sevenHub.includes('published.map(f => ('), 'remove repeated public 7v7 team sheets');
+assert(sevenHub.includes('preview && preparing.map(f => (') && sevenHub.includes('<TeamSheet f={f}'), 'keep private 7v7 reviewer team sheets');
+assert(sevenComparison.includes('id="compare-7v7"') && sevenComparison.includes('id="seven-previews-title"'), '7v7 comparison and illustrated previews need labelled sections');
+for (const slug of ['2-3-1', '3-2-1', '2-1-2-1']) {
+  assert(sevenComparison.includes(`'${slug}': {`), `missing reviewed 7v7 formation ${slug}`);
+}
+assert.equal((sevenComparison.match(/question:/g) || []).length, 3, 'one question per 7v7 formation');
+assert.equal((sevenComparison.match(/preview:/g) || []).length, 3, 'one illustrated preview per 7v7 formation');
+assert(sevenComparison.includes('renderPitch('), 'reuse reviewed 7v7 pitch diagrams');
+assert(sevenHub.includes('Another season at 7v7?'), 'include the second-season route');
+assert(sevenHub.includes('/coaching/moving-from-7v7-to-9v9-england/') && sevenHub.includes('/coaching/attacking-corners/'), 'preserve 7v7 coaching-resource links');
 for (const slug of ['3-1-3-1', '3-3-2', '2-2-3-1', '3-2-3']) {
   assert(nineComparison.includes(`'${slug}': {`), `missing 9v9 comparison copy for ${slug}`);
 }
