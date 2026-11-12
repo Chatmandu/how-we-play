@@ -25,7 +25,7 @@ interface Props {
   crumbs?: Crumb[];         // breadcrumbs, last item is the current page
   nav?: string;             // main navigation item to mark current
   activeFormat?: string;
-  ogType?: 'website' | 'article';
+  ogType?: 'website' | 'article' | 'video.other';
   jsonLd?: object[];
   noindex?: boolean;
   editorial?: boolean;
@@ -53,6 +53,7 @@ const ogImageAlt = visual.alt;
 const formatNav = ['5v5', '7v7', '9v9'].map(id => { const fm = site.formats.find(x => x.id === id); return { id, label: id, href: `/formations/${id}/`, soon: fm && fm.availability !== 'live' }; });
 const navItems = [
   { id: 'coaching', label: 'Coaching Guides', href: '/coaching/' },
+  { id: 'videos', label: 'Videos', href: '/videos/' },
   { id: 'about', label: 'About', href: '/about/' },
   { id: 'contact', label: 'Contact', href: '/contact/' },
   ...(site.newsletter?.action ? [{ id: 'notes', label: 'The Coaching Notes', href: '/#coaching-notes-signup' }] : [])
@@ -60,6 +61,7 @@ const navItems = [
 const footLinks = [
   ...formatNav.map(x => ({ label: `${x.label} formations`, href: x.href })),
   { label: 'Coaching guides', href: '/coaching/' },
+  { label: 'Formation videos', href: '/videos/' },
   { label: 'About and standards', href: '/about/' }, { label: 'Contact us', href: '/contact/' }, { label: 'Privacy and cookies', href: '/privacy/' }
 ];
 const socialLinks = [

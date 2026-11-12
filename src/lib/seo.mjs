@@ -8,6 +8,7 @@
 import { publishedIssues, reviewRecord } from './editorial.mjs';
 import { socialImageForRoute } from './social-images.mjs';
 import { coachingArticles } from './coaching.mjs';
+import { publishedVideos } from './videos.mjs';
 
 const base = site => site.url.replace(/\/$/, '');
 const fullUrl = (site, path) => base(site) + path;
@@ -172,6 +173,9 @@ const asDate = x => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && Nu
 const lastEdit = (f, section) => asDate(section?.updated || f.issue?.updated || f.issue?.published);
 export function sitemapLastmod(route, model) {
   if (route === '/privacy/') return asDate(model.site.privacy?.lastUpdated);
+  // All five dedicated watch pages and their library first launched on 12 Nov 2026.
+  // This is a page modification date, not the YouTube video's original upload date.
+  if (route === '/videos/' || publishedVideos(model).some(v => v.href === route)) return '2026-11-12';
   const coachingArticle = coachingArticles.find(a => a.href === route);
   if (coachingArticle) return asDate(coachingArticle.published);
   if (route === '/coaching/') return coachingArticles.map(a => asDate(a.published)).filter(Boolean).sort().at(-1) || null;

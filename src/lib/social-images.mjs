@@ -3,6 +3,7 @@
  * This is also the single source of truth for OG tags and Article image JSON-LD. */
 import { publishedIssues } from './editorial.mjs';
 import { coachingArticles, cornerDiagrams } from './coaching.mjs';
+import { publishedVideos } from './videos.mjs';
 
 export const DEFAULT_SOCIAL_IMAGE = '/og/default.png';
 
@@ -28,6 +29,22 @@ export function socialImageSpecs(model) {
         : a.summary,
       visual: a.slug === 'moving-from-7v7-to-9v9-england' ? 'pitch-comparison' : undefined,
       frame: a.slug === 'moving-from-7v7-to-9v9-england' ? undefined : cornerDiagrams.setup9v9
+    });
+  }
+  const videos = publishedVideos(model);
+  specs.push({
+    route: '/videos/', image: '/og/pages/videos.png',
+    title: 'FOOTBALL FORMATION VIDEOS', eyebrow: 'HOW WE PLAY FOOTBALL · WATCH',
+    deck: 'Five full-length illustrated football formation explainers for 7v7 and 9v9 coaches.',
+    frame: videos[0]?.f.shape
+  });
+  for (const v of videos) {
+    specs.push({
+      route: v.href, image: v.thumbnail,
+      title: `${v.formation} EXPLAINED`,
+      eyebrow: `${v.format} · FORMATION VIDEO`,
+      deck: `Watch the complete ${v.formation} formation explainer. Four playing principles and player roles.`,
+      frame: v.f.shape
     });
   }
   for (const format of ['5v5', '7v7', '9v9']) {

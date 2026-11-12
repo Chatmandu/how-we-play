@@ -11,8 +11,11 @@ interface Props {
   label?: string;
   format?: string;
   principles?: string[];
+  principlesHref?: string;
+  watchPageHref?: string;
+  watchPage?: boolean;
 }
-const { youtubeId, formation, shape, format = '9v9', principles = ['Middle first', 'One goes, one stays', 'Far side in', 'Show them wide, then go'], label = `${format} · Formation video` } = Astro.props;
+const { youtubeId, formation, shape, format = '9v9', principles = ['Middle first', 'One goes, one stays', 'Far side in', 'Show them wide, then go'], principlesHref = '#principles', watchPageHref = null, watchPage = false, label = `${format} · Formation video` } = Astro.props;
 if (!/^[a-zA-Z0-9_-]{11}$/.test(youtubeId)) throw new Error('IssueVideo: invalid YouTube ID');
 
 const videoTitle = `How to play the ${formation} formation in ${format} football`;
@@ -25,7 +28,7 @@ const posterSvg = renderPitch(
 <section class="issue-video ed-grid" id="watch" aria-labelledby="issue-video-heading">
   <div class="issue-video__heading">
     <p class="ed-kicker">{label}</p>
-    <h2 id="issue-video-heading">Watch the {formation} explained.</h2>
+    <h2 id="issue-video-heading">{watchPage ? 'Watch the full explainer' : `Watch the ${formation} explained.`}</h2>
     <p class="issue-video__lead">A full animated introduction to the starting shape, player responsibilities and our four playing principles. Watch first, then explore the tactics and positions in the guide below.</p>
   </div>
 
@@ -46,8 +49,8 @@ const posterSvg = renderPitch(
   </div>
 
   <div class="issue-video__below">
-    <p>In this video: <a href="#principles">{principles.join(' · ')}</a>.</p>
-    <p class="issue-video__note">The video player loads only when you press Play. Playing connects you to YouTube. <a href={watchUrl} rel="noopener noreferrer" target="_blank">Watch directly on YouTube <span class="hwp-sr-only">(opens in a new tab)</span> ↗</a> · <a href="/privacy/#video">Video privacy</a></p>
+    <p>In this video: <a href={principlesHref}>{principles.join(' · ')}</a>.</p>
+    <p class="issue-video__note">The video player loads only when you press Play. Playing connects you to YouTube. <a href={watchUrl} rel="noopener noreferrer" target="_blank">Watch directly on YouTube <span class="hwp-sr-only">(opens in a new tab)</span> ↗</a> · <a href="/privacy/#video">Video privacy</a>{watchPageHref && <> · <a href={watchPageHref}>Open the video page →</a></>}</p>
   </div>
 </section>
 
