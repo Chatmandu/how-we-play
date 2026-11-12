@@ -1269,3 +1269,20 @@
   .nine-preview__cta { width: 100%; max-width: none; }
   .nine-compare__head .ed-h2, .nine-previews__head .ed-h2 { font-size: clamp(38px, 10vw, 56px); }
 }
+
+/* Seven-a-side comparison reuses the reviewed nine-a-side visual components.
+   Three equal cards fit on wide desktop; stack earlier to keep the coach's
+   questions readable on tablets and mobiles. */
+.seven-hub__jump { justify-self: start; margin-top: 6px; }
+.seven-compare { scroll-margin-top: 26px; }
+.seven-compare .nine-compare__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.seven-compare .nine-compare__card { padding: clamp(20px, 2vw, 28px); }
+.seven-compare .nine-compare__card h3 { font-size: clamp(48px, 4.4vw, 70px); }
+@media (max-width: 1099px) {
+  .seven-compare .nine-compare__cards { grid-template-columns: 1fr; gap: 18px; }
+  .seven-compare .nine-compare__card { padding: 26px; }
+}
+@media (max-width: 699px) {
+  .seven-compare .nine-compare__card { padding: 24px; }
+  .seven-compare .nine-compare__card h3 { font-size: clamp(52px, 15vw, 76px); }
+}
