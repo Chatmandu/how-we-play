@@ -21,6 +21,7 @@ import { resolveTarget } from '../src/lib/model.mjs';
 import { sitemapLastmod, issueFeedXml, escapeXml } from '../src/lib/seo.mjs';
 import { socialImageForRoute, DEFAULT_SOCIAL_IMAGE } from '../src/lib/social-images.mjs';
 import { publishedIssues } from '../src/lib/editorial.mjs';
+import { publishedVideos, videoSitemapXml } from '../src/lib/videos.mjs';
 
 const target = resolveTarget(process.env);
 const dist = join(ROOT, process.argv[2] || 'dist');
@@ -125,12 +126,42 @@ for (const file of pages) {
       }
     }
   }
+  // A watch page must be a genuine, indexable video-first page.
+  // Its privacy-first player remains opt-in, but video metadata must be
+  // available to crawlers in the initial static HTML.
+  if (target === 'public' && route.startsWith('/videos/') && route !== '/videos/') {
+    const v = publishedVideos(model).find(x => x.href === route);
+    if (!v) fail(route, 'unexpected watch page without reviewed source');
+    else {
+      if (!html.includes('data-youtube-id="' + v.youtubeId + '"') || !html.includes('data-youtube-play')) fail(route, 'missing privacy-first player');
+      if (!html.includes('href="' + v.guideHref + '"') || !html.includes('href="/videos/"')) fail(route, 'missing full-guide or video-library link');
+      if (!html.includes('href="' + v.guideHref + '#principles"')) fail(route, 'principles link must point to the actual guide');
+      if (/<iframe\\b/i.test(html) || /src="https:\\/\\/www\\.youtube-nocookie\\.com\\//.test(html)) fail(route, 'must not load YouTube before the visitor presses play');
+      const videoImage = model.site.url + v.thumbnail;
+      if (!exists(v.thumbnail)) fail(route, 'generated first-party video thumbnail is missing');
+      if (!html.includes('content="' + videoImage + '"')) fail(route, 'social sharing thumbnail mismatch');
+    }
+  }
   // Rendered, static JSON-LD must be valid and describe the page it appears on.
   const ld = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => {
     try { return JSON.parse(match[1]); }
     catch { fail(route, 'malformed JSON-LD block'); return null; }
   }).filter(Boolean);
   const pageType = (html.match(/data-hwp-type="([^"]+)"/) || [])[1] || '';
+  if (target === 'public' && route.startsWith('/videos/') && route !== '/videos/') {
+    const v = publishedVideos(model).find(x => x.href === route);
+    const video = ld.find(x => x['@type'] === 'VideoObject');
+    const webpage = ld.find(x => x['@type'] === 'WebPage');
+    if (!v || !video || !webpage) fail(route, 'missing VideoObject and WebPage structured data');
+    else if (video.uploadDate !== v.uploadDate || video.duration !== v.duration ||
+      video.embedUrl !== v.embedUrl || video.name !== v.title ||
+      video.thumbnailUrl?.[0] !== model.site.url + v.thumbnail ||
+      webpage.mainEntity?.['@id'] !== video['@id']) {
+      fail(route, 'VideoObject metadata does not match the verified published inventory');
+    }
+  }
+  if (target === 'public' && route === '/videos/' && !ld.some(x => x['@type'] === 'CollectionPage')) fail(route, 'video library missing CollectionPage markup');
+
   const formatMatch = target === 'public' && route.match(/^\/formations\/(5v5|7v7|9v9)\/$/);
   if (formatMatch) {
     const format = formatMatch[1];
@@ -309,7 +340,14 @@ if (target === 'public') {
     const shapeTag = shape ? `<image:image><image:loc>${escapeXml(site + shape)}</image:loc></image:image>` : '';
     return `  <url><loc>${escapeXml(site + r)}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}${imageTag}${shapeTag}</url>`;
   }).join('\n')}\n</urlset>\n`);
-  writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
+  // Separate video sitemap describes each dedicated watch page once.
+  // Do not duplicate video entries on formation guides where films are supplementary.
+  for (const v of publishedVideos(model)) {
+    if (!indexable.includes(v.href)) fail(v.href, 'published watch page missing from main sitemap');
+    if (!existsSync(join(dist, v.thumbnail.slice(1)))) fail(v.href, 'missing first-party video thumbnail');
+  }
+  writeFileSync(join(dist, 'video-sitemap.xml'), videoSitemapXml(model));
+  writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\nSitemap: ${site}/video-sitemap.xml\n`);
   writeFileSync(join(dist, '_headers'), `/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/downloads/*\n  X-Robots-Tag: noindex\n\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/_astro/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 } else {
   writeFileSync(join(dist, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
