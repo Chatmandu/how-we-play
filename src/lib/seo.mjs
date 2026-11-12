@@ -189,7 +189,12 @@ export function sitemapLastmod(route, model) {
   }
   if (['/formations/5v5/', '/formations/7v7/', '/formations/9v9/'].includes(route)) {
     const format = route.split('/')[2];
+    // Substantive editorial hub redesigns were published on 12 November 2026.
+    // These are landing-page updates, NOT changes to David's reviewed guide versions.
+    // Combine them with source-backed issue dates so a newer guide wins later.
+    const updatedHubs = { '5v5': '2026-11-12', '7v7': '2026-11-12', '9v9': '2026-11-12' };
     const dates = publishedIssues(model).filter(f => f.format === format).map(f => lastEdit(f)).filter(Boolean);
+    if (updatedHubs[format] && dates.length) dates.push(updatedHubs[format]);
     return dates.length ? dates.sort().at(-1) : null;
   }
   // No guessed 'updated today' dates for About, the homepage or teasers.
