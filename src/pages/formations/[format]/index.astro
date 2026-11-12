@@ -2,7 +2,7 @@
 /* 5v5 magazine collection. Only reviewed, published playbooks appear publicly. */
 import Base from '../../../layouts/Base.astro';
 import TeamSheet from '../../../components/TeamSheet.astro';
-import FormationChooser from '../../../components/FormationChooser.astro';
+import FiveV5Comparison from '../../../components/FiveV5Comparison.astro';
 import model from '../../../lib/content.mjs';
 import { issueLabel } from '../../../lib/editorial.mjs';
 import { collectionStructuredData } from '../../../lib/seo.mjs';
@@ -18,8 +18,8 @@ const preview = model.target !== 'public';
 const firstElsewhere = model.formations.find(f => f.gate.allowed && f.register.content.status === 'reviewed' && f.format !== '5v5');
 const crumbs = [{ label: 'Home', href: '/' }, { label: '5v5 formations' }];
 const shapeNames = published.map(f => f.name).join(' and ');
-const title = published.length ? '5v5 Football Formations & Coaching Guides | How We Play Football' : '5v5 football formations: in development | How We Play Football';
-const desc = published.length ? `Free illustrated 5v5 football and youth soccer guides: ${shapeNames} formations, four playing principles and player roles for grassroots coaches.` : 'Our 5v5 football formation guides are in development and awaiting independent coaching review.';
+const title = published.length ? '5v5 Football Formations: Compare 1-2-1 & 2-2 | How We Play Football' : '5v5 football formations: in development | How We Play Football';
+const desc = published.length ? 'Compare 1-2-1 and 2-2 formations for 5v5 football and youth soccer. Free diagrams, player roles and four simple coaching principles in each guide.' : 'Our 5v5 football formation guides are in development and awaiting independent coaching review.';
 const jsonLd = published.length ? collectionStructuredData(model.site, published, '5v5') : [];
 const glance = [
   ['Age groups in England', fm.ages.replace('–', ' and ')],
@@ -31,9 +31,10 @@ const glance = [
 <Base title={title} description={desc} ids={['5v5-hub']} nav="5v5" crumbs={crumbs} jsonLd={jsonLd} ogType="website" noindex={!published.length} editorial meta={{ type: 'format', format: '5v5', group: 'Formats' }}>
   <header class="page-head ed-grid">
     <div class="page-head__text">
-      <p class="ed-kicker">Format · {fm.ages.replace('–', ' and ')}</p>
+      <p class="ed-kicker">Format · {fm.ages.replace('–', ' and ')} in England</p>
       <h1>5v5 formations</h1>
-      <p class="ed-stand">Four outfield players and a goalkeeper. Explore the {shapeNames || 'first'} starting shapes, learn how to support the ball and find space, and give every child a chance to try different roles.</p>
+      <p class="ed-stand">Which 5v5 formation should you use? Compare the 1-2-1 diamond and the 2-2 box, with illustrated starting shapes, simple playing principles and player roles. Both are ways to help young players find space, support each other and try different positions.</p>
+      {published.length > 0 && <a class="ed-go five-hub__jump" href="#compare-5v5">Compare the two formations ↓</a>}
       <p class="ed-small usa-format-link">Coaching in the USA? Small-sided formats and goalkeeper rules may differ. <a href="/coaching-in-the-usa/">See our US coaching guide →</a></p>
     </div>
     <div class="page-head__aside">
@@ -42,15 +43,20 @@ const glance = [
     </div>
   </header>
 
-  <FormationChooser format="5v5" issues={published} />
+  <FiveV5Comparison issues={published} />
 
-  {published.map(f => (
-    <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
-      <div class="ed-grid"><div class="ed-sh"><p class="ed-label">5v5 · {issueLabel(f)} · Published</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Four principles · {f.roles.length} position groups</span></div></div>
-      <TeamSheet f={f} third="rules" />
-      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/5v5/${f.slug}/`}>Explore the {f.name} guide →</a></p></div>
+  {published.length > 0 && (
+    <section class="ed-section ed-grid split" aria-labelledby="five-roles-heading">
+      <div class="split__main">
+        <p class="ed-kicker">More than a formation</p>
+        <h2 class="ed-h2" id="five-roles-heading">Help every player try different jobs</h2>
+        <p class="ed-lede">The formation is only where we start. Give children chances to be the player offering a pass, the one protecting space and the one moving forward.</p>
+      </div>
+      <div class="split__side">
+        <p class="ed-small">In the <a href="/formations/5v5/1-2-1/">1-2-1 guide</a>, players look for space around the ball and recover together. In the <a href="/formations/5v5/2-2/">2-2 guide</a>, partners learn to offer different options and provide cover. Both guides include four reviewed principles and player responsibilities.</p>
+      </div>
     </section>
-  ))}
+  )}
 
   {preview && preparing.filter(f => f.gate.allowed).map(f => (
     <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}, private research draft`} data-hwp-reviewer-only>
