@@ -70,7 +70,7 @@ assert.equal(article.isPartOf.url, pub.site.url + '/formations/7v7/');
 assert.equal(article.articleSection, '7v7 formation guides');
 assert.equal(article.datePublished, '2026-10-22');
 assert.equal(sitemapLastmod(issuePath(f), pub), '2026-10-22');
-assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-10-26');
+assert.equal(sitemapLastmod('/formations/7v7/', pub), '2026-11-12');
 assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(f)), 'Approved issue must appear in public RSS');
 
 console.log(`PASS  Approved 7v7 Issue 01: ${f.rules.length} principles, ${f.roles.length} position groups, ${frames} frames, signed-off ${contentVersion(f)} and public`);
