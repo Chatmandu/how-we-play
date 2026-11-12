@@ -35,7 +35,7 @@ export function socialImageSpecs(model) {
   specs.push({
     route: '/videos/', image: '/og/pages/videos.png',
     title: 'FOOTBALL FORMATION VIDEOS', eyebrow: 'HOW WE PLAY FOOTBALL · WATCH',
-    deck: 'Five full-length illustrated football formation explainers for 7v7 and 9v9 coaches.',
+    deck: `${videos.length} full-length illustrated football formation explainers for 7v7 and 9v9 coaches.`,
     frame: videos[0]?.f.shape
   });
   for (const v of videos) {
