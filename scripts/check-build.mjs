@@ -136,7 +136,7 @@ for (const file of pages) {
       if (!html.includes('data-youtube-id="' + v.youtubeId + '"') || !html.includes('data-youtube-play')) fail(route, 'missing privacy-first player');
       if (!html.includes('href="' + v.guideHref + '"') || !html.includes('href="/videos/"')) fail(route, 'missing full-guide or video-library link');
       if (!html.includes('href="' + v.guideHref + '#principles"')) fail(route, 'principles link must point to the actual guide');
-      if (/<iframe\\b/i.test(html) || /src="https:\\/\\/www\\.youtube-nocookie\\.com\\//.test(html)) fail(route, 'must not load YouTube before the visitor presses play');
+      if (html.includes('<iframe') || html.includes('src="https://www.youtube-nocookie.com/embed/')) fail(route, 'must not load YouTube before the visitor presses play');
       const videoImage = model.site.url + v.thumbnail;
       if (!exists(v.thumbnail)) fail(route, 'generated first-party video thumbnail is missing');
       if (!html.includes('content="' + videoImage + '"')) fail(route, 'social sharing thumbnail mismatch');
