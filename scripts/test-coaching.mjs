@@ -44,4 +44,22 @@ assert(hub.includes('coachingTopics'), 'hub should be organised by categories');
 assert(read('src/layouts/Base.astro').includes("label: 'Coaching Guides'"), 'main nav link');
 assert(read('src/pages/index.astro').includes('coach-feature--home'), 'homepage discovery');
 assert(read('src/lib/social-images.mjs').includes('/og/coaching/'), 'first-party social previews');
+// The 9v9 hub is a comparison page, not a duplicate of four full team sheets.
+const nineHub = read('src/pages/formations/9v9/index.astro');
+const nineComparison = read('src/components/NineV9Comparison.astro');
+const sevenHub = read('src/pages/formations/7v7/index.astro');
+assert(nineHub.includes('<NineV9Comparison issues={published} />'), 'published 9v9 guides should use the comparison');
+assert(nineHub.includes('Compare 4 Shapes') && nineHub.includes('Compare four 9v9 football formations'), '9v9 hub should have comparison-led SEO metadata');
+assert(nineHub.includes('href="#compare-9v9"'), '9v9 introduction must link to the comparison');
+assert(nineComparison.includes('id="compare-9v9"') && nineComparison.includes('id="nine-previews-title"'), 'both comparison and diagrams need labelled sections');
+assert(!nineHub.includes('<TeamSheet') && !nineHub.includes('<FormationChooser'), 'remove duplicated 9v9 hub team sheets');
+assert(sevenHub.includes('<FormationChooser format="7v7"') && sevenHub.includes('<TeamSheet f={f}'), 'keep the current 7v7 hub intact');
+for (const slug of ['3-1-3-1', '3-3-2', '2-2-3-1', '3-2-3']) {
+  assert(nineComparison.includes(`'${slug}': {`), `missing 9v9 comparison copy for ${slug}`);
+}
+assert.equal((nineComparison.match(/question:/g) || []).length, 4, 'one coaching consideration per formation');
+assert.equal((nineComparison.match(/preview:/g) || []).length, 4, 'one preview summary per formation');
+assert(nineComparison.includes('An alternative to explore'), '2-2-3-1 needs an explicit alternative label');
+assert(nineComparison.includes('renderPitch('), 'use approved diagram data rather than a replacement image');
+assert(nineHub.includes('/coaching/moving-from-7v7-to-9v9-england/') && nineHub.includes('/coaching/attacking-corners/'), 'preserve the coaching resource links');
 console.log('Coaching content, diagrams, age-group guidance and discovery checks passed');

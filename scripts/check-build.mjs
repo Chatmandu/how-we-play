@@ -136,8 +136,22 @@ for (const file of pages) {
     const format = formatMatch[1];
     const live = published.filter(f => f.format === format);
     if (live.length) {
-      const sheets = (html.match(/class="sheet ed-grid"[^>]*data-sheet/g) || []).length;
-      if (sheets !== live.length) fail(route, `expected ${live.length} illustrated formation sheets, found ${sheets}`);
+      if (format === '9v9') {
+        // The 9v9 collection deliberately uses four concise choice cards and
+        // reviewed pitch previews instead of repeating the full issue sheets.
+        const cards = (html.match(/class="nine-compare__card"/g) || []).length;
+        const previews = (html.match(/class="nine-preview"/g) || []).length;
+        const diagrams = (html.match(/class="nine-preview__pitch"/g) || []).length;
+        if (cards !== live.length || previews !== live.length || diagrams !== live.length) {
+          fail(route, `expected ${live.length} comparison cards and illustrated previews, found ${cards} cards / ${previews} previews / ${diagrams} diagrams`);
+        }
+        if (!html.includes('id="compare-9v9"') || !html.includes('An alternative to explore')) {
+          fail(route, '9v9 comparison is missing its anchor or its conditional alternative label');
+        }
+      } else {
+        const sheets = (html.match(/class="sheet ed-grid"[^>]*data-sheet/g) || []).length;
+        if (sheets !== live.length) fail(route, `expected ${live.length} illustrated formation sheets, found ${sheets}`);
+      }
       for (const f of live) {
         if (!html.includes(`href="/formations/${format}/${f.slug}/"`)) fail(route, `missing guide link for ${f.name}`);
         if (!(html.match(/<meta name="description" content="([^"]+)"/) || [])[1]?.includes(f.name)) fail(route, `description does not name the ${f.name} guide`);

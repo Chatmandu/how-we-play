@@ -3,8 +3,7 @@
  * preparation are named with their number and status only (linked in preview builds for the reviewer). */
 import Base from '../../../layouts/Base.astro';
 import Gated from '../../../components/Gated.astro';
-import TeamSheet from '../../../components/TeamSheet.astro';
-import FormationChooser from '../../../components/FormationChooser.astro';
+import NineV9Comparison from '../../../components/NineV9Comparison.astro';
 import Scoreboard from '../../../components/Scoreboard.astro';
 import Facts from '../../../components/Facts.astro';
 import model from '../../../lib/content.mjs';
@@ -30,16 +29,16 @@ const byGroup = g => model.facts.facts.filter(x => x.group === g).map(x => x.id)
 const crumbs = [{ label: 'Home', href: '/' }, { label: '9v9 formations' }];
 const ids = ['9v9-hub', 'moving-up-7v7-9v9', ...published.map(f => f.registerId)];
 const jsonLd = collectionStructuredData(model.site, published);
-const publishedNames = published.map(f => f.name).join(', ');
-const title = published.length ? '9v9 Football Formations & Coaching Guides | How We Play Football' : '9v9 Football Formations | How We Play Football';
-const description = published.length ? `Free illustrated 9v9 football and youth soccer guides: ${publishedNames} formations, four playing principles and player roles for grassroots coaches.` : '9v9 formation guides for U12 and U13 grassroots football, plus what changes when moving up from 7v7.';
+const title = published.length ? '9v9 Football Formations: Compare 4 Shapes | How We Play Football' : '9v9 Football Formations | How We Play Football';
+const description = published.length ? 'Compare four 9v9 football formations: 3-1-3-1, 3-3-2, 3-2-3 and 2-2-3-1. Free diagrams, player roles, coaching principles and guides.' : '9v9 formation guides for U12 and U13 grassroots football, plus what changes when moving up from 7v7.';
 ---
 <Base title={title} description={description} ids={ids} nav="9v9" crumbs={crumbs} jsonLd={jsonLd} ogType="website" editorial meta={{ type: 'format', format: '9v9', group: 'Formats' }}>
   <div class="page-head ed-grid">
     <div class="page-head__text">
-      <p class="ed-kicker">Format · U12 and U13</p>
+      <p class="ed-kicker">Format · U12 and U13 in England</p>
       <h1>9v9 formations</h1>
-      <p class="ed-stand">Each 9v9 formation is a complete guide: a starting shape, four playing principles, a job for every position and how the team plays together. There's no single correct formation; each one is a starting point that adapts to your players.</p>
+      <p class="ed-stand">There is no one-size-fits-all formation for nine-a-side football. Compare four starting shapes, see how each gives your players support, width and cover, then open the full illustrated coaching guide. Every guide includes the positions, four playing principles and how the team works together.</p>
+      {published.length > 0 && <a class="ed-go nine-hub__jump" href="#compare-9v9">Compare the four formations ↓</a>}
       <p class="ed-small usa-format-link">Coaching in the USA? 9v9 is generally the U11–U12 format. <a href="/coaching-in-the-usa/">See the US age-group guide →</a></p>
     </div>
     <div class="page-head__aside">
@@ -48,15 +47,8 @@ const description = published.length ? `Free illustrated 9v9 football and youth 
     </div>
   </div>
 
-  <FormationChooser format="9v9" issues={published} />
+  <NineV9Comparison issues={published} />
 
-  {published.map(f => (
-    <section class="ed-section" aria-label={`${issueLabel(f)}: the ${f.name}`}>
-      <div class="ed-grid"><div class="ed-sh"><p class="ed-label">9v9 · {issueLabel(f)} · Published</p><span class="ed-label" style="color:var(--hwp-text-secondary)">Four principles · {f.roles.length} positions</span></div></div>
-      <TeamSheet f={f} third="rules" />
-      <div class="ed-grid" style="margin-top:20px"><p style="grid-column:1/-1"><a class="ed-btn" href={`/formations/9v9/${f.slug}/`}>Explore the {f.name} guide →</a></p></div>
-    </section>
-  ))}
   {published.length === 0 && (
     <div class="ed-grid ed-section"><p class="ed-lede" style="grid-column:1/span 7">Our first 9v9 guide is with our coaching reviewer and will appear here once his review is recorded. In the meantime, <a href="#moving-up">what changes at nine a side</a> is below.</p></div>
   )}

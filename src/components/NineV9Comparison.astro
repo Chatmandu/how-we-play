@@ -1,0 +1,106 @@
+---
+/* The 9v9 collection helps coaches compare published, reviewed shapes.
+ * Detailed positions, four principles and interactive team sheets stay in each guide.
+ * Keep these editorial summaries tied to the approved 9v9 proposal (12 Nov 2026). */
+import { renderPitch } from '../lib/ui.mjs';
+
+const { issues = [] } = Astro.props;
+const comparisons = {
+  '3-1-3-1': {
+    shape: 'Three defenders · a screening player · three ahead · one striker',
+    offers: 'Protection through the middle, width on both sides and a 10 who can support the striker.',
+    question: 'When an outside defender joins the attack, who stays to cover?',
+    preview: 'Three defenders, a player screening the middle and a 10 close to the striker.'
+  },
+  '3-3-2': {
+    shape: 'Three defenders · three midfielders · two forwards',
+    offers: 'A midfield that links defence and attack, with two forwards who can work as a pair.',
+    question: 'Can one forward offer to feet while the other makes a run?',
+    preview: 'A recognisable back three, a midfield three and two forwards working together.'
+  },
+  '2-2-3-1': {
+    alternative: true,
+    shape: 'Two central defenders · two wing-backs · three midfielders · one striker',
+    offers: 'Wing-backs who may provide width, with options to connect play through the midfield.',
+    question: 'When a wing-back goes forward, who covers the space left behind?',
+    preview: 'An alternative that asks wing-backs to support attacks while teammates cover the space behind.'
+  },
+  '3-2-3': {
+    shape: 'Three defenders · two central midfielders · three forwards',
+    offers: 'A front three who can stretch the pitch, with midfielders providing different supporting angles.',
+    question: 'Are the two midfielders staggered so they can support at different heights?',
+    preview: 'A front three with a two-player midfield supporting at different heights.'
+  }
+};
+const available = issues.filter(f => Object.hasOwn(comparisons, f.slug));
+const href = f => `/formations/9v9/${f.slug}/`;
+const pitchSvg = f => {
+  const summary = f.shape?.altSummary || f.shape?.alt || `The ${f.name} starting formation on a nine-a-side pitch.`;
+  const shape = { ...f.shape, title: f.shape?.title || `The ${f.name} starting shape`, altSummary: summary };
+  return renderPitch(shape, { theme: 'blue', title: shape.title, desc: summary });
+};
+---
+{available.length > 0 && (
+  <>
+    <section class="ed-section ed-grid nine-compare" id="compare-9v9" aria-labelledby="nine-compare-title">
+      <div class="nine-compare__head">
+        <p class="ed-kicker">Finding your shape</p>
+        <h2 class="ed-h2" id="nine-compare-title">Compare four 9v9 formations</h2>
+        <p class="ed-lede">Each shape asks slightly different things of your players. These are starting points to explore together, not fixed positions or a ranking from best to worst. Think about the support and cover your players can provide, then choose a full guide.</p>
+      </div>
+      <div class="nine-compare__cards">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-compare__card" aria-labelledby={`nine-card-${f.slug}`}>
+              <div class="nine-compare__card-head">
+                <h3 id={`nine-card-${f.slug}`}>{f.name}</h3>
+                {copy.alternative && <span class="nine-compare__alternative">An alternative to explore</span>}
+              </div>
+              <p class="nine-compare__shape">{copy.shape}</p>
+              <div class="nine-compare__detail">
+                <p class="nine-compare__label">What it offers</p>
+                <p>{copy.offers}</p>
+              </div>
+              <div class="nine-compare__detail nine-compare__detail--question">
+                <p class="nine-compare__label">Think about</p>
+                <p>{copy.question}</p>
+              </div>
+              <a class="nine-compare__cta" href={href(f)}>Explore the {f.name} guide <span aria-hidden="true">→</span></a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="ed-section ed-grid nine-previews" aria-labelledby="nine-previews-title">
+      <div class="nine-previews__head">
+        <p class="ed-kicker">The starting pictures</p>
+        <h2 class="ed-h2" id="nine-previews-title">Look at the starting shapes</h2>
+        <p class="ed-lede">A formation is a starting picture, not a set of fixed positions. Explore the diagrams here, then open the complete guide for player responsibilities and the four playing principles.</p>
+      </div>
+      <div class="nine-previews__list">
+        {available.map(f => {
+          const copy = comparisons[f.slug];
+          return (
+            <article class="nine-preview" aria-labelledby={`nine-preview-${f.slug}`}>
+              <figure class="nine-preview__figure">
+                <div class="nine-preview__pitch">
+                  <Fragment set:html={pitchSvg(f)} />
+                </div>
+                <figcaption>{f.name} nine-a-side starting shape. The positions are a guide, not fixed instructions.</figcaption>
+              </figure>
+              <div class="nine-preview__copy">
+                <p class="ed-label">9v9 · Starting shape</p>
+                <h3 id={`nine-preview-${f.slug}`}>See the {f.name} shape</h3>
+                {copy.alternative && <p class="nine-compare__alternative">An alternative to explore</p>}
+                <p class="nine-preview__summary">{copy.preview}</p>
+                <a class="nine-preview__cta" href={href(f)}>See positions and principles in the {f.name} guide <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  </>
+)}
