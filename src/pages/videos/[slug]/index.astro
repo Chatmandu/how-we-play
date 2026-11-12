@@ -14,15 +14,15 @@ const videos = publishedVideos(model);
 const v = videos.find(x => x.slug === Astro.props.slug);
 if (!v) throw new Error('Unpublished video watch page: ' + Astro.props.slug);
 const f = v.f;
-const related = videos.filter(x => x.slug !== v.slug).sort((a, b) => b.uploadDate.localeCompare(a.uploadDate)).slice(0, 3);
-const date = v.uploadDate.slice(0, 10);
+const related = videos.filter(x => x.slug !== v.slug).sort((a, b) => (b.uploadDate || '').localeCompare(a.uploadDate || '')).slice(0, 3);
+const date = v.uploadDate?.slice(0, 10) || null;
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: 'Videos', href: '/videos/' },
   { label: `${v.format} · ${v.formation}` }
 ];
 const jsonLd = videoStructuredData(model.site, v);
-const minutes = `${Math.floor(v.durationSeconds / 60)}:${String(v.durationSeconds % 60).padStart(2, '0')}`;
+const minutes = v.durationSeconds == null ? null : `${Math.floor(v.durationSeconds / 60)}:${String(v.durationSeconds % 60).padStart(2, '0')}`;
 ---
 <Base title={`${v.title} | How We Play Football`} description={v.description}
   ids={[f.registerId]} nav="videos" crumbs={crumbs} jsonLd={jsonLd} ogType="video.other"
@@ -33,7 +33,7 @@ const minutes = `${Math.floor(v.durationSeconds / 60)}:${String(v.durationSecond
         <p class="ed-kicker">{v.format} football · Video explainer</p>
         <h1>{v.title}</h1>
         <p class="ed-stand">{v.description}</p>
-        <p class="ed-small"><time datetime={v.uploadDate}>{longDate(date)}</time> · {minutes} · Full-length formation explainer</p>
+        <p class="ed-small">{date && <><time datetime={v.uploadDate}>{longDate(date)}</time> · </>}{minutes && <>{minutes} · </>}Full-length formation explainer</p>
       </div>
     </header>
 
