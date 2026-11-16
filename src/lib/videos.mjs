@@ -1,6 +1,7 @@
 /* Published full-length formation explainers, shown only when the related
  * formation is approved. Existing film metadata comes from the Nov 2026
- * channel inventory; the 2-2-3-1 upload details are still unverified.
+ * channel inventory; newer 7v7 3-2-1 and 9v9 2-2-3-1 uploads have
+ * not yet had their original YouTube publication dates/durations verified.
  * Never invent publication timestamps or running times.
  * The formation guide remains the editorial source for coaching descriptions.
  */
@@ -31,6 +32,11 @@ const releases = [
     format: '7v7', formation: '2-1-2-1', youtubeId: 'T25DkHCSDHI',
     title: '2-1-2-1 Formation Explained | 7v7 Football Tactics for Grassroots Coaches',
     uploadDate: '2026-11-02T11:33:53Z', durationSeconds: 219
+  },
+  {
+    format: '7v7', formation: '3-2-1', youtubeId: '5dEpPZEl7N8',
+    title: '3-2-1 Formation Explained | 7v7 Football Tactics for Grassroots Coaches',
+    uploadDate: null, durationSeconds: null
   },
   {
     format: '9v9', formation: '2-2-3-1', youtubeId: 'EXjeIrXdNjA',
@@ -99,9 +105,10 @@ export function videoStructuredData(site, v) {
 export function videoSitemapXml(model) {
   const siteBase = model.site.url.replace(/\/$/, '');
   const escapeXml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
-  // Publication timestamps and durations are required for reliable sitemap entries.
-  // List unverified releases on the site, but omit them from video sitemap XML.
-  const rows = publishedVideos(model).filter(v => v.uploadDate && v.durationSeconds != null).map(v => [
+  // Google's video sitemap requires the thumbnail, title, description and
+  // playable URL. Publication date and running time are OPTIONAL in the XML.
+  // Include each approved video without making up unknown YouTube metadata.
+  const rows = publishedVideos(model).map(v => [
     '  <url>',
     `    <loc>${escapeXml(siteBase + v.href)}</loc>`,
     '    <video:video>',
@@ -109,8 +116,8 @@ export function videoSitemapXml(model) {
     `      <video:title>${escapeXml(v.title)}</video:title>`,
     `      <video:description>${escapeXml(v.description)}</video:description>`,
     `      <video:player_loc>${escapeXml(v.embedUrl)}</video:player_loc>`,
-    `      <video:duration>${v.durationSeconds}</video:duration>`,
-    `      <video:publication_date>${v.uploadDate}</video:publication_date>`,
+    ...(v.durationSeconds != null ? [`      <video:duration>${v.durationSeconds}</video:duration>`] : []),
+    ...(v.uploadDate ? [`      <video:publication_date>${v.uploadDate}</video:publication_date>`] : []),
     '    </video:video>',
     '  </url>'
   ].join('\n'));
