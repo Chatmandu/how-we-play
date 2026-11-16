@@ -173,9 +173,11 @@ const asDate = x => typeof x === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && Nu
 const lastEdit = (f, section) => asDate(section?.updated || f.issue?.updated || f.issue?.published);
 export function sitemapLastmod(route, model) {
   if (route === '/privacy/') return asDate(model.site.privacy?.lastUpdated);
-  // All five dedicated watch pages and their library first launched on 12 Nov 2026.
-  // This is a page modification date, not the YouTube video's original upload date.
-  if (route === '/videos/' || publishedVideos(model).some(v => v.href === route)) return '2026-11-12';
+  // Sitemap lastmod records the date OUR pages changed, not the YouTube upload time.
+  // The original library/watch pages launched on 12 Nov; a new 3-2-1 page and
+  // library update are published on 16 Nov. This does not edit coach review dates.
+  if (route === '/videos/' || route === '/videos/7v7-3-2-1/') return '2026-11-16';
+  if (publishedVideos(model).some(v => v.href === route)) return '2026-11-12';
   const coachingArticle = coachingArticles.find(a => a.href === route);
   if (coachingArticle) return asDate(coachingArticle.published);
   if (route === '/coaching/') return coachingArticles.map(a => asDate(a.published)).filter(Boolean).sort().at(-1) || null;
@@ -183,7 +185,11 @@ export function sitemapLastmod(route, model) {
   const issue = model.formations.find(f => f.gate.allowed && f.issue && route.startsWith(issuePath(f)));
   if (issue) {
     const rest = route.slice(issuePath(issue).length);
-    if (!rest) return lastEdit(issue);
+    if (!rest) {
+      // The 7v7 3-2-1 guide gains its full video explainer on 16 Nov.
+      if (route === '/formations/7v7/3-2-1/') return '2026-11-16';
+      return lastEdit(issue);
+    }
     if (rest.startsWith('positions/')) {
       const role = issue.roles?.find(x => 'positions/' + x.id + '/' === rest);
       return role ? lastEdit(issue, role) : null;
