@@ -139,6 +139,6 @@ assert.equal(draftArticle.url, pub.site.url + '/formations/7v7/3-2-1/');
 assert.equal(draftArticle.datePublished, '2026-10-22');
 assert.equal(draftArticle.articleSection, '7v7 formation guides');
 assert.equal(draftArticle.isPartOf.url, pub.site.url + '/formations/7v7/');
-assert.equal(sitemapLastmod(issuePath(draft), pub), '2026-10-22');
+assert.equal(sitemapLastmod(issuePath(draft), pub), '2026-11-16');
 assert.ok(issueFeedXml(pub).includes(pub.site.url + issuePath(draft)), 'Reviewed Issue 02 must appear in published RSS');
 console.log(`PASS  7v7 Issue 02 published: ${draft.rules.length} principles, ${draft.roles.length} position groups, ${newFrames} frames, reviewed version ${contentVersion(draft)}`);
