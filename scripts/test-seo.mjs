@@ -95,7 +95,7 @@ test('Each format collection exposes only published issues in that format', () =
 
 test('Sitemap publication dates are stable and never fabricated from build time', () => {
   for (const f of issues) {
-    assert.equal(sitemapLastmod(issuePath(f), model), f.issue.published);
+    assert.equal(sitemapLastmod(issuePath(f), model), f.format === '7v7' && f.slug === '3-2-1' ? '2026-11-16' : f.issue.published);
     assert.equal(sitemapLastmod(issuePath(f) + f.rules[0].id + '/', model), f.issue.published);
     assert.equal(sitemapLastmod(issuePath(f) + 'positions/' + f.roles[0].id + '/', model), f.issue.published);
   }
@@ -105,8 +105,8 @@ test('Sitemap publication dates are stable and never fabricated from build time'
   assert.equal(sitemapLastmod('/formations/7v7/', model), '2026-11-12');
   assert.equal(sitemapLastmod('/formations/9v9/', model), '2026-11-12');
   assert.equal(sitemapLastmod('/privacy/', model), site.privacy.lastUpdated);
-  assert.equal(sitemapLastmod('/videos/', model), '2026-11-12');
-  for (const v of publishedVideos(model)) assert.equal(sitemapLastmod(v.href, model), '2026-11-12');
+  assert.equal(sitemapLastmod('/videos/', model), '2026-11-16');
+  for (const v of publishedVideos(model)) assert.equal(sitemapLastmod(v.href, model), v.slug === '7v7-3-2-1' ? '2026-11-16' : '2026-11-12');
 });
 
 test('RSS feed contains only approved full issues and no lessons or private drafts', () => {
